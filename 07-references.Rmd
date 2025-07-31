@@ -1,3 +1,5 @@
-`r if (knitr::is_html_output()) '
-# References {-}
-'`
+# Gerenciamento_Desempenho_Otimizacao
+
+## Monitoramento_desempenho_Tunning
+## Backup_Recuperacao
+## Ferramentas

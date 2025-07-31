@@ -1,0 +1,15 @@
+# Fundamentos_Banco_de_Dados
+
+## Estrutura_Banco_Dados
+
+### Tabelas
+### Índices
+### Chaves
+
+## Modelo_Banco_Dados
+
+### Relacional
+### Hierárquico
+### Rede
+### Não-Relacional
+### Grafo

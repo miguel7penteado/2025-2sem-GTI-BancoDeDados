@@ -1,60 +1,154 @@
---- 
-title: "A Minimal Book Example"
-author: "John Doe"
+---
+title: "GTI - Banco de dados - 2025 - Anotações de aula"
+author: "Professor Miguél Suares"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
-bibliography: [book.bib, packages.bib]
-# url: your book url like https://bookdown.org/yihui/bookdown
-# cover-image: path to the social sharing image like images/cover.jpg
+bibliography: [book.bib]
+url: your book url like https://bookdown.org/yihui/bookdown
+cover-image: images/cover.jpg
 description: |
-  This is a minimal example of using the bookdown package to write a book.
-  The HTML output format for this example is bookdown::gitbook,
-  set in the _output.yml file.
+  Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da  disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas.
 link-citations: yes
-github-repo: rstudio/bookdown-demo
+github-repo: miguel7penteado/2025-2sem-GTI-BancoDeDados
 ---
 
-# About
+# Sobre estas anotações {.unnumbered}
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports; for example, a math equation $a^2 + b^2 = c^2$.
+—————————————————————————————————————————————
 
-## Usage 
+Estas anotações são apenas lembretes das aulas expostas em sala, durante a disciplina de Banco de dados.
 
-Each **bookdown** chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter *must* start with a first-level heading: `# A good chapter`, and can contain one (and only one) first-level heading.
+## ACESSO AO GITBOOK CELULAR
 
-Use second-level and higher headings within chapters like: `## A short section` or `### An even shorter section`.
+—————————————————————————————————————————————
 
-The `index.Rmd` file is required, and is also your first book chapter. It will be the homepage when you render the book.
+#### <https://miguel7penteado.github.io/2025-2sem-GTI-BancoDeDados>
 
-## Render book
+![](images/qr-code-disciplina.jpg)
 
-You can render the HTML version of this example book without changing anything:
+## Leitores de formato de arquivo EPUB para SmartPhone
 
-1. Find the **Build** pane in the RStudio IDE, and
+—————————————————————————————————————————————
 
-1. Click on **Build Book**, then select your output format, or select "All formats" if you'd like to use multiple formats from the same book source files.
+### ANDROID
 
-Or build the book from the R console:
+#### **Moon+ Reader**
 
-```{r, eval=FALSE}
-bookdown::render_book()
-```
+![](images/qrcode/leitor_epub/MoonReaderPlus.jpg){width="340"}
 
-To render this example to PDF as a `bookdown::pdf_book`, you'll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
+## Livros Texto da Disciplina
 
-## Preview book
+—————————————————————————————————————————————
 
-As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in "Preview book", or from the R console:
+### ["Introdução a sistemas de bancos de dados" do autor "**Christopher John Date**"](https://www.kufunda.net/publicdocs/Introdu%C3%A7%C3%A3o%20a%20Sistemas%20de%20Bancos%20de%20Dados%20(C.%20J.%20Date)%20(z-lib.org).pdf)
 
-```{r eval=FALSE}
-bookdown::serve_book()
-```
+![](images/livros/livro1.jpg)
+
++-----------------------+------------------------------------------------------------------------------------+
+| **Autor(es)**         | ### [**Christopher John Date**](https://en.wikipedia.org/wiki/Christopher_J._Date) |
++-----------------------+------------------------------------------------------------------------------------+
+| **Editora**           | LTC                                                                                |
++-----------------------+------------------------------------------------------------------------------------+
+| **Idioma**            | Português                                                                          |
++-----------------------+------------------------------------------------------------------------------------+
+| **ISBN**              | 978-85-352-8445-4                                                                  |
++-----------------------+------------------------------------------------------------------------------------+
+| **Formato**           | Capa dura                                                                          |
++-----------------------+------------------------------------------------------------------------------------+
+| **Páginas**           | 1623                                                                               |
++-----------------------+------------------------------------------------------------------------------------+
+| **Código Biblioteca** |                                                                                    |
++-----------------------+------------------------------------------------------------------------------------+
+
+### ["**Projeto de bancos de dados**" do autor "Carlos Alberto HEUSER"](https://drive.google.com/file/d/0B452rmbcudPSVFdCZ09vVkJUUUd2dlpMNS1vaEczUQ/view?pli=1&resourcekey=0-3MTcHlAYjPX6YSvBQGweUQ)
+
+![](images/livros/livro2.jpg)
+
++-----------------------+-------------------------------------------------------------------------------------------+
+| **Autor(es)**         | ### [Carlos Alberto HEUSER](https://www.inf.ufrgs.br/site/docente/carlos-alberto-heuser/) |
++-----------------------+-------------------------------------------------------------------------------------------+
+| **Editora**           | Bookman                                                                                   |
++-----------------------+-------------------------------------------------------------------------------------------+
+| **Idioma**            | Português                                                                                 |
++-----------------------+-------------------------------------------------------------------------------------------+
+| **ISBN-10**           | 8577803821                                                                                |
++-----------------------+-------------------------------------------------------------------------------------------+
+| **Formato**           | Impresso                                                                                  |
++-----------------------+-------------------------------------------------------------------------------------------+
+| **Páginas**           | 282                                                                                       |
++-----------------------+-------------------------------------------------------------------------------------------+
+| **Código Biblioteca** |                                                                                           |
++-----------------------+-------------------------------------------------------------------------------------------+
+
+## Calendário das aulas
+
+—————————————————————————————————————————————
+
+##### AGOSTO DE 2025
+
+| Data       | Dia da Semana | Aulas          | Conteúdo |
+|------------|---------------|----------------|----------|
+| 04/08/2025 | Segunda-Feira | Aula Inaugural |          |
+| 11/08/2025 | Segunda-Feira | Aula 2         |          |
+| 18/08/2025 | Segunda-Feira | Aula 3         |          |
+| 25/08/2025 | Segunda-Feira | Aula 4         |          |
+
+##### SETEMBRO DE 2025
+
+| Data       | Dia da Semana | Aulas  | Conteúdo |
+|------------|---------------|--------|----------|
+| 01/09/2025 | Segunda-Feira | Aula 5 |          |
+| 08/09/2025 | Segunda-Feira | Aula 6 |          |
+| 15/09/2025 | Segunda-Feira | NP1    | PROVA    |
+| 22/09/2025 | Segunda-Feira | Aula 7 |          |
+| 29/09/2025 | Segunda-Feira | Aula 8 |          |
+
+##### OUTUBRO DE 2025
+
+| Data       | Dia da Semana | Aulas   | Conteúdo |
+|------------|---------------|---------|----------|
+| 06/10/2025 | Segunda-Feira | Aula 9  |          |
+| 13/10/2025 | Segunda-Feira | Aula 10 |          |
+| 20/10/2025 | Segunda-Feira | Aula 11 |          |
+| 27/10/2025 | Segunda-Feira | Aula 12 |          |
 
 
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
+##### NOVEMBRO DE 2025
+
+| Data       | Dia da Semana | Aulas | Conteúdo |
+|------------|---------------|-------|----------|
+| 03/11/2025 | Segunda-Feira | NP2   | PROVA    |
+| 10/11/2025 | Segunda-Feira |       | N/A      |
+| 17/11/2025 | Segunda-Feira | SUB   | PROVA    |
+| 24/11/2025 | Segunda-Feira |       | N/A      |
+
+
+##### DEZEMBRO DE 2025
+
+| Data       | Dia da Semana | Aulas | Conteúdo |
+|------------|---------------|-------|----------|
+| 01/12/2025 | Segunda-Feira |       | N/A      |
+| 08/12/2025 | Segunda-Feira | EXAME | PROVA    |
+| 15/12/2025 | Segunda-Feira |       | N/A      |
+
+
+## Alunos 2025 - 2o Semestre
+
+—————————————————————————————————————————————
+
+### Campus Chácara Santo Antônio
+
+#### Turma TI2P40
+
+| Matrícula |          Nome do aluno         |
+|:---------:|:------------------------------:|
+| F362BF0   | BRUNO ANTONIO MARQUES          |
+| R536FA6   | CAIO CESAR BALBINO DA SILVA    |
+| H6094I1   | DOUGLAS VINICIUS M DOS SANTOS  |
+| R6607G5   | GABRIEL ROQUE DOS SANTOS       |
+| R8133G7   | ÍTALO KEVIN RODRIGUES DA SILVA |
+| R837AA0   | LUCAS SOUZA RODRIGUES          |
+| H714419   | MARCOS PAULO CORDEIRO GOES     |
+
+
