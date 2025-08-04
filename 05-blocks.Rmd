@@ -1,4 +1,0 @@
-# Administracao_Banco_de_Dados
-
-## Papel_Administrador_Banco_de_Dados
-## Instalacao_Configuracao_Manutencao

@@ -1,5 +1,0 @@
-# Gerenciamento_Desempenho_Otimizacao
-
-## Monitoramento_desempenho_Tunning
-## Backup_Recuperacao
-## Ferramentas

@@ -1,4 +1,0 @@
-# Seguranca_Banco_de_Dados
-
-## Controle_Acesso_Politicas_Seguranca
-## Tecnicas_auditoria_criptografia

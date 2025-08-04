@@ -1,5 +1,0 @@
-# Banco de Dados - Introdução 
-
-## Histórico_Evolucao
-
-## Relacionamento_Integridade

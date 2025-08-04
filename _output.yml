@@ -40,3 +40,12 @@ bookdown::html_document2:
   toc: true
   toc_depth: 3
   template: "default"
+revealjs::revealjs_presentation:
+  self_contained: false
+  reveal_plugins: ["chalkboard", "menu"]
+  reveal_options:
+    chalkboard:
+        theme: whiteboard
+        toggleNotesButton: false
+    menu:
+        side: right

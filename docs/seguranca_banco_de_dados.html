@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Anotações de Aula 6 Seguranca_Banco_de_Dados | GTI - Banco de dados - 2025 - Anotações de aula</title>
+  <meta name="description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Anotações de Aula 6 Seguranca_Banco_de_Dados | GTI - Banco de dados - 2025 - Anotações de aula" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="your book url like https://bookdown.org/yihui/bookdown/images/cover.jpg" />
+  <meta property="og:description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
+  <meta name="github-repo" content="miguel7penteado/2025-2sem-GTI-BancoDeDados" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Anotações de Aula 6 Seguranca_Banco_de_Dados | GTI - Banco de dados - 2025 - Anotações de aula" />
+  
+  <meta name="twitter:description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
+  <meta name="twitter:image" content="your book url like https://bookdown.org/yihui/bookdown/images/cover.jpg" />
+
+<meta name="author" content="Professor Miguél Suares" />
+
+
+<meta name="date" content="2025-08-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="administracao_banco_de_dados.html"/>
+<link rel="next" href="gerenciamento_desempenho_otimizacao.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">2025-GTI- Disciplina de Banco de Dados - Anotações de Aula</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Sobre estas anotações</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#acesso-ao-gitbook-celular"><i class="fa fa-check"></i><b>0.1</b> ACESSO AO GITBOOK CELULAR</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#leitores-de-formato-de-arquivo-epub-para-smartphone"><i class="fa fa-check"></i><b>0.2</b> Leitores de formato de arquivo EPUB para SmartPhone</a>
+<ul>
+<li class="chapter" data-level="0.2.1" data-path="index.html"><a href="index.html#android"><i class="fa fa-check"></i><b>0.2.1</b> ANDROID</a></li>
+</ul></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#livros-texto-da-disciplina"><i class="fa fa-check"></i><b>0.3</b> Livros Texto da Disciplina</a>
+<ul>
+<li class="chapter" data-level="0.3.1" data-path="index.html"><a href="index.html#introdução-a-sistemas-de-bancos-de-dados-do-autor-christopher-john-date"><i class="fa fa-check"></i><b>0.3.1</b> “Introdução a sistemas de bancos de dados” do autor “<strong>Christopher John Date</strong>”</a></li>
+<li class="chapter" data-level="0.3.2" data-path="index.html"><a href="index.html#projeto-de-bancos-de-dados-do-autor-carlos-alberto-heuser"><i class="fa fa-check"></i><b>0.3.2</b> “<strong>Projeto de bancos de dados</strong>” do autor “Carlos Alberto HEUSER”</a></li>
+</ul></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#calendário-das-aulas"><i class="fa fa-check"></i><b>0.4</b> Calendário das aulas</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#alunos-2025---2o-semestre"><i class="fa fa-check"></i><b>0.5</b> Alunos 2025 - 2o Semestre</a>
+<ul>
+<li class="chapter" data-level="0.5.1" data-path="index.html"><a href="index.html#campus-chácara-santo-antônio"><i class="fa fa-check"></i><b>0.5.1</b> Campus Chácara Santo Antônio</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="aula-inaugural.html"><a href="aula-inaugural.html"><i class="fa fa-check"></i><b>1</b> Aula Inaugural</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="aula-inaugural.html"><a href="aula-inaugural.html#histórico_evolucao"><i class="fa fa-check"></i><b>1.1</b> Histórico_Evolucao</a></li>
+<li class="chapter" data-level="1.2" data-path="aula-inaugural.html"><a href="aula-inaugural.html#relacionamento_integridade"><i class="fa fa-check"></i><b>1.2</b> Relacionamento_Integridade</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="fundamentos_banco_de_dados.html"><a href="fundamentos_banco_de_dados.html"><i class="fa fa-check"></i><b>2</b> Fundamentos_Banco_de_Dados</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="fundamentos_banco_de_dados.html"><a href="fundamentos_banco_de_dados.html#estrutura_banco_dados"><i class="fa fa-check"></i><b>2.1</b> Estrutura_Banco_Dados</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="fundamentos_banco_de_dados.html"><a href="fundamentos_banco_de_dados.html#tabelas"><i class="fa fa-check"></i><b>2.1.1</b> Tabelas</a></li>
+<li class="chapter" data-level="2.1.2" data-path="fundamentos_banco_de_dados.html"><a href="fundamentos_banco_de_dados.html#índices"><i class="fa fa-check"></i><b>2.1.2</b> Índices</a></li>
+<li class="chapter" data-level="2.1.3" data-path="fundamentos_banco_de_dados.html"><a href="fundamentos_banco_de_dados.html#chaves"><i class="fa fa-check"></i><b>2.1.3</b> Chaves</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="fundamentos_banco_de_dados.html"><a href="fundamentos_banco_de_dados.html#modelo_banco_dados"><i class="fa fa-check"></i><b>2.2</b> Modelo_Banco_Dados</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="fundamentos_banco_de_dados.html"><a href="fundamentos_banco_de_dados.html#relacional"><i class="fa fa-check"></i><b>2.2.1</b> Relacional</a></li>
+<li class="chapter" data-level="2.2.2" data-path="fundamentos_banco_de_dados.html"><a href="fundamentos_banco_de_dados.html#hierárquico"><i class="fa fa-check"></i><b>2.2.2</b> Hierárquico</a></li>
+<li class="chapter" data-level="2.2.3" data-path="fundamentos_banco_de_dados.html"><a href="fundamentos_banco_de_dados.html#rede"><i class="fa fa-check"></i><b>2.2.3</b> Rede</a></li>
+<li class="chapter" data-level="2.2.4" data-path="fundamentos_banco_de_dados.html"><a href="fundamentos_banco_de_dados.html#não-relacional"><i class="fa fa-check"></i><b>2.2.4</b> Não-Relacional</a></li>
+<li class="chapter" data-level="2.2.5" data-path="fundamentos_banco_de_dados.html"><a href="fundamentos_banco_de_dados.html#grafo"><i class="fa fa-check"></i><b>2.2.5</b> Grafo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="modelagem_banco_de_dados.html"><a href="modelagem_banco_de_dados.html"><i class="fa fa-check"></i><b>3</b> Modelagem_Banco_de_Dados</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="modelagem_banco_de_dados.html"><a href="modelagem_banco_de_dados.html#modelo_entidade_relacionamento"><i class="fa fa-check"></i><b>3.1</b> Modelo_Entidade_Relacionamento</a></li>
+<li class="chapter" data-level="3.2" data-path="modelagem_banco_de_dados.html"><a href="modelagem_banco_de_dados.html#ferramentas_case"><i class="fa fa-check"></i><b>3.2</b> Ferramentas_Case</a></li>
+<li class="chapter" data-level="3.3" data-path="modelagem_banco_de_dados.html"><a href="modelagem_banco_de_dados.html#diagrama_entidade_relacionamento"><i class="fa fa-check"></i><b>3.3</b> Diagrama_Entidade_Relacionamento</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sistemas_gerenciamento_de_banco_de_dados.html"><a href="sistemas_gerenciamento_de_banco_de_dados.html"><i class="fa fa-check"></i><b>4</b> Sistemas_Gerenciamento_de_Banco_de_Dados</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="sistemas_gerenciamento_de_banco_de_dados.html"><a href="sistemas_gerenciamento_de_banco_de_dados.html#componentes_sgbd"><i class="fa fa-check"></i><b>4.1</b> Componentes_SGBD</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="sistemas_gerenciamento_de_banco_de_dados.html"><a href="sistemas_gerenciamento_de_banco_de_dados.html#armazenamento"><i class="fa fa-check"></i><b>4.1.1</b> Armazenamento</a></li>
+<li class="chapter" data-level="4.1.2" data-path="sistemas_gerenciamento_de_banco_de_dados.html"><a href="sistemas_gerenciamento_de_banco_de_dados.html#controle_concorrencia"><i class="fa fa-check"></i><b>4.1.2</b> Controle_Concorrencia</a></li>
+<li class="chapter" data-level="4.1.3" data-path="sistemas_gerenciamento_de_banco_de_dados.html"><a href="sistemas_gerenciamento_de_banco_de_dados.html#recuperacao"><i class="fa fa-check"></i><b>4.1.3</b> Recuperacao</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="sistemas_gerenciamento_de_banco_de_dados.html"><a href="sistemas_gerenciamento_de_banco_de_dados.html#tipos_bancos_de_dados"><i class="fa fa-check"></i><b>4.2</b> Tipos_Bancos_de_Dados</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="sistemas_gerenciamento_de_banco_de_dados.html"><a href="sistemas_gerenciamento_de_banco_de_dados.html#centralizado"><i class="fa fa-check"></i><b>4.2.1</b> Centralizado</a></li>
+<li class="chapter" data-level="4.2.2" data-path="sistemas_gerenciamento_de_banco_de_dados.html"><a href="sistemas_gerenciamento_de_banco_de_dados.html#distribuído"><i class="fa fa-check"></i><b>4.2.2</b> Distribuído</a></li>
+<li class="chapter" data-level="4.2.3" data-path="sistemas_gerenciamento_de_banco_de_dados.html"><a href="sistemas_gerenciamento_de_banco_de_dados.html#núvem"><i class="fa fa-check"></i><b>4.2.3</b> Núvem</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="administracao_banco_de_dados.html"><a href="administracao_banco_de_dados.html"><i class="fa fa-check"></i><b>5</b> Administracao_Banco_de_Dados</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="administracao_banco_de_dados.html"><a href="administracao_banco_de_dados.html#papel_administrador_banco_de_dados"><i class="fa fa-check"></i><b>5.1</b> Papel_Administrador_Banco_de_Dados</a></li>
+<li class="chapter" data-level="5.2" data-path="administracao_banco_de_dados.html"><a href="administracao_banco_de_dados.html#instalacao_configuracao_manutencao"><i class="fa fa-check"></i><b>5.2</b> Instalacao_Configuracao_Manutencao</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="seguranca_banco_de_dados.html"><a href="seguranca_banco_de_dados.html"><i class="fa fa-check"></i><b>6</b> Seguranca_Banco_de_Dados</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="seguranca_banco_de_dados.html"><a href="seguranca_banco_de_dados.html#controle_acesso_politicas_seguranca"><i class="fa fa-check"></i><b>6.1</b> Controle_Acesso_Politicas_Seguranca</a></li>
+<li class="chapter" data-level="6.2" data-path="seguranca_banco_de_dados.html"><a href="seguranca_banco_de_dados.html#tecnicas_auditoria_criptografia"><i class="fa fa-check"></i><b>6.2</b> Tecnicas_auditoria_criptografia</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="gerenciamento_desempenho_otimizacao.html"><a href="gerenciamento_desempenho_otimizacao.html"><i class="fa fa-check"></i><b>7</b> Gerenciamento_Desempenho_Otimizacao</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="gerenciamento_desempenho_otimizacao.html"><a href="gerenciamento_desempenho_otimizacao.html#monitoramento_desempenho_tunning"><i class="fa fa-check"></i><b>7.1</b> Monitoramento_desempenho_Tunning</a></li>
+<li class="chapter" data-level="7.2" data-path="gerenciamento_desempenho_otimizacao.html"><a href="gerenciamento_desempenho_otimizacao.html#backup_recuperacao"><i class="fa fa-check"></i><b>7.2</b> Backup_Recuperacao</a></li>
+<li class="chapter" data-level="7.3" data-path="gerenciamento_desempenho_otimizacao.html"><a href="gerenciamento_desempenho_otimizacao.html#ferramentas"><i class="fa fa-check"></i><b>7.3</b> Ferramentas</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="banco_dados_não_convencionais.html"><a href="banco_dados_não_convencionais.html"><i class="fa fa-check"></i><b>8</b> Banco_Dados_Não_Convencionais</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="banco_dados_não_convencionais.html"><a href="banco_dados_não_convencionais.html#sgbds_não-sql"><i class="fa fa-check"></i><b>8.1</b> SGBDs_Não-SQL</a></li>
+<li class="chapter" data-level="8.2" data-path="banco_dados_não_convencionais.html"><a href="banco_dados_não_convencionais.html#big_data"><i class="fa fa-check"></i><b>8.2</b> BIG_Data</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="banco_dados_não_convencionais-1.html"><a href="banco_dados_não_convencionais-1.html"><i class="fa fa-check"></i><b>9</b> Banco_Dados_Não_Convencionais</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="banco_dados_não_convencionais-1.html"><a href="banco_dados_não_convencionais-1.html#sgbds_não-sql-1"><i class="fa fa-check"></i><b>9.1</b> SGBDs_Não-SQL</a></li>
+<li class="chapter" data-level="9.2" data-path="banco_dados_não_convencionais-1.html"><a href="banco_dados_não_convencionais-1.html#big_data-1"><i class="fa fa-check"></i><b>9.2</b> BIG_Data</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="banco_dados_não_convencionais-2.html"><a href="banco_dados_não_convencionais-2.html"><i class="fa fa-check"></i><b>10</b> Banco_Dados_Não_Convencionais</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="banco_dados_não_convencionais-2.html"><a href="banco_dados_não_convencionais-2.html#sgbds_não-sql-2"><i class="fa fa-check"></i><b>10.1</b> SGBDs_Não-SQL</a></li>
+<li class="chapter" data-level="10.2" data-path="banco_dados_não_convencionais-2.html"><a href="banco_dados_não_convencionais-2.html#big_data-2"><i class="fa fa-check"></i><b>10.2</b> BIG_Data</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="banco_dados_não_convencionais-3.html"><a href="banco_dados_não_convencionais-3.html"><i class="fa fa-check"></i><b>11</b> Banco_Dados_Não_Convencionais</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="banco_dados_não_convencionais-3.html"><a href="banco_dados_não_convencionais-3.html#sgbds_não-sql-3"><i class="fa fa-check"></i><b>11.1</b> SGBDs_Não-SQL</a></li>
+<li class="chapter" data-level="11.2" data-path="banco_dados_não_convencionais-3.html"><a href="banco_dados_não_convencionais-3.html#big_data-3"><i class="fa fa-check"></i><b>11.2</b> BIG_Data</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="banco_dados_não_convencionais-4.html"><a href="banco_dados_não_convencionais-4.html"><i class="fa fa-check"></i><b>12</b> Banco_Dados_Não_Convencionais</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="banco_dados_não_convencionais-4.html"><a href="banco_dados_não_convencionais-4.html#sgbds_não-sql-4"><i class="fa fa-check"></i><b>12.1</b> SGBDs_Não-SQL</a></li>
+<li class="chapter" data-level="12.2" data-path="banco_dados_não_convencionais-4.html"><a href="banco_dados_não_convencionais-4.html#big_data-4"><i class="fa fa-check"></i><b>12.2</b> BIG_Data</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com Biblioteca R bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GTI - Banco de dados - 2025 - Anotações de aula</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="seguranca_banco_de_dados" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Anotações de Aula 6</span> Seguranca_Banco_de_Dados<a href="seguranca_banco_de_dados.html#seguranca_banco_de_dados" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="controle_acesso_politicas_seguranca" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Controle_Acesso_Politicas_Seguranca<a href="seguranca_banco_de_dados.html#controle_acesso_politicas_seguranca" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="tecnicas_auditoria_criptografia" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Tecnicas_auditoria_criptografia<a href="seguranca_banco_de_dados.html#tecnicas_auditoria_criptografia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="administracao_banco_de_dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gerenciamento_desempenho_otimizacao.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/miguel7penteado/2025-2sem-GTI-BancoDeDados/edit/main/06-2025-09-08_MySQL.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["2025-GTI-Sem-BancoDeDados.pdf", "2025-GTI-Sem-BancoDeDados.epub", "2025-GTI-Sem-BancoDeDados.word", "2025-GTI-Sem-BancoDeDados.html"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>
