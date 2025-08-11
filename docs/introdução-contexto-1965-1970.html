@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>12 Introdução — contexto (1965 → 1970) | GTI - Banco de dados - 2025 - Anotações de aula</title>
+  <meta name="description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="12 Introdução — contexto (1965 → 1970) | GTI - Banco de dados - 2025 - Anotações de aula" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="your book url like https://bookdown.org/yihui/bookdown/images/cover.jpg" />
+  <meta property="og:description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
+  <meta name="github-repo" content="miguel7penteado/2025-2sem-GTI-BancoDeDados" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="12 Introdução — contexto (1965 → 1970) | GTI - Banco de dados - 2025 - Anotações de aula" />
+  
+  <meta name="twitter:description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
+  <meta name="twitter:image" content="your book url like https://bookdown.org/yihui/bookdown/images/cover.jpg" />
+
+<meta name="author" content="Professor Miguél Suares" />
+
+
+<meta name="date" content="2025-08-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="fundamentos-de-sistemas-de-bancos-de-dados.html"/>
+<link rel="next" href="anos-1970-bancos-de-dados-system-r-e-ingres.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">2025-GTI- Disciplina de Banco de Dados - Anotações de Aula</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Sobre estas anotações</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#acesso-ao-gitbook-celular"><i class="fa fa-check"></i><b>0.1</b> ACESSO AO GITBOOK CELULAR</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#leitores-de-formato-de-arquivo-epub-para-smartphone"><i class="fa fa-check"></i><b>0.2</b> Leitores de formato de arquivo EPUB para SmartPhone</a>
+<ul>
+<li class="chapter" data-level="0.2.1" data-path="index.html"><a href="index.html#android"><i class="fa fa-check"></i><b>0.2.1</b> ANDROID</a></li>
+</ul></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#livros-texto-da-disciplina"><i class="fa fa-check"></i><b>0.3</b> Livros Texto da Disciplina</a>
+<ul>
+<li class="chapter" data-level="0.3.1" data-path="index.html"><a href="index.html#introdução-a-sistemas-de-bancos-de-dados-do-autor-christopher-john-date"><i class="fa fa-check"></i><b>0.3.1</b> “Introdução a sistemas de bancos de dados” do autor “<strong>Christopher John Date</strong>”</a></li>
+<li class="chapter" data-level="0.3.2" data-path="index.html"><a href="index.html#projeto-de-bancos-de-dados-do-autor-carlos-alberto-heuser"><i class="fa fa-check"></i><b>0.3.2</b> “<strong>Projeto de bancos de dados</strong>” do autor “Carlos Alberto HEUSER”</a></li>
+</ul></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#calendário-das-aulas"><i class="fa fa-check"></i><b>0.4</b> Calendário das aulas</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#alunos-2025---2o-semestre"><i class="fa fa-check"></i><b>0.5</b> Alunos 2025 - 2o Semestre</a>
+<ul>
+<li class="chapter" data-level="0.5.1" data-path="index.html"><a href="index.html#campus-chácara-santo-antônio"><i class="fa fa-check"></i><b>0.5.1</b> Campus Chácara Santo Antônio</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="aula-inaugural.html"><a href="aula-inaugural.html"><i class="fa fa-check"></i><b>1</b> Aula Inaugural</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="aula-inaugural.html"><a href="aula-inaugural.html#disciplina-banco-de-dados"><i class="fa fa-check"></i><b>1.1</b> Disciplina: <strong>Banco de Dados</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="sobre-o-professor.html"><a href="sobre-o-professor.html"><i class="fa fa-check"></i><b>2</b> 👨‍🏫 Sobre o Professor</a></li>
+<li class="chapter" data-level="3" data-path="objetivos-da-disciplina.html"><a href="objetivos-da-disciplina.html"><i class="fa fa-check"></i><b>3</b> 🎯 Objetivos da Disciplina</a></li>
+<li class="chapter" data-level="4" data-path="calendário-da-disciplina.html"><a href="calendário-da-disciplina.html"><i class="fa fa-check"></i><b>4</b> 📅 Calendário da Disciplina</a></li>
+<li class="chapter" data-level="5" data-path="ementa-resumida.html"><a href="ementa-resumida.html"><i class="fa fa-check"></i><b>5</b> 📚 Ementa Resumida</a></li>
+<li class="chapter" data-level="6" data-path="avaliação.html"><a href="avaliação.html"><i class="fa fa-check"></i><b>6</b> 📝 Avaliação</a></li>
+<li class="chapter" data-level="7" data-path="ferramentas-da-disciplina.html"><a href="ferramentas-da-disciplina.html"><i class="fa fa-check"></i><b>7</b> 🛠️ Ferramentas da Disciplina</a></li>
+<li class="chapter" data-level="8" data-path="expectativas-e-regras.html"><a href="expectativas-e-regras.html"><i class="fa fa-check"></i><b>8</b> 📌 Expectativas e Regras</a></li>
+<li class="chapter" data-level="9" data-path="dicas-para-mandar-bem.html"><a href="dicas-para-mandar-bem.html"><i class="fa fa-check"></i><b>9</b> 💡 Dicas para Mandar Bem</a></li>
+<li class="chapter" data-level="10" data-path="encerramento.html"><a href="encerramento.html"><i class="fa fa-check"></i><b>10</b> 🙌 Encerramento</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="encerramento.html"><a href="encerramento.html#estamos-prontos"><i class="fa fa-check"></i><b>10.1</b> Estamos prontos?</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="fundamentos-de-sistemas-de-bancos-de-dados.html"><a href="fundamentos-de-sistemas-de-bancos-de-dados.html"><i class="fa fa-check"></i><b>11</b> Fundamentos de Sistemas de Bancos de Dados</a></li>
+<li class="chapter" data-level="12" data-path="introdução-contexto-1965-1970.html"><a href="introdução-contexto-1965-1970.html"><i class="fa fa-check"></i><b>12</b> Introdução — contexto (1965 → 1970)</a></li>
+<li class="chapter" data-level="13" data-path="anos-1970-bancos-de-dados-system-r-e-ingres.html"><a href="anos-1970-bancos-de-dados-system-r-e-ingres.html"><i class="fa fa-check"></i><b>13</b> Anos 1970 Bancos de Dados System R e INGRES</a></li>
+<li class="chapter" data-level="14" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html"><i class="fa fa-check"></i><b>14</b> Modelagem de Bancos de Dados</a></li>
+<li class="chapter" data-level="15" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html"><i class="fa fa-check"></i><b>15</b> Administração e Gerenciamento de Bancos de Dados</a></li>
+<li class="chapter" data-level="16" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html"><i class="fa fa-check"></i><b>16</b> Banco de Dados: Uma Aplicação CRUD</a></li>
+<li class="chapter" data-level="17" data-path="banco-de-dados-mysql-mariadb.html"><a href="banco-de-dados-mysql-mariadb.html"><i class="fa fa-check"></i><b>17</b> Banco de Dados: MySQL (MariaDB)</a></li>
+<li class="chapter" data-level="18" data-path="banco-de-dados-postgres.html"><a href="banco-de-dados-postgres.html"><i class="fa fa-check"></i><b>18</b> Banco de Dados: Postgres</a></li>
+<li class="chapter" data-level="19" data-path="banco-de-dados-espaciais---cliente-qgis.html"><a href="banco-de-dados-espaciais---cliente-qgis.html"><i class="fa fa-check"></i><b>19</b> Banco de Dados Espaciais - Cliente QGIS</a></li>
+<li class="chapter" data-level="20" data-path="banco-de-dados-estatístico---cliente-rstudio.html"><a href="banco-de-dados-estatístico---cliente-rstudio.html"><i class="fa fa-check"></i><b>20</b> Banco de Dados Estatístico - Cliente Rstudio</a></li>
+<li class="chapter" data-level="21" data-path="banco-de-dados---análise-de-dados-parte-01.html"><a href="banco-de-dados---análise-de-dados-parte-01.html"><i class="fa fa-check"></i><b>21</b> Banco de Dados - Análise de Dados Parte 01</a></li>
+<li class="chapter" data-level="22" data-path="banco-de-dados---análise-de-dados-parte-02.html"><a href="banco-de-dados---análise-de-dados-parte-02.html"><i class="fa fa-check"></i><b>22</b> Banco de Dados - Análise de Dados Parte 02</a></li>
+<li class="chapter" data-level="23" data-path="banco-de-dados---análise-de-dados-parte-03.html"><a href="banco-de-dados---análise-de-dados-parte-03.html"><i class="fa fa-check"></i><b>23</b> Banco de Dados - Análise de Dados Parte 03</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com Biblioteca R bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GTI - Banco de dados - 2025 - Anotações de aula</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introdução-contexto-1965-1970" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">12</span> Introdução — contexto (1965 → 1970)<a href="introdução-contexto-1965-1970.html#introdução-contexto-1965-1970" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ul>
+<li><p>1965–1970 — Ted Codd na IBM: início das reflexões sobre modelos de dados, álgebra relacional e a ideia de separar modelo lógico de implementação física.</p></li>
+<li><p>1970 — publicação do artigo seminal A Relational Model of Data for Large Shared Data Banks (Codd) — define formalmente o modelo relacional e operações de álgebra relacional.</p></li>
+</ul>
+<p>OBS: <code>Codd começou a trabalhar com dados no fim dos anos 1960; sua publicação de 1970 consolidou a teoria que viria a influenciar quase todos os DBMS relacionais subsequentes.</code></p>
+<hr />
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="fundamentos-de-sistemas-de-bancos-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="anos-1970-bancos-de-dados-system-r-e-ingres.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/miguel7penteado/2025-2sem-GTI-BancoDeDados/edit/main/02-2025-08-11_Fubdamentos_SGBD.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["2025-GTI-Sem-BancoDeDados.pdf", "2025-GTI-Sem-BancoDeDados.epub", "2025-GTI-Sem-BancoDeDados.word", "2025-GTI-Sem-BancoDeDados.html"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

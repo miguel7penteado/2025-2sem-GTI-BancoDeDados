@@ -28,6 +28,12 @@ dicas-para-mandar-bem
 encerramento
 estamos-prontos
 fundamentos-de-sistemas-de-bancos-de-dados
+o-início-edgar-frank-ted-codd-19081923-18042003
+anos-1970-ibm-entra-no-modelo-relacional-systemr-e-sequelsql
+anos-1970-prof-codd-inspira-prof-stonebraker-banco-ingres
+anos-1980-ingres-semi-livre-vs-ibm-system-r-pago-vs-oracle
+anos-1990-mysql-e-postgres-que-vira-postgresql
+anos-2000-sybase-eo-no-sql
 modelagem-de-bancos-de-dados
 administração-e-gerenciamento-de-bancos-de-dados
 banco-de-dados-uma-aplicação-crud
