@@ -4,25 +4,180 @@
 
 #### Professor Miguél Suares {.unnumbered}
 
-# Tomada de Decisão de Gestão do Conhecimento: Business Inteligence
-
-( Consultar livro LAUDON, Kenneth C.; LAUDON, Jane P. *Sistemas de informação gerenciais*. 11. ed. São Paulo: Pearson Education do Brasil, 2010. p. 180. )
-
-O que é Business Inteligente (Inteligência Empresaria) ?
-
-> Business Intelligence (BI) refere-se à **infraestrutura para coletar, armazenar, analisar e fornecer dados que podem ajudar os gerentes a tomar melhores decisões**. Essencialmente, BI transforma dados brutos em informações úteis e insights para apoiar a tomada de decisão organizacional. **[2] Ralph Kimball - Datawarehouse Toolkit (2013)**
-
 ## Introdução: Visitando a teoria de Bancos de Dados
 
 ![](images/5-bi/01-banco-de-dados.jpg){width="452"}
 
-> **Banco de Dados** é um conjunto de arquivos relacionados entre si com registros sobre algum assunto: pessoas, lugares ou coisas. [[1] - LAUDON, Kenneth C.; LAUDON, Jane P. \*Sistemas de informação gerenciais\*. 11. ed. São Paulo: Pearson Education do Brasil, 2010. p. 180.]
+> **Banco de Dados** Um banco de dados é uma coleção compartilhada de dados logicamente relacionados, projetada para atender às necessidades informacionais de uma organização. - *DATE, C. J. An Introduction to Database Systems. 8. ed. Boston: Addison-Wesley, 2003*.
+
+Ou seja, alguns pontos-chave da definição de Date:
+
+-   "Coleção de dados ..." → não é um conjunto de arquivos soltos, mas dados organizados.
+
+-   "Compartilhada ..." → não pertence a apenas um usuário ou aplicação; é usada por vários.
+
+-   "Dados logicamente relacionados ..." → os dados têm um relacionamento semântico, não são apenas agrupamentos arbitrários.
+
+-   "Projetada para atender necessidades ..." → o banco existe para suportar os processos de uma organização (consultas, relatórios, controle, tomada de decisão).
 
 ![](images/5-bi/07-tabela_relacional.jpg)
 
-> **Banco de Dados Relacional** é um tipo comum de banco de dados que organiza os dados em tabelas (denominadas entidades) com colunas e linhas [[1] - LAUDON, Kenneth C.; LAUDON, Jane P. \*Sistemas de informação gerenciais\*. 11. ed. São Paulo: Pearson Education do Brasil, 2010. p. 180.]
+> **Banco de Dados Relacional** Um banco de dados relacional é um banco de dados baseado em um modelo de dados relacional, no qual os dados são representados como um conjunto de relações (tabelas), e cada relação consiste em tuplas (linhas) e atributos (colunas). - *SILBERSCHATZ, Abraham; KORTH, Henry F.; SUDARSHAN, S. Database System Concepts. 6. ed. New York: McGraw-Hill, 2010.*
+
+Agora, alguns pontos-chave da definição de *Abraham Silberschatz* :
+
+-   Base no modelo relacional de Codd (1970).
+
+-   Dados representados em tabelas (relações).
+
+-   Cada tabela é composta de tuplas (linhas) e atributos (colunas).
+
+-   Integridade garantida por restrições (chaves, integridade referencial, domínio de atributos).
+
+-   Manipulação feita por linguagens relacionais (álgebra relacional, cálculo relacional, SQL).
 
 O Banco de Dados Relacional organiza as informações em **tabelas bidiomensionais** constituídas de **linhas e colunas** chamadas e essas tabelas recebem o nome de **relações**. Cada **relação** possui um **campo-chave** que confere identificação exclusiva a cada registro da tabela.
+
+## Modelo Matemático de um Banco de Dados
+
+Considere um Banco de Dados para representar, com consistência Matemática os
+funcionários e Departamentos de uma Empresa. 
+
+### Podemos representa-lo matemáticamente utilizando a teoria dos conjuntos
+
+
+
+```{r tikz-diagrama0, engine='tikz', echo=FALSE, fig.cap="Diagrama de Montadoras, Veículos e Proprietários"}
+\usetikzlibrary{arrows,positioning,shapes,fit,calc}
+
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+\begin{tikzpicture}
+[
+  every node/.style={on grid},
+  setA/.style={fill=blue ,circle,inner  sep=3pt},
+  setB/.style={fill=green,circle,inner  sep=3pt},
+  setC/.style={fill=red,rectangle,inner sep=3pt},
+  every fit/.style={draw,fill=blue!25,ellipse,text width=25pt},
+  >=latex
+]
+
+% Conjunto Montadoras
+\node [setA,              label  = left:$Fulano$]  (a) {};
+\node [setA,below = of a, label  = left:$Beltrano$]  (b) {};
+\node [setA,below = of b, label  = left:$Ciclano$] (c) {};
+\node [above      = of a, anchor = south] {$Funcionarios$};
+
+% Conjunto Veiculos
+\node[setB,inner sep=0pt,right  = 4 cm of a] (x) {$RH$};
+\node[setB,below                =    of x] (y) {$Financas$};
+\node[setB,inner sep=0pt,below  =    of y] (z) {$Diretoria$};
+\node[above      = of x, anchor = south] {$Departamentos$};
+
+
+
+% the arrows
+%\draw[->,shorten >= 3pt] (a) -- node[label=above:$f(Corsa)$]  {} (x);
+%\draw[->,shorten >= 3pt] (b) -- node[label=above:$g(Fiesta)$] {} (y);
+%\draw[->,shorten >= 3pt] (c) -- node[label=above:$h(Gol)$]    {} (z);
+%\draw[->,shorten <= 3pt] (x) -- node[label=above:$i(Fulano)$] {} (m);
+%\draw[->,shorten <= 3pt] (y) -- node[label=above:$j(Beltrano)$] {} (n);
+%\draw[->,shorten <= 3pt] (z) -- node[label=above:$k(Ciclano)$] {} (p);
+
+%\draw[->] (n) -- node[label=above:$j(j(Beltrano))$] {} (y);
+
+% the boxes around the sets
+\begin{pgfonlayer}{background}
+\node[fit= (a)  (c) ] {};
+\node[fit= (x) (z)  ] {};
+%\node[fit= (m) (p)  ] {};
+\end{pgfonlayer}
+\end{tikzpicture}
+
+```
+
+
+#### Edgard F Cood explica em sua obra "A Relational Model of Data for Large Shared Data Banks" como definir uma Banco de Dados compartilhado *matemáticamente*
+
+> Um banco de dados relacional é um banco de dados no qual todos os dados são representados por meio de relações (matematicamente, conjuntos de tuplas), e todas as operações sobre os dados são baseadas em operadores formais do cálculo relacional e da álgebra relacional. - *A Relational Model of Data for Large Shared Data Banks” (Communications of the ACM, vol. 13, n. 6, pp. 377–387, 1970).*
+
+
+
+### Então para podemos relacionar estes dois conjuntos (Funcionários e Departamentos) utilizando a Teoria das Funções
+
+
+
+$$
+
+f(x) = Y 
+
+$$
+
+$$
+
+F(Funcionário) = Departamento
+
+$$
+
+
+```{r tikz-diagrama10, engine='tikz', echo=FALSE, fig.cap="Diagrama de Montadoras, Veículos e Proprietários"}
+\usetikzlibrary{arrows,positioning,shapes,fit,calc}
+
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+\begin{tikzpicture}
+[
+  every node/.style={on grid},
+  setA/.style={fill=blue ,circle,inner  sep=3pt},
+  setB/.style={fill=green,circle,inner  sep=3pt},
+  setC/.style={fill=red,rectangle,inner sep=3pt},
+  every fit/.style={draw,fill=blue!25,ellipse,text width=25pt},
+  >=latex
+]
+
+% Conjunto Montadoras
+\node [setA,              label  = left:$Fulano$]  (a) {};
+\node [setA,below = of a, label  = left:$Beltrano$]  (b) {};
+\node [setA,below = of b, label  = left:$Ciclano$] (c) {};
+\node [above      = of a, anchor = south] {$Funcionarios$};
+
+% Conjunto Veiculos
+\node[setB,inner sep=0pt,right  = 4 cm of a] (x) {$RH$};
+\node[setB,below                =    of x] (y) {$Financas$};
+\node[setB,inner sep=0pt,below  =    of y] (z) {$Diretoria$};
+\node[above      = of x, anchor = south] {$Departamentos$};
+
+
+
+% the arrows
+\draw[->,shorten >= 3pt] (a) -- node[label=above:$f(Trabalha)$]  {} (x);
+\draw[->,shorten >= 3pt] (b) -- node[label=above:$g(Trabalha)$] {} (y);
+\draw[->,shorten >= 3pt] (c) -- node[label=above:$h(Trabalha)$]    {} (z);
+%\draw[->,shorten <= 3pt] (x) -- node[label=above:$i(Fulano)$] {} (m);
+%\draw[->,shorten <= 3pt] (y) -- node[label=above:$j(Beltrano)$] {} (n);
+%\draw[->,shorten <= 3pt] (z) -- node[label=above:$k(Ciclano)$] {} (p);
+
+%\draw[->] (n) -- node[label=above:$j(j(Beltrano))$] {} (y);
+
+% the boxes around the sets
+\begin{pgfonlayer}{background}
+\node[fit= (a)  (c) ] {};
+\node[fit= (x) (z)  ] {};
+%\node[fit= (m) (p)  ] {};
+\end{pgfonlayer}
+\end{tikzpicture}
+
+```
+
+
+Mas vai ficar faltando como representar os atributos nesse modelo (colunas das tabelas):
+
+Ainda, é necessário acrescentar algumas regras de integridade a representação;
+
+
+## Modelo Lógico de Banco de Dados
 
 ### Modelo Conceitual "Entidade Relacionamento" de Banco de Dados
 
@@ -61,6 +216,8 @@ Segundo Laudon
 |                |                                              |                                                |
 |                |                                              | no texto por um **Verbo**.                     |
 +----------------+----------------------------------------------+------------------------------------------------+
+
+## Modelo Físico de Banco de Dados
 
 ### Geração do modelo Físico para aplica-lo ao SGBD (Sistema de Gerenciamento de Banco de Dados):
 
@@ -107,6 +264,106 @@ alter table "public".funcionarios add column sigla integer;
 -- finalmente conecte a coluna sigla a chave primária da tabela "departamento"
 -- criando então uma chave estrageira na tabela "funcionários".
 alter table "public".funcionarios add constraint "Chave_estrangeira_Departamento_funcionarios" foreign key (sigla) references "public".departamentos(sigla);
+```
+
+## EXEMPLO: MONTADORA
+
+### Modelo Matemático
+
+Construa um Banco de Dados com suporte a consistência das informações. Utilize para isso o modelo Relacional. Precisamos armazenar as informações dos Veículos, Montadoras e Proprietários;
+
+#### Representação Matemática em Conjuntos e seus Elementos :
+
+```{r tikz-diagrama1, engine='tikz', echo=FALSE, fig.cap="Diagrama de Montadoras, Veículos e Proprietários"}
+\usetikzlibrary{arrows,positioning,shapes,fit,calc}
+
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+\begin{tikzpicture}
+[
+  every node/.style={on grid},
+  setA/.style={fill=blue ,circle,inner  sep=3pt},
+  setB/.style={fill=green,circle,inner  sep=3pt},
+  setC/.style={fill=red,rectangle,inner sep=3pt},
+  every fit/.style={draw,fill=blue!25,ellipse,text width=25pt},
+  >=latex
+]
+
+% Conjunto Montadoras
+\node [setA,              label  = left:$Chevrolet$]  (a) {};
+\node [setA,below = of a, label  = left:$Ford$]       (b) {};
+\node [setA,below = of b, label  = left:$VolksWagen$] (c) {};
+\node [above      = of a, anchor = south] {$Montadoras$};
+
+% Conjunto Veiculos
+\node[setB,inner sep=0pt,right  = 4 cm of a] (x) {$Corsa$};
+\node[setB,below                =    of x] (y) {$Fiesta$};
+\node[setB,inner sep=0pt,below  =    of y] (z) {$Gol$};
+\node[above      = of x, anchor = south] {$Veiculos$};
+
+% Conjunto Proprietarios
+\node[setC,label=right:$Fulano$,right   = 4 cm of x] (m) {};
+\node[setC,label=right:$Beltrano$,below =     of m] (n) {};
+\node[setC,label=right:$Ciclano$,below  =     of n] (p) {};
+\node[above=of m,anchor=south] {$Proprietarios$};
+
+
+
+% the boxes around the sets
+\begin{pgfonlayer}{background}
+\node[fit= (a)  (c) ] {};
+\node[fit= (x) (z)  ] {};
+\node[fit= (m) (p)  ] {};
+\end{pgfonlayer}
+\end{tikzpicture}
+
+```
+
+#### Gerando os Relacionamentos "Matemáticamente" - (Teoria das Funções, Domínios e Imagens):
+
+```{r tikz-diagrama2, engine='tikz', echo=FALSE, fig.cap="Diagrama de Montadoras, Veículos e Proprietários"}
+\usetikzlibrary{arrows,positioning,shapes,fit,calc}
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+\begin{tikzpicture}[
+  every node/.style={on grid},
+  setA/.style={fill=blue ,circle,inner sep=3pt},
+  setB/.style={fill=green,circle,inner sep=3pt},
+  setC/.style={fill=red,rectangle,inner sep=3pt},
+  every fit/.style={draw,fill=blue!25,ellipse,text width=25pt},
+  >=latex
+]
+
+\node [setA,              label=left:$Chevrolet$]  (a) {};
+\node [setA,below = of a, label=left:$Ford$]       (b) {};
+\node [setA,below = of b, label=left:$VolksWagen$] (c) {};
+\node [above=of a,anchor=south] {$Montadoras$};
+
+\node[setB,inner sep=0pt,right=3cm of a] (x) {$Corsa$};
+\node[setB,below=of x] (y) {$Fiesta$};
+\node[setB,inner sep=0pt,below=of y] (z) {$Gol$};
+\node[above=of x,anchor=south] {$Veiculos$};
+
+\node[setC,label=right:$Fulano$,right=3cm of x] (m) {};
+\node[setC,label=right:$Beltrano$,below=of m] (n) {};
+\node[setC,label=right:$Ciclano$,below=of n] (p) {};
+\node[above=of m,anchor=south] {$Proprietarios$};
+
+\draw[->,shorten >= 3pt] (a) -- node[label=above:$f(Corsa)$] {} (x);
+\draw[->,shorten >= 3pt] (b) -- node[label=above:$g(Fiesta)$] {} (y);
+\draw[->,shorten >= 3pt] (c) -- node[label=above:$h(Gol)$]    {} (z);
+\draw[->,shorten <= 3pt] (x) -- node[label=above:$i(Fulano)$] {} (m);
+\draw[->,shorten <= 3pt] (y) -- node[label=above:$j(Beltrano)$] {} (n);
+\draw[->,shorten <= 3pt] (z) -- node[label=above:$k(Ciclano)$] {} (p);
+
+\begin{pgfonlayer}{background}
+\node[fit=(a)(c)] {};
+\node[fit=(x)(z)] {};
+\node[fit=(m)(p)] {};
+\end{pgfonlayer}
+\end{tikzpicture}
 ```
 
 ## Normalização em Bancos de Dados Relaionais
@@ -162,17 +419,17 @@ Mas Como indicar que cada elemento da tabela "Modelo" está associado a um eleme
 
 Considere as tabelas abaixo:
 
-+-----------------+----------------------------------------+
-| MontadoraID     | Montadora                              |
-+:===============:+:======================================:+
-| 1               | Fiat                                   |
-+-----------------+----------------------------------------+
-| 2               | Chevrolet                              |
-+-----------------+----------------------------------------+
-| 3               | Volkswagen                             |
-+-----------------+----------------------------------------+
-| 4               | Hyundai                                |
-+-----------------+----------------------------------------+
++----------------+--------------------------------------+
+| MontadoraID    | Montadora                            |
++:==============:+:====================================:+
+| 1              | Fiat                                 |
++----------------+--------------------------------------+
+| 2              | Chevrolet                            |
++----------------+--------------------------------------+
+| 3              | Volkswagen                           |
++----------------+--------------------------------------+
+| 4              | Hyundai                              |
++----------------+--------------------------------------+
 
 | ModeloID |  Modelo   | MontadoraID |
 |:--------:|:---------:|:-----------:|
@@ -197,3 +454,22 @@ Repare que:
 A coluna (atributo) **ModeloID** é a **chave primária** da tabela **Modelos.** A coluna (atributo) **MontadoraID** é a **chave primária** da tabela **Montadoras.**
 
 Na tabela **Modelos**, a coluna **MontadoraID**, acrescentada a tabela Modelos representa a ligação de cada elemento da tabela Modelos e Montadoras. Essa coluna "importada" da tabela Montadoras para a tabela Modelos se chama **chave estrangeira**.
+
+
+## Exercícios
+
+1- Construa um projeto Banco de Dados Relacional para uma universidade. Mapeie 
+no seu Banco de Dados Disciplinas, Professores e Alunos.
+Para isso, faça o modelo "matemático", o Modelo Lógico e o Modelo Físico com SQL.
+
+
+
+
+## Referências
+
+**DATE**, C. J. **An Introduction to Database Systems.** 8. ed. Boston: Addison-Wesley, 2003. 
+
+**SILBERSCHATZ**, Abraham; KORTH, Henry F.; SUDARSHAN, S. **Database System Concepts.** 6. ed. New York: McGraw-Hill, 2010.
+
+**CODD**, E. F. **A Relational Model of Data for Large Shared Data Banks.** Communications of the ACM, New York, v. 13, n. 6, p. 377–387, 1970.
+

@@ -17,7 +17,7 @@
 
 ------------------------------------------------------------------------
 
-# 👨‍🏫 Sobre o Professor
+## 👨‍🏫 Sobre o Professor
 
 -   Nome: Prof. Miguél Suares
 
@@ -29,7 +29,7 @@
 
 ------------------------------------------------------------------------
 
-# 🎯 Objetivos da Disciplina
+## 🎯 Objetivos da Disciplina
 
 -   Compreender os fundamentos de bancos de dados
 
@@ -45,7 +45,7 @@
 
 ------------------------------------------------------------------------
 
-# 📅 Calendário da Disciplina
+## 📅 Calendário da Disciplina
 
 | Data       | Aula    | Tema                          |
 |------------|---------|-------------------------------|
@@ -66,7 +66,7 @@
 
 ------------------------------------------------------------------------
 
-# 📚 Ementa Resumida
+## 📚 Ementa Resumida
 
 -   Introdução a bancos de dados relacionais (RDBMS)
 
@@ -84,7 +84,7 @@
 
 ------------------------------------------------------------------------
 
-# 📝 Avaliação
+## 📝 Avaliação
 
 -   **Provas (NP1 + NP2)**
 -   **Prova Substitutiva**
@@ -92,7 +92,7 @@
 
 ------------------------------------------------------------------------
 
-# 🛠️ Ferramentas da Disciplina
+## 🛠️ Ferramentas da Disciplina
 
 -   **Servidores de Banco de Dados**: MySQL, PostgreSQL
 -   **Servidores de Banco de Dados**: pgAdmin, MySQL Workbench, DBeaver\
@@ -102,7 +102,7 @@
 
 ------------------------------------------------------------------------
 
-# 📌 Expectativas e Regras
+## 📌 Expectativas e Regras
 
 -   Pontualidade e entrega de atividades no prazo
 -   Trabalhos devem ser originais (sem plágio)
@@ -112,7 +112,7 @@
 
 ------------------------------------------------------------------------
 
-# 💡 Dicas para Mandar Bem
+## 💡 Dicas para Mandar Bem
 
 -   Faça os exercícios logo após a aula
 -   Participe das práticas com base real
@@ -122,7 +122,7 @@
 
 ------------------------------------------------------------------------
 
-# 🙌 Encerramento
+## 🙌 Encerramento
 
 ## Estamos prontos?
 

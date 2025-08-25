@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Professor Miguél Suares" />
+  <meta name="dcterms.date" content="2025-08-25" />
+  <title>GTI - Banco de dados - 2025 - Anotações de aula</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="2025-GTI-Sem-BancoDeDados_files/reveal.js-4.2.1/dist/reset.css">
+  <link rel="stylesheet" href="2025-GTI-Sem-BancoDeDados_files/reveal.js-4.2.1/dist/reveal.css">
+
+  <style type="text/css">
+    /* CSS from pandoc style.html() */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+            pre > code.sourceCode { white-space: pre; position: relative; }
+            pre > code.sourceCode > span { line-height: 1.25; }
+            pre > code.sourceCode > span:empty { height: 1.2em; }
+            .sourceCode { overflow: visible; }
+            code.sourceCode > span { color: inherit; text-decoration: inherit; }
+            div.sourceCode { margin: 1em 0; }
+            pre.sourceCode { margin: 0; }
+            @media screen {
+            div.sourceCode { overflow: auto; }
+            }
+            @media print {
+            pre > code.sourceCode { white-space: pre-wrap; }
+            pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+            }
+            pre.numberSource code
+              { counter-reset: source-line 0; }
+            pre.numberSource code > span
+              { position: relative; left: -4em; counter-increment: source-line; }
+            pre.numberSource code > span > a:first-child::before
+              { content: counter(source-line);
+                position: relative; left: -1em; text-align: right; vertical-align: baseline;
+                border: none; display: inline-block;
+                -webkit-touch-callout: none; -webkit-user-select: none;
+                -khtml-user-select: none; -moz-user-select: none;
+                -ms-user-select: none; user-select: none;
+                padding: 0 4px; width: 4em;
+                color: #aaaaaa;
+              }
+            pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+            div.sourceCode
+              {   }
+            @media screen {
+            pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+            }
+            code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+            code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+            code span.at { color: #7d9029; } /* Attribute */
+            code span.bn { color: #40a070; } /* BaseN */
+            code span.bu { color: #008000; } /* BuiltIn */
+            code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+            code span.ch { color: #4070a0; } /* Char */
+            code span.cn { color: #880000; } /* Constant */
+            code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+            code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+            code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+            code span.dt { color: #902000; } /* DataType */
+            code span.dv { color: #40a070; } /* DecVal */
+            code span.er { color: #ff0000; font-weight: bold; } /* Error */
+            code span.ex { } /* Extension */
+            code span.fl { color: #40a070; } /* Float */
+            code span.fu { color: #06287e; } /* Function */
+            code span.im { color: #008000; font-weight: bold; } /* Import */
+            code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+            code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+            code span.op { color: #666666; } /* Operator */
+            code span.ot { color: #007020; } /* Other */
+            code span.pp { color: #bc7a00; } /* Preprocessor */
+            code span.sc { color: #4070a0; } /* SpecialChar */
+            code span.ss { color: #bb6688; } /* SpecialString */
+            code span.st { color: #4070a0; } /* String */
+            code span.va { color: #19177c; } /* Variable */
+            code span.vs { color: #4070a0; } /* VerbatimString */
+            code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+              </style>
+
+  <link rel="stylesheet" href="2025-GTI-Sem-BancoDeDados_files/reveal.js-4.2.1/dist/theme/simple.css" id="theme">
+
+  <link rel="stylesheet" href="2025-GTI-Sem-BancoDeDados_files/reveal.js-4.2.1/plugin/chalkboard/style.css">
+  <link rel="stylesheet" href="2025-GTI-Sem-BancoDeDados_files/reveal.js-4.2.1/plugin/customcontrols/style.css">
+
+  <style type="text/css">
+  /* some tweaks to reveal css */
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+  </style>
+
+    <script src="2025-GTI-Sem-BancoDeDados_files/header-attrs-2.29/header-attrs.js"></script>
+    <link href="2025-GTI-Sem-BancoDeDados_files/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+    <link href="2025-GTI-Sem-BancoDeDados_files/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">GTI - Banco de dados - 2025 - Anotações de aula</h1>
+  <h2 class="author">Professor Miguél Suares</h2>
+  <h3 class="date">2025-08-25</h3>
+</section>
+
+<section>
+<section id="sobre-estas-anotações"
+class="title-slide slide level1 unnumbered">
+<h1 class="unnumbered">Sobre estas anotações</h1>
+<p>—————————————————————————————————————————————</p>
+<p>Estas anotações são apenas lembretes das aulas expostas em sala,
+durante a disciplina de Banco de dados.</p>
+</section>
+<section id="acesso-ao-gitbook-celular" class="slide level2">
+<h2>ACESSO AO GITBOOK CELULAR</h2>
+<p>—————————————————————————————————————————————</p>
+<h4 id="httpsmiguel7penteado.github.io2025-2sem-gti-bancodedados"><a
+href="https://miguel7penteado.github.io/2025-2sem-GTI-BancoDeDados"
+class="uri">https://miguel7penteado.github.io/2025-2sem-GTI-BancoDeDados</a></h4>
+<p><img data-src="images/qr-code-disciplina.jpg" /></p>
+</section>
+<section id="leitores-de-formato-de-arquivo-epub-para-smartphone"
+class="slide level2">
+<h2>Leitores de formato de arquivo EPUB para SmartPhone</h2>
+<p>—————————————————————————————————————————————</p>
+<h3 id="android">ANDROID</h3>
+<h4 id="moon-reader"><strong>Moon+ Reader</strong></h4>
+<p><img data-src="images/qrcode/leitor_epub/MoonReaderPlus.jpg"
+width="340" /></p>
+</section>
+<section id="livros-texto-da-disciplina" class="slide level2">
+<h2>Livros Texto da Disciplina</h2>
+<p>—————————————————————————————————————————————</p>
+<h3
+id="introdução-a-sistemas-de-bancos-de-dados-do-autor-christopher-john-date"><a
+href="https://www.kufunda.net/publicdocs/Introdu%C3%A7%C3%A3o%20a%20Sistemas%20de%20Bancos%20de%20Dados%20(C.%20J.%20Date)%20(z-lib.org).pdf">“Introdução
+a sistemas de bancos de dados” do autor “<strong>Christopher John
+Date</strong>”</a></h3>
+<p><img data-src="images/livros/livro1.jpg" /></p>
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 77%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Autor(es)</strong></td>
+<td><h3 id="christopher-john-date"><a
+href="https://en.wikipedia.org/wiki/Christopher_J._Date"><strong>Christopher
+John Date</strong></a></h3></td>
+</tr>
+<tr class="even">
+<td><strong>Editora</strong></td>
+<td>LTC</td>
+</tr>
+<tr class="odd">
+<td><strong>Idioma</strong></td>
+<td>Português</td>
+</tr>
+<tr class="even">
+<td><strong>ISBN</strong></td>
+<td>978-85-352-8445-4</td>
+</tr>
+<tr class="odd">
+<td><strong>Formato</strong></td>
+<td>Capa dura</td>
+</tr>
+<tr class="even">
+<td><strong>Páginas</strong></td>
+<td>1623</td>
+</tr>
+<tr class="odd">
+<td><strong>Código Biblioteca</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="projeto-de-bancos-de-dados-do-autor-carlos-alberto-heuser"><a
+href="https://drive.google.com/file/d/0B452rmbcudPSVFdCZ09vVkJUUUd2dlpMNS1vaEczUQ/view?pli=1&amp;resourcekey=0-3MTcHlAYjPX6YSvBQGweUQ">“<strong>Projeto
+de bancos de dados</strong>” do autor “Carlos Alberto HEUSER”</a></h3>
+<p><img data-src="images/livros/livro2.jpg" /></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 79%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Autor(es)</strong></td>
+<td><h3 id="carlos-alberto-heuser"><a
+href="https://www.inf.ufrgs.br/site/docente/carlos-alberto-heuser/">Carlos
+Alberto HEUSER</a></h3></td>
+</tr>
+<tr class="even">
+<td><strong>Editora</strong></td>
+<td>Bookman</td>
+</tr>
+<tr class="odd">
+<td><strong>Idioma</strong></td>
+<td>Português</td>
+</tr>
+<tr class="even">
+<td><strong>ISBN-10</strong></td>
+<td>8577803821</td>
+</tr>
+<tr class="odd">
+<td><strong>Formato</strong></td>
+<td>Impresso</td>
+</tr>
+<tr class="even">
+<td><strong>Páginas</strong></td>
+<td>282</td>
+</tr>
+<tr class="odd">
+<td><strong>Código Biblioteca</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="calendário-das-aulas" class="slide level2">
+<h2>Calendário das aulas</h2>
+<p>—————————————————————————————————————————————</p>
+<h5 id="agosto-de-2025">AGOSTO DE 2025</h5>
+<table>
+<thead>
+<tr class="header">
+<th>Data</th>
+<th>Dia da Semana</th>
+<th>Aulas</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>04/08/2025</td>
+<td>Segunda-Feira</td>
+<td>Aula Inaugural</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>11/08/2025</td>
+<td>Segunda-Feira</td>
+<td>Aula 2</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>18/08/2025</td>
+<td>Segunda-Feira</td>
+<td>Aula 3</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>25/08/2025</td>
+<td>Segunda-Feira</td>
+<td>Aula 4</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="setembro-de-2025">SETEMBRO DE 2025</h5>
+<table>
+<thead>
+<tr class="header">
+<th>Data</th>
+<th>Dia da Semana</th>
+<th>Aulas</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>01/09/2025</td>
+<td>Segunda-Feira</td>
+<td>Aula 5</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>08/09/2025</td>
+<td>Segunda-Feira</td>
+<td>Aula 6</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>15/09/2025</td>
+<td>Segunda-Feira</td>
+<td>NP1</td>
+<td>PROVA</td>
+</tr>
+<tr class="even">
+<td>22/09/2025</td>
+<td>Segunda-Feira</td>
+<td>Aula 7</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>29/09/2025</td>
+<td>Segunda-Feira</td>
+<td>Aula 8</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="outubro-de-2025">OUTUBRO DE 2025</h5>
+<table>
+<thead>
+<tr class="header">
+<th>Data</th>
+<th>Dia da Semana</th>
+<th>Aulas</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>06/10/2025</td>
+<td>Segunda-Feira</td>
+<td>Aula 9</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>13/10/2025</td>
+<td>Segunda-Feira</td>
+<td>Aula 10</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>20/10/2025</td>
+<td>Segunda-Feira</td>
+<td>Aula 11</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>27/10/2025</td>
+<td>Segunda-Feira</td>
+<td>Aula 12</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="novembro-de-2025">NOVEMBRO DE 2025</h5>
+<table>
+<thead>
+<tr class="header">
+<th>Data</th>
+<th>Dia da Semana</th>
+<th>Aulas</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>03/11/2025</td>
+<td>Segunda-Feira</td>
+<td>NP2</td>
+<td>PROVA</td>
+</tr>
+<tr class="even">
+<td>10/11/2025</td>
+<td>Segunda-Feira</td>
+<td></td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td>17/11/2025</td>
+<td>Segunda-Feira</td>
+<td>SUB</td>
+<td>PROVA</td>
+</tr>
+<tr class="even">
+<td>24/11/2025</td>
+<td>Segunda-Feira</td>
+<td></td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h5 id="dezembro-de-2025">DEZEMBRO DE 2025</h5>
+<table>
+<thead>
+<tr class="header">
+<th>Data</th>
+<th>Dia da Semana</th>
+<th>Aulas</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>01/12/2025</td>
+<td>Segunda-Feira</td>
+<td></td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>08/12/2025</td>
+<td>Segunda-Feira</td>
+<td>EXAME</td>
+<td>PROVA</td>
+</tr>
+<tr class="odd">
+<td>15/12/2025</td>
+<td>Segunda-Feira</td>
+<td></td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="alunos-2025---2o-semestre" class="slide level2">
+<h2>Alunos 2025 - 2o Semestre</h2>
+<p>—————————————————————————————————————————————</p>
+<h3 id="campus-chácara-santo-antônio">Campus Chácara Santo Antônio</h3>
+<h4 id="turma-ti2p40">Turma TI2P40</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Matrícula</th>
+<th style="text-align: center;">Nome do aluno</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">F362BF0</td>
+<td style="text-align: center;">BRUNO ANTONIO MARQUES</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">R536FA6</td>
+<td style="text-align: center;">CAIO CESAR BALBINO DA SILVA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">H6094I1</td>
+<td style="text-align: center;">DOUGLAS VINICIUS M DOS SANTOS</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">R6607G5</td>
+<td style="text-align: center;">GABRIEL ROQUE DOS SANTOS</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">R8133G7</td>
+<td style="text-align: center;">ÍTALO KEVIN RODRIGUES DA SILVA</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">R837AA0</td>
+<td style="text-align: center;">LUCAS SOUZA RODRIGUES</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">H714419</td>
+<td style="text-align: center;">MARCOS PAULO CORDEIRO GOES</td>
+</tr>
+</tbody>
+</table>
+<!--chapter:end:index.Rmd-->
+</section></section>
+<section>
+<section id="aula-inaugural" class="title-slide slide level1">
+<h1>Aula Inaugural</h1>
+
+</section>
+<h4 class="unnumbered" id="section">04/08/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares">Professor Miguél
+Suares</h4>
+<section id="disciplina-banco-de-dados" class="slide level2">
+<h2>Disciplina: <strong>Banco de Dados</strong></h2>
+<ul>
+<li>Curso: Gestão em Tecnologia da Informação (GTI)<br />
+</li>
+<li>Período: <strong>Noturno</strong><br />
+</li>
+<li>Turma: <strong>2º semestre de 2025</strong></li>
+<li>Campus: <strong>Chácara Santo Antônio</strong></li>
+</ul>
+<blockquote>
+<p>“Dados são o novo petróleo.” – Clive Humby!</p>
+</blockquote>
+<p><img data-src="images/2025-08-04/Boas_Vindas.jpg" width="300" /></p>
+</section>
+<section id="sobre-o-professor" class="slide level2">
+<h2>👨‍🏫 Sobre o Professor</h2>
+<ul>
+<li><p>Nome: Prof. Miguél Suares</p></li>
+<li><p>Formação: Mestre em Engenharia da Computação e Energia da
+Agricultura</p></li>
+<li><p>Experiência: +10 anos com bancos de dados relacionais e análise
+de dados</p></li>
+<li><p>Contato: <a
+href="mailto:miguel.penteado@docente.unip.br">miguel.penteado@docente.unip.br</a></p></li>
+</ul>
+</section>
+<section id="objetivos-da-disciplina" class="slide level2">
+<h2>🎯 Objetivos da Disciplina</h2>
+<ul>
+<li><p>Compreender os fundamentos de bancos de dados</p></li>
+<li><p>Modelar dados com diagramas ER</p></li>
+<li><p>Implementar e consultar bases de dados com SQL</p></li>
+<li><p>Utilizar ferramentas como MySQL, PostgreSQL, QGIS e R</p></li>
+<li><p>Desenvolver raciocínio lógico para resolver problemas com
+dados</p>
+<p><img data-src="images/2025-08-04/logos.jpg" width="334" /></p></li>
+</ul>
+</section>
+<section id="calendário-da-disciplina" class="slide level2">
+<h2>📅 Calendário da Disciplina</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Data</th>
+<th>Aula</th>
+<th>Tema</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>04/08/2025</td>
+<td>Aula 1</td>
+<td>Aula Inaugural</td>
+</tr>
+<tr class="even">
+<td>11/08/2025</td>
+<td>Aula 2</td>
+<td>Fundamentos</td>
+</tr>
+<tr class="odd">
+<td>18/08/2025</td>
+<td>Aula 3</td>
+<td>Modelagem e Diagramas</td>
+</tr>
+<tr class="even">
+<td>25/08/2025</td>
+<td>Aula 4</td>
+<td>Administração e Gerenciamento</td>
+</tr>
+<tr class="odd">
+<td>01/09/2025</td>
+<td>Aula 5</td>
+<td>Aplicação CRUD</td>
+</tr>
+<tr class="even">
+<td>08/09/2025</td>
+<td>Aula 6</td>
+<td>MySQL</td>
+</tr>
+<tr class="odd">
+<td>15/09/2025</td>
+<td><strong>NP1</strong></td>
+<td><strong>Prova</strong></td>
+</tr>
+<tr class="even">
+<td>22/09/2025</td>
+<td>Aula 7</td>
+<td>Postgres</td>
+</tr>
+<tr class="odd">
+<td>29/09/2025</td>
+<td>Aula 8</td>
+<td>QGIS</td>
+</tr>
+<tr class="even">
+<td>06/10/2025</td>
+<td>Aula 9</td>
+<td>RStudio</td>
+</tr>
+<tr class="odd">
+<td>13/10/2025</td>
+<td>Aula 10</td>
+<td>Análise I</td>
+</tr>
+<tr class="even">
+<td>20/10/2025</td>
+<td>Aula 11</td>
+<td>Análise II</td>
+</tr>
+<tr class="odd">
+<td>27/10/2025</td>
+<td>Aula 12</td>
+<td>Análise III</td>
+</tr>
+<tr class="even">
+<td>03/11/2025</td>
+<td><strong>NP2</strong></td>
+<td><strong>Prova</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ementa-resumida" class="slide level2">
+<h2>📚 Ementa Resumida</h2>
+<ul>
+<li><p>Introdução a bancos de dados relacionais (RDBMS)</p></li>
+<li><p>Modelagem de dados (M.E.R.) e diagramas Entidade Relacionamento
+(D.E.R.)</p></li>
+<li><p>Linguagem SQL: DDL, DML, DCL</p></li>
+<li><p>Ferramentas: MySQL, PostgreSQL</p></li>
+<li><p>Visualização geoespacial (QGIS)</p></li>
+<li><p>Análise e exploração de dados (R e RStudio)</p>
+<p><img data-src="images/2025-08-04/modelagem.jpg"
+width="331" /></p></li>
+</ul>
+</section>
+<section id="avaliação" class="slide level2">
+<h2>📝 Avaliação</h2>
+<ul>
+<li><strong>Provas (NP1 + NP2)</strong></li>
+<li><strong>Prova Substitutiva</strong></li>
+<li><strong>Exame</strong></li>
+</ul>
+</section>
+<section id="ferramentas-da-disciplina" class="slide level2">
+<h2>🛠️ Ferramentas da Disciplina</h2>
+<ul>
+<li><strong>Servidores de Banco de Dados</strong>: MySQL,
+PostgreSQL</li>
+<li><strong>Servidores de Banco de Dados</strong>: pgAdmin, MySQL
+Workbench, DBeaver<br />
+</li>
+<li><strong>Geoprocessamento</strong>: QGIS<br />
+</li>
+<li><strong>Análise de Dados</strong>: R + RStudio<br />
+</li>
+<li><strong>Versionamento e Organização</strong>: GitHub, Teams</li>
+</ul>
+</section>
+<section id="expectativas-e-regras" class="slide level2">
+<h2>📌 Expectativas e Regras</h2>
+<ul>
+<li>Pontualidade e entrega de atividades no prazo</li>
+<li>Trabalhos devem ser originais (sem plágio)</li>
+<li>Participação ativa nas discussões e práticas</li>
+<li>Uso responsável das ferramentas</li>
+<li>Respeito e colaboração entre colegas</li>
+</ul>
+</section>
+<section id="dicas-para-mandar-bem" class="slide level2">
+<h2>💡 Dicas para Mandar Bem</h2>
+<ul>
+<li>Faça os exercícios logo após a aula</li>
+<li>Participe das práticas com base real</li>
+<li>Mantenha o repositório do projeto atualizado</li>
+<li>Refaça consultas SQL até entender</li>
+<li>Teste e documente suas soluções</li>
+</ul>
+</section>
+<section id="encerramento" class="slide level2">
+<h2>🙌 Encerramento</h2>
+</section>
+<section id="estamos-prontos" class="slide level2">
+<h2>Estamos prontos?</h2>
+<p>📧 Dúvidas? Estou à disposição<br />
+📊 Vamos construir conhecimento juntos!</p>
+<blockquote>
+<p>Próxima aula: <strong>Fundamentos de Banco de Dados</strong> –
+11/08/2025</p>
+</blockquote>
+<!--chapter:end:01-2025-08-04_Inaugural.Rmd-->
+</section></section>
+<section>
+<section id="fundamentos-de-sistemas-de-bancos-de-dados"
+class="title-slide slide level1">
+<h1>Fundamentos de Sistemas de Bancos de Dados</h1>
+
+</section>
+<h4 class="unnumbered" id="section-1">11/08/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-1">Professor Miguél
+Suares</h4>
+<section id="o-início-edgar-frank-ted-codd-19081923-18042003"
+class="slide level2">
+<h2>O início : Edgar Frank “Ted” Codd (19/08/1923 – 18/04/2003)</h2>
+<ul>
+<li><p>Nome: Professor Codd - Matemático da IBM</p>
+<p><img data-src="images/2025-08-11/01-codd.jpg" width="134" /></p></li>
+<li><p>1965: Cria modelo relacional nos tempos da IBM/NASA/Projeto
+Apolo</p></li>
+</ul>
+<p><img data-src="images/2025-08-11/modelagem.jpg" width="334" /></p>
+<ul>
+<li><p>1969: Codd não é levado a sério</p></li>
+<li><p>1970: Publica a teoria relacional nas universidades (Berkley,
+Califórnia)</p></li>
+</ul>
+</section>
+<section
+id="anos-1970-ibm-entra-no-modelo-relacional-systemr-e-sequelsql"
+class="slide level2">
+<h2>Anos 1970: IBM entra no Modelo relacional: SystemR e SEQUEL/SQL</h2>
+<ul>
+<li><p>1970: IBM entende a importância do modelo de Codd</p></li>
+<li><p>1971: Como Codd publica o conhecimento, o projeto vai para
+<em>Raymond Francis Boyce</em></p>
+<p><img data-src="images/2025-08-11/05-Boyce.png"
+width="138" /></p></li>
+<li><p>1974: Donald D. Chamberlin e <em>Raymond Francis Boyce</em> criam
+a SQL na IBM</p></li>
+<li><p>1973: <em>Raymond Francis Boyce</em> criam o SystemR (Banco
+Relacional da IBM)</p></li>
+<li><p>Codd continua publicando artigos sobre modelo relacional</p></li>
+<li><p>1977: Ex-alunos prof Michael StoneBraker fundam a (Relational
+Inc) ORACLE “copiando” o SystemR da IBM.</p>
+<p><img data-src="images/2025-08-11/06-oracle.png"
+width="132" /></p></li>
+</ul>
+</section>
+<section id="anos-1970-prof-codd-inspira-prof-stonebraker-banco-ingres"
+class="slide level2">
+<h2>Anos 1970: Prof Codd inspira Prof StoneBraker: BANCO INGRES</h2>
+<ul>
+<li><p>1974: Michael StoneBraker começa projeto INGRES na Universidade
+de Berkley</p>
+<p><img data-src="images/2025-08-11/07-Michael_StoneBraker.png"
+width="202" /></p></li>
+<li><p>1976: Nasce o INGRES, pai de muitos Bancos de Dados Modernos.</p>
+<p><img data-src="images/2025-08-11/03-ingress-1.0.jpg"
+width="173" /></p></li>
+<li><p>1976: INGRES nasce com linguagem prórpia, o QUEL, ao invés do
+SQL</p></li>
+<li><p>INGRESS cria a empresa Relational INC</p></li>
+<li><p>Ex-funcionários (alunos) da Relational Inc fundam a
+SYBASE.</p></li>
+</ul>
+</section>
+<section id="anos-1980-ingres-semi-livre-vs-ibm-system-r-pago-vs-oracle"
+class="slide level2">
+<h2>Anos 1980: INGRES (SEMI-LIVRE) vs IBM System R ( pago ) vs
+ORACLE</h2>
+<ul>
+<li><p>1982 IBM transforma SystemR em IBM DB2.</p></li>
+<li><p>1984 Ex-funcionários (alunos) da Relational Inc fundam a
+SYBASE.</p>
+<p><img data-src="images/2025-08-11/08-sybase.png"
+width="257" /></p></li>
+<li><p>1985: SoneBraker cria o PostGRES (Banco de Dados
+Objeto-Relacional)</p></li>
+<li><p>1986: INGRES perde para a ORACLE no mercado de SGBDs</p></li>
+<li><p>1989: SQL vira padrão ANSI e padrão ISO</p></li>
+</ul>
+</section>
+<section id="anos-1990-mysql-e-postgres-que-vira-postgresql"
+class="slide level2">
+<h2>Anos 1990: MySQL e POSTGRES que vira POSTGRESQL</h2>
+<ul>
+<li><p>1993: O SYBASE SQL Server é portado para o Windows NT
+4.0</p></li>
+<li><p>1994: Fim do relacionamento entre Microsoft e SYBASE: nasce o
+MS-SQL Server</p></li>
+<li><p>1994: <strong>Andrew Yu</strong> e <strong>Jolly Chen</strong>
+Adicionam SQL ao POSTGRES: nasce o <strong>PostgreSQL</strong></p>
+<p><img data-src="images/2025-08-11/10-postgresql.png"
+width="141" /></p></li>
+<li><p>1994: David Axmark, Allan Larsson e Michael “Monty” Widenius
+criam o MySQL.</p>
+<p><img data-src="images/2025-08-11/09-mysql.png"
+width="131" /></p></li>
+<li><p>1997: Nasce o postgreSQL 6.0</p></li>
+<li><p>1998: Carlo Strozzi - Modelo Não-SQL (conceito de SGBDs que não
+usam interface SQL)</p></li>
+</ul>
+</section>
+<section id="anos-2000-sybase-eo-no-sql" class="slide level2">
+<h2>Anos 2000: Sybase eo No-SQL</h2>
+<ul>
+<li><p>2003 - Doug Cutting e Mike Cafarella, projeto <em>Hadoop</em>
+baeado no documento <em>Google File System</em></p></li>
+<li><p>2007 - 10gen (MongoDB Inc) inicia o projeto MongoDB (Não SQL)</p>
+<p><img data-src="images/2025-08-11/11-mongodb.png"
+width="260" /></p></li>
+<li><p>2007 - Avinash Lakshman do facebook disponibiliza o Apache
+Cassandra (Não SQL)</p>
+<p><img data-src="images/2025-08-11/12-cassandra.png"
+width="126" /></p></li>
+<li><p>2008 - BIG DATA Lançado o Apache HADOOP e o Apache Hive (emulador
+SQL)</p>
+<p><img data-src="images/2025-08-11/13-hadoop.png" width="441" />BIG</p>
+<p><img data-src="images/2025-08-11/14-Apache_Hive.png"
+width="139" /></p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<!--chapter:end:02-2025-08-11_Fubdamentos_SGBD.Rmd-->
+</section></section>
+<section>
+<section id="modelagem-de-bancos-de-dados"
+class="title-slide slide level1">
+<h1>Modelagem de Bancos de Dados</h1>
+
+</section>
+<h4 class="unnumbered" id="section-2">18/08/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-2">Professor Miguél
+Suares</h4>
+<section id="introdução-visitando-a-teoria-de-bancos-de-dados"
+class="slide level2">
+<h2>Introdução: Visitando a teoria de Bancos de Dados</h2>
+<p><img data-src="images/5-bi/01-banco-de-dados.jpg" width="452" /></p>
+<blockquote>
+<p><strong>Banco de Dados</strong> Um banco de dados é uma coleção
+compartilhada de dados logicamente relacionados, projetada para atender
+às necessidades informacionais de uma organização. - <em>DATE, C. J. An
+Introduction to Database Systems. 8. ed. Boston: Addison-Wesley,
+2003</em>.</p>
+</blockquote>
+<p>Ou seja, alguns pontos-chave da definição de Date:</p>
+<ul>
+<li><p>“Coleção de dados …” → não é um conjunto de arquivos soltos, mas
+dados organizados.</p></li>
+<li><p>“Compartilhada …” → não pertence a apenas um usuário ou
+aplicação; é usada por vários.</p></li>
+<li><p>“Dados logicamente relacionados …” → os dados têm um
+relacionamento semântico, não são apenas agrupamentos
+arbitrários.</p></li>
+<li><p>“Projetada para atender necessidades …” → o banco existe para
+suportar os processos de uma organização (consultas, relatórios,
+controle, tomada de decisão).</p></li>
+</ul>
+<p><img data-src="images/5-bi/07-tabela_relacional.jpg" /></p>
+<blockquote>
+<p><strong>Banco de Dados Relacional</strong> Um banco de dados
+relacional é um banco de dados baseado em um modelo de dados relacional,
+no qual os dados são representados como um conjunto de relações
+(tabelas), e cada relação consiste em tuplas (linhas) e atributos
+(colunas). - <em>SILBERSCHATZ, Abraham; KORTH, Henry F.; SUDARSHAN, S.
+Database System Concepts. 6. ed. New York: McGraw-Hill, 2010.</em></p>
+</blockquote>
+<p>Agora, alguns pontos-chave da definição de <em>Abraham
+Silberschatz</em> :</p>
+<ul>
+<li><p>Base no modelo relacional de Codd (1970).</p></li>
+<li><p>Dados representados em tabelas (relações).</p></li>
+<li><p>Cada tabela é composta de tuplas (linhas) e atributos
+(colunas).</p></li>
+<li><p>Integridade garantida por restrições (chaves, integridade
+referencial, domínio de atributos).</p></li>
+<li><p>Manipulação feita por linguagens relacionais (álgebra relacional,
+cálculo relacional, SQL).</p></li>
+</ul>
+<p>O Banco de Dados Relacional organiza as informações em
+<strong>tabelas bidiomensionais</strong> constituídas de <strong>linhas
+e colunas</strong> chamadas e essas tabelas recebem o nome de
+<strong>relações</strong>. Cada <strong>relação</strong> possui um
+<strong>campo-chave</strong> que confere identificação exclusiva a cada
+registro da tabela.</p>
+</section>
+<section id="modelo-matemático-de-um-banco-de-dados"
+class="slide level2">
+<h2>Modelo Matemático de um Banco de Dados</h2>
+<p>Considere um Banco de Dados para representar, com consistência
+Matemática os funcionários e Departamentos de uma Empresa.</p>
+<h3
+id="podemos-representa-lo-matemáticamente-utilizando-a-teoria-dos-conjuntos">Podemos
+representa-lo matemáticamente utilizando a teoria dos conjuntos</h3>
+<div class="figure">
+<img src="2025-GTI-Sem-BancoDeDados_files/figure-revealjs/tikz-diagrama0-1.png" alt="Diagrama de Montadoras, Veículos e Proprietários" width="768" />
+<p class="caption">
+Diagrama de Montadoras, Veículos e Proprietários
+</p>
+</div>
+<h4
+id="edgard-f-cood-explica-em-sua-obra-a-relational-model-of-data-for-large-shared-data-banks-como-definir-uma-banco-de-dados-compartilhado-matemáticamente">Edgard
+F Cood explica em sua obra “A Relational Model of Data for Large Shared
+Data Banks” como definir uma Banco de Dados compartilhado
+<em>matemáticamente</em></h4>
+<blockquote>
+<p>Um banco de dados relacional é um banco de dados no qual todos os
+dados são representados por meio de relações (matematicamente, conjuntos
+de tuplas), e todas as operações sobre os dados são baseadas em
+operadores formais do cálculo relacional e da álgebra relacional. -
+<em>A Relational Model of Data for Large Shared Data Banks”
+(Communications of the ACM, vol. 13, n. 6, pp. 377–387, 1970).</em></p>
+</blockquote>
+<h3
+id="então-para-podemos-relacionar-estes-dois-conjuntos-funcionários-e-departamentos-utilizando-a-teoria-das-funções">Então
+para podemos relacionar estes dois conjuntos (Funcionários e
+Departamentos) utilizando a Teoria das Funções</h3>
+<p>$$</p>
+<p>f(x) = Y</p>
+<p>$$</p>
+<p>$$</p>
+<p>F(Funcionário) = Departamento</p>
+<p>$$</p>
+<div class="figure">
+<img src="2025-GTI-Sem-BancoDeDados_files/figure-revealjs/tikz-diagrama10-1.png" alt="Diagrama de Montadoras, Veículos e Proprietários" width="768" />
+<p class="caption">
+Diagrama de Montadoras, Veículos e Proprietários
+</p>
+</div>
+<p>Mas vai ficar faltando como representar os atributos nesse modelo
+(colunas das tabelas):</p>
+<p>Ainda, é necessário acrescentar algumas regras de integridade a
+representação;</p>
+</section>
+<section id="modelo-lógico-de-banco-de-dados" class="slide level2">
+<h2>Modelo Lógico de Banco de Dados</h2>
+<h3
+id="modelo-conceitual-entidade-relacionamento-de-banco-de-dados">Modelo
+Conceitual “Entidade Relacionamento” de Banco de Dados</h3>
+<p>O Modelo Entidade-Relacionamento (MER), proposto por Peter Chen em
+1976, é uma ferramenta fundamental na modelagem de dados. É um modelo de
+dados de alto nível que descreve a estrutura conceitual de um banco de
+dados. O Modelo Entidade-Relacionamento (MER) é representado
+graficamente através de um DER (Diagrama Entidade-Relacionamento).</p>
+<p>É utilizado para projetar Bancos de Dados Relacionais a partir de
+entrevistas onde se descreve as informações que se deseja armazenar de
+forma consistente. Exemplo:</p>
+<p>“<em>Desenhe um diagrama entidade-relacionamento DER contendo as
+entidades funcionarios e departamentos. A entidade ”funcionários” possui
+os atributos ”nome” e ”CPF”. A entidade ”Departamentos” possui os
+atributos ”Nome” e ”sigla”. O atributo ”CPF” é chave primária da
+entidade ”Funcionários”. O atributo ”sigla” é chave primária da entidade
+”Departamentos”. As entidades ”Funcionários” e ”Departamentos” se
+relacionam através de um relacionamento chamado ”Pertence”</em>.”</p>
+<p><img
+data-src="images/5-bi/02-Modelo-Entidade-Relacionamento.jpg" /></p>
+<p>Segundo Laudon</p>
+<blockquote>
+<p><strong>Diagrama Entidade/Relacionamento (DER)</strong> é uma
+representação esquemática utilizada para entender as relações entre as
+tabelas de um banco de dados relacional. [[1] - LAUDON, Kenneth C.;
+LAUDON, Jane P. *Sistemas de informação gerenciais*. 11. ed. São Paulo:
+Pearson Education do Brasil, 2010. p. 180.]</p>
+</blockquote>
+<h3
+id="composição-e-significado-do-diagrama-entidade-relacionamento-der">Composição
+e Significado do Diagrama Entidade Relacionamento (DER)</h3>
+<table style="width:99%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 38%" />
+<col style="width: 44%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Nome</strong></td>
+<td style="text-align: center;"><strong>Desenho</strong></td>
+<td style="text-align: center;"><strong>Significado</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Entidade</td>
+<td style="text-align: center;"><img
+data-src="images/5-bi/03-retangulo.jpg" /></td>
+<td style="text-align: center;"><p>Representa uma tabela e é
+identificada</p>
+<p>no texto por um <strong>substantivo</strong>.</p></td>
+</tr>
+</tbody>
+</table>
+<table style="width:99%;">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 34%" />
+<col style="width: 53%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Nome</strong></td>
+<td style="text-align: center;"><strong>Desenho</strong></td>
+<td style="text-align: center;"><strong>Significado</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Atributo</td>
+<td style="text-align: center;"><img
+data-src="images/5-bi/05-elipse.jpg" width="182" /></td>
+<td style="text-align: center;">Representa uma coluna e é identificada
+no texto por um <strong>adjetivo</strong>.</td>
+</tr>
+</tbody>
+</table>
+<table style="width:99%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 41%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Nome</strong></td>
+<td style="text-align: center;"><strong>Desenho</strong></td>
+<td style="text-align: center;"><strong>Significado</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Relacionamento</td>
+<td style="text-align: center;"><img
+data-src="images/5-bi/04-losango.jpg" width="185" /></td>
+<td style="text-align: center;"><p>Representa uma
+<strong>Referência</strong> e é identificada</p>
+<p>no texto por um <strong>Verbo</strong>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="modelo-físico-de-banco-de-dados" class="slide level2">
+<h2>Modelo Físico de Banco de Dados</h2>
+<h3
+id="geração-do-modelo-físico-para-aplica-lo-ao-sgbd-sistema-de-gerenciamento-de-banco-de-dados">Geração
+do modelo Físico para aplica-lo ao SGBD (Sistema de Gerenciamento de
+Banco de Dados):</h3>
+<p>Uma vez que o modelo conceitual seja gerado, o analista pode mapea-lo
+para um “modelo físico” onde se mapeiam chaves primárias e chaves
+forasteiras nas tabelas.</p>
+<p>Após a geração do modelo físico pode-se gerar o SQL que monta a
+estrutura do Banco de Dados.</p>
+<p><img data-src="images/5-bi/06-modelo_fisico.jpg" /></p>
+<h3 id="código-sql---implementação-do-modelo-físico">Código SQL -
+Implementação do Modelo Físico</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Exemplo testado e gerado no SGBD Postgres versão 15</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Tabela Funcionários</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> <span class="ot">&quot;public&quot;</span>.funcionarios</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    cpf bigint <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    nome <span class="dt">varchar</span>(<span class="dv">200</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Tabela Departamentos</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> <span class="ot">&quot;public&quot;</span>.departamentos</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    sigla <span class="dt">integer</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    nome <span class="dt">varchar</span>(<span class="dv">200</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">-- Definindo a coluna &quot;cpf&quot; da tabela &quot;funcionários&quot; como chave primária</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="kw">alter</span> <span class="kw">table</span> <span class="ot">&quot;public&quot;</span>.funcionarios <span class="kw">add</span> <span class="kw">constraint</span> <span class="ot">&quot;chave_primaria_funcionarios&quot;</span> <span class="kw">primary</span> <span class="kw">key</span> (cpf);</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">-- Definindo a coluna &quot;sigla&quot;&quot; da tabela &quot;departamentos&quot; como chave primária</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="kw">alter</span> <span class="kw">table</span> <span class="ot">&quot;public&quot;</span>.departamentos <span class="kw">add</span> <span class="kw">constraint</span> <span class="ot">&quot;chave_primaria_departamentos&quot;</span> <span class="kw">primary</span> <span class="kw">key</span> (sigla);</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">-- Gerando a integridade referêncial </span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">-- Importando a chave primária da tabela &quot;departamentos&quot; como &quot;chave estrangeira&quot;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">-- na tabela &quot;funcionários&quot;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">-- primeiro adiciona-se a coluna estrageira &quot;sigla&quot; que é coluna originalmente </span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">-- pertencente a tabela departamentos</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="kw">alter</span> <span class="kw">table</span> <span class="ot">&quot;public&quot;</span>.funcionarios <span class="kw">add</span> <span class="kw">column</span> sigla <span class="dt">integer</span>;</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">-- finalmente conecte a coluna sigla a chave primária da tabela &quot;departamento&quot;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">-- criando então uma chave estrageira na tabela &quot;funcionários&quot;.</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="kw">alter</span> <span class="kw">table</span> <span class="ot">&quot;public&quot;</span>.funcionarios <span class="kw">add</span> <span class="kw">constraint</span> <span class="ot">&quot;Chave_estrangeira_Departamento_funcionarios&quot;</span> <span class="kw">foreign</span> <span class="kw">key</span> (sigla) <span class="kw">references</span> <span class="ot">&quot;public&quot;</span>.departamentos(sigla);</span></code></pre></div>
+</section>
+<section id="exemplo-montadora" class="slide level2">
+<h2>EXEMPLO: MONTADORA</h2>
+<h3 id="modelo-matemático">Modelo Matemático</h3>
+<p>Construa um Banco de Dados com suporte a consistência das
+informações. Utilize para isso o modelo Relacional. Precisamos armazenar
+as informações dos Veículos, Montadoras e Proprietários;</p>
+<h4
+id="representação-matemática-em-conjuntos-e-seus-elementos">Representação
+Matemática em Conjuntos e seus Elementos :</h4>
+<div class="figure">
+<img src="2025-GTI-Sem-BancoDeDados_files/figure-revealjs/tikz-diagrama1-1.png" alt="Diagrama de Montadoras, Veículos e Proprietários" width="768" />
+<p class="caption">
+Diagrama de Montadoras, Veículos e Proprietários
+</p>
+</div>
+<h4
+id="gerando-os-relacionamentos-matemáticamente---teoria-das-funções-domínios-e-imagens">Gerando
+os Relacionamentos “Matemáticamente” - (Teoria das Funções, Domínios e
+Imagens):</h4>
+<div class="figure">
+<img src="2025-GTI-Sem-BancoDeDados_files/figure-revealjs/tikz-diagrama2-1.png" alt="Diagrama de Montadoras, Veículos e Proprietários" width="768" />
+<p class="caption">
+Diagrama de Montadoras, Veículos e Proprietários
+</p>
+</div>
+</section>
+<section id="normalização-em-bancos-de-dados-relaionais"
+class="slide level2">
+<h2>Normalização em Bancos de Dados Relaionais</h2>
+<h3 id="tabela-desnormalizada">Tabela Desnormalizada</h3>
+<p><img data-src="images/5-bi/01-montadora.jpg" width="343" /></p>
+<p>Considere a tabela Veículos abaixo:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Modelo</th>
+<th style="text-align: center;">Montadora</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Strada</td>
+<td style="text-align: center;">Fiat</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Mobi</td>
+<td style="text-align: center;">Fiat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Pulse</td>
+<td style="text-align: center;">Fiat</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Onix</td>
+<td style="text-align: center;">Chevrolet</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Tracker</td>
+<td style="text-align: center;">Chevrolet</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Onix Plus</td>
+<td style="text-align: center;">Chevrolet</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Polo</td>
+<td style="text-align: center;">Volkswagen</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Nivus</td>
+<td style="text-align: center;">Volkswagen</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T-Cross</td>
+<td style="text-align: center;">Volkswagen</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">HB20</td>
+<td style="text-align: center;">Hyundai</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Creta</td>
+<td style="text-align: center;">Hyundai</td>
+</tr>
+</tbody>
+</table>
+<p>Separamos o conjunto de elemntos <em>Montadoras</em> e
+<em>Modelos</em>.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">MontadoraID</th>
+<th style="text-align: center;">Montadora</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">Fiat</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Chevrolet</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">Volkswagen</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">Hyundai</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">ModeloID</th>
+<th style="text-align: center;">Modelo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">101</td>
+<td style="text-align: center;">Strada</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">102</td>
+<td style="text-align: center;">Mobi</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">103</td>
+<td style="text-align: center;">Pulse</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">201</td>
+<td style="text-align: center;">Onix</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">202</td>
+<td style="text-align: center;">Tracker</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">203</td>
+<td style="text-align: center;">Onix Plus</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">301</td>
+<td style="text-align: center;">Polo</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">302</td>
+<td style="text-align: center;">Nivus</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">303</td>
+<td style="text-align: center;">T-Cross</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">401</td>
+<td style="text-align: center;">HB20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">402</td>
+<td style="text-align: center;">Creta</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>O processo de fragmentar agrupamentos complexos de dados e
+simplifica-los a fim de minimizar redundâncias e economizar espaço no
+Banco de Dados Relacional é chamado de <strong>NORMALIZAÇÃO.</strong>
+[[1] - LAUDON, Kenneth C.; LAUDON, Jane P. *Sistemas de informação
+gerenciais*. 11. ed. São Paulo: Pearson Education do Brasil, 2010.
+p. 180.]</p>
+</blockquote>
+<p>Mas Como indicar que cada elemento da tabela “Modelo” está associado
+a um elemento da tabela “Montadora” ?</p>
+<h3 id="tabela-normalizada">Tabela Normalizada</h3>
+<p>Considere as tabelas abaixo:</p>
+<table style="width:78%;">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">MontadoraID</th>
+<th style="text-align: center;">Montadora</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">Fiat</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Chevrolet</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">Volkswagen</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">Hyundai</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">ModeloID</th>
+<th style="text-align: center;">Modelo</th>
+<th style="text-align: center;">MontadoraID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">101</td>
+<td style="text-align: center;">Strada</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">102</td>
+<td style="text-align: center;">Mobi</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">103</td>
+<td style="text-align: center;">Pulse</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">201</td>
+<td style="text-align: center;">Onix</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">202</td>
+<td style="text-align: center;">Tracker</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">203</td>
+<td style="text-align: center;">Onix Plus</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">301</td>
+<td style="text-align: center;">Polo</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">302</td>
+<td style="text-align: center;">Nivus</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">303</td>
+<td style="text-align: center;">T-Cross</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">401</td>
+<td style="text-align: center;">HB20</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">402</td>
+<td style="text-align: center;">Creta</td>
+<td style="text-align: center;">4</td>
+</tr>
+</tbody>
+</table>
+<p>Repare que:</p>
+<ul>
+<li><p>É possível identificar que não existem montadoras repetidas na
+tabela “Montadoras”;</p></li>
+<li><p>É possível identificar que não existem modelos repetidos na
+tabela “Montadoras”;</p></li>
+</ul>
+<p>A coluna (atributo) <strong>ModeloID</strong> é a <strong>chave
+primária</strong> da tabela <strong>Modelos.</strong> A coluna
+(atributo) <strong>MontadoraID</strong> é a <strong>chave
+primária</strong> da tabela <strong>Montadoras.</strong></p>
+<p>Na tabela <strong>Modelos</strong>, a coluna
+<strong>MontadoraID</strong>, acrescentada a tabela Modelos representa a
+ligação de cada elemento da tabela Modelos e Montadoras. Essa coluna
+“importada” da tabela Montadoras para a tabela Modelos se chama
+<strong>chave estrangeira</strong>.</p>
+</section>
+<section id="exercícios" class="slide level2">
+<h2>Exercícios</h2>
+<p>1- Construa um projeto Banco de Dados Relacional para uma
+universidade. Mapeie no seu Banco de Dados Disciplinas, Professores e
+Alunos. Para isso, faça o modelo “matemático”, o Modelo Lógico e o
+Modelo Físico com SQL.</p>
+</section>
+<section id="referências" class="slide level2">
+<h2>Referências</h2>
+<p><strong>DATE</strong>, C. J. <strong>An Introduction to Database
+Systems.</strong> 8. ed. Boston: Addison-Wesley, 2003.</p>
+<p><strong>SILBERSCHATZ</strong>, Abraham; KORTH, Henry F.; SUDARSHAN,
+S. <strong>Database System Concepts.</strong> 6. ed. New York:
+McGraw-Hill, 2010.</p>
+<p><strong>CODD</strong>, E. F. <strong>A Relational Model of Data for
+Large Shared Data Banks.</strong> Communications of the ACM, New York,
+v. 13, n. 6, p. 377–387, 1970.</p>
+<!--chapter:end:03-2025-08-18_Modelagem_SGBD.Rmd-->
+</section></section>
+<section>
+<section id="administração-e-gerenciamento-de-bancos-de-dados"
+class="title-slide slide level1">
+<h1>Administração e Gerenciamento de Bancos de Dados</h1>
+
+</section>
+<h4 class="unnumbered" id="section-3">25/08/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-3">Professor Miguél
+Suares</h4>
+<!--chapter:end:04-2025-08-25_Administracao_Gerenciamento.Rmd--></section>
+<section>
+<section id="banco-de-dados-uma-aplicação-crud"
+class="title-slide slide level1">
+<h1>Banco de Dados: Uma Aplicação CRUD</h1>
+
+</section>
+<h4 class="unnumbered" id="section-4">01/09/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-4">Professor Miguél
+Suares</h4>
+<!--chapter:end:05-2025-09-01_Aplicacao_CRUD.Rmd--></section>
+<section>
+<section id="banco-de-dados-mysql-mariadb"
+class="title-slide slide level1">
+<h1>Banco de Dados: MySQL (MariaDB)</h1>
+
+</section>
+<h4 class="unnumbered" id="section-5">08/09/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-5">Professor Miguél
+Suares</h4>
+<!--chapter:end:06-2025-09-08_MySQL.Rmd--></section>
+<section>
+<section id="banco-de-dados-postgres" class="title-slide slide level1">
+<h1>Banco de Dados: Postgres</h1>
+
+</section>
+<h4 class="unnumbered" id="section-6">22/09/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-6">Professor Miguél
+Suares</h4>
+<!--chapter:end:07-2025-09-22_Postgres.Rmd--></section>
+<section>
+<section id="banco-de-dados-espaciais---cliente-qgis"
+class="title-slide slide level1">
+<h1>Banco de Dados Espaciais - Cliente QGIS</h1>
+
+</section>
+<h4 class="unnumbered" id="section-7">29/09/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-7">Professor Miguél
+Suares</h4>
+<!--chapter:end:08-2025-09-29_QGIS.Rmd--></section>
+<section>
+<section id="banco-de-dados-estatístico---cliente-rstudio"
+class="title-slide slide level1">
+<h1>Banco de Dados Estatístico - Cliente Rstudio</h1>
+
+</section>
+<h4 class="unnumbered" id="section-8">06/10/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-8">Professor Miguél
+Suares</h4>
+<!--chapter:end:09-2025-10-06_Rstudio.Rmd--></section>
+<section>
+<section id="banco-de-dados---análise-de-dados-parte-01"
+class="title-slide slide level1">
+<h1>Banco de Dados - Análise de Dados Parte 01</h1>
+
+</section>
+<h4 class="unnumbered" id="section-9">13/10/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-9">Professor Miguél
+Suares</h4>
+<!--chapter:end:10-2025-10-13_Analise_01.Rmd--></section>
+<section>
+<section id="banco-de-dados---análise-de-dados-parte-02"
+class="title-slide slide level1">
+<h1>Banco de Dados - Análise de Dados Parte 02</h1>
+
+</section>
+<h4 class="unnumbered" id="section-10">20/10/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-10">Professor Miguél
+Suares</h4>
+<!--chapter:end:11-2025-10-20_Analise_02.Rmd--></section>
+<section>
+<section id="banco-de-dados---análise-de-dados-parte-03"
+class="title-slide slide level1">
+<h1>Banco de Dados - Análise de Dados Parte 03</h1>
+
+</section>
+<h4 class="unnumbered" id="section-11">27/10/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-11">Professor Miguél
+Suares</h4>
+<!--chapter:end:12-2025-10-27_Analise_03.Rmd--></section>
+    </div>
+  </div>
+
+  <script src="2025-GTI-Sem-BancoDeDados_files/reveal.js-4.2.1/dist/reveal.js"></script>
+  
+  <!-- reveal.js plugins -->
+  <script src="2025-GTI-Sem-BancoDeDados_files/reveal.js-4.2.1/plugin/menu/menu.js"></script>
+  <script src="2025-GTI-Sem-BancoDeDados_files/reveal.js-4.2.1/plugin/chalkboard/plugin.js"></script>
+  <script src="2025-GTI-Sem-BancoDeDados_files/reveal.js-4.2.1/plugin/customcontrols/plugin.js"></script>
+  
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+        // Display a presentation progress bar
+        progress: true,
+        // Can be used to limit the contexts in which the slide number appears
+        showSlideNumber: 'all',
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+        // Push each slide change to the browser history
+        // Implies `hash: true`
+        history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+        // The display mode that will be used to show slides
+        display: 'block',
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        menu: {
+          // Configuration from
+          // https://github.com/denehyg/reveal.js-menu#configuration
+          side: 'right',
+   
+   
+    
+    
+    
+    
+    
+    
+    
+ 
+ 
+ 
+ 
+ 
+          // option not supported for change
+          loadIcons: false, // using rmarkdown provided own.
+          custom: false,
+          themes: false,
+          // themesPath: 'dist/theme/',
+          transitions: false
+        },
+
+
+        chalkboard: {
+          theme: 'whiteboard',
+        },
+        customcontrols: {
+            controls: [
+            	{ icon: '<i class="fa fa-pen"></i>',
+            	  title: 'Toggle notes canvas (C)',
+            	  action: 'RevealChalkboard.toggleNotesCanvas();'
+            	}
+            ]
+        },
+
+        // Optional reveal.js plugins
+        plugins: [
+          RevealMenu,
+          RevealChalkboard,
+          RevealCustomControls,
+        ]
+      });
+
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

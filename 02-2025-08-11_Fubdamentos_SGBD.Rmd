@@ -6,7 +6,7 @@
 
 ------------------------------------------------------------------------
 
-# O início : Edgar Frank "Ted" Codd (19/08/1923 – 18/04/2003)
+## O início : Edgar Frank "Ted" Codd (19/08/1923 – 18/04/2003)
 
 -   Nome: Professor Codd - Matemático da IBM
 
@@ -22,7 +22,7 @@
 
 ------------------------------------------------------------------------
 
-# Anos 1970: IBM entra no Modelo relacional: SystemR e SEQUEL/SQL
+## Anos 1970: IBM entra no Modelo relacional: SystemR e SEQUEL/SQL
 
 -   1970: IBM entende a importância do modelo de Codd
 
@@ -42,7 +42,7 @@
 
 ------------------------------------------------------------------------
 
-# Anos 1970: Prof Codd inspira Prof StoneBraker: BANCO INGRES
+## Anos 1970: Prof Codd inspira Prof StoneBraker: BANCO INGRES
 
 -   1974: Michael StoneBraker começa projeto INGRES na Universidade de Berkley
 
@@ -60,7 +60,7 @@
 
 ------------------------------------------------------------------------
 
-# Anos 1980: INGRES (SEMI-LIVRE) vs IBM System R ( pago ) vs ORACLE
+## Anos 1980: INGRES (SEMI-LIVRE) vs IBM System R ( pago ) vs ORACLE
 
 -   1982 IBM transforma SystemR em IBM DB2.
 
@@ -76,7 +76,7 @@
 
 ------------------------------------------------------------------------
 
-# Anos 1990: MySQL e POSTGRES que vira POSTGRESQL
+## Anos 1990: MySQL e POSTGRES que vira POSTGRESQL
 
 -   1993: O SYBASE SQL Server é portado para o Windows NT 4.0
 
@@ -96,7 +96,7 @@
 
 ------------------------------------------------------------------------
 
-# Anos 2000: Sybase eo No-SQL
+## Anos 2000: Sybase eo No-SQL
 
 -   2003 - Doug Cutting e Mike Cafarella, projeto *Hadoop* baeado no documento *Google File System*
 
