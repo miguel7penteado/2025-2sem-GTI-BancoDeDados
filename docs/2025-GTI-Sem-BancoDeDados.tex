@@ -120,7 +120,7 @@
 
 \title{GTI - Banco de dados - 2025 - Anotações de aula}
 \author{Professor Miguél Suares}
-\date{2025-08-25}
+\date{2025-09-01}
 
 \begin{document}
 \maketitle
@@ -637,6 +637,14 @@ Próxima aula: \textbf{Fundamentos de Banco de Dados} -- 11/08/2025
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rmarkdown}\SpecialCharTok{::}\FunctionTok{render}\NormalTok{(}\StringTok{"03{-}2025{-}08{-}19\_20\_.Rmd"}\NormalTok{, }\AttributeTok{output\_dir=}\StringTok{"docs"}\NormalTok{, }\AttributeTok{output\_file =}\StringTok{"temporario.html"}\NormalTok{ , }\AttributeTok{output\_format =} \StringTok{"html\_document"}\NormalTok{) ; utils}\SpecialCharTok{::}\FunctionTok{browseURL}\NormalTok{(}\StringTok{"docs/temporario.html"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Exercícios}\label{exercuxedcios}
+
 \chapter{Modelagem de Bancos de Dados}\label{modelagem-de-bancos-de-dados}
 
 \subsubsection*{18/08/2025}\label{section-2}
@@ -691,8 +699,7 @@ O Banco de Dados Relacional organiza as informações em \textbf{tabelas bidiome
 
 \section{Modelo Matemático de um Banco de Dados}\label{modelo-matemuxe1tico-de-um-banco-de-dados}
 
-Considere um Banco de Dados para representar, com consistência Matemática os
-funcionários e Departamentos de uma Empresa.
+Considere um Banco de Dados para representar, com consistência Matemática os funcionários e Departamentos de uma Empresa.
 
 \subsection{Podemos representa-lo matemáticamente utilizando a teoria dos conjuntos}\label{podemos-representa-lo-matemuxe1ticamente-utilizando-a-teoria-dos-conjuntos}
 
@@ -710,17 +717,14 @@ Um banco de dados relacional é um banco de dados no qual todos os dados são re
 
 \subsection{Então para podemos relacionar estes dois conjuntos (Funcionários e Departamentos) utilizando a Teoria das Funções}\label{entuxe3o-para-podemos-relacionar-estes-dois-conjuntos-funcionuxe1rios-e-departamentos-utilizando-a-teoria-das-funuxe7uxf5es}
 
-\$\$
-
-f(x) = Y
-
-\$\$
-
-\$\$
-
-F(Funcionário) = Departamento
-
-\$\$
+\[
+\text{Edgard Frank Codd era um matemático tradicional} \\
+\text{Considere o conseito de função: } \\
+f(x) = Y \\
+\text{era dessa forma que ele imaginava relacionamento e } \\
+\text{ garantia matemática de CONSISTÊNCIA entre } \\
+\text{ elementos de 2 conjuntos de dados diferentes }
+\]
 
 \begin{figure}
 \centering
@@ -729,6 +733,18 @@ F(Funcionário) = Departamento
 \end{figure}
 
 Mas vai ficar faltando como representar os atributos nesse modelo (colunas das tabelas):
+
+\[
+\begin{array}{c| c | c}
+\textbf{ Conjunto Funcionários}    & \textbf{ Relacionamento Trabalha} & \textbf{Conjunto Departamentos)} \\ 
+\hline 
+FULANO                             &  \quad TRABALHA                   & \quad RH \\
+BELTRANO                           &  \quad TRABALHA                   & \quad FINANCEIRO \\
+CICLANO                            &  \quad TRABALHA                   & \quad DEIRETORIA \\
+\hline
+\textbf{Total: 3 ELEMENTOS }       & \textbf{ CONECTADOS }             & \textbf{Total: 3 ELEMENTOS }
+\end{array}
+\]
 
 Ainda, é necessário acrescentar algumas regras de integridade a representação;
 
@@ -753,9 +769,9 @@ Segundo Laudon
 \subsection{Composição e Significado do Diagrama Entidade Relacionamento (DER)}\label{composiuxe7uxe3o-e-significado-do-diagrama-entidade-relacionamento-der}
 
 \begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1613}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3871}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4409}}@{}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1236}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4045}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4607}}@{}}
 \toprule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -767,9 +783,9 @@ no texto por um \textbf{substantivo}. \\
 \end{longtable}
 
 \begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1061}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3485}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5379}}@{}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -938,15 +954,9 @@ Mas Como indicar que cada elemento da tabela ``Modelo'' está associado a um ele
 
 Considere as tabelas abaixo:
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.2361}}
-  >{\centering\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5417}}@{}}
+\begin{longtable}[]{@{}cc@{}}
 \toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\centering
-MontadoraID
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Montadora
-\end{minipage} \\
+MontadoraID & Montadora \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -990,12 +1000,6 @@ A coluna (atributo) \textbf{ModeloID} é a \textbf{chave primária} da tabela \t
 
 Na tabela \textbf{Modelos}, a coluna \textbf{MontadoraID}, acrescentada a tabela Modelos representa a ligação de cada elemento da tabela Modelos e Montadoras. Essa coluna ``importada'' da tabela Montadoras para a tabela Modelos se chama \textbf{chave estrangeira}.
 
-\section{Exercícios}\label{exercuxedcios}
-
-1- Construa um projeto Banco de Dados Relacional para uma universidade. Mapeie
-no seu Banco de Dados Disciplinas, Professores e Alunos.
-Para isso, faça o modelo ``matemático'', o Modelo Lógico e o Modelo Físico com SQL.
-
 \section{Referências}\label{referuxeancias}
 
 \textbf{DATE}, C. J. \textbf{An Introduction to Database Systems.} 8. ed.~Boston: Addison-Wesley, 2003.
@@ -1003,6 +1007,79 @@ Para isso, faça o modelo ``matemático'', o Modelo Lógico e o Modelo Físico c
 \textbf{SILBERSCHATZ}, Abraham; KORTH, Henry F.; SUDARSHAN, S. \textbf{Database System Concepts.} 6. ed.~New York: McGraw-Hill, 2010.
 
 \textbf{CODD}, E. F. \textbf{A Relational Model of Data for Large Shared Data Banks.} Communications of the ACM, New York, v. 13, n.~6, p.~377--387, 1970.
+
+\section{Exercícios}\label{exercuxedcios-1}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Exercício 1 --- Universidade
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Considere uma Universidade que possui vários Cursos. Cada curso tem um nome, uma duração em semestres e um coordenador. A universidade possui Professores, cada um com um nome, título e CPF. Um professor pode ministrar várias disciplinas, e cada disciplina pertence a um único curso. \\
+a) Identifique as entidades \\
+b) Identifique os atributos de cada Entidade \\
+c) Identifique os relacionamentos entre as Entidades \\
+e) Faça o diagrama DEM (Diagrama Entidade Relacionamento) contendo as entidades, atributos e relacionamentos que você mapeou. \\
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Exercício 2 --- Um Projeto de e-commerce
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Um Cliente faz Pedidos em um sistema de e-commerce. Cada cliente tem um nome, endereço e telefone. Os pedidos possuem uma data, um valor total e podem conter vários Produtos. Cada produto tem um nome, uma descrição e um preço. \\
+a) Identifique as \textbf{entidades} \\
+b) Identifique os \textbf{atributos} de cada Entidade \\
+c) Identifique os \textbf{relacionamentos} entre as Entidades \\
+e) Faça o \textbf{diagrama DEM (Diagrama Entidade Relacionamento)} contendo as entidades, atributos e relacionamentos que você mapeou. \\
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Exercício 3 --- Hospital
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Um Hospital registra Pacientes, cada um com nome, idade, endereço e telefone. Os pacientes podem realizar várias Consultas com Médicos. Cada médico possui um CRM, um nome e uma especialidade. Durante a consulta, o médico pode prescrever Receitas, que possuem medicação e dosagem. \\
+a) Identifique as \textbf{entidades} \\
+b) Identifique os \textbf{atributos} de cada Entidade \\
+c) Identifique os \textbf{relacionamentos} entre as Entidades \\
+e) Faça o \textbf{diagrama DEM (Diagrama Entidade Relacionamento) contendo as entidades, atributos e relacionamentos} que você mapeou. \\
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Respostas dos exercícios}\label{respostas-dos-exercuxedcios}
+
+\subsection{Exercício 1}\label{exercuxedcio-1}
+
+\includegraphics{images/clipboard-1199095852.png}
+
+\subsection{Exercício 2}\label{exercuxedcio-2}
+
+\includegraphics{images/clipboard-2541859182.png}
+
+\subsection{Exercício 3}\label{exercuxedcio-3}
+
+\includegraphics{images/clipboard-3544243903.png}
 
 \chapter{Administração e Gerenciamento de Bancos de Dados}\label{administrauxe7uxe3o-e-gerenciamento-de-bancos-de-dados}
 
@@ -1012,68 +1089,140 @@ Para isso, faça o modelo ``matemático'', o Modelo Lógico e o Modelo Físico c
 \subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-3}
 \addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
 
-\chapter{Banco de Dados: Uma Aplicação CRUD}\label{banco-de-dados-uma-aplicauxe7uxe3o-crud}
+\chapter{Administração e Gerenciamento de Bancos de Dados}\label{administrauxe7uxe3o-e-gerenciamento-de-bancos-de-dados-1}
 
-\subsubsection*{01/09/2025}\label{section-4}
-\addcontentsline{toc}{subsubsection}{01/09/2025}
+\subsubsection*{25/08/2025}\label{section-4}
+\addcontentsline{toc}{subsubsection}{25/08/2025}
 
 \subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-4}
 \addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
 
-\chapter{Banco de Dados: MySQL (MariaDB)}\label{banco-de-dados-mysql-mariadb}
+\chapter{Banco de Dados: Uma Aplicação CRUD}\label{banco-de-dados-uma-aplicauxe7uxe3o-crud}
 
-\subsubsection*{08/09/2025}\label{section-5}
-\addcontentsline{toc}{subsubsection}{08/09/2025}
+\subsubsection*{01/09/2025}\label{section-5}
+\addcontentsline{toc}{subsubsection}{01/09/2025}
 
 \subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-5}
 \addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
 
-\chapter{Banco de Dados: Postgres}\label{banco-de-dados-postgres}
+\chapter{Banco de Dados: Uma Aplicação CRUD}\label{banco-de-dados-uma-aplicauxe7uxe3o-crud-1}
 
-\subsubsection*{22/09/2025}\label{section-6}
-\addcontentsline{toc}{subsubsection}{22/09/2025}
+\subsubsection*{01/09/2025}\label{section-6}
+\addcontentsline{toc}{subsubsection}{01/09/2025}
 
 \subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-6}
 \addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
 
-\chapter{Banco de Dados Espaciais - Cliente QGIS}\label{banco-de-dados-espaciais---cliente-qgis}
+\chapter{Banco de Dados: MySQL (MariaDB)}\label{banco-de-dados-mysql-mariadb}
 
-\subsubsection*{29/09/2025}\label{section-7}
-\addcontentsline{toc}{subsubsection}{29/09/2025}
+\subsubsection*{08/09/2025}\label{section-7}
+\addcontentsline{toc}{subsubsection}{08/09/2025}
 
 \subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-7}
 \addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
 
-\chapter{Banco de Dados Estatístico - Cliente Rstudio}\label{banco-de-dados-estatuxedstico---cliente-rstudio}
+\chapter{Banco de Dados: MySQL (MariaDB)}\label{banco-de-dados-mysql-mariadb-1}
 
-\subsubsection*{06/10/2025}\label{section-8}
-\addcontentsline{toc}{subsubsection}{06/10/2025}
+\subsubsection*{08/09/2025}\label{section-8}
+\addcontentsline{toc}{subsubsection}{08/09/2025}
 
 \subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-8}
 \addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
 
-\chapter{Banco de Dados - Análise de Dados Parte 01}\label{banco-de-dados---anuxe1lise-de-dados-parte-01}
+\chapter{Banco de Dados: Postgres}\label{banco-de-dados-postgres}
 
-\subsubsection*{13/10/2025}\label{section-9}
-\addcontentsline{toc}{subsubsection}{13/10/2025}
+\subsubsection*{22/09/2025}\label{section-9}
+\addcontentsline{toc}{subsubsection}{22/09/2025}
 
 \subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-9}
 \addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
 
-\chapter{Banco de Dados - Análise de Dados Parte 02}\label{banco-de-dados---anuxe1lise-de-dados-parte-02}
+\chapter{Banco de Dados: Postgres}\label{banco-de-dados-postgres-1}
 
-\subsubsection*{20/10/2025}\label{section-10}
-\addcontentsline{toc}{subsubsection}{20/10/2025}
+\subsubsection*{22/09/2025}\label{section-10}
+\addcontentsline{toc}{subsubsection}{22/09/2025}
 
 \subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-10}
 \addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
 
-\chapter{Banco de Dados - Análise de Dados Parte 03}\label{banco-de-dados---anuxe1lise-de-dados-parte-03}
+\chapter{Banco de Dados Espaciais - Cliente QGIS}\label{banco-de-dados-espaciais---cliente-qgis}
 
-\subsubsection*{27/10/2025}\label{section-11}
-\addcontentsline{toc}{subsubsection}{27/10/2025}
+\subsubsection*{29/09/2025}\label{section-11}
+\addcontentsline{toc}{subsubsection}{29/09/2025}
 
 \subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-11}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados Espaciais - Cliente QGIS}\label{banco-de-dados-espaciais---cliente-qgis-1}
+
+\subsubsection*{29/09/2025}\label{section-12}
+\addcontentsline{toc}{subsubsection}{29/09/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-12}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados Estatístico - Cliente Rstudio}\label{banco-de-dados-estatuxedstico---cliente-rstudio}
+
+\subsubsection*{06/10/2025}\label{section-13}
+\addcontentsline{toc}{subsubsection}{06/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-13}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados Estatístico - Cliente Rstudio}\label{banco-de-dados-estatuxedstico---cliente-rstudio-1}
+
+\subsubsection*{06/10/2025}\label{section-14}
+\addcontentsline{toc}{subsubsection}{06/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-14}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados - Análise de Dados Parte 01}\label{banco-de-dados---anuxe1lise-de-dados-parte-01}
+
+\subsubsection*{13/10/2025}\label{section-15}
+\addcontentsline{toc}{subsubsection}{13/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-15}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados - Análise de Dados Parte 01}\label{banco-de-dados---anuxe1lise-de-dados-parte-01-1}
+
+\subsubsection*{13/10/2025}\label{section-16}
+\addcontentsline{toc}{subsubsection}{13/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-16}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados - Análise de Dados Parte 02}\label{banco-de-dados---anuxe1lise-de-dados-parte-02}
+
+\subsubsection*{20/10/2025}\label{section-17}
+\addcontentsline{toc}{subsubsection}{20/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-17}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados - Análise de Dados Parte 02}\label{banco-de-dados---anuxe1lise-de-dados-parte-02-1}
+
+\subsubsection*{20/10/2025}\label{section-18}
+\addcontentsline{toc}{subsubsection}{20/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-18}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados - Análise de Dados Parte 03}\label{banco-de-dados---anuxe1lise-de-dados-parte-03}
+
+\subsubsection*{27/10/2025}\label{section-19}
+\addcontentsline{toc}{subsubsection}{27/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-19}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados - Análise de Dados Parte 03}\label{banco-de-dados---anuxe1lise-de-dados-parte-03-1}
+
+\subsubsection*{27/10/2025}\label{section-20}
+\addcontentsline{toc}{subsubsection}{27/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-20}
 \addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
 
   \bibliography{book.bib}

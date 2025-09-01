@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Banco de Dados: Uma Aplicação CRUD | GTI - Banco de dados - 2025 - Anotações de aula</title>
+  <title>Slide 6 Banco de Dados: Uma Aplicação CRUD | GTI - Banco de dados - 2025 - Anotações de aula</title>
   <meta name="description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Banco de Dados: Uma Aplicação CRUD | GTI - Banco de dados - 2025 - Anotações de aula" />
+  <meta property="og:title" content="Slide 6 Banco de Dados: Uma Aplicação CRUD | GTI - Banco de dados - 2025 - Anotações de aula" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="your book url like https://bookdown.org/yihui/bookdown/images/cover.jpg" />
   <meta property="og:description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
   <meta name="github-repo" content="miguel7penteado/2025-2sem-GTI-BancoDeDados" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Banco de Dados: Uma Aplicação CRUD | GTI - Banco de dados - 2025 - Anotações de aula" />
+  <meta name="twitter:title" content="Slide 6 Banco de Dados: Uma Aplicação CRUD | GTI - Banco de dados - 2025 - Anotações de aula" />
   
   <meta name="twitter:description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
   <meta name="twitter:image" content="your book url like https://bookdown.org/yihui/bookdown/images/cover.jpg" />
@@ -23,15 +23,15 @@
 <meta name="author" content="Professor Miguél Suares" />
 
 
-<meta name="date" content="2025-08-25" />
+<meta name="date" content="2025-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="administração-e-gerenciamento-de-bancos-de-dados.html"/>
-<link rel="next" href="banco-de-dados-mysql-mariadb.html"/>
+<link rel="prev" href="administração-e-gerenciamento-de-bancos-de-dados-1.html"/>
+<link rel="next" href="banco-de-dados-uma-aplicação-crud-1.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -180,6 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4" data-path="fundamentos-de-sistemas-de-bancos-de-dados.html"><a href="fundamentos-de-sistemas-de-bancos-de-dados.html#anos-1980-ingres-semi-livre-vs-ibm-system-r-pago-vs-oracle"><i class="fa fa-check"></i><b>2.4</b> Anos 1980: INGRES (SEMI-LIVRE) vs IBM System R ( pago ) vs ORACLE</a></li>
 <li class="chapter" data-level="2.5" data-path="fundamentos-de-sistemas-de-bancos-de-dados.html"><a href="fundamentos-de-sistemas-de-bancos-de-dados.html#anos-1990-mysql-e-postgres-que-vira-postgresql"><i class="fa fa-check"></i><b>2.5</b> Anos 1990: MySQL e POSTGRES que vira POSTGRESQL</a></li>
 <li class="chapter" data-level="2.6" data-path="fundamentos-de-sistemas-de-bancos-de-dados.html"><a href="fundamentos-de-sistemas-de-bancos-de-dados.html#anos-2000-sybase-eo-no-sql"><i class="fa fa-check"></i><b>2.6</b> Anos 2000: Sybase eo No-SQL</a></li>
+<li class="chapter" data-level="2.7" data-path="fundamentos-de-sistemas-de-bancos-de-dados.html"><a href="fundamentos-de-sistemas-de-bancos-de-dados.html#exercícios"><i class="fa fa-check"></i><b>2.7</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html"><i class="fa fa-check"></i><b>3</b> Modelagem de Bancos de Dados</a>
 <ul>
@@ -208,18 +209,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#tabela-desnormalizada"><i class="fa fa-check"></i><b>3.6.1</b> Tabela Desnormalizada</a></li>
 <li class="chapter" data-level="3.6.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#tabela-normalizada"><i class="fa fa-check"></i><b>3.6.2</b> Tabela Normalizada</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exercícios"><i class="fa fa-check"></i><b>3.7</b> Exercícios</a></li>
-<li class="chapter" data-level="3.8" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#referências"><i class="fa fa-check"></i><b>3.8</b> Referências</a></li>
+<li class="chapter" data-level="3.7" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#referências"><i class="fa fa-check"></i><b>3.7</b> Referências</a></li>
+<li class="chapter" data-level="3.8" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exercícios-1"><i class="fa fa-check"></i><b>3.8</b> Exercícios</a></li>
+<li class="chapter" data-level="3.9" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#respostas-dos-exercícios"><i class="fa fa-check"></i><b>3.9</b> Respostas dos exercícios</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exercício-1"><i class="fa fa-check"></i><b>3.9.1</b> Exercício 1</a></li>
+<li class="chapter" data-level="3.9.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exercício-2"><i class="fa fa-check"></i><b>3.9.2</b> Exercício 2</a></li>
+<li class="chapter" data-level="3.9.3" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exercício-3"><i class="fa fa-check"></i><b>3.9.3</b> Exercício 3</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html"><i class="fa fa-check"></i><b>4</b> Administração e Gerenciamento de Bancos de Dados</a></li>
-<li class="chapter" data-level="5" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html"><i class="fa fa-check"></i><b>5</b> Banco de Dados: Uma Aplicação CRUD</a></li>
-<li class="chapter" data-level="6" data-path="banco-de-dados-mysql-mariadb.html"><a href="banco-de-dados-mysql-mariadb.html"><i class="fa fa-check"></i><b>6</b> Banco de Dados: MySQL (MariaDB)</a></li>
-<li class="chapter" data-level="7" data-path="banco-de-dados-postgres.html"><a href="banco-de-dados-postgres.html"><i class="fa fa-check"></i><b>7</b> Banco de Dados: Postgres</a></li>
-<li class="chapter" data-level="8" data-path="banco-de-dados-espaciais---cliente-qgis.html"><a href="banco-de-dados-espaciais---cliente-qgis.html"><i class="fa fa-check"></i><b>8</b> Banco de Dados Espaciais - Cliente QGIS</a></li>
-<li class="chapter" data-level="9" data-path="banco-de-dados-estatístico---cliente-rstudio.html"><a href="banco-de-dados-estatístico---cliente-rstudio.html"><i class="fa fa-check"></i><b>9</b> Banco de Dados Estatístico - Cliente Rstudio</a></li>
-<li class="chapter" data-level="10" data-path="banco-de-dados---análise-de-dados-parte-01.html"><a href="banco-de-dados---análise-de-dados-parte-01.html"><i class="fa fa-check"></i><b>10</b> Banco de Dados - Análise de Dados Parte 01</a></li>
-<li class="chapter" data-level="11" data-path="banco-de-dados---análise-de-dados-parte-02.html"><a href="banco-de-dados---análise-de-dados-parte-02.html"><i class="fa fa-check"></i><b>11</b> Banco de Dados - Análise de Dados Parte 02</a></li>
-<li class="chapter" data-level="12" data-path="banco-de-dados---análise-de-dados-parte-03.html"><a href="banco-de-dados---análise-de-dados-parte-03.html"><i class="fa fa-check"></i><b>12</b> Banco de Dados - Análise de Dados Parte 03</a></li>
+<li class="chapter" data-level="5" data-path="administração-e-gerenciamento-de-bancos-de-dados-1.html"><a href="administração-e-gerenciamento-de-bancos-de-dados-1.html"><i class="fa fa-check"></i><b>5</b> Administração e Gerenciamento de Bancos de Dados</a></li>
+<li class="chapter" data-level="6" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html"><i class="fa fa-check"></i><b>6</b> Banco de Dados: Uma Aplicação CRUD</a></li>
+<li class="chapter" data-level="7" data-path="banco-de-dados-uma-aplicação-crud-1.html"><a href="banco-de-dados-uma-aplicação-crud-1.html"><i class="fa fa-check"></i><b>7</b> Banco de Dados: Uma Aplicação CRUD</a></li>
+<li class="chapter" data-level="8" data-path="banco-de-dados-mysql-mariadb.html"><a href="banco-de-dados-mysql-mariadb.html"><i class="fa fa-check"></i><b>8</b> Banco de Dados: MySQL (MariaDB)</a></li>
+<li class="chapter" data-level="9" data-path="banco-de-dados-mysql-mariadb-1.html"><a href="banco-de-dados-mysql-mariadb-1.html"><i class="fa fa-check"></i><b>9</b> Banco de Dados: MySQL (MariaDB)</a></li>
+<li class="chapter" data-level="10" data-path="banco-de-dados-postgres.html"><a href="banco-de-dados-postgres.html"><i class="fa fa-check"></i><b>10</b> Banco de Dados: Postgres</a></li>
+<li class="chapter" data-level="11" data-path="banco-de-dados-postgres-1.html"><a href="banco-de-dados-postgres-1.html"><i class="fa fa-check"></i><b>11</b> Banco de Dados: Postgres</a></li>
+<li class="chapter" data-level="12" data-path="banco-de-dados-espaciais---cliente-qgis.html"><a href="banco-de-dados-espaciais---cliente-qgis.html"><i class="fa fa-check"></i><b>12</b> Banco de Dados Espaciais - Cliente QGIS</a></li>
+<li class="chapter" data-level="13" data-path="banco-de-dados-espaciais---cliente-qgis-1.html"><a href="banco-de-dados-espaciais---cliente-qgis-1.html"><i class="fa fa-check"></i><b>13</b> Banco de Dados Espaciais - Cliente QGIS</a></li>
+<li class="chapter" data-level="14" data-path="banco-de-dados-estatístico---cliente-rstudio.html"><a href="banco-de-dados-estatístico---cliente-rstudio.html"><i class="fa fa-check"></i><b>14</b> Banco de Dados Estatístico - Cliente Rstudio</a></li>
+<li class="chapter" data-level="15" data-path="banco-de-dados-estatístico---cliente-rstudio-1.html"><a href="banco-de-dados-estatístico---cliente-rstudio-1.html"><i class="fa fa-check"></i><b>15</b> Banco de Dados Estatístico - Cliente Rstudio</a></li>
+<li class="chapter" data-level="16" data-path="banco-de-dados---análise-de-dados-parte-01.html"><a href="banco-de-dados---análise-de-dados-parte-01.html"><i class="fa fa-check"></i><b>16</b> Banco de Dados - Análise de Dados Parte 01</a></li>
+<li class="chapter" data-level="17" data-path="banco-de-dados---análise-de-dados-parte-01-1.html"><a href="banco-de-dados---análise-de-dados-parte-01-1.html"><i class="fa fa-check"></i><b>17</b> Banco de Dados - Análise de Dados Parte 01</a></li>
+<li class="chapter" data-level="18" data-path="banco-de-dados---análise-de-dados-parte-02.html"><a href="banco-de-dados---análise-de-dados-parte-02.html"><i class="fa fa-check"></i><b>18</b> Banco de Dados - Análise de Dados Parte 02</a></li>
+<li class="chapter" data-level="19" data-path="banco-de-dados---análise-de-dados-parte-02-1.html"><a href="banco-de-dados---análise-de-dados-parte-02-1.html"><i class="fa fa-check"></i><b>19</b> Banco de Dados - Análise de Dados Parte 02</a></li>
+<li class="chapter" data-level="20" data-path="banco-de-dados---análise-de-dados-parte-03.html"><a href="banco-de-dados---análise-de-dados-parte-03.html"><i class="fa fa-check"></i><b>20</b> Banco de Dados - Análise de Dados Parte 03</a></li>
+<li class="chapter" data-level="21" data-path="banco-de-dados---análise-de-dados-parte-03-1.html"><a href="banco-de-dados---análise-de-dados-parte-03-1.html"><i class="fa fa-check"></i><b>21</b> Banco de Dados - Análise de Dados Parte 03</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com Biblioteca R bookdown</a></li>
 
@@ -240,13 +256,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="banco-de-dados-uma-aplicação-crud" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">5</span> Banco de Dados: Uma Aplicação CRUD<a href="banco-de-dados-uma-aplicação-crud.html#banco-de-dados-uma-aplicação-crud" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="section-4" class="section level4 unnumbered hasAnchor">
-<h4>01/09/2025<a href="banco-de-dados-uma-aplicação-crud.html#section-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="banco-de-dados-uma-aplicação-crud" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Slide 6</span> Banco de Dados: Uma Aplicação CRUD<a href="banco-de-dados-uma-aplicação-crud.html#banco-de-dados-uma-aplicação-crud" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="section-5" class="section level4 unnumbered hasAnchor">
+<h4>01/09/2025<a href="banco-de-dados-uma-aplicação-crud.html#section-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 </div>
-<div id="professor-miguél-suares-4" class="section level4 unnumbered hasAnchor">
-<h4>Professor Miguél Suares<a href="banco-de-dados-uma-aplicação-crud.html#professor-miguél-suares-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="professor-miguél-suares-5" class="section level4 unnumbered hasAnchor">
+<h4>Professor Miguél Suares<a href="banco-de-dados-uma-aplicação-crud.html#professor-miguél-suares-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 
 </div>
 </div>
@@ -255,8 +271,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="administração-e-gerenciamento-de-bancos-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="banco-de-dados-mysql-mariadb.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="administração-e-gerenciamento-de-bancos-de-dados-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="banco-de-dados-uma-aplicação-crud-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -287,7 +303,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/miguel7penteado/2025-2sem-GTI-BancoDeDados/edit/main/05-2025-09-01_Aplicacao_CRUD.Rmd",
+    "link": "https://github.com/miguel7penteado/2025-2sem-GTI-BancoDeDados/edit/main/05-2025-09-01_Aplicacao_CRUD-aula.Rmd",
     "text": "Edit"
   },
   "history": {
@@ -310,6 +326,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

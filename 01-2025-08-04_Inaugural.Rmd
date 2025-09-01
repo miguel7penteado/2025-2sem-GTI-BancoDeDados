@@ -1,3 +1,9 @@
+---
+output: 
+  html_document: 
+    highlight: tango
+    theme: cerulean
+---
 # Aula Inaugural
 
 #### 04/08/2025 {.unnumbered}

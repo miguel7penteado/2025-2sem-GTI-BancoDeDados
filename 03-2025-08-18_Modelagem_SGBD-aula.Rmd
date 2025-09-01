@@ -1,3 +1,9 @@
+---
+output: 
+  html_document: 
+    highlight: tango
+    theme: cerulean
+---
 # Modelagem de Bancos de Dados
 
 #### 18/08/2025 {.unnumbered}
@@ -40,12 +46,9 @@ O Banco de Dados Relacional organiza as informações em **tabelas bidiomensiona
 
 ## Modelo Matemático de um Banco de Dados
 
-Considere um Banco de Dados para representar, com consistência Matemática os
-funcionários e Departamentos de uma Empresa. 
+Considere um Banco de Dados para representar, com consistência Matemática os funcionários e Departamentos de uma Empresa.
 
 ### Podemos representa-lo matemáticamente utilizando a teoria dos conjuntos
-
-
 
 ```{r tikz-diagrama0, engine='tikz', echo=FALSE, fig.cap="Diagrama de Montadoras, Veículos e Proprietários"}
 \usetikzlibrary{arrows,positioning,shapes,fit,calc}
@@ -70,9 +73,9 @@ funcionários e Departamentos de uma Empresa.
 \node [above      = of a, anchor = south] {$Funcionarios$};
 
 % Conjunto Veiculos
-\node[setB,inner sep=0pt,right  = 4 cm of a] (x) {$RH$};
-\node[setB,below                =    of x] (y) {$Financas$};
-\node[setB,inner sep=0pt,below  =    of y] (z) {$Diretoria$};
+\node[setB,inner sep=3pt,right  = 4 cm of a, label=right:$\text{RH}$]        (x) {};
+\node[setB,inner sep=3pt,below  =    of x,   label=right:$\text{FINANÇAS}$]  (y) {};
+\node[setB,inner sep=3pt,below  =    of y,   label=right:$\text{DIRETORIA}$] (z) {};
 \node[above      = of x, anchor = south] {$Departamentos$};
 
 
@@ -97,28 +100,21 @@ funcionários e Departamentos de uma Empresa.
 
 ```
 
-
 #### Edgard F Cood explica em sua obra "A Relational Model of Data for Large Shared Data Banks" como definir uma Banco de Dados compartilhado *matemáticamente*
 
 > Um banco de dados relacional é um banco de dados no qual todos os dados são representados por meio de relações (matematicamente, conjuntos de tuplas), e todas as operações sobre os dados são baseadas em operadores formais do cálculo relacional e da álgebra relacional. - *A Relational Model of Data for Large Shared Data Banks” (Communications of the ACM, vol. 13, n. 6, pp. 377–387, 1970).*
 
-
-
 ### Então para podemos relacionar estes dois conjuntos (Funcionários e Departamentos) utilizando a Teoria das Funções
 
-
-
+$$
+\text{Edgard Frank Codd era um matemático tradicional} \\
+\text{Considere o conseito de função: } \\
+f(x) = Y \\
+\text{era dessa forma que ele imaginava relacionamento e } \\
+\text{ garantia matemática de CONSISTÊNCIA entre } \\
+\text{ elementos de 2 conjuntos de dados diferentes }
 $$
 
-f(x) = Y 
-
-$$
-
-$$
-
-F(Funcionário) = Departamento
-
-$$
 
 
 ```{r tikz-diagrama10, engine='tikz', echo=FALSE, fig.cap="Diagrama de Montadoras, Veículos e Proprietários"}
@@ -127,55 +123,54 @@ $$
 \pgfdeclarelayer{background}
 \pgfsetlayers{background,main}
 
-\begin{tikzpicture}
-[
+\begin{tikzpicture}[
   every node/.style={on grid},
-  setA/.style={fill=blue ,circle,inner  sep=3pt},
-  setB/.style={fill=green,circle,inner  sep=3pt},
-  setC/.style={fill=red,rectangle,inner sep=3pt},
-  every fit/.style={draw,fill=blue!25,ellipse,text width=25pt},
+  setA/.style={fill=blue!50,circle,inner sep=3pt},
+  setB/.style={fill=green!50,circle,inner sep=3pt},
   >=latex
 ]
 
-% Conjunto Montadoras
-\node [setA,              label  = left:$Fulano$]  (a) {};
-\node [setA,below = of a, label  = left:$Beltrano$]  (b) {};
-\node [setA,below = of b, label  = left:$Ciclano$] (c) {};
-\node [above      = of a, anchor = south] {$Funcionarios$};
+% Conjunto Funcionários
+\node [setA,              label=left:$Fulano$]   (a) {};
+\node [setA,below=of a,   label=left:$Beltrano$] (b) {};
+\node [setA,below=of b,   label=left:$Ciclano$]  (c) {};
 
-% Conjunto Veiculos
-\node[setB,inner sep=0pt,right  = 4 cm of a] (x) {$RH$};
-\node[setB,below                =    of x] (y) {$Financas$};
-\node[setB,inner sep=0pt,below  =    of y] (z) {$Diretoria$};
-\node[above      = of x, anchor = south] {$Departamentos$};
+% Conjunto Departamentos
+\node [setB,right=4cm of a, label=right:$\text{RH}$        ] (x) {};
+\node [setB,below=of     x, label=right:$\text{Finanças}$  ] (y) {};
+\node [setB,below=of     y, label=right:$\text{Diretoria}$ ] (z) {};
 
+% As setas (funções)
+\draw[->,shorten >=3pt] (a) -- node[above] {$trabalha(\text{RH})$}        (x);
+\draw[->,shorten >=3pt] (b) -- node[above] {$trabalha(\text{Finanças})$}  (y);
+\draw[->,shorten >=3pt] (c) -- node[above] {$trabalha(\text{Diretoria})$} (z);
 
-
-% the arrows
-\draw[->,shorten >= 3pt] (a) -- node[label=above:$f(Trabalha)$]  {} (x);
-\draw[->,shorten >= 3pt] (b) -- node[label=above:$g(Trabalha)$] {} (y);
-\draw[->,shorten >= 3pt] (c) -- node[label=above:$h(Trabalha)$]    {} (z);
-%\draw[->,shorten <= 3pt] (x) -- node[label=above:$i(Fulano)$] {} (m);
-%\draw[->,shorten <= 3pt] (y) -- node[label=above:$j(Beltrano)$] {} (n);
-%\draw[->,shorten <= 3pt] (z) -- node[label=above:$k(Ciclano)$] {} (p);
-
-%\draw[->] (n) -- node[label=above:$j(j(Beltrano))$] {} (y);
-
-% the boxes around the sets
+% Os conjuntos
 \begin{pgfonlayer}{background}
-\node[fit= (a)  (c) ] {};
-\node[fit= (x) (z)  ] {};
-%\node[fit= (m) (p)  ] {};
+  \node[fit=(a) (c), ellipse, draw, fill=blue!10,  label=above:{Funcionários}] {};
+  \node[fit=(x) (z), ellipse, draw, fill=green!10, label=above:{Departamentos}] {};
 \end{pgfonlayer}
+
 \end{tikzpicture}
+
 
 ```
 
-
 Mas vai ficar faltando como representar os atributos nesse modelo (colunas das tabelas):
 
-Ainda, é necessário acrescentar algumas regras de integridade a representação;
+$$
+\begin{array}{c| c | c}
+\textbf{ Conjunto Funcionários}    & \textbf{ Relacionamento Trabalha} & \textbf{Conjunto Departamentos)} \\ 
+\hline 
+FULANO                             &  \quad TRABALHA                   & \quad RH \\
+BELTRANO                           &  \quad TRABALHA                   & \quad FINANCEIRO \\
+CICLANO                            &  \quad TRABALHA                   & \quad DEIRETORIA \\
+\hline
+\textbf{Total: 3 ELEMENTOS }       & \textbf{ CONECTADOS }             & \textbf{Total: 3 ELEMENTOS }
+\end{array}
+$$
 
+Ainda, é necessário acrescentar algumas regras de integridade a representação;
 
 ## Modelo Lógico de Banco de Dados
 
@@ -195,19 +190,18 @@ Segundo Laudon
 
 ### Composição e Significado do Diagrama Entidade Relacionamento (DER)
 
-+:------------:+:---------------------------------:+:--------------------------------------:+
-| **Nome**     | **Desenho**                       | **Significado**                        |
-+--------------+-----------------------------------+----------------------------------------+
-| Entidade     | ![](images/5-bi/03-retangulo.jpg) | Representa uma tabela e é identificada |
-|              |                                   |                                        |
-|              |                                   | no texto por um **substantivo**.       |
-+--------------+-----------------------------------+----------------------------------------+
++:--------:+:---------------------------------:+:--------------------------------------:+
+| **Nome** | **Desenho**                       | **Significado**                        |
++----------+-----------------------------------+----------------------------------------+
+| Entidade | ![](images/5-bi/03-retangulo.jpg) | Representa uma tabela e é identificada |
+|          |                                   |                                        |
+|          |                                   | no texto por um **substantivo**.       |
++----------+-----------------------------------+----------------------------------------+
 
-+:-----------:+:-------------------------------------------:+:--------------------------------------------------------------------:+
-| **Nome**    | **Desenho**                                 | **Significado**                                                      |
-+-------------+---------------------------------------------+----------------------------------------------------------------------+
-| Atributo    | ![](images/5-bi/05-elipse.jpg){width="182"} | Representa uma coluna e é identificada no texto por um **adjetivo**. |
-+-------------+---------------------------------------------+----------------------------------------------------------------------+
+|  |  |  |
+|:--:|:--:|:--:|
+| **Nome** | **Desenho** | **Significado** |
+| Atributo | ![](images/5-bi/05-elipse.jpg){width="182"} | Representa uma coluna e é identificada no texto por um **adjetivo**. |
 
 +:--------------:+:--------------------------------------------:+:----------------------------------------------:+
 | **Nome**       | **Desenho**                                  | **Significado**                                |
@@ -297,10 +291,10 @@ Construa um Banco de Dados com suporte a consistência das informações. Utiliz
 \node [above      = of a, anchor = south] {$Montadoras$};
 
 % Conjunto Veiculos
-\node[setB,inner sep=0pt,right  = 4 cm of a] (x) {$Corsa$};
-\node[setB,below                =    of x] (y) {$Fiesta$};
-\node[setB,inner sep=0pt,below  =    of y] (z) {$Gol$};
-\node[above      = of x, anchor = south] {$Veiculos$};
+\node[setB,inner sep=3pt,right  = 4 cm of a, label  = right:$Corsa$]  (x) {};
+\node[setB,inner sep=3pt,below  =      of x, label  = right:$Fiesta$] (y) {};
+\node[setB,inner sep=3pt,below  =      of y, label  = right:$Gol$]    (z) {};
+\node[above      = of x, anchor =     south] {$Veiculos$};
 
 % Conjunto Proprietarios
 \node[setC,label=right:$Fulano$,right   = 4 cm of x] (m) {};
@@ -341,12 +335,12 @@ Construa um Banco de Dados com suporte a consistência das informações. Utiliz
 \node [setA,below = of b, label=left:$VolksWagen$] (c) {};
 \node [above=of a,anchor=south] {$Montadoras$};
 
-\node[setB,inner sep=0pt,right=3cm of a] (x) {$Corsa$};
-\node[setB,below=of x] (y) {$Fiesta$};
-\node[setB,inner sep=0pt,below=of y] (z) {$Gol$};
+\node[setB,inner sep=3pt,right=4cm of a, label  = above:$Corsa$]  (x) {};
+\node[setB,inner sep=3pt,below=of x    , label  = above:$Fiesta$] (y) {};
+\node[setB,inner sep=3pt,below=of y    , label  = above:$Gol$]    (z) {};
 \node[above=of x,anchor=south] {$Veiculos$};
 
-\node[setC,label=right:$Fulano$,right=3cm of x] (m) {};
+\node[setC,label=right:$Fulano$,right=4cm of x] (m) {};
 \node[setC,label=right:$Beltrano$,below=of m] (n) {};
 \node[setC,label=right:$Ciclano$,below=of n] (p) {};
 \node[above=of m,anchor=south] {$Proprietarios$};
@@ -419,17 +413,12 @@ Mas Como indicar que cada elemento da tabela "Modelo" está associado a um eleme
 
 Considere as tabelas abaixo:
 
-+----------------+--------------------------------------+
-| MontadoraID    | Montadora                            |
-+:==============:+:====================================:+
-| 1              | Fiat                                 |
-+----------------+--------------------------------------+
-| 2              | Chevrolet                            |
-+----------------+--------------------------------------+
-| 3              | Volkswagen                           |
-+----------------+--------------------------------------+
-| 4              | Hyundai                              |
-+----------------+--------------------------------------+
+| MontadoraID | Montadora  |
+|:-----------:|:----------:|
+|      1      |    Fiat    |
+|      2      | Chevrolet  |
+|      3      | Volkswagen |
+|      4      |  Hyundai   |
 
 | ModeloID |  Modelo   | MontadoraID |
 |:--------:|:---------:|:-----------:|
@@ -456,20 +445,11 @@ A coluna (atributo) **ModeloID** é a **chave primária** da tabela **Modelos.**
 Na tabela **Modelos**, a coluna **MontadoraID**, acrescentada a tabela Modelos representa a ligação de cada elemento da tabela Modelos e Montadoras. Essa coluna "importada" da tabela Montadoras para a tabela Modelos se chama **chave estrangeira**.
 
 
-## Exercícios
-
-1- Construa um projeto Banco de Dados Relacional para uma universidade. Mapeie 
-no seu Banco de Dados Disciplinas, Professores e Alunos.
-Para isso, faça o modelo "matemático", o Modelo Lógico e o Modelo Físico com SQL.
-
-
-
 
 ## Referências
 
-**DATE**, C. J. **An Introduction to Database Systems.** 8. ed. Boston: Addison-Wesley, 2003. 
+**DATE**, C. J. **An Introduction to Database Systems.** 8. ed. Boston: Addison-Wesley, 2003.
 
 **SILBERSCHATZ**, Abraham; KORTH, Henry F.; SUDARSHAN, S. **Database System Concepts.** 6. ed. New York: McGraw-Hill, 2010.
 
 **CODD**, E. F. **A Relational Model of Data for Large Shared Data Banks.** Communications of the ACM, New York, v. 13, n. 6, p. 377–387, 1970.
-

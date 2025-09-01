@@ -1,6 +1,33 @@
 output_dir: "docs"
 book_filename: "2025-GTI-Sem-BancoDeDados"
 delete_merged_file: true
+rmd_files: [
+  "index.Rmd", 
+  "01-2025-08-04_Inaugural.Rmd",
+  "02-2025-08-11_Fubdamentos_SGBD-aula.Rmd",
+  "02-2025-08-11_Fubdamentos_SGBD-exercicio.Rmd",
+  "03-2025-08-18_Modelagem_SGBD-aula.Rmd",
+  "03-2025-08-18_Modelagem_SGBD-exercicio.Rmd",
+  "04-2025-08-25_Administracao_Gerenciamento-aula.Rmd",
+  "04-2025-08-25_Administracao_Gerenciamento-exercicio.Rmd",
+  "05-2025-09-01_Aplicacao_CRUD-aula.Rmd",
+  "05-2025-09-01_Aplicacao_CRUD-exercicio.Rmd",
+  "06-2025-09-08_MySQL-aula.Rmd",
+  "06-2025-09-08_MySQL-exercicio.Rmd",
+  "07-2025-09-22_Postgres-aula.Rmd",
+  "07-2025-09-22_Postgres-exercicio.Rmd",
+  "08-2025-09-29_QGIS-aula.Rmd",
+  "08-2025-09-29_QGIS-exercicio.Rmd",
+  "09-2025-10-06_Rstudio-aula.Rmd",
+  "09-2025-10-06_Rstudio-exercicio.Rmd",
+  "10-2025-10-13_Analise_01-aula.Rmd",
+  "10-2025-10-13_Analise_01-exercicio.Rmd",
+  "11-2025-10-20_Analise_02-aula.Rmd",
+  "11-2025-10-20_Analise_02-exercicio.Rmd",
+  "12-2025-10-27_Analise_03-aula.Rmd",
+  "12-2025-10-27_Analise_03-exercicio.Rmd"  
+]
+
 language:
   ui:
-    chapter_name: ""
+    chapter_name: "Slide "

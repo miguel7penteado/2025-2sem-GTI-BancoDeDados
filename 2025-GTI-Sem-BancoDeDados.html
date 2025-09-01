@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Professor Miguél Suares" />
-  <meta name="dcterms.date" content="2025-08-25" />
+  <meta name="dcterms.date" content="2025-09-01" />
   <title>GTI - Banco de dados - 2025 - Anotações de aula</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -139,7 +139,7 @@
 <section id="title-slide">
   <h1 class="title">GTI - Banco de dados - 2025 - Anotações de aula</h1>
   <h2 class="author">Professor Miguél Suares</h2>
-  <h3 class="date">2025-08-25</h3>
+  <h3 class="date">2025-09-01</h3>
 </section>
 
 <section>
@@ -814,7 +814,12 @@ width="139" /></p></li>
 </section>
 <section class="slide level2">
 
-<!--chapter:end:02-2025-08-11_Fubdamentos_SGBD.Rmd-->
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">&quot;03-2025-08-19_20_.Rmd&quot;</span>, <span class="at">output_dir=</span><span class="st">&quot;docs&quot;</span>, <span class="at">output_file =</span><span class="st">&quot;temporario.html&quot;</span> , <span class="at">output_format =</span> <span class="st">&quot;html_document&quot;</span>) ; utils<span class="sc">::</span><span class="fu">browseURL</span>(<span class="st">&quot;docs/temporario.html&quot;</span>)</span></code></pre></div>
+<!--chapter:end:02-2025-08-11_Fubdamentos_SGBD-aula.Rmd-->
+</section>
+<section id="exercícios" class="slide level2">
+<h2>Exercícios</h2>
+<!--chapter:end:02-2025-08-11_Fubdamentos_SGBD-exercicio.Rmd-->
 </section></section>
 <section>
 <section id="modelagem-de-bancos-de-dados"
@@ -908,12 +913,14 @@ operadores formais do cálculo relacional e da álgebra relacional. -
 id="então-para-podemos-relacionar-estes-dois-conjuntos-funcionários-e-departamentos-utilizando-a-teoria-das-funções">Então
 para podemos relacionar estes dois conjuntos (Funcionários e
 Departamentos) utilizando a Teoria das Funções</h3>
-<p>$$</p>
-<p>f(x) = Y</p>
-<p>$$</p>
-<p>$$</p>
-<p>F(Funcionário) = Departamento</p>
-<p>$$</p>
+<p><span class="math display">\[
+\text{Edgard Frank Codd era um matemático tradicional} \\
+\text{Considere o conseito de função: } \\
+f(x) = Y \\
+\text{era dessa forma que ele imaginava relacionamento e } \\
+\text{ garantia matemática de CONSISTÊNCIA entre } \\
+\text{ elementos de 2 conjuntos de dados diferentes }
+\]</span></p>
 <div class="figure">
 <img src="2025-GTI-Sem-BancoDeDados_files/figure-revealjs/tikz-diagrama10-1.png" alt="Diagrama de Montadoras, Veículos e Proprietários" width="768" />
 <p class="caption">
@@ -922,6 +929,22 @@ Diagrama de Montadoras, Veículos e Proprietários
 </div>
 <p>Mas vai ficar faltando como representar os atributos nesse modelo
 (colunas das tabelas):</p>
+<p><span class="math display">\[
+\begin{array}{c| c | c}
+\textbf{ Conjunto Funcionários}    &amp; \textbf{ Relacionamento
+Trabalha} &amp; \textbf{Conjunto Departamentos)} \\
+\hline
+FULANO                             &amp;  \quad
+TRABALHA                   &amp; \quad RH \\
+BELTRANO                           &amp;  \quad
+TRABALHA                   &amp; \quad FINANCEIRO \\
+CICLANO                            &amp;  \quad
+TRABALHA                   &amp; \quad DEIRETORIA \\
+\hline
+\textbf{Total: 3 ELEMENTOS }       &amp; \textbf{ CONECTADOS
+}             &amp; \textbf{Total: 3 ELEMENTOS }
+\end{array}
+\]</span></p>
 <p>Ainda, é necessário acrescentar algumas regras de integridade a
 representação;</p>
 </section>
@@ -960,9 +983,9 @@ id="composição-e-significado-do-diagrama-entidade-relacionamento-der">Composi�
 e Significado do Diagrama Entidade Relacionamento (DER)</h3>
 <table style="width:99%;">
 <colgroup>
-<col style="width: 16%" />
-<col style="width: 38%" />
-<col style="width: 44%" />
+<col style="width: 12%" />
+<col style="width: 40%" />
+<col style="width: 46%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -980,11 +1003,11 @@ identificada</p>
 </tr>
 </tbody>
 </table>
-<table style="width:99%;">
+<table>
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 34%" />
-<col style="width: 53%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -1038,41 +1061,41 @@ estrutura do Banco de Dados.</p>
 <p><img data-src="images/5-bi/06-modelo_fisico.jpg" /></p>
 <h3 id="código-sql---implementação-do-modelo-físico">Código SQL -
 Implementação do Modelo Físico</h3>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Exemplo testado e gerado no SGBD Postgres versão 15</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Tabela Funcionários</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> <span class="ot">&quot;public&quot;</span>.funcionarios</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    cpf bigint <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    nome <span class="dt">varchar</span>(<span class="dv">200</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Tabela Departamentos</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> <span class="ot">&quot;public&quot;</span>.departamentos</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    sigla <span class="dt">integer</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    nome <span class="dt">varchar</span>(<span class="dv">200</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">-- Definindo a coluna &quot;cpf&quot; da tabela &quot;funcionários&quot; como chave primária</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="kw">alter</span> <span class="kw">table</span> <span class="ot">&quot;public&quot;</span>.funcionarios <span class="kw">add</span> <span class="kw">constraint</span> <span class="ot">&quot;chave_primaria_funcionarios&quot;</span> <span class="kw">primary</span> <span class="kw">key</span> (cpf);</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">-- Definindo a coluna &quot;sigla&quot;&quot; da tabela &quot;departamentos&quot; como chave primária</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="kw">alter</span> <span class="kw">table</span> <span class="ot">&quot;public&quot;</span>.departamentos <span class="kw">add</span> <span class="kw">constraint</span> <span class="ot">&quot;chave_primaria_departamentos&quot;</span> <span class="kw">primary</span> <span class="kw">key</span> (sigla);</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">-- Gerando a integridade referêncial </span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">-- Importando a chave primária da tabela &quot;departamentos&quot; como &quot;chave estrangeira&quot;</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">-- na tabela &quot;funcionários&quot;</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">-- primeiro adiciona-se a coluna estrageira &quot;sigla&quot; que é coluna originalmente </span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">-- pertencente a tabela departamentos</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="kw">alter</span> <span class="kw">table</span> <span class="ot">&quot;public&quot;</span>.funcionarios <span class="kw">add</span> <span class="kw">column</span> sigla <span class="dt">integer</span>;</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">-- finalmente conecte a coluna sigla a chave primária da tabela &quot;departamento&quot;</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">-- criando então uma chave estrageira na tabela &quot;funcionários&quot;.</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="kw">alter</span> <span class="kw">table</span> <span class="ot">&quot;public&quot;</span>.funcionarios <span class="kw">add</span> <span class="kw">constraint</span> <span class="ot">&quot;Chave_estrangeira_Departamento_funcionarios&quot;</span> <span class="kw">foreign</span> <span class="kw">key</span> (sigla) <span class="kw">references</span> <span class="ot">&quot;public&quot;</span>.departamentos(sigla);</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Exemplo testado e gerado no SGBD Postgres versão 15</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Tabela Funcionários</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> <span class="ot">&quot;public&quot;</span>.funcionarios</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    cpf bigint <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    nome <span class="dt">varchar</span>(<span class="dv">200</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Tabela Departamentos</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> <span class="ot">&quot;public&quot;</span>.departamentos</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    sigla <span class="dt">integer</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    nome <span class="dt">varchar</span>(<span class="dv">200</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">-- Definindo a coluna &quot;cpf&quot; da tabela &quot;funcionários&quot; como chave primária</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">alter</span> <span class="kw">table</span> <span class="ot">&quot;public&quot;</span>.funcionarios <span class="kw">add</span> <span class="kw">constraint</span> <span class="ot">&quot;chave_primaria_funcionarios&quot;</span> <span class="kw">primary</span> <span class="kw">key</span> (cpf);</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">-- Definindo a coluna &quot;sigla&quot;&quot; da tabela &quot;departamentos&quot; como chave primária</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="kw">alter</span> <span class="kw">table</span> <span class="ot">&quot;public&quot;</span>.departamentos <span class="kw">add</span> <span class="kw">constraint</span> <span class="ot">&quot;chave_primaria_departamentos&quot;</span> <span class="kw">primary</span> <span class="kw">key</span> (sigla);</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">-- Gerando a integridade referêncial </span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">-- Importando a chave primária da tabela &quot;departamentos&quot; como &quot;chave estrangeira&quot;</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">-- na tabela &quot;funcionários&quot;</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">-- primeiro adiciona-se a coluna estrageira &quot;sigla&quot; que é coluna originalmente </span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co">-- pertencente a tabela departamentos</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="kw">alter</span> <span class="kw">table</span> <span class="ot">&quot;public&quot;</span>.funcionarios <span class="kw">add</span> <span class="kw">column</span> sigla <span class="dt">integer</span>;</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co">-- finalmente conecte a coluna sigla a chave primária da tabela &quot;departamento&quot;</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co">-- criando então uma chave estrageira na tabela &quot;funcionários&quot;.</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="kw">alter</span> <span class="kw">table</span> <span class="ot">&quot;public&quot;</span>.funcionarios <span class="kw">add</span> <span class="kw">constraint</span> <span class="ot">&quot;Chave_estrangeira_Departamento_funcionarios&quot;</span> <span class="kw">foreign</span> <span class="kw">key</span> (sigla) <span class="kw">references</span> <span class="ot">&quot;public&quot;</span>.departamentos(sigla);</span></code></pre></div>
 </section>
 <section id="exemplo-montadora" class="slide level2">
 <h2>EXEMPLO: MONTADORA</h2>
@@ -1254,11 +1277,7 @@ p. 180.]</p>
 a um elemento da tabela “Montadora” ?</p>
 <h3 id="tabela-normalizada">Tabela Normalizada</h3>
 <p>Considere as tabelas abaixo:</p>
-<table style="width:78%;">
-<colgroup>
-<col style="width: 23%" />
-<col style="width: 54%" />
-</colgroup>
+<table>
 <thead>
 <tr class="header">
 <th style="text-align: center;">MontadoraID</th>
@@ -1367,13 +1386,6 @@ ligação de cada elemento da tabela Modelos e Montadoras. Essa coluna
 “importada” da tabela Montadoras para a tabela Modelos se chama
 <strong>chave estrangeira</strong>.</p>
 </section>
-<section id="exercícios" class="slide level2">
-<h2>Exercícios</h2>
-<p>1- Construa um projeto Banco de Dados Relacional para uma
-universidade. Mapeie no seu Banco de Dados Disciplinas, Professores e
-Alunos. Para isso, faça o modelo “matemático”, o Modelo Lógico e o
-Modelo Físico com SQL.</p>
-</section>
 <section id="referências" class="slide level2">
 <h2>Referências</h2>
 <p><strong>DATE</strong>, C. J. <strong>An Introduction to Database
@@ -1384,7 +1396,124 @@ McGraw-Hill, 2010.</p>
 <p><strong>CODD</strong>, E. F. <strong>A Relational Model of Data for
 Large Shared Data Banks.</strong> Communications of the ACM, New York,
 v. 13, n. 6, p. 377–387, 1970.</p>
-<!--chapter:end:03-2025-08-18_Modelagem_SGBD.Rmd-->
+<!--chapter:end:03-2025-08-18_Modelagem_SGBD-aula.Rmd-->
+</section>
+<section id="exercícios-1" class="slide level2">
+<h2>Exercícios</h2>
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Exercício 1 — Universidade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Considere uma Universidade que possui vários Cursos. Cada curso tem
+um nome, uma duração em semestres e um coordenador. A universidade
+possui Professores, cada um com um nome, título e CPF. Um professor pode
+ministrar várias disciplinas, e cada disciplina pertence a um único
+curso.</td>
+</tr>
+<tr class="even">
+<td>a) Identifique as entidades</td>
+</tr>
+<tr class="odd">
+<td>b) Identifique os atributos de cada Entidade</td>
+</tr>
+<tr class="even">
+<td>c) Identifique os relacionamentos entre as Entidades</td>
+</tr>
+<tr class="odd">
+<td>e) Faça o diagrama DEM (Diagrama Entidade Relacionamento) contendo
+as entidades, atributos e relacionamentos que você mapeou.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="slide level2">
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Exercício 2 — Um Projeto de e-commerce</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Um Cliente faz Pedidos em um sistema de e-commerce. Cada cliente tem
+um nome, endereço e telefone. Os pedidos possuem uma data, um valor
+total e podem conter vários Produtos. Cada produto tem um nome, uma
+descrição e um preço.</td>
+</tr>
+<tr class="even">
+<td>a) Identifique as <strong>entidades</strong></td>
+</tr>
+<tr class="odd">
+<td>b) Identifique os <strong>atributos</strong> de cada Entidade</td>
+</tr>
+<tr class="even">
+<td>c) Identifique os <strong>relacionamentos</strong> entre as
+Entidades</td>
+</tr>
+<tr class="odd">
+<td>e) Faça o <strong>diagrama DEM (Diagrama Entidade
+Relacionamento)</strong> contendo as entidades, atributos e
+relacionamentos que você mapeou.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="slide level2">
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Exercício 3 — Hospital</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Um Hospital registra Pacientes, cada um com nome, idade, endereço e
+telefone. Os pacientes podem realizar várias Consultas com Médicos. Cada
+médico possui um CRM, um nome e uma especialidade. Durante a consulta, o
+médico pode prescrever Receitas, que possuem medicação e dosagem.</td>
+</tr>
+<tr class="even">
+<td>a) Identifique as <strong>entidades</strong></td>
+</tr>
+<tr class="odd">
+<td>b) Identifique os <strong>atributos</strong> de cada Entidade</td>
+</tr>
+<tr class="even">
+<td>c) Identifique os <strong>relacionamentos</strong> entre as
+Entidades</td>
+</tr>
+<tr class="odd">
+<td>e) Faça o <strong>diagrama DEM (Diagrama Entidade Relacionamento)
+contendo as entidades, atributos e relacionamentos</strong> que você
+mapeou.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="respostas-dos-exercícios" class="slide level2">
+<h2>Respostas dos exercícios</h2>
+<h3 id="exercício-1">Exercício 1</h3>
+<p><img data-src="images/clipboard-1199095852.png" /></p>
+<h3 id="exercício-2">Exercício 2</h3>
+<p><img data-src="images/clipboard-2541859182.png" /></p>
+<h3 id="exercício-3">Exercício 3</h3>
+<p><img data-src="images/clipboard-3544243903.png" /></p>
+<!--chapter:end:03-2025-08-18_Modelagem_SGBD-exercicio.Rmd-->
 </section></section>
 <section>
 <section id="administração-e-gerenciamento-de-bancos-de-dados"
@@ -1395,86 +1524,176 @@ class="title-slide slide level1">
 <h4 class="unnumbered" id="section-3">25/08/2025</h4>
 <h4 class="unnumbered" id="professor-miguél-suares-3">Professor Miguél
 Suares</h4>
-<!--chapter:end:04-2025-08-25_Administracao_Gerenciamento.Rmd--></section>
+<!--chapter:end:04-2025-08-25_Administracao_Gerenciamento-aula.Rmd--></section>
+<section>
+<section id="administração-e-gerenciamento-de-bancos-de-dados-1"
+class="title-slide slide level1">
+<h1>Administração e Gerenciamento de Bancos de Dados</h1>
+
+</section>
+<h4 class="unnumbered" id="section-4">25/08/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-4">Professor Miguél
+Suares</h4>
+<!--chapter:end:04-2025-08-25_Administracao_Gerenciamento-exercicio.Rmd--></section>
 <section>
 <section id="banco-de-dados-uma-aplicação-crud"
 class="title-slide slide level1">
 <h1>Banco de Dados: Uma Aplicação CRUD</h1>
 
 </section>
-<h4 class="unnumbered" id="section-4">01/09/2025</h4>
-<h4 class="unnumbered" id="professor-miguél-suares-4">Professor Miguél
+<h4 class="unnumbered" id="section-5">01/09/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-5">Professor Miguél
 Suares</h4>
-<!--chapter:end:05-2025-09-01_Aplicacao_CRUD.Rmd--></section>
+<!--chapter:end:05-2025-09-01_Aplicacao_CRUD-aula.Rmd--></section>
+<section>
+<section id="banco-de-dados-uma-aplicação-crud-1"
+class="title-slide slide level1">
+<h1>Banco de Dados: Uma Aplicação CRUD</h1>
+
+</section>
+<h4 class="unnumbered" id="section-6">01/09/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-6">Professor Miguél
+Suares</h4>
+<!--chapter:end:05-2025-09-01_Aplicacao_CRUD-exercicio.Rmd--></section>
 <section>
 <section id="banco-de-dados-mysql-mariadb"
 class="title-slide slide level1">
 <h1>Banco de Dados: MySQL (MariaDB)</h1>
 
 </section>
-<h4 class="unnumbered" id="section-5">08/09/2025</h4>
-<h4 class="unnumbered" id="professor-miguél-suares-5">Professor Miguél
+<h4 class="unnumbered" id="section-7">08/09/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-7">Professor Miguél
 Suares</h4>
-<!--chapter:end:06-2025-09-08_MySQL.Rmd--></section>
+<!--chapter:end:06-2025-09-08_MySQL-aula.Rmd--></section>
+<section>
+<section id="banco-de-dados-mysql-mariadb-1"
+class="title-slide slide level1">
+<h1>Banco de Dados: MySQL (MariaDB)</h1>
+
+</section>
+<h4 class="unnumbered" id="section-8">08/09/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-8">Professor Miguél
+Suares</h4>
+<!--chapter:end:06-2025-09-08_MySQL-exercicio.Rmd--></section>
 <section>
 <section id="banco-de-dados-postgres" class="title-slide slide level1">
 <h1>Banco de Dados: Postgres</h1>
 
 </section>
-<h4 class="unnumbered" id="section-6">22/09/2025</h4>
-<h4 class="unnumbered" id="professor-miguél-suares-6">Professor Miguél
+<h4 class="unnumbered" id="section-9">22/09/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-9">Professor Miguél
 Suares</h4>
-<!--chapter:end:07-2025-09-22_Postgres.Rmd--></section>
+<!--chapter:end:07-2025-09-22_Postgres-aula.Rmd--></section>
+<section>
+<section id="banco-de-dados-postgres-1"
+class="title-slide slide level1">
+<h1>Banco de Dados: Postgres</h1>
+
+</section>
+<h4 class="unnumbered" id="section-10">22/09/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-10">Professor Miguél
+Suares</h4>
+<!--chapter:end:07-2025-09-22_Postgres-exercicio.Rmd--></section>
 <section>
 <section id="banco-de-dados-espaciais---cliente-qgis"
 class="title-slide slide level1">
 <h1>Banco de Dados Espaciais - Cliente QGIS</h1>
 
 </section>
-<h4 class="unnumbered" id="section-7">29/09/2025</h4>
-<h4 class="unnumbered" id="professor-miguél-suares-7">Professor Miguél
+<h4 class="unnumbered" id="section-11">29/09/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-11">Professor Miguél
 Suares</h4>
-<!--chapter:end:08-2025-09-29_QGIS.Rmd--></section>
+<!--chapter:end:08-2025-09-29_QGIS-aula.Rmd--></section>
+<section>
+<section id="banco-de-dados-espaciais---cliente-qgis-1"
+class="title-slide slide level1">
+<h1>Banco de Dados Espaciais - Cliente QGIS</h1>
+
+</section>
+<h4 class="unnumbered" id="section-12">29/09/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-12">Professor Miguél
+Suares</h4>
+<!--chapter:end:08-2025-09-29_QGIS-exercicio.Rmd--></section>
 <section>
 <section id="banco-de-dados-estatístico---cliente-rstudio"
 class="title-slide slide level1">
 <h1>Banco de Dados Estatístico - Cliente Rstudio</h1>
 
 </section>
-<h4 class="unnumbered" id="section-8">06/10/2025</h4>
-<h4 class="unnumbered" id="professor-miguél-suares-8">Professor Miguél
+<h4 class="unnumbered" id="section-13">06/10/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-13">Professor Miguél
 Suares</h4>
-<!--chapter:end:09-2025-10-06_Rstudio.Rmd--></section>
+<!--chapter:end:09-2025-10-06_Rstudio-aula.Rmd--></section>
+<section>
+<section id="banco-de-dados-estatístico---cliente-rstudio-1"
+class="title-slide slide level1">
+<h1>Banco de Dados Estatístico - Cliente Rstudio</h1>
+
+</section>
+<h4 class="unnumbered" id="section-14">06/10/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-14">Professor Miguél
+Suares</h4>
+<!--chapter:end:09-2025-10-06_Rstudio-exercicio.Rmd--></section>
 <section>
 <section id="banco-de-dados---análise-de-dados-parte-01"
 class="title-slide slide level1">
 <h1>Banco de Dados - Análise de Dados Parte 01</h1>
 
 </section>
-<h4 class="unnumbered" id="section-9">13/10/2025</h4>
-<h4 class="unnumbered" id="professor-miguél-suares-9">Professor Miguél
+<h4 class="unnumbered" id="section-15">13/10/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-15">Professor Miguél
 Suares</h4>
-<!--chapter:end:10-2025-10-13_Analise_01.Rmd--></section>
+<!--chapter:end:10-2025-10-13_Analise_01-aula.Rmd--></section>
+<section>
+<section id="banco-de-dados---análise-de-dados-parte-01-1"
+class="title-slide slide level1">
+<h1>Banco de Dados - Análise de Dados Parte 01</h1>
+
+</section>
+<h4 class="unnumbered" id="section-16">13/10/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-16">Professor Miguél
+Suares</h4>
+<!--chapter:end:10-2025-10-13_Analise_01-exercicio.Rmd--></section>
 <section>
 <section id="banco-de-dados---análise-de-dados-parte-02"
 class="title-slide slide level1">
 <h1>Banco de Dados - Análise de Dados Parte 02</h1>
 
 </section>
-<h4 class="unnumbered" id="section-10">20/10/2025</h4>
-<h4 class="unnumbered" id="professor-miguél-suares-10">Professor Miguél
+<h4 class="unnumbered" id="section-17">20/10/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-17">Professor Miguél
 Suares</h4>
-<!--chapter:end:11-2025-10-20_Analise_02.Rmd--></section>
+<!--chapter:end:11-2025-10-20_Analise_02-aula.Rmd--></section>
+<section>
+<section id="banco-de-dados---análise-de-dados-parte-02-1"
+class="title-slide slide level1">
+<h1>Banco de Dados - Análise de Dados Parte 02</h1>
+
+</section>
+<h4 class="unnumbered" id="section-18">20/10/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-18">Professor Miguél
+Suares</h4>
+<!--chapter:end:11-2025-10-20_Analise_02-exercicio.Rmd--></section>
 <section>
 <section id="banco-de-dados---análise-de-dados-parte-03"
 class="title-slide slide level1">
 <h1>Banco de Dados - Análise de Dados Parte 03</h1>
 
 </section>
-<h4 class="unnumbered" id="section-11">27/10/2025</h4>
-<h4 class="unnumbered" id="professor-miguél-suares-11">Professor Miguél
+<h4 class="unnumbered" id="section-19">27/10/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-19">Professor Miguél
 Suares</h4>
-<!--chapter:end:12-2025-10-27_Analise_03.Rmd--></section>
+<!--chapter:end:12-2025-10-27_Analise_03-aula.Rmd--></section>
+<section>
+<section id="banco-de-dados---análise-de-dados-parte-03-1"
+class="title-slide slide level1">
+<h1>Banco de Dados - Análise de Dados Parte 03</h1>
+
+</section>
+<h4 class="unnumbered" id="section-20">27/10/2025</h4>
+<h4 class="unnumbered" id="professor-miguél-suares-20">Professor Miguél
+Suares</h4>
+<!--chapter:end:12-2025-10-27_Analise_03-exercicio.Rmd--></section>
     </div>
   </div>
 
