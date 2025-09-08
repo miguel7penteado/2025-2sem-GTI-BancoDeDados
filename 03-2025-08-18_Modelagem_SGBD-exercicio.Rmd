@@ -1,45 +1,395 @@
+---
+output: 
+  html_document: 
+    highlight: tango
+    theme: cerulean
+---
+
 ## Exercícios
 
-| Exercício 1 — Universidade |
-|-----------------------------------------------------------------------|
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Exercício 1 — Universidade                                                                                                                                                                                                                                                                 |
++============================================================================================================================================================================================================================================================================================+
 | Considere uma Universidade que possui vários Cursos. Cada curso tem um nome, uma duração em semestres e um coordenador. A universidade possui Professores, cada um com um nome, título e CPF. Um professor pode ministrar várias disciplinas, e cada disciplina pertence a um único curso. |
-| a) Identifique as entidades |
-| b) Identifique os atributos de cada Entidade |
-| c) Identifique os relacionamentos entre as Entidades |
-| e) Faça o diagrama DEM (Diagrama Entidade Relacionamento) contendo as entidades, atributos e relacionamentos que você mapeou. |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| a)  Identifique as entidades                                                                                                                                                                                                                                                               |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| b)  Identifique os atributos de cada Entidade                                                                                                                                                                                                                                              |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| c)  Identifique os relacionamentos entre as Entidades                                                                                                                                                                                                                                      |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| e)  Faça o diagrama DEM (Diagrama Entidade Relacionamento) contendo as entidades, atributos e relacionamentos que você mapeou.                                                                                                                                                             |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+#### Passo #1 -
+
+Identificar **SUBSTANTIVOS** no contexto; identificar os **ADJETIVOS** pertinentes a cada SUBSTANTIVO; identificar os **VERBOS** de relação entre os substantivos.
+
++---------------------------------------------------+----------------------------------------------+----------------------------------------------------+
+| `Substantivos` **do contexto**: leve-os ao plural | `Adjetivos`                                  | `Verbos`                                           |
++:==================================================+==============================================+====================================================+
+| UNIVERSIDADE -\> **`UNIVERSIDADES`**              | `NOME` (implícito no enunciado)              | universidade `POSSUI` (vários) cursos              |
+|                                                   |                                              |                                                    |
+|                                                   | `CNPJ` (implícito no enunciado)              |                                                    |
++---------------------------------------------------+----------------------------------------------+----------------------------------------------------+
+| CURSO -\> **`CURSOS`**                            | `NOME` (explícito no enunciado)              | cursos são `POSSUÍDOS` por (vários) universidades  |
+|                                                   |                                              |                                                    |
+|                                                   | `DURAÇÃO` (explícito no enunciado)           |                                                    |
+|                                                   |                                              |                                                    |
+|                                                   | `COORDENADOR` (explícito no enunciado)       |                                                    |
+|                                                   |                                              |                                                    |
+|                                                   | `CODIGO_CURSO` (implícito no enunciado)      |                                                    |
++---------------------------------------------------+----------------------------------------------+----------------------------------------------------+
+| PROFESSOR -\> **`PROFESSORES`**                   | `CPF` (explícito no enunciado)               | universidade `POSSUI` (vários) professores         |
+|                                                   |                                              |                                                    |
+|                                                   | `NOME` (explícito no enunciado)              | professor `MINISTRA` (várias) disciplinas          |
+|                                                   |                                              |                                                    |
+|                                                   | `TÍTULO` (explícito no enunciado)            |                                                    |
++---------------------------------------------------+----------------------------------------------+----------------------------------------------------+
+| DISCIPLINA -\> **`DISCIPLINAS`**                  | `NOME` (implícito no enunciado)              | disciplina `É MINISTRADA` por (vários) professores |
+|                                                   |                                              |                                                    |
+|                                                   | `CODIGO_DISCIPLINA` (implícito no enunciado) | disciplina `PERTENCE` a (um único) curso           |
++---------------------------------------------------+----------------------------------------------+----------------------------------------------------+
+
+: Identificando SUBSTANTIVOS, ADJETIVOS referentes e VERBOS de relação
+
+#### Passo #2
+
+Criar o **`MODELO ENTIDADE RELACIONAMENTO (M.E.R.)`** - Converter SUBSTANTIVO em **`ENTIDADES`**; converter ADJETIVOS em **`ATRIBUTOS`** e converter VERBOS em **`RELACIONAMENTOS`**.
+
+-   ENTIDADES identificadas: **`UNIVERSIDADES`**, **`CURSOS`**, **`PROFESSORES`** e **`DISCIPLINAS`**
+
+-   ATRIBUTOS identificados: UNIVERSIDADES [ nome,cnpj ] ; CURSOS [ nome, duração, coordenador, codigo_curso] ; PROFESSORES [ cpf, nome e título] ; DISCIPLINAS [nome e codigo_disciplina]
+
+-   RELACIONAMENTOS: [universidade-`POSSUI`-curso] ; [universidade-`POSSUI`-professores]; [professor-`MINISTRA`-disciplina] ; [disciplina-`PERTENCE`-curso]
+
+#### Passo #3
+
+Criar um DIAGRAMA ENTIDADE-RELACIONAMENTO (D.E.R.) com as informações levantadas:
+
+```{plantuml exercicio01-01, plantuml.path="images"}
+@startchen
+
+entity UNIVERSIDADES {
+  nome
+  CNPJ <<KEY>>
+}
+@endchen
+```
+
+```{plantuml exercicio01-02, plantuml.path="images"}
+@startchen
+entity CURSOS {
+  nome
+  duracao
+  coordenador
+  codigo_curso <<KEY>>
+}
+@endchen
+```
+
+```{plantuml exercicio01-03, plantuml.path="images"}
+@startchen
+entity PROFESSORES {
+  cpf <<KEY>>
+  nome
+  titulo
+}
+@endchen
+```
+
+```{plantuml exercicio01-04, plantuml.path="images"}
+@startchen
+entity DISCIPLINAS {
+  nome
+  codigo_disciplina <<KEY>>
+}
+
+@endchen
+```
+
+#### Passo #4
+
+Identificar os Relacionamentos:
+
+-   [universidade-`POSSUI`-curso] ; [universidade-`POSSUI`-professores]; [professor-`MINISTRA`-disciplina] ; [disciplina-`PERTENCE`-curso]
+
+```{plantuml exercicio01-05, plantuml.path="images"}
+@startchen
+
+
+entity UNIVERSIDADES {
+  nome
+  CNPJ <<KEY>>
+}
+
+entity CURSOS {
+  nome
+  duracao
+  coordenador
+  codigo_curso <<KEY>>
+}
+
+
+entity PROFESSORES {
+  cpf <<key>>
+  nome
+  titulo
+}
+
+entity DISCIPLINAS {
+  nome
+  codigo_disciplina <<KEY>>
+}
+
+relationship OFERECE {
+  
+}
+
+
+relationship POSSUI {
+  
+}
+
+
+
+relationship MINISTRA {
+  
+}
+
+UNIVERSIDADES -1- OFERECE
+OFERECE       -N- CURSOS
+
+UNIVERSIDADES -1- POSSUI
+POSSUI        -N- PROFESSORES
+
+
+PROFESSORES -1- MINISTRA
+MINISTRA    -N- DISCIPLINAS
+
+
+
+@endchen
+```
 
 ------------------------------------------------------------------------
 
-| Exercício 2 — Um Projeto de e-commerce |
-|-----------------------------------------------------------------------|
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Exercício 2 — Um Projeto de e-commerce                                                                                                                                                                                             |
++====================================================================================================================================================================================================================================+
 | Um Cliente faz Pedidos em um sistema de e-commerce. Cada cliente tem um nome, endereço e telefone. Os pedidos possuem uma data, um valor total e podem conter vários Produtos. Cada produto tem um nome, uma descrição e um preço. |
-| a) Identifique as **entidades** |
-| b) Identifique os **atributos** de cada Entidade |
-| c) Identifique os **relacionamentos** entre as Entidades |
-| e) Faça o **diagrama DEM (Diagrama Entidade Relacionamento)** contendo as entidades, atributos e relacionamentos que você mapeou. |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| a)  Identifique as **entidades**                                                                                                                                                                                                   |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| b)  Identifique os **atributos** de cada Entidade                                                                                                                                                                                  |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| c)  Identifique os **relacionamentos** entre as Entidades                                                                                                                                                                          |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| e)  Faça o **diagrama DEM (Diagrama Entidade Relacionamento)** contendo as entidades, atributos e relacionamentos que você mapeou.                                                                                                 |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+#### Passo #1 -
+
+Identificar **SUBSTANTIVOS** no contexto; identificar os **ADJETIVOS** pertinentes a cada SUBSTANTIVO; identificar os **VERBOS** de relação entre os substantivos.
+
++-------------------------------------------------------------------------+----------------------------------------+-------------------------------------------------------+
+| `Substantivos` **do contexto**: leve-os ao plural                       | `Adjetivos`                            | `Verbos`                                              |
++:========================================================================+========================================+=======================================================+
+| CLIENTE -\> **`CLIENTES`**                                              | `NOME` (explícito no enunciado)        | (vários) clientes `PEDEM` (vários) produtos           |
+|                                                                         |                                        |                                                       |
+|                                                                         | `ENDERECO` (explícito no enunciado)    |                                                       |
+|                                                                         |                                        |                                                       |
+|                                                                         | `TELEFONE` (explícito no enunciado)    |                                                       |
+|                                                                         |                                        |                                                       |
+|                                                                         | `CPF` (implícito no enunciado)         |                                                       |
++-------------------------------------------------------------------------+----------------------------------------+-------------------------------------------------------+
+| PEDIDO -\> **`PEDIDOS ????`**                                           | `DATA` (explícito no enunciado)        | (vários) clientes `PEDEM` (vários) produtos           |
+|                                                                         |                                        |                                                       |
+| PEDIDO NÃO É SUBSTABNTIVO, MAS SIM O PARTICÍPIO PASSADO DO VERBO PEDIR. | `VALOR_TOTAL` (explícito no enunciado) |                                                       |
+|                                                                         |                                        |                                                       |
+| (PEDIR É VERBO !!!)                                                     |                                        |                                                       |
++-------------------------------------------------------------------------+----------------------------------------+-------------------------------------------------------+
+| PRODUTO -\> **`PRODUTOS`**                                              | `NOME` (implícito no enunciado)        | (vários) produtos são `PEDidos` por (vários) clientes |
+|                                                                         |                                        |                                                       |
+|                                                                         | `DESCRICAO` (explícito no enunciado)   |                                                       |
+|                                                                         |                                        |                                                       |
+|                                                                         | `PRECO` (explícito no enunciado)       |                                                       |
+|                                                                         |                                        |                                                       |
+|                                                                         | `COD_PRODUTO` (implícito no enunciado) |                                                       |
++-------------------------------------------------------------------------+----------------------------------------+-------------------------------------------------------+
+
+: Identificando SUBSTANTIVOS, ADJETIVOS referentes e VERBOS de relação
+
+#### Passo #2
+
+Criar o **`MODELO ENTIDADE RELACIONAMENTO (M.E.R.)`** - Converter SUBSTANTIVO em **`ENTIDADES`**; converter ADJETIVOS em **`ATRIBUTOS`** e converter VERBOS em **`RELACIONAMENTOS`**.
+
+Normalmente apenas as ENTIDADES levam atributos. Quando aparece um relacionamento N-N entre duas entidades, também podem aparecer atributos atrelados aos relacionamentos (como é o caso de PEDIDO aqui).
+
+-   ENTIDADES identificadas: **`CLIENTES`**, **`PRODUTOS`**
+
+-   ATRIBUTOS identificados: CLIENTES [ nome, endereco, telefone, cpf] ; PRODUTOS [ nome, descricao, preco, cod_produto] ; PEDIDO[data, valor_total]
+
+-   RELACIONAMENTOS: [cliente-`PEDE`-produto] ; [produto-`PEDIDO`-cliente];
+
+#### Passo #3
+
+Criar um DIAGRAMA ENTIDADE-RELACIONAMENTO (D.E.R.) com as informações levantadas:
+
+```{plantuml exercicio02-01, plantuml.path="images"}
+@startchen
+
+
+entity CLIENTES {
+  nome
+  endereco
+  telefone
+  cpf <<key>>
+}
+
+
+
+entity PRODUTOS {
+  nome
+  descricao
+  preco
+  cod_produto <<key>>
+}
+
+relationship PEDIDOS {
+  data << key >>
+  valor_total
+}
+
+
+
+PRODUTOS -N- PEDIDOS
+PEDIDOS  -N- CLIENTES
+
+
+
+@endchen
+```
 
 ------------------------------------------------------------------------
 
-| Exercício 3 — Hospital |
-|-----------------------------------------------------------------------|
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Exercício 3 — Hospital                                                                                                                                                                                                                                                                  |
++=========================================================================================================================================================================================================================================================================================+
 | Um Hospital registra Pacientes, cada um com nome, idade, endereço e telefone. Os pacientes podem realizar várias Consultas com Médicos. Cada médico possui um CRM, um nome e uma especialidade. Durante a consulta, o médico pode prescrever Receitas, que possuem medicação e dosagem. |
-| a) Identifique as **entidades** |
-| b) Identifique os **atributos** de cada Entidade |
-| c) Identifique os **relacionamentos** entre as Entidades |
-| e) Faça o **diagrama DEM (Diagrama Entidade Relacionamento) contendo as entidades, atributos e relacionamentos** que você mapeou. |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| a)  Identifique as **entidades**                                                                                                                                                                                                                                                        |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| b)  Identifique os **atributos** de cada Entidade                                                                                                                                                                                                                                       |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| c)  Identifique os **relacionamentos** entre as Entidades                                                                                                                                                                                                                               |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| e)  Faça o **diagrama DEM (Diagrama Entidade Relacionamento) contendo as entidades, atributos e relacionamentos** que você mapeou.                                                                                                                                                      |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+#### Passo #1 -
+
+Identificar **SUBSTANTIVOS** no contexto; identificar os **ADJETIVOS** pertinentes a cada SUBSTANTIVO; identificar os **VERBOS** de relação entre os substantivos.
+
++---------------------------------------------------+------------------------------------------+-------------------------------------------------------------------+
+| `Substantivos` **do contexto**: leve-os ao plural | `Adjetivos`                              | `Verbos`                                                          |
++:==================================================+==========================================+===================================================================+
+| HOSPITAL -\> **`HOSPITAIS`**                      | `NOME` (implícito no enunciado)          | (explícito) hospital `REGISTRA` (vários) pacientes                |
+|                                                   |                                          |                                                                   |
+|                                                   | `CNPJ` (implícito no enunciado)          | (implícito) hospital `POSSUI` medicos                             |
++---------------------------------------------------+------------------------------------------+-------------------------------------------------------------------+
+| PACIENTE -\> **`PACIENTES`**                      | `NOME` (explícito no enunciado)          | pacientes são `REGISTRADOS` em (um) hospital                      |
+|                                                   |                                          |                                                                   |
+|                                                   | `IDADE` (explícito no enunciado)         | (vários) pacientes `CONSULTAM` (vários) médicos                   |
+|                                                   |                                          |                                                                   |
+|                                                   | `ENDERECO` (explícito no enunciado)      | (vários) pacientes `SÃO RECEITADOS` por (vários) médicos          |
+|                                                   |                                          |                                                                   |
+|                                                   | `TELEFONE` (explícito no enunciado)      |                                                                   |
+|                                                   |                                          |                                                                   |
+|                                                   | `CPF` (implícito no enunciado)           |                                                                   |
++---------------------------------------------------+------------------------------------------+-------------------------------------------------------------------+
+| MÉDICO -\> **`MEDICOS`**                          | `CRM` (explícito no enunciado)           | (vários) médico(s) `CONSULTA` (vários) pacientes                  |
+|                                                   |                                          |                                                                   |
+|                                                   | `NOME` (explícito no enunciado)          | (vários) médico(s) `RECEITAM` (vários) pacientes                  |
+|                                                   |                                          |                                                                   |
+|                                                   | `ESPECIALIDADE` (explícito no enunciado) |                                                                   |
++---------------------------------------------------+------------------------------------------+-------------------------------------------------------------------+
+| RECEITA ?? -\> **`RECEITAR`** é VERBO             | `MEDICACAO` (explícito no enunciado)     | médico `RECEITA` ao paciente                                      |
+|                                                   |                                          |                                                                   |
+|                                                   | `DOSAGEM`(explícito no enunciado)        | (vários) paciente(s) `É(SÃO) RECEITADO(s)` por (vários) médico(s) |
++---------------------------------------------------+------------------------------------------+-------------------------------------------------------------------+
+| CONSULTA ?? -\> **`CONSULTAR`** é VERBO           | `DATA` (implícito no enunciado)          | (vários) pacientes(s) `CONSULTA(M)` (vários) médico(s)            |
+|                                                   |                                          |                                                                   |
+|                                                   | `HORA`(implícito no enunciado)           |                                                                   |
+|                                                   |                                          |                                                                   |
+|                                                   | `sala`(implícito no enunciado)           |                                                                   |
++---------------------------------------------------+------------------------------------------+-------------------------------------------------------------------+
+
+: Identificando SUBSTANTIVOS, ADJETIVOS referentes e VERBOS de relação
+
+#### Passo #2
+
+Criar o **`MODELO ENTIDADE RELACIONAMENTO (M.E.R.)`** - Converter SUBSTANTIVO em **`ENTIDADES`**; converter ADJETIVOS em **`ATRIBUTOS`** e converter VERBOS em **`RELACIONAMENTOS`**.
+
+-   ENTIDADES identificadas: **`HOSPITAIS`**, **`PACIENTES`**, **`MEDICOS`**
+
+-   ATRIBUTOS identificados: HOSPITAIS [ nome,cnpj ] ; PACIENTES [ nome, idade, endereco, telefone, cpf] ; MEDICOS [ crm, nome e especialidade] ;
+
+-   RELACIONAMENTOS: [medico-`consulta`-paciente] ; [medico-`receita`-paciente]; [hospital-registra-paciente] ; [hospital-`POSSUI`-medicos]
+
+#### Passo #3
+
+Criar um DIAGRAMA ENTIDADE-RELACIONAMENTO (D.E.R.) com as informações levantadas:
+
+```{plantuml exercicio03-01, plantuml.path="images"}
+@startchen
+
+
+entity HOSPITAIS {
+  nome
+  cnpj <<key>>
+}
+
+entity PACIENTES {
+  nome
+  idade
+  endereco
+  telefone
+  cpf <<key>>
+}
+
+
+entity MEDICOS {
+  nome
+  especialidade
+  crm <<key>>
+}
+
+relationship REGISTRAM {
+  
+}
+
+relationship CONSULTAM {
+  data
+  hora
+  sala
+}
+
+relationship RECEITAM {
+  medicacao
+  dosagem
+}
+
+HOSPITAIS -1- REGISTRAM
+REGISTRAM -N- PACIENTES
+
+MEDICOS   -N- CONSULTAM
+CONSULTAM -N- PACIENTES
+
+MEDICOS   -N- RECEITAM
+RECEITAM  -N- PACIENTES
+
+@endchen
+```
 
 ------------------------------------------------------------------------
-
-## Respostas dos exercícios
-
-### Exercício 1
-
-![](images/clipboard-1199095852.png)
-
-### Exercício 2
-
-![](images/clipboard-2541859182.png)
-
-### Exercício 3
-
-![](images/clipboard-3544243903.png)

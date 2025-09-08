@@ -4,6 +4,7 @@ output:
     highlight: tango
     theme: cerulean
 ---
+
 # Modelagem de Bancos de Dados
 
 #### 18/08/2025 {.unnumbered}
@@ -115,8 +116,6 @@ f(x) = Y \\
 \text{ elementos de 2 conjuntos de dados diferentes }
 $$
 
-
-
 ```{r tikz-diagrama10, engine='tikz', echo=FALSE, fig.cap="Diagrama de Montadoras, Veículos e Proprietários"}
 \usetikzlibrary{arrows,positioning,shapes,fit,calc}
 
@@ -190,18 +189,19 @@ Segundo Laudon
 
 ### Composição e Significado do Diagrama Entidade Relacionamento (DER)
 
-+:--------:+:---------------------------------:+:--------------------------------------:+
-| **Nome** | **Desenho**                       | **Significado**                        |
-+----------+-----------------------------------+----------------------------------------+
-| Entidade | ![](images/5-bi/03-retangulo.jpg) | Representa uma tabela e é identificada |
-|          |                                   |                                        |
-|          |                                   | no texto por um **substantivo**.       |
-+----------+-----------------------------------+----------------------------------------+
++:-----------:+:---------------------------------:+:--------------------------------------:+
+| **Nome**    | **Desenho**                       | **Significado**                        |
++-------------+-----------------------------------+----------------------------------------+
+| Entidade    | ![](images/5-bi/03-retangulo.jpg) | Representa uma tabela e é identificada |
+|             |                                   |                                        |
+|             |                                   | no texto por um **substantivo**.       |
++-------------+-----------------------------------+----------------------------------------+
 
-|  |  |  |
-|:--:|:--:|:--:|
-| **Nome** | **Desenho** | **Significado** |
-| Atributo | ![](images/5-bi/05-elipse.jpg){width="182"} | Representa uma coluna e é identificada no texto por um **adjetivo**. |
++:--------------------:+:-------------------------------------------:+:--------------------------------------------------------------------:+
+| **Nome**             | **Desenho**                                 | **Significado**                                                      |
++----------------------+---------------------------------------------+----------------------------------------------------------------------+
+| Atributo             | ![](images/5-bi/05-elipse.jpg){width="182"} | Representa uma coluna e é identificada no texto por um **adjetivo**. |
++----------------------+---------------------------------------------+----------------------------------------------------------------------+
 
 +:--------------:+:--------------------------------------------:+:----------------------------------------------:+
 | **Nome**       | **Desenho**                                  | **Significado**                                |
@@ -260,11 +260,17 @@ alter table "public".funcionarios add column sigla integer;
 alter table "public".funcionarios add constraint "Chave_estrangeira_Departamento_funcionarios" foreign key (sigla) references "public".departamentos(sigla);
 ```
 
-## EXEMPLO: MONTADORA
+## EXEMPLO: REVENDA DE VEÍCULOS MULTI-MARCAS
+
+Uma revenda de veículos multimarcas deseja informatizar seu negócio e precisa de um banco de dados que registre informações sobre veículos, fabricantes e clientes. Cada veículo deve ter código de identificação, modelo, ano de fabricação, cor, preço e chassi. Todo veículo pertence a um fabricante. O fabricante é identificado por um código e deve ter armazenados seu nome e país de origem. A revenda vende veículos para clientes, e cada venda deve registrar a data, o valor da negociação e a forma de pagamento. Um cliente pode comprar mais de um veículo, mas cada veículo só pode ser vendido uma vez. Cada cliente é identificado por um código e deve ter armazenados seu nome, CPF/CNPJ, telefone e endereço.
 
 ### Modelo Matemático
 
-Construa um Banco de Dados com suporte a consistência das informações. Utilize para isso o modelo Relacional. Precisamos armazenar as informações dos Veículos, Montadoras e Proprietários;
+Para tratar problemas desta natureza, o professor em matemática da Universidade do Tenesse, [Prof Edgar Frank Codd (1923-2003)](https://pt.wikipedia.org/wiki/Edgar_Frank_Codd) procurou inicialmente utilizar teorias matemáticas para organizar e oferecer consistência aos dados:
+
+-   Teoria dos Conjuntos - Ajudaria a organizar e agrupar os dados em conjuntos;
+
+-   Teoria das Funções - A idéia era fornecer um mecanismo de consistência aos dados de conjuntos diferentes relacionados. Por exemplo, haveria uma função que mapeasse um um elemento do conjunto `veículo` a outro elemento do conjunto `montadora`.
 
 #### Representação Matemática em Conjuntos e seus Elementos :
 
@@ -360,6 +366,100 @@ Construa um Banco de Dados com suporte a consistência das informações. Utiliz
 \end{tikzpicture}
 ```
 
+A limitação deste modelo logo apareceria: a forma matemática não conseguia representar os diferentes atributos que distinguiam cada elemento existente dentro de um conjunto.
+
+### Modelo Lógico: Modelo Entidade Relacionamento
+
+em 1978 , o professor **Peter Pin-Shan Chen** da universidade norte-americana de Luisiania apresentou o Modelo Entidade Relacionamento. Este modelo apresentava uma forma de modelar projetos de Bancos de Dados relacionais, independemente de plataforma tecnológica ( UNIX, Windows etc).
+
+#### Modelo Entidade Relacionamento
+
+O modelo Entidade Relacionamento, também chamado de MER, consistem em traduzir um texto para um modelo de Banco de dados utilizando a morfologia da gramática da língua portuguesa com a seguinte regra:
+
++-------------------------------+--------------------------------------+----------------------------------+---------------------------------------------+
+| Classe morfológica da palavra | CORRESPONDÊNCIA NO MODELO MATEMÁTICO | CORRESPONDÊNCIA NO MODELO LÓGICO | CORRESPONDÊNCIA NO MODELO FÍSICO-RELACIONAL |
++-------------------------------+--------------------------------------+----------------------------------+---------------------------------------------+
+| `Substantivos`                | `CONJUNTOS`                          | `ENTIDADES`                      | `TABELAS`                                   |
++-------------------------------+--------------------------------------+----------------------------------+---------------------------------------------+
+| **`Adjetivos`**               | N/A                                  | **`ATRIBUTO`**                   | **`COLUNAS`**                               |
++-------------------------------+--------------------------------------+----------------------------------+---------------------------------------------+
+| **`Verbos`**                  | Idéia de "funções y=f(x) "           | **`RELACIONAMENTOS`**            | **`CHAVE ESTRANGEIRA`**                     |
++-------------------------------+--------------------------------------+----------------------------------+---------------------------------------------+
+
+Tomando como exemplo a revenda de carros:
+
++-------------------------------+-----------------------------------------------------------------------------+
+| Classe morfológica da palavra |                                                                             |
++-------------------------------+-----------------------------------------------------------------------------+
+| `Substantivos`                | VEÍCULOS, FABRICANTES, CLIENTES                                             |
++-------------------------------+-----------------------------------------------------------------------------+
+| **`Adjetivos`**               | Referentes a veículos: `Modelo`, `Ano_Fabricacao`, `Cor`, `Preco`, `Chassi` |
+|                               |                                                                             |
+|                               | Referentes a fabricante: `Nome`, `Pais_Origem`                              |
+|                               |                                                                             |
+|                               | Referentes a cliente: `Nome`, `CPF_CNPJ`, `Telefone`, `Endereco`            |
++-------------------------------+-----------------------------------------------------------------------------+
+| **`Verbos`**                  | Fabricante - `PRODUZ`- Veículo                                              |
+|                               |                                                                             |
+|                               | clinte - `COMPRA/VENDE` - Veículo                                           |
++-------------------------------+-----------------------------------------------------------------------------+
+
+#### Modelo Entidade Relacionamento - representação gráfica
+
++-------------------------------+-----------------------+
+| Classe morfológica da palavra | REPRESENTAÇÃO GRÁFICA |
++-------------------------------+-----------------------+
+| `Substantivos`                | RETÂNGULOS            |
++-------------------------------+-----------------------+
+| **`Adjetivos`**               | **ELIPSES**           |
++-------------------------------+-----------------------+
+| **`Verbos`**                  | **LOSÂNGULOS**        |
++-------------------------------+-----------------------+
+
+```{plantuml modelo01, plantuml.path="images"}
+@startchen
+
+
+entity VEICULOS {
+  Modelo
+  Ano_Fabricacao
+  Cor
+  Preco
+  Chassi <<key>>
+}
+
+entity FABRICANTES {
+  CNPJ <<key>>
+  Nome
+  Pais_Origem
+}
+
+
+entity CLIENTES {
+  Nome
+  CPF_CNPJ <<key>>
+  Telefone
+  Endereco
+}
+
+relationship PRODUZEM {
+  
+}
+
+relationship COMPRA_VENDE {
+
+}
+
+
+FABRICANTES -1- PRODUZEM
+PRODUZEM    -N- VEICULOS
+
+CLIENTES     -N- COMPRA_VENDE
+COMPRA_VENDE -1- VEICULOS
+
+@endchen
+```
+
 ## Normalização em Bancos de Dados Relaionais
 
 ### Tabela Desnormalizada
@@ -444,9 +544,9 @@ A coluna (atributo) **ModeloID** é a **chave primária** da tabela **Modelos.**
 
 Na tabela **Modelos**, a coluna **MontadoraID**, acrescentada a tabela Modelos representa a ligação de cada elemento da tabela Modelos e Montadoras. Essa coluna "importada" da tabela Montadoras para a tabela Modelos se chama **chave estrangeira**.
 
-
-
 ## Referências
+
+**CHEN**, Peter (1990). ***Gerenciando Banco de Dados*****. A Abordagem Entidade-Relacionamento para Projeto Lógico**. São Paulo: McGraw-Hill. 80 páginas. [ISBN](https://pt.wikipedia.org/wiki/International_Standard_Book_Number "International Standard Book Number") [0-07-460575-5](https://pt.wikipedia.org/wiki/Especial:Fontes_de_livros/0-07-460575-5 "Especial:Fontes de livros/0-07-460575-5")
 
 **DATE**, C. J. **An Introduction to Database Systems.** 8. ed. Boston: Addison-Wesley, 2003.
 
