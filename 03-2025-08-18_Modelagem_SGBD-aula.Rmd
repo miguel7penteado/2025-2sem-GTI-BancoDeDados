@@ -189,19 +189,19 @@ Segundo Laudon
 
 ### Composição e Significado do Diagrama Entidade Relacionamento (DER)
 
-+:-----------:+:---------------------------------:+:--------------------------------------:+
-| **Nome**    | **Desenho**                       | **Significado**                        |
-+-------------+-----------------------------------+----------------------------------------+
-| Entidade    | ![](images/5-bi/03-retangulo.jpg) | Representa uma tabela e é identificada |
-|             |                                   |                                        |
-|             |                                   | no texto por um **substantivo**.       |
-+-------------+-----------------------------------+----------------------------------------+
++:------------:+:---------------------------------:+:--------------------------------------:+
+| **Nome**     | **Desenho**                       | **Significado**                        |
++--------------+-----------------------------------+----------------------------------------+
+| Entidade     | ![](images/5-bi/03-retangulo.jpg) | Representa uma tabela e é identificada |
+|              |                                   |                                        |
+|              |                                   | no texto por um **substantivo**.       |
++--------------+-----------------------------------+----------------------------------------+
 
-+:--------------------:+:-------------------------------------------:+:--------------------------------------------------------------------:+
-| **Nome**             | **Desenho**                                 | **Significado**                                                      |
-+----------------------+---------------------------------------------+----------------------------------------------------------------------+
-| Atributo             | ![](images/5-bi/05-elipse.jpg){width="182"} | Representa uma coluna e é identificada no texto por um **adjetivo**. |
-+----------------------+---------------------------------------------+----------------------------------------------------------------------+
++:-----------:+:-------------------------------------------:+:--------------------------------------------------------------------:+
+| **Nome**    | **Desenho**                                 | **Significado**                                                      |
++-------------+---------------------------------------------+----------------------------------------------------------------------+
+| Atributo    | ![](images/5-bi/05-elipse.jpg){width="182"} | Representa uma coluna e é identificada no texto por um **adjetivo**. |
++-------------+---------------------------------------------+----------------------------------------------------------------------+
 
 +:--------------:+:--------------------------------------------:+:----------------------------------------------:+
 | **Nome**       | **Desenho**                                  | **Significado**                                |
@@ -406,15 +406,12 @@ Tomando como exemplo a revenda de carros:
 
 #### Modelo Entidade Relacionamento - representação gráfica
 
-+-------------------------------+-----------------------+
+|                               |                       |
+|-------------------------------|-----------------------|
 | Classe morfológica da palavra | REPRESENTAÇÃO GRÁFICA |
-+-------------------------------+-----------------------+
 | `Substantivos`                | RETÂNGULOS            |
-+-------------------------------+-----------------------+
 | **`Adjetivos`**               | **ELIPSES**           |
-+-------------------------------+-----------------------+
 | **`Verbos`**                  | **LOSÂNGULOS**        |
-+-------------------------------+-----------------------+
 
 ```{plantuml modelo01, plantuml.path="images"}
 @startchen
@@ -459,6 +456,210 @@ COMPRA_VENDE -1- VEICULOS
 
 @endchen
 ```
+
+## Relacionamentos e Cardinalidade
+
+A **cardinalidade** define **quantas ocorrências de uma entidade podem estar associadas** a ocorrências de outra entidade em um relacionamento.
+
+Ela é fundamental para entender as regras de negócio do banco de dados e deve estar sempre representada no **Diagrama Entidade-Relacionamento (DER)**.
+
+------------------------------------------------------------------------
+
+### 🔹 Tipos principais de cardinalidade
+
+1.  **Um para Um (1:1)**\
+2.  **Um para Muitos (1:N)**\
+3.  **Muitos para Muitos (N:N)**
+
+A seguir, vamos detalhar cada caso.
+
+------------------------------------------------------------------------
+
+### 1. Relacionamento **1:1 (Um para Um)**
+
+Um exemplo clássico:\
+- Cada MARIDO possui **uma única ESPOSA**.\
+- Cada ESPOSA pertence a **um único MARIDO**.
+
+#### Representação no DER:
+
+```{plantuml cardinalidade01, plantuml.path="images"}
+@startchen
+left to right direction
+
+entity MARIDOS {
+  nome 
+  cpf <<key>> 
+}
+
+entity ESPOSAS {
+  nome
+  cpf <<key>> 
+}
+
+relationship POSSUI {
+
+}
+
+MARIDOS -1- POSSUI 
+POSSUI  -1- ESPOSAS
+
+@endchen
+```
+
+### Relacionamento **1:N (Um para Muitos)**
+
+Exemplo:
+
+Um **Cliente** pode fazer **muitos Pedidos**.
+
+Mas cada **Pedido** só pode pertencer a **um Cliente**.
+
+#### Representação no DER:
+
+```{plantuml cardinalidade02, plantuml.path="images"}
+@startchen
+left to right direction
+
+entity CLIENTES {
+  nome 
+  cpf <<key>> 
+}
+
+entity PASSAGENS {
+  DATA
+  HORA
+  PARTIDA
+  DESTINO
+  NUMERO <<key>> 
+}
+
+relationship COMPRA {
+
+}
+
+CLIENTES -1- COMPRA 
+COMPRA   -N- PASSAGENS
+
+@endchen
+```
+
+### Relacionamento N:N (Muitos para Muitos)
+
+Exemplo:
+
+Um **Aluno** pode se matricular **em muitas Disciplinas**.
+
+Cada **Disciplina** pode ter **muitos Alunos**.
+
+( Esse tipo de relacionamento precisa de uma entidade associativa para ser implementado no banco (ex.: Matricula) )
+
+#### Representação no DER:
+
+```{plantuml cardinalidade03, plantuml.path="images"}
+@startchen
+left to right direction
+
+entity ALUNOS {
+  nome 
+  RA <<key>> 
+}
+
+entity DISCIPLINAS {
+  cOD_DISCIPLINA <<KEY>>
+  NOME
+  CONTEUDO
+  DURACAO
+}
+
+relationship CURSAM {
+
+}
+
+ALUNOS   -N- CURSAM
+CURSAM   -N- DISCIPLINAS
+
+@endchen
+```
+
+## Entidade Dominante e Entidade Subordinada
+
+No **Modelo Entidade-Relacionamento (MER)**, algumas entidades só existem **dependendo da existência de outra**.  
+Nesses casos, usamos os conceitos de **Entidade Dominante** e **Entidade Subordinada**.
+
+---
+
+### Definições:
+
+- **Entidade Dominante (ou Forte):**  
+  É uma entidade que **existe por si só**, sem depender de nenhuma outra.  
+  Ex.: Cliente, Produto, Funcionário.  
+
+- **Entidade Subordinada (ou Fraca):**  
+  É uma entidade que **depende de outra** para existir.  
+  Ela **não possui chave primária própria** completa e precisa da chave da entidade dominante.  
+  Ex.: ItemPedido, Dependente, Parcela.  
+
+A entidade subordinada é representada por um **losango duplo** (relacionamento identificador) em algumas notações, ou simplesmente destacada como **entidade fraca**.
+
+
+```{plantuml EntidadeDominante01, plantuml.path="images"}
+@startchen
+left to right direction
+
+entity PAIS {
+  nome 
+  RA <<key>> 
+}
+
+entity FILHOS <<weak>> {
+  Nome nome
+}
+
+relationship POSSUEM {
+
+}
+
+PAIS      -1- POSSUEM
+POSSUEM   -N- FILHOS
+
+@endchen
+```
+
+Outro Exemplo:
+
+```{plantuml EntidadeDominante02, plantuml.path="images"}
+@startchen
+left to right direction
+
+entity PEDIDOS_VENDAS {
+  CODIGO_PEDIDO <<KEY>>
+  DATA
+  VALOR_TOTAL
+}
+
+entity ITEMS_PEDIDO <<weak>> {
+  ID_ITEM
+  DESCRICAO
+  QUANTIDADE
+  PERCO_UNITARIO
+}
+
+relationship POSSUEM {
+
+}
+
+PEDIDOS_VENDAS  -1- POSSUEM
+POSSUEM         -N- ITEMS_PEDIDO
+
+@endchen
+```
+
+
+---
+
+
+
 
 ## Normalização em Bancos de Dados Relaionais
 

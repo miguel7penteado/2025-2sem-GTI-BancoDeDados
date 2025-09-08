@@ -23,7 +23,7 @@
 <meta name="author" content="Professor Miguél Suares" />
 
 
-<meta name="date" content="2025-09-07" />
+<meta name="date" content="2025-09-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -200,42 +200,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#geração-do-modelo-físico-para-aplica-lo-ao-sgbd-sistema-de-gerenciamento-de-banco-de-dados"><i class="fa fa-check"></i><b>3.4.1</b> Geração do modelo Físico para aplica-lo ao SGBD (Sistema de Gerenciamento de Banco de Dados):</a></li>
 <li class="chapter" data-level="3.4.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#código-sql---implementação-do-modelo-físico"><i class="fa fa-check"></i><b>3.4.2</b> Código SQL - Implementação do Modelo Físico</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exemplo-montadora"><i class="fa fa-check"></i><b>3.5</b> EXEMPLO: MONTADORA</a>
+<li class="chapter" data-level="3.5" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exemplo-revenda-de-veículos-multi-marcas"><i class="fa fa-check"></i><b>3.5</b> EXEMPLO: REVENDA DE VEÍCULOS MULTI-MARCAS</a>
 <ul>
 <li class="chapter" data-level="3.5.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#modelo-matemático"><i class="fa fa-check"></i><b>3.5.1</b> Modelo Matemático</a></li>
+<li class="chapter" data-level="3.5.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#modelo-lógico-modelo-entidade-relacionamento"><i class="fa fa-check"></i><b>3.5.2</b> Modelo Lógico: Modelo Entidade Relacionamento</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#normalização-em-bancos-de-dados-relaionais"><i class="fa fa-check"></i><b>3.6</b> Normalização em Bancos de Dados Relaionais</a>
+<li class="chapter" data-level="3.6" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#relacionamentos-e-cardinalidade"><i class="fa fa-check"></i><b>3.6</b> Relacionamentos e Cardinalidade</a>
 <ul>
-<li class="chapter" data-level="3.6.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#tabela-desnormalizada"><i class="fa fa-check"></i><b>3.6.1</b> Tabela Desnormalizada</a></li>
-<li class="chapter" data-level="3.6.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#tabela-normalizada"><i class="fa fa-check"></i><b>3.6.2</b> Tabela Normalizada</a></li>
+<li class="chapter" data-level="3.6.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#tipos-principais-de-cardinalidade"><i class="fa fa-check"></i><b>3.6.1</b> 🔹 Tipos principais de cardinalidade</a></li>
+<li class="chapter" data-level="3.6.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#relacionamento-11-um-para-um"><i class="fa fa-check"></i><b>3.6.2</b> 1. Relacionamento <strong>1:1 (Um para Um)</strong></a></li>
+<li class="chapter" data-level="3.6.3" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#relacionamento-1n-um-para-muitos"><i class="fa fa-check"></i><b>3.6.3</b> Relacionamento <strong>1:N (Um para Muitos)</strong></a></li>
+<li class="chapter" data-level="3.6.4" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#relacionamento-nn-muitos-para-muitos"><i class="fa fa-check"></i><b>3.6.4</b> Relacionamento N:N (Muitos para Muitos)</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#referências"><i class="fa fa-check"></i><b>3.7</b> Referências</a></li>
-<li class="chapter" data-level="3.8" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exercícios-1"><i class="fa fa-check"></i><b>3.8</b> Exercícios</a></li>
-<li class="chapter" data-level="3.9" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#respostas-dos-exercícios"><i class="fa fa-check"></i><b>3.9</b> Respostas dos exercícios</a>
+<li class="chapter" data-level="3.7" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#entidade-dominante-e-entidade-subordinada"><i class="fa fa-check"></i><b>3.7</b> Entidade Dominante e Entidade Subordinada</a>
 <ul>
-<li class="chapter" data-level="3.9.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exercício-1"><i class="fa fa-check"></i><b>3.9.1</b> Exercício 1</a></li>
-<li class="chapter" data-level="3.9.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exercício-2"><i class="fa fa-check"></i><b>3.9.2</b> Exercício 2</a></li>
-<li class="chapter" data-level="3.9.3" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exercício-3"><i class="fa fa-check"></i><b>3.9.3</b> Exercício 3</a></li>
+<li class="chapter" data-level="3.7.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#definições"><i class="fa fa-check"></i><b>3.7.1</b> Definições:</a></li>
 </ul></li>
+<li class="chapter" data-level="3.8" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#normalização-em-bancos-de-dados-relaionais"><i class="fa fa-check"></i><b>3.8</b> Normalização em Bancos de Dados Relaionais</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#tabela-desnormalizada"><i class="fa fa-check"></i><b>3.8.1</b> Tabela Desnormalizada</a></li>
+<li class="chapter" data-level="3.8.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#tabela-normalizada"><i class="fa fa-check"></i><b>3.8.2</b> Tabela Normalizada</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html"><i class="fa fa-check"></i><b>4</b> Administração e Gerenciamento de Bancos de Dados</a></li>
-<li class="chapter" data-level="5" data-path="administração-e-gerenciamento-de-bancos-de-dados-1.html"><a href="administração-e-gerenciamento-de-bancos-de-dados-1.html"><i class="fa fa-check"></i><b>5</b> Administração e Gerenciamento de Bancos de Dados</a></li>
-<li class="chapter" data-level="6" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html"><i class="fa fa-check"></i><b>6</b> Banco de Dados: Uma Aplicação CRUD</a></li>
-<li class="chapter" data-level="7" data-path="banco-de-dados-uma-aplicação-crud-1.html"><a href="banco-de-dados-uma-aplicação-crud-1.html"><i class="fa fa-check"></i><b>7</b> Banco de Dados: Uma Aplicação CRUD</a></li>
-<li class="chapter" data-level="8" data-path="banco-de-dados-mysql-mariadb.html"><a href="banco-de-dados-mysql-mariadb.html"><i class="fa fa-check"></i><b>8</b> Banco de Dados: MySQL (MariaDB)</a></li>
-<li class="chapter" data-level="9" data-path="banco-de-dados-mysql-mariadb-1.html"><a href="banco-de-dados-mysql-mariadb-1.html"><i class="fa fa-check"></i><b>9</b> Banco de Dados: MySQL (MariaDB)</a></li>
-<li class="chapter" data-level="10" data-path="banco-de-dados-postgres.html"><a href="banco-de-dados-postgres.html"><i class="fa fa-check"></i><b>10</b> Banco de Dados: Postgres</a></li>
-<li class="chapter" data-level="11" data-path="banco-de-dados-postgres-1.html"><a href="banco-de-dados-postgres-1.html"><i class="fa fa-check"></i><b>11</b> Banco de Dados: Postgres</a></li>
-<li class="chapter" data-level="12" data-path="banco-de-dados-espaciais---cliente-qgis.html"><a href="banco-de-dados-espaciais---cliente-qgis.html"><i class="fa fa-check"></i><b>12</b> Banco de Dados Espaciais - Cliente QGIS</a></li>
-<li class="chapter" data-level="13" data-path="banco-de-dados-espaciais---cliente-qgis-1.html"><a href="banco-de-dados-espaciais---cliente-qgis-1.html"><i class="fa fa-check"></i><b>13</b> Banco de Dados Espaciais - Cliente QGIS</a></li>
-<li class="chapter" data-level="14" data-path="banco-de-dados-estatístico---cliente-rstudio.html"><a href="banco-de-dados-estatístico---cliente-rstudio.html"><i class="fa fa-check"></i><b>14</b> Banco de Dados Estatístico - Cliente Rstudio</a></li>
-<li class="chapter" data-level="15" data-path="banco-de-dados-estatístico---cliente-rstudio-1.html"><a href="banco-de-dados-estatístico---cliente-rstudio-1.html"><i class="fa fa-check"></i><b>15</b> Banco de Dados Estatístico - Cliente Rstudio</a></li>
-<li class="chapter" data-level="16" data-path="banco-de-dados---análise-de-dados-parte-01.html"><a href="banco-de-dados---análise-de-dados-parte-01.html"><i class="fa fa-check"></i><b>16</b> Banco de Dados - Análise de Dados Parte 01</a></li>
-<li class="chapter" data-level="17" data-path="banco-de-dados---análise-de-dados-parte-01-1.html"><a href="banco-de-dados---análise-de-dados-parte-01-1.html"><i class="fa fa-check"></i><b>17</b> Banco de Dados - Análise de Dados Parte 01</a></li>
-<li class="chapter" data-level="18" data-path="banco-de-dados---análise-de-dados-parte-02.html"><a href="banco-de-dados---análise-de-dados-parte-02.html"><i class="fa fa-check"></i><b>18</b> Banco de Dados - Análise de Dados Parte 02</a></li>
-<li class="chapter" data-level="19" data-path="banco-de-dados---análise-de-dados-parte-02-1.html"><a href="banco-de-dados---análise-de-dados-parte-02-1.html"><i class="fa fa-check"></i><b>19</b> Banco de Dados - Análise de Dados Parte 02</a></li>
-<li class="chapter" data-level="20" data-path="banco-de-dados---análise-de-dados-parte-03.html"><a href="banco-de-dados---análise-de-dados-parte-03.html"><i class="fa fa-check"></i><b>20</b> Banco de Dados - Análise de Dados Parte 03</a></li>
-<li class="chapter" data-level="21" data-path="banco-de-dados---análise-de-dados-parte-03-1.html"><a href="banco-de-dados---análise-de-dados-parte-03-1.html"><i class="fa fa-check"></i><b>21</b> Banco de Dados - Análise de Dados Parte 03</a></li>
+<li class="chapter" data-level="3.9" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#referências"><i class="fa fa-check"></i><b>3.9</b> Referências</a></li>
+<li class="chapter" data-level="3.10" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exercícios-resolvidos"><i class="fa fa-check"></i><b>3.10</b> Exercícios RESOLVIDOS</a></li>
+<li class="chapter" data-level="3.11" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exercícios-1"><i class="fa fa-check"></i><b>3.11</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lista-de-exercícios-modelo-entidade-relacionamento-mer.html"><a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html"><i class="fa fa-check"></i><b>4</b> 📝 Lista de Exercícios – Modelo Entidade-Relacionamento (MER)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="lista-de-exercícios-modelo-entidade-relacionamento-mer.html"><a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-1-cliente-e-cpf-11"><i class="fa fa-check"></i><b>4.1</b> Exercício 1 – Cliente e CPF (1:1)</a></li>
+<li class="chapter" data-level="4.2" data-path="lista-de-exercícios-modelo-entidade-relacionamento-mer.html"><a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-2-cliente-e-pedidos-1n"><i class="fa fa-check"></i><b>4.2</b> Exercício 2 – Cliente e Pedidos (1:N)</a></li>
+<li class="chapter" data-level="4.3" data-path="lista-de-exercícios-modelo-entidade-relacionamento-mer.html"><a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-3-alunos-e-disciplinas-nn"><i class="fa fa-check"></i><b>4.3</b> Exercício 3 – Alunos e Disciplinas (N:N)</a></li>
+<li class="chapter" data-level="4.4" data-path="lista-de-exercícios-modelo-entidade-relacionamento-mer.html"><a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-4-funcionário-e-dependentes-entidade-fraca"><i class="fa fa-check"></i><b>4.4</b> Exercício 4 – Funcionário e Dependentes (Entidade Fraca)</a></li>
+<li class="chapter" data-level="4.5" data-path="lista-de-exercícios-modelo-entidade-relacionamento-mer.html"><a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-5-pedido-e-itens-de-pedido-entidade-associativa-fraca"><i class="fa fa-check"></i><b>4.5</b> Exercício 5 – Pedido e Itens de Pedido (Entidade Associativa + Fraca)</a></li>
+<li class="chapter" data-level="4.6" data-path="lista-de-exercícios-modelo-entidade-relacionamento-mer.html"><a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-6-médicos-e-consultas-1n"><i class="fa fa-check"></i><b>4.6</b> Exercício 6 – Médicos e Consultas (1:N)</a></li>
+<li class="chapter" data-level="4.7" data-path="lista-de-exercícios-modelo-entidade-relacionamento-mer.html"><a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-7-professor-e-departamento-11"><i class="fa fa-check"></i><b>4.7</b> Exercício 7 – Professor e Departamento (1:1)</a></li>
+<li class="chapter" data-level="4.8" data-path="lista-de-exercícios-modelo-entidade-relacionamento-mer.html"><a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-8-livros-e-autores-nn"><i class="fa fa-check"></i><b>4.8</b> Exercício 8 – Livros e Autores (N:N)</a></li>
+<li class="chapter" data-level="4.9" data-path="lista-de-exercícios-modelo-entidade-relacionamento-mer.html"><a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-9-biblioteca-entidades-fortes-e-fracas"><i class="fa fa-check"></i><b>4.9</b> Exercício 9 – Biblioteca (Entidades Fortes e Fracas)</a></li>
+<li class="chapter" data-level="4.10" data-path="lista-de-exercícios-modelo-entidade-relacionamento-mer.html"><a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-10-empresa-funcionário-e-projeto-misto-1n-e-nn"><i class="fa fa-check"></i><b>4.10</b> Exercício 10 – Empresa, Funcionário e Projeto (Misto 1:N e N:N)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tarefas-propostas-para-cada-exercício.html"><a href="tarefas-propostas-para-cada-exercício.html"><i class="fa fa-check"></i><b>5</b> Tarefas propostas para cada exercício:</a></li>
+<li class="chapter" data-level="6" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html"><i class="fa fa-check"></i><b>6</b> Administração e Gerenciamento de Bancos de Dados</a></li>
+<li class="chapter" data-level="7" data-path="administração-e-gerenciamento-de-bancos-de-dados-1.html"><a href="administração-e-gerenciamento-de-bancos-de-dados-1.html"><i class="fa fa-check"></i><b>7</b> Administração e Gerenciamento de Bancos de Dados</a></li>
+<li class="chapter" data-level="8" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html"><i class="fa fa-check"></i><b>8</b> Banco de Dados: Uma Aplicação CRUD</a></li>
+<li class="chapter" data-level="9" data-path="banco-de-dados-uma-aplicação-crud-1.html"><a href="banco-de-dados-uma-aplicação-crud-1.html"><i class="fa fa-check"></i><b>9</b> Banco de Dados: Uma Aplicação CRUD</a></li>
+<li class="chapter" data-level="10" data-path="banco-de-dados-mysql-mariadb.html"><a href="banco-de-dados-mysql-mariadb.html"><i class="fa fa-check"></i><b>10</b> Banco de Dados: MySQL (MariaDB)</a></li>
+<li class="chapter" data-level="11" data-path="banco-de-dados-mysql-mariadb-1.html"><a href="banco-de-dados-mysql-mariadb-1.html"><i class="fa fa-check"></i><b>11</b> Banco de Dados: MySQL (MariaDB)</a></li>
+<li class="chapter" data-level="12" data-path="banco-de-dados-postgres.html"><a href="banco-de-dados-postgres.html"><i class="fa fa-check"></i><b>12</b> Banco de Dados: Postgres</a></li>
+<li class="chapter" data-level="13" data-path="banco-de-dados-postgres-1.html"><a href="banco-de-dados-postgres-1.html"><i class="fa fa-check"></i><b>13</b> Banco de Dados: Postgres</a></li>
+<li class="chapter" data-level="14" data-path="banco-de-dados-espaciais---cliente-qgis.html"><a href="banco-de-dados-espaciais---cliente-qgis.html"><i class="fa fa-check"></i><b>14</b> Banco de Dados Espaciais - Cliente QGIS</a></li>
+<li class="chapter" data-level="15" data-path="banco-de-dados-espaciais---cliente-qgis-1.html"><a href="banco-de-dados-espaciais---cliente-qgis-1.html"><i class="fa fa-check"></i><b>15</b> Banco de Dados Espaciais - Cliente QGIS</a></li>
+<li class="chapter" data-level="16" data-path="banco-de-dados-estatístico---cliente-rstudio.html"><a href="banco-de-dados-estatístico---cliente-rstudio.html"><i class="fa fa-check"></i><b>16</b> Banco de Dados Estatístico - Cliente Rstudio</a></li>
+<li class="chapter" data-level="17" data-path="banco-de-dados-estatístico---cliente-rstudio-1.html"><a href="banco-de-dados-estatístico---cliente-rstudio-1.html"><i class="fa fa-check"></i><b>17</b> Banco de Dados Estatístico - Cliente Rstudio</a></li>
+<li class="chapter" data-level="18" data-path="banco-de-dados---análise-de-dados-parte-01.html"><a href="banco-de-dados---análise-de-dados-parte-01.html"><i class="fa fa-check"></i><b>18</b> Banco de Dados - Análise de Dados Parte 01</a></li>
+<li class="chapter" data-level="19" data-path="banco-de-dados---análise-de-dados-parte-01-1.html"><a href="banco-de-dados---análise-de-dados-parte-01-1.html"><i class="fa fa-check"></i><b>19</b> Banco de Dados - Análise de Dados Parte 01</a></li>
+<li class="chapter" data-level="20" data-path="banco-de-dados---análise-de-dados-parte-02.html"><a href="banco-de-dados---análise-de-dados-parte-02.html"><i class="fa fa-check"></i><b>20</b> Banco de Dados - Análise de Dados Parte 02</a></li>
+<li class="chapter" data-level="21" data-path="banco-de-dados---análise-de-dados-parte-02-1.html"><a href="banco-de-dados---análise-de-dados-parte-02-1.html"><i class="fa fa-check"></i><b>21</b> Banco de Dados - Análise de Dados Parte 02</a></li>
+<li class="chapter" data-level="22" data-path="banco-de-dados---análise-de-dados-parte-03.html"><a href="banco-de-dados---análise-de-dados-parte-03.html"><i class="fa fa-check"></i><b>22</b> Banco de Dados - Análise de Dados Parte 03</a></li>
+<li class="chapter" data-level="23" data-path="banco-de-dados---análise-de-dados-parte-03-1.html"><a href="banco-de-dados---análise-de-dados-parte-03-1.html"><i class="fa fa-check"></i><b>23</b> Banco de Dados - Análise de Dados Parte 03</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com Biblioteca R bookdown</a></li>
 
@@ -259,7 +280,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">GTI - Banco de dados - 2025 - Anotações de aula</h1>
 <p class="author"><em>Professor Miguél Suares</em></p>
-<p class="date"><em>2025-09-07</em></p>
+<p class="date"><em>2025-09-08</em></p>
 </div>
 <div id="sobre-estas-anotações" class="section level1 unnumbered hasAnchor">
 <h1>Sobre estas anotações<a href="index.html#sobre-estas-anotações" class="anchor-section" aria-label="Anchor link to header"></a></h1>

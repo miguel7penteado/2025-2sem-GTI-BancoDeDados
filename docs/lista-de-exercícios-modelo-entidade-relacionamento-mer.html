@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Slide 23 Banco de Dados - Análise de Dados Parte 03 | GTI - Banco de dados - 2025 - Anotações de aula</title>
+  <title>Slide 4 📝 Lista de Exercícios – Modelo Entidade-Relacionamento (MER) | GTI - Banco de dados - 2025 - Anotações de aula</title>
   <meta name="description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
   <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Slide 23 Banco de Dados - Análise de Dados Parte 03 | GTI - Banco de dados - 2025 - Anotações de aula" />
+  <meta property="og:title" content="Slide 4 📝 Lista de Exercícios – Modelo Entidade-Relacionamento (MER) | GTI - Banco de dados - 2025 - Anotações de aula" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="your book url like https://bookdown.org/yihui/bookdown/images/cover.jpg" />
   <meta property="og:description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
   <meta name="github-repo" content="miguel7penteado/2025-2sem-GTI-BancoDeDados" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Slide 23 Banco de Dados - Análise de Dados Parte 03 | GTI - Banco de dados - 2025 - Anotações de aula" />
+  <meta name="twitter:title" content="Slide 4 📝 Lista de Exercícios – Modelo Entidade-Relacionamento (MER) | GTI - Banco de dados - 2025 - Anotações de aula" />
   
   <meta name="twitter:description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
   <meta name="twitter:image" content="your book url like https://bookdown.org/yihui/bookdown/images/cover.jpg" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="banco-de-dados---análise-de-dados-parte-03.html"/>
-
+<link rel="prev" href="modelagem-de-bancos-de-dados.html"/>
+<link rel="next" href="tarefas-propostas-para-cada-exercício.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -277,14 +277,93 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="banco-de-dados---análise-de-dados-parte-03-1" class="section level1 hasAnchor" number="23">
-<h1><span class="header-section-number">Slide 23</span> Banco de Dados - Análise de Dados Parte 03<a href="banco-de-dados---análise-de-dados-parte-03-1.html#banco-de-dados---análise-de-dados-parte-03-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="section-20" class="section level4 unnumbered hasAnchor">
-<h4>27/10/2025<a href="banco-de-dados---análise-de-dados-parte-03-1.html#section-20" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="lista-de-exercícios-modelo-entidade-relacionamento-mer" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Slide 4</span> 📝 Lista de Exercícios – Modelo Entidade-Relacionamento (MER)<a href="#lista-de-exercícios-modelo-entidade-relacionamento-mer" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<hr />
+<div id="exercício-1-cliente-e-cpf-11" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Exercício 1 – Cliente e CPF (1:1)<a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-1-cliente-e-cpf-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cada <strong>Cliente</strong> possui exatamente <strong>um CPF</strong>, e cada CPF só pode estar associado a um único Cliente.<br />
+- Identifique entidades, atributos e relacionamento.<br />
+- Represente o MER com cardinalidade 1:1.</p>
+<hr />
 </div>
-<div id="professor-miguél-suares-20" class="section level4 unnumbered hasAnchor">
-<h4>Professor Miguél Suares<a href="banco-de-dados---análise-de-dados-parte-03-1.html#professor-miguél-suares-20" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-
+<div id="exercício-2-cliente-e-pedidos-1n" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Exercício 2 – Cliente e Pedidos (1:N)<a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-2-cliente-e-pedidos-1n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Um <strong>Cliente</strong> pode fazer <strong>vários Pedidos</strong>, mas cada Pedido pertence a apenas um Cliente.<br />
+- Liste as entidades e atributos.<br />
+- Defina o relacionamento e a cardinalidade.<br />
+- Monte o DER.</p>
+<hr />
+</div>
+<div id="exercício-3-alunos-e-disciplinas-nn" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Exercício 3 – Alunos e Disciplinas (N:N)<a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-3-alunos-e-disciplinas-nn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Um <strong>Aluno</strong> pode se matricular em várias <strong>Disciplinas</strong>, e cada Disciplina pode ter vários Alunos.<br />
+- Identifique entidades e atributos.<br />
+- Qual entidade associativa deve ser criada?<br />
+- Desenhe o DER com a entidade associativa.</p>
+<hr />
+</div>
+<div id="exercício-4-funcionário-e-dependentes-entidade-fraca" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Exercício 4 – Funcionário e Dependentes (Entidade Fraca)<a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-4-funcionário-e-dependentes-entidade-fraca" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cada <strong>Funcionário</strong> pode ter <strong>vários Dependentes</strong>. Um Dependente não existe sem um Funcionário.<br />
+- Identifique a entidade forte e a entidade fraca.<br />
+- Defina atributos e chaves.<br />
+- Monte o DER indicando a dependência existencial.</p>
+<hr />
+</div>
+<div id="exercício-5-pedido-e-itens-de-pedido-entidade-associativa-fraca" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Exercício 5 – Pedido e Itens de Pedido (Entidade Associativa + Fraca)<a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-5-pedido-e-itens-de-pedido-entidade-associativa-fraca" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Um <strong>Pedido</strong> contém vários <strong>Itens</strong>, mas cada Item está sempre vinculado a apenas um Pedido.<br />
+- Qual entidade é dominante e qual é subordinada?<br />
+- Identifique atributos das duas entidades.<br />
+- Represente o DER com cardinalidade 1:N.</p>
+<hr />
+</div>
+<div id="exercício-6-médicos-e-consultas-1n" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Exercício 6 – Médicos e Consultas (1:N)<a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-6-médicos-e-consultas-1n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Um <strong>Médico</strong> pode realizar várias <strong>Consultas</strong>, mas cada Consulta está associada a apenas um Médico.<br />
+- Identifique entidades e atributos.<br />
+- Desenhe o DER.<br />
+- Indique as cardinalidades.</p>
+<hr />
+</div>
+<div id="exercício-7-professor-e-departamento-11" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Exercício 7 – Professor e Departamento (1:1)<a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-7-professor-e-departamento-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cada <strong>Professor</strong> dirige apenas <strong>um Departamento</strong>, e cada Departamento tem apenas um Professor responsável.<br />
+- Identifique entidades, atributos e relacionamento.<br />
+- Defina cardinalidade 1:1 no DER.</p>
+<hr />
+</div>
+<div id="exercício-8-livros-e-autores-nn" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Exercício 8 – Livros e Autores (N:N)<a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-8-livros-e-autores-nn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Um <strong>Livro</strong> pode ter vários <strong>Autores</strong>, e cada Autor pode escrever vários Livros.<br />
+- Identifique as entidades e atributos.<br />
+- Qual entidade associativa deve ser criada?<br />
+- Monte o DER em notação conceitual.</p>
+<hr />
+</div>
+<div id="exercício-9-biblioteca-entidades-fortes-e-fracas" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> Exercício 9 – Biblioteca (Entidades Fortes e Fracas)<a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-9-biblioteca-entidades-fortes-e-fracas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Um <strong>Livro</strong> pode ter vários <strong>Exemplares</strong>. Um Exemplar só existe se estiver associado a um Livro.<br />
+- Identifique entidades fortes e fracas.<br />
+- Defina atributos (Livro: título, ano; Exemplar: código_exemplar, status).<br />
+- Monte o DER com a dependência existencial.</p>
+<hr />
+</div>
+<div id="exercício-10-empresa-funcionário-e-projeto-misto-1n-e-nn" class="section level2 hasAnchor" number="4.10">
+<h2><span class="header-section-number">4.10</span> Exercício 10 – Empresa, Funcionário e Projeto (Misto 1:N e N:N)<a href="lista-de-exercícios-modelo-entidade-relacionamento-mer.html#exercício-10-empresa-funcionário-e-projeto-misto-1n-e-nn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Uma <strong>Empresa</strong> possui vários <strong>Funcionários</strong>.<br />
+</li>
+<li>Cada <strong>Funcionário</strong> pode participar de vários <strong>Projetos</strong>, e cada Projeto pode ter vários Funcionários.<br />
+</li>
+<li>Identifique todas as entidades, atributos e relacionamentos.<br />
+</li>
+<li>Determine cardinalidades corretas (Empresa–Funcionário 1:N, Funcionário–Projeto N:N).<br />
+</li>
+<li>Crie o DER completo.</li>
+</ul>
+<hr />
 </div>
 </div>
             </section>
@@ -292,8 +371,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="banco-de-dados---análise-de-dados-parte-03.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="modelagem-de-bancos-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tarefas-propostas-para-cada-exercício.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -324,7 +403,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/miguel7penteado/2025-2sem-GTI-BancoDeDados/edit/main/12-2025-10-27_Analise_03-exercicio.Rmd",
+    "link": "https://github.com/miguel7penteado/2025-2sem-GTI-BancoDeDados/edit/main/03-2025-08-18_Modelagem_SGBD-exercicio.Rmd",
     "text": "Edit"
   },
   "history": {
