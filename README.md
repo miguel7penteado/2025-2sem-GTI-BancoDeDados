@@ -1,13 +1,31 @@
-Welcome! 
+# Disciplina de Banco de Dados - 2025 - Professor Miguél Suares
 
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). 
 
-This template provides a skeleton file structure that you can edit to create your book. 
 
-The contents inside the .Rmd files provide some pointers to help you get started, but feel free to also delete the content in each file and start fresh.
 
-Additional resources:
 
-The **bookdown** book: https://bookdown.org/yihui/bookdown/
+## Pacotes JAVA para instalar
 
-The **bookdown** package reference site: https://pkgs.rstudio.com/bookdown
+### Passo 1 - Instalar o kit de desenvolvimento JAVA versão 24 ou superior.
+
+Precisa ter o java instalado na sua máquina [(JDK 24 é uma boa pedida)](https://www.oracle.com/java/technologies/downloads/#jdk24-windows).
+
+### Passo 2 - Instalar o pacote java PLANTUML em um local onde o JAVA possa carrega-lo.
+
+Baixe o [plantuml.jar](https://github.com/plantuml/plantuml/releases/download/v1.2025.4/plantuml-1.2025.4.jar) 
+
+#### sugestão de diretório no windows
+
+```cmd
+mkdir   
+
+```
+
+#### sugestão de diretório no linux (versões tradicionais)
+
+## Pacotes R para instalar
+
+
+```R
+devtools::install_github("rkrug/plantuml")
+```
