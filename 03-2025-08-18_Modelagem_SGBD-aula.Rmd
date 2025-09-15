@@ -103,7 +103,9 @@ Considere um Banco de Dados para representar, com consistência Matemática os f
 
 #### Edgard F Cood explica em sua obra "A Relational Model of Data for Large Shared Data Banks" como definir uma Banco de Dados compartilhado *matemáticamente*
 
-> Um banco de dados relacional é um banco de dados no qual todos os dados são representados por meio de relações (matematicamente, conjuntos de tuplas), e todas as operações sobre os dados são baseadas em operadores formais do cálculo relacional e da álgebra relacional. - *A Relational Model of Data for Large Shared Data Banks” (Communications of the ACM, vol. 13, n. 6, pp. 377–387, 1970).*
+> Um **banco de dados relacional** é um banco de dados no qual todos os dados são representados por meio de **relações (matematicamente, conjuntos de tuplas)**, e todas as operações sobre os dados são baseadas em operadores formais do cálculo relacional e da álgebra relacional. - *A Relational Model of Data for Large Shared Data Banks” (Communications of the ACM, vol. 13, n. 6, pp. 377–387, 1970).*
+
+[![Professor Edgar Frank Codd - Universidade do Tenessi](images/2025-08-18/02-Edgard_Frank_Codd.jpg)](https://buttondown.com/jaffray/archive/in-codd-we-trust-or-not/)
 
 ### Então para podemos relacionar estes dois conjuntos (Funcionários e Departamentos) utilizando a Teoria das Funções
 
@@ -177,11 +179,37 @@ Ainda, é necessário acrescentar algumas regras de integridade a representaçã
 
 O Modelo Entidade-Relacionamento (MER), proposto por Peter Chen em 1976, é uma ferramenta fundamental na modelagem de dados. É um modelo de dados de alto nível que descreve a estrutura conceitual de um banco de dados. O Modelo Entidade-Relacionamento (MER) é representado graficamente através de um DER (Diagrama Entidade-Relacionamento).
 
+[![Professor Peter Chen - universidade norte-americana de Luisiania](images/2025-08-18/03-Peter_Chen.jpg){width="173"}](https://personalidades-tecnologia.blogspot.com/2011/06/peter-pin-shan-chen-peter-pin-shan-chen.html)
+
 É utilizado para projetar Bancos de Dados Relacionais a partir de entrevistas onde se descreve as informações que se deseja armazenar de forma consistente. Exemplo:
 
 "*Desenhe um diagrama entidade-relacionamento DER contendo as entidades funcionarios e departamentos. A entidade "funcionários" possui os atributos "nome" e "CPF". A entidade "Departamentos" possui os atributos "Nome" e "sigla". O atributo "CPF" é chave primária da entidade "Funcionários". O atributo "sigla" é chave primária da entidade "Departamentos". As entidades "Funcionários" e "Departamentos" se relacionam através de um relacionamento chamado "Pertence"*."
 
-![](images/5-bi/02-Modelo-Entidade-Relacionamento.jpg)
+```{plantuml Exemplo-01, plantuml.path="images"}
+@startchen
+
+left to right direction
+
+entity FUNCIONARIOS {
+  nome 
+  cpf <<key>> 
+}
+
+entity DEPARTAMENTOS {
+  nome 
+  sigla <<key>> 
+}
+
+relationship PERTENCE {
+
+}
+
+
+FUNCIONARIOS  -1- PERTENCE
+PERTENCE      -N- DEPARTAMENTOS
+
+@endchen
+```
 
 Segundo Laudon
 
@@ -189,39 +217,139 @@ Segundo Laudon
 
 ### Composição e Significado do Diagrama Entidade Relacionamento (DER)
 
-+:------------:+:---------------------------------:+:--------------------------------------:+
-| **Nome**     | **Desenho**                       | **Significado**                        |
-+--------------+-----------------------------------+----------------------------------------+
-| Entidade     | ![](images/5-bi/03-retangulo.jpg) | Representa uma tabela e é identificada |
-|              |                                   |                                        |
-|              |                                   | no texto por um **substantivo**.       |
-+--------------+-----------------------------------+----------------------------------------+
+$$
+\begin{array}{c| c | c}
+\textbf{ NOME DO COMPONENTE}    & \textbf{Representação Gráfica}   & \textbf{ Liguagem Natural (texto)} \\ 
+\hline 
+ENTIDADE                        &  \quad RETÂNGULO                 & \quad SUBSTÃNTIVO \\
+ATRIBUTO                        &  \quad ELÍPSE                    & \quad ADJETIVO \\
+RELACIONAMENTO                  &  \quad LOSÂNGULO                 & \quad VERBO \\
+\hline
+\textbf{Total: 3 ELEMENTOS }    & \textbf{ FORMA GRÁFICA }         & \textbf{ FORMA MOFOLÓGICA GRAMATICAL }
+\end{array}
+$$
 
-+:-----------:+:-------------------------------------------:+:--------------------------------------------------------------------:+
-| **Nome**    | **Desenho**                                 | **Significado**                                                      |
-+-------------+---------------------------------------------+----------------------------------------------------------------------+
-| Atributo    | ![](images/5-bi/05-elipse.jpg){width="182"} | Representa uma coluna e é identificada no texto por um **adjetivo**. |
-+-------------+---------------------------------------------+----------------------------------------------------------------------+
+```{r tikz-diagrama-DER-00, engine='tikz', echo=FALSE, fig.cap="Diagrama de Montadoras, Veículos e Proprietários"}
+\usetikzlibrary{arrows,positioning,shapes,fit,calc}
 
-+:--------------:+:--------------------------------------------:+:----------------------------------------------:+
-| **Nome**       | **Desenho**                                  | **Significado**                                |
-+----------------+----------------------------------------------+------------------------------------------------+
-| Relacionamento | ![](images/5-bi/04-losango.jpg){width="185"} | Representa uma **Referência** e é identificada |
-|                |                                              |                                                |
-|                |                                              | no texto por um **Verbo**.                     |
-+----------------+----------------------------------------------+------------------------------------------------+
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+\begin{tikzpicture}
+
+  %--- Retângulo à esquerda ---
+  \begin{scope}[shift={(0,0)}]
+    \draw[thick] (0,0) rectangle (3,2);
+    \node at (1.5,1) {Retângulo};
+  \end{scope}
+
+  %--- Elipse ao centro (deslocada 5 cm à direita) ---
+  \begin{scope}[shift={(5,0)}]
+    \draw[thick] (0,1) ellipse (1.5cm and 1cm);
+    \node at (0,1) {Elipse};
+  \end{scope}
+
+  %--- Losango à direita (deslocado 10 cm à direita) ---
+  \begin{scope}[shift={(9,0.9)}]
+    \draw[thick] (0,1.5) -- (1.5,0) -- (0,-1.5) -- (-1.5,0) -- cycle;
+    \node at (0,0) {Losango};
+  \end{scope}
+
+
+\end{tikzpicture}
+
+
+```
 
 ## Modelo Físico de Banco de Dados
 
 ### Geração do modelo Físico para aplica-lo ao SGBD (Sistema de Gerenciamento de Banco de Dados):
 
-Uma vez que o modelo conceitual seja gerado, o analista pode mapea-lo para um "modelo físico" onde se mapeiam chaves primárias e chaves forasteiras nas tabelas.
+Uma vez que o modelo conceitual seja gerado, o analista pode mapea-lo para um "modelo físico". Aqui, cada entidade irá gerar uma tebela, cada atributo irá originar uma coluna pertinente da tabela em questão e cada relacionamento irá mapear **chaves primárias** e **chaves forasteiras** nas tabelas interrelacionadas.
 
-Após a geração do modelo físico pode-se gerar o SQL que monta a estrutura do Banco de Dados.
+$$
+\begin{array}{c| c | c}
+\textbf{Componente Lógico}    & \textbf{ Componente Físico}   & \textbf{Liguagem Natural (texto)} \\ 
+\hline 
+ENTIDADE                        &  \quad TABELA               & \quad SUBSTÃNTIVO \\
+ATRIBUTO                        &  \quad COLUNA               & \quad ADJETIVO \\
+RELACIONAMENTO                  &  \quad CHAVE-ESTRANGEIRA    & \quad VERBO \\
+\hline
+\textbf{Diagrama Lógico DER }    & \textbf{ FORMA FÍSICA - SGBD }    & \textbf{ FORMA MOFOLÓGICA GRAMATICAL ORIGINAL }
+\end{array}
+$$
+
+A ferramenta que irá criar as estruturas Físicas (tabelas, colunas, chaves) dentro do Banco de Dados é o Sistema de Gerenciamento de Banco de Dados através da linguagem **SQL**.
 
 ![](images/5-bi/06-modelo_fisico.jpg)
 
-### Código SQL - Implementação do Modelo Físico
+### Interagindo com o Modelo Físico - A linguagem SQL (Structured Query Language)
+
+A linguagem SQL foi criada nos laboratórios da IBM em 1974, como interface de manipulação ao Bando de Dados Relacional System-R , atualmente denominado IBM DB2. Os criadores foram engenheiros de sistemas que sucederam o professor Edgard Frank Codd no projeto de Banco de Dados Relacional: Donald Chamberlain e Raymond Boyce.
+
++----------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| ![**Donald Chamberlain** - Criador da linguagem SQL nos laboratórios da IBM](images/2025-08-18/04-Donald_Chamberlain.jpg){width="358"} | ![**Raymond Boyce** - Criador da linguagem SQL nos laboratórios da IBM](images/2025-08-18/04-Raymond_Boyce.jpg){width="238"} |
++----------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+A lingauem SQL é a ponte com o mundo exterior para um Sistema de Gerenciamento de Banco de Dados (SGBD). Os conjunto de comandos da linguagem SQL são divididos em 3 grandes grupos:
+
+$$
+\begin{array}{c| c | c}
+\textbf{GRUPO}    & \textbf{ Comandos}   & \textbf{Finalidade} \\ 
+\hline 
+Grupo \ DDL         &  \quad \ Data \ Definion \ Language        & \quad Criar \ estruturas \ de \ dados \\
+Grupo \ DML         &  \quad \ Data \ Manipulation \ Language    & \quad Manipular \ dados \ armazenados \\
+Grupo \ DCL         &  \quad \ Data \ Control \ Language         & \quad Criar \ Regras \ para \ os \ dados \\
+Grupo \ TCL         &  \quad \ Transaction \ Control \ Language  & \quad Criar \ Transações \ para \ os \ dados \\
+\hline
+\textbf{Subconjunto SQL }    & \textbf{ Significado }    & \textbf{ Conjunto Completo }
+\end{array}
+$$
+
+Comandos exemplo:
+
+$$
+\begin{array}{c| c }
+\textbf{GRUPO}    & \textbf{ Comandos}    \\ 
+\hline 
+Grupo \ DDL         &  \quad  CREATE, \quad ALTER,\quad DROP \ \        \\
+Grupo \ DML         &  \quad SELECT, \quad INSERT, \quad UPDATE, \quad DELETE, \quad JOIN    \\
+Grupo \ DCL         &  \quad GRANT, \quad REVOKE  \\
+Grupo \ TCL         &  \quad COMMIT, \quad ROLLBACK, \quad SAVEPOINT   \\
+\hline
+\textbf{Subconjunto SQL }    & \textbf{ Significado }     
+\end{array}
+$$
+
+O código abaixo escrito em Lingauem SQL padrão transfere para o modelo físico o modelo lógico anterior:
+
+```{plantuml Exemplo-01-continuação, plantuml.path="images"}
+@startchen
+
+left to right direction
+
+entity FUNCIONARIOS {
+  nome 
+  cpf <<key>> 
+}
+
+entity DEPARTAMENTOS {
+  nome 
+  sigla <<key>> 
+}
+
+relationship PERTENCE {
+
+}
+
+
+FUNCIONARIOS  -1- PERTENCE
+PERTENCE      -N- DEPARTAMENTOS
+
+@endchen
+```
+
+Transformando em SQL - EQUIVALENTE:
 
 ``` sql
 -- Exemplo testado e gerado no SGBD Postgres versão 15
@@ -264,15 +392,17 @@ alter table "public".funcionarios add constraint "Chave_estrangeira_Departamento
 
 Uma revenda de veículos multimarcas deseja informatizar seu negócio e precisa de um banco de dados que registre informações sobre veículos, fabricantes e clientes. Cada veículo deve ter código de identificação, modelo, ano de fabricação, cor, preço e chassi. Todo veículo pertence a um fabricante. O fabricante é identificado por um código e deve ter armazenados seu nome e país de origem. A revenda vende veículos para clientes, e cada venda deve registrar a data, o valor da negociação e a forma de pagamento. Um cliente pode comprar mais de um veículo, mas cada veículo só pode ser vendido uma vez. Cada cliente é identificado por um código e deve ter armazenados seu nome, CPF/CNPJ, telefone e endereço.
 
-### Modelo Matemático
+### Passo 1 - Visualizando matemáticamente os dados:
 
-Para tratar problemas desta natureza, o professor em matemática da Universidade do Tenesse, [Prof Edgar Frank Codd (1923-2003)](https://pt.wikipedia.org/wiki/Edgar_Frank_Codd) procurou inicialmente utilizar teorias matemáticas para organizar e oferecer consistência aos dados:
+Vejamos como ficaria representar matemáticamente o enunciado acima:
 
 -   Teoria dos Conjuntos - Ajudaria a organizar e agrupar os dados em conjuntos;
 
 -   Teoria das Funções - A idéia era fornecer um mecanismo de consistência aos dados de conjuntos diferentes relacionados. Por exemplo, haveria uma função que mapeasse um um elemento do conjunto `veículo` a outro elemento do conjunto `montadora`.
 
 #### Representação Matemática em Conjuntos e seus Elementos :
+
+Vamos visualizar gráficamente os conjuntos de `Marcas`, `modelos` e `proprietários` :
 
 ```{r tikz-diagrama1, engine='tikz', echo=FALSE, fig.cap="Diagrama de Montadoras, Veículos e Proprietários"}
 \usetikzlibrary{arrows,positioning,shapes,fit,calc}
@@ -322,6 +452,8 @@ Para tratar problemas desta natureza, o professor em matemática da Universidade
 
 #### Gerando os Relacionamentos "Matemáticamente" - (Teoria das Funções, Domínios e Imagens):
 
+Vamos visualizar gráficamente os relacionamentos entre os lementos dos conjuntos `Marcas`, `modelos` e `proprietários` :
+
 ```{r tikz-diagrama2, engine='tikz', echo=FALSE, fig.cap="Diagrama de Montadoras, Veículos e Proprietários"}
 \usetikzlibrary{arrows,positioning,shapes,fit,calc}
 \pgfdeclarelayer{background}
@@ -366,15 +498,15 @@ Para tratar problemas desta natureza, o professor em matemática da Universidade
 \end{tikzpicture}
 ```
 
-A limitação deste modelo logo apareceria: a forma matemática não conseguia representar os diferentes atributos que distinguiam cada elemento existente dentro de um conjunto.
+A limitação desta representação gráfica logo fica evidente: por mais que na forma matemática se consiga representar os elementos dos conjuntos e o relacionamento entre eles, a representação não consegue representar os diferentes atributos (características) que os elementos dos conjuntos compartilham.
 
 ### Modelo Lógico: Modelo Entidade Relacionamento
 
-em 1978 , o professor **Peter Pin-Shan Chen** da universidade norte-americana de Luisiania apresentou o Modelo Entidade Relacionamento. Este modelo apresentava uma forma de modelar projetos de Bancos de Dados relacionais, independemente de plataforma tecnológica ( UNIX, Windows etc).
+Vamos agora converter a representação matemática para uma representação lógica utilizando o modelo M.E.R. (modelo entidade-relacionamento ) proposto pelo professor Peter Chen
 
 #### Modelo Entidade Relacionamento
 
-O modelo Entidade Relacionamento, também chamado de MER, consistem em traduzir um texto para um modelo de Banco de dados utilizando a morfologia da gramática da língua portuguesa com a seguinte regra:
+O modelo Entidade Relacionamento consistem em traduzir elementos morfológicos da gramática da língua portuguesa em um texto para um modelo de Banco de dados utilizando a com a seguinte regra de montagem:
 
 +-------------------------------+--------------------------------------+----------------------------------+---------------------------------------------+
 | Classe morfológica da palavra | CORRESPONDÊNCIA NO MODELO MATEMÁTICO | CORRESPONDÊNCIA NO MODELO LÓGICO | CORRESPONDÊNCIA NO MODELO FÍSICO-RELACIONAL |
@@ -457,7 +589,108 @@ COMPRA_VENDE -1- VEICULOS
 @endchen
 ```
 
-## Relacionamentos e Cardinalidade
+
+```SQL
+
+
+-- ================================================
+-- 1) TRANSFORME AS ENTIDADES E ATRIBUTOS EM 
+--    TABELAS E COLUNAS
+-- ================================================
+CREATE TABLE fabricantes
+(
+    codigo_fabricante  INTEGER      NOT NULL,
+    nome               VARCHAR(100) NOT NULL,
+    pais_origem        VARCHAR(60)  NOT NULL
+);
+
+CREATE TABLE clientes
+(
+    codigo_cliente   INTEGER      NOT NULL,
+    nome             VARCHAR(120) NOT NULL,
+    cpf_cnpj         VARCHAR(20)  NOT NULL UNIQUE,
+    telefone         VARCHAR(30),
+    endereco         TEXT
+);
+
+CREATE TABLE veiculos 
+(
+    codigo_veiculo      INTEGER       NOT NULL,
+    modelo              VARCHAR(100)  NOT NULL,
+    ano_fabricacao      INTEGER       NOT NULL,
+    cor                 VARCHAR(40),
+    preco               NUMERIC(12,2) NOT NULL,
+    chassi              VARCHAR(30)   UNIQUE NOT NULL
+);
+
+CREATE TABLE vendas
+(
+    codigo_venda     INTEGER          NOT NULL,
+    data_venda       DATE             NOT NULL,
+    valor_negociado  NUMERIC(12,2)    NOT NULL,
+    forma_pagamento  VARCHAR(50)      NOT NULL
+);
+
+-- ================================================
+-- 2) TRANSFORME OS ATRIBUTOS CHAVE PRIMÁRIA
+-- EM CHAVES-PRIMÁRIAS DAS TABELAS
+-- ================================================
+ALTER TABLE fabricantes ADD CONSTRAINT chave-primaria_fabricante PRIMARY KEY (codigo_fabricante);
+
+ALTER TABLE clientes    ADD CONSTRAINT chave-primaria_cliente PRIMARY KEY (codigo_cliente);
+
+ALTER TABLE veiculos    ADD CONSTRAINT chave-primaria_veiculo PRIMARY KEY (codigo_veiculo);
+
+ALTER TABLE vendas      ADD CONSTRAINT chave-primaria_venda PRIMARY KEY (codigo_venda);
+
+-- ================================================
+-- 3) ADICIONAR NAS TABELAS AS COLUNAS EXTRAS
+--    QUE VÃO RECEBER AS CHAVES ESTRANGEIRAS
+-- ================================================
+
+-- adicione uma coluna que irá acomodar a chave primária da tabela fabricantes como chave estrangeira
+ALTER TABLE veiculos add cloumn  codigo_fabricante   INTEGER NOT NULL;
+
+-- adicione uma coluna que irá acomodar a chave primária da tabela clientes como chave estrangeira
+ALTER TABLE vendas   add cloumn  codigo_cliente      INTEGER NOT NULL;
+
+-- adicione uma coluna que irá acomodar a chave primária da tabela veículos como chave estrangeira
+ALTER TABLE vendas   add cloumn  codigo_veiculo      INTEGER NOT NULL UNIQUE;
+
+-- ================================================
+-- 3) CRIE AS CHAVES ESTRANGEIRAS QUE FAZEM A LIGAÇÃO
+-- DAS TABELAS "LADO N" DO RELACIONAMENTO NO 
+-- DIAGRAMA ENTIDADE-RELACIONAMENTO COM AS
+-- COLUNAS DO LADO 1
+-- ================================================
+
+-- utilizando chave estrangeira, faça esta tabela veículos referenciar a tabela fabricantes
+ALTER TABLE veiculos
+    ADD CONSTRAINT chave-estrageira_veiculo_fabricante
+    FOREIGN KEY (codigo_fabricante)
+    REFERENCES fabricantes (codigo_fabricante)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT;
+
+-- utilizando chave estrangeira, faça esta tabela vendas referenciar a tabela clientes
+ALTER TABLE vendas
+    ADD CONSTRAINT chave-estrageira_venda_cliente
+    FOREIGN KEY (codigo_cliente)
+    REFERENCES clientes (codigo_cliente)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT;
+
+-- utilizando chave estrangeira, faça esta tabela vendas referenciar a tabela veículos 
+ALTER TABLE vendas
+    ADD CONSTRAINT chave-estrageira_venda_veiculo
+    FOREIGN KEY (codigo_veiculo)
+    REFERENCES veiculos (codigo_veiculo)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT;
+
+```
+
+## VERBOS: Relacionamentos e Cardinalidade
 
 A **cardinalidade** define **quantas ocorrências de uma entidade podem estar associadas** a ocorrências de outra entidade em um relacionamento.
 
@@ -584,24 +817,23 @@ CURSAM   -N- DISCIPLINAS
 
 ## Entidade Dominante e Entidade Subordinada
 
-No **Modelo Entidade-Relacionamento (MER)**, algumas entidades só existem **dependendo da existência de outra**.  
+No **Modelo Entidade-Relacionamento (MER)**, algumas entidades só existem **dependendo da existência de outra**.\
 Nesses casos, usamos os conceitos de **Entidade Dominante** e **Entidade Subordinada**.
 
----
+------------------------------------------------------------------------
 
 ### Definições:
 
-- **Entidade Dominante (ou Forte):**  
-  É uma entidade que **existe por si só**, sem depender de nenhuma outra.  
-  Ex.: Cliente, Produto, Funcionário.  
+-   **Entidade Dominante (ou Forte):**\
+    É uma entidade que **existe por si só**, sem depender de nenhuma outra.\
+    Ex.: Cliente, Produto, Funcionário.
 
-- **Entidade Subordinada (ou Fraca):**  
-  É uma entidade que **depende de outra** para existir.  
-  Ela **não possui chave primária própria** completa e precisa da chave da entidade dominante.  
-  Ex.: ItemPedido, Dependente, Parcela.  
+-   **Entidade Subordinada (ou Fraca):**\
+    É uma entidade que **depende de outra** para existir.\
+    Ela **não possui chave primária própria** completa e precisa da chave da entidade dominante.\
+    Ex.: ItemPedido, Dependente, Parcela.
 
 A entidade subordinada é representada por um **losango duplo** (relacionamento identificador) em algumas notações, ou simplesmente destacada como **entidade fraca**.
-
 
 ```{plantuml EntidadeDominante01, plantuml.path="images"}
 @startchen
@@ -655,9 +887,11 @@ POSSUEM         -N- ITEMS_PEDIDO
 @endchen
 ```
 
+------------------------------------------------------------------------
 
----
+## CARDINALIDADE DO MODELO LÓGICO E A CRIAÇÃO DE CHAVES ESTRANGEIRAS NO MODELO FÍSICO-RELACIONAL
 
+Vai ser a cardinalidade que irá ditar em quais tabelas criaremos chaves estrangeiras.
 
 
 

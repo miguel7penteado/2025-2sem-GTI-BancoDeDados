@@ -1,0 +1,2882 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\usepackage{svg}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={GTI - Banco de dados - 2025 - Anotações de aula},
+  pdfauthor={Professor Miguél Suares},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{GTI - Banco de dados - 2025 - Anotações de aula}
+\author{Professor Miguél Suares}
+\date{2025-09-15}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\chapter*{Sobre estas anotações}\label{sobre-estas-anotauxe7uxf5es}
+\addcontentsline{toc}{chapter}{Sobre estas anotações}
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Estas anotações são apenas lembretes das aulas expostas em sala, durante a disciplina de Banco de dados.
+
+\section{ACESSO AO GITBOOK CELULAR}\label{acesso-ao-gitbook-celular}
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+\subsubsection{\texorpdfstring{\url{https://miguel7penteado.github.io/2025-2sem-GTI-BancoDeDados}}{https://miguel7penteado.github.io/2025-2sem-GTI-BancoDeDados}}\label{httpsmiguel7penteado.github.io2025-2sem-gti-bancodedados}
+
+\includegraphics{images/qr-code-disciplina.jpg}
+
+\section{Leitores de formato de arquivo EPUB para SmartPhone}\label{leitores-de-formato-de-arquivo-epub-para-smartphone}
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+\subsection{ANDROID}\label{android}
+
+\subsubsection{\texorpdfstring{\textbf{Moon+ Reader}}{Moon+ Reader}}\label{moon-reader}
+
+\includegraphics[width=3.54167in,height=\textheight]{images/qrcode/leitor_epub/MoonReaderPlus.jpg}
+
+\section{Livros Texto da Disciplina}\label{livros-texto-da-disciplina}
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+\subsection{\texorpdfstring{\href{https://www.kufunda.net/publicdocs/Introdu\%C3\%A7\%C3\%A3o\%20a\%20Sistemas\%20de\%20Bancos\%20de\%20Dados\%20(C.\%20J.\%20Date)\%20(z-lib.org).pdf}{``Introdução a sistemas de bancos de dados'' do autor ``\textbf{Christopher John Date}''}}{``Introdução a sistemas de bancos de dados'' do autor ``Christopher John Date''}}\label{introduuxe7uxe3o-a-sistemas-de-bancos-de-dados-do-autor-christopher-john-date}
+
+\includegraphics{images/livros/livro1.jpg}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.2202}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.7798}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Autor(es)} & \begin{minipage}[t]{\linewidth}\raggedright
+\subsection{\texorpdfstring{\href{https://en.wikipedia.org/wiki/Christopher_J._Date}{\textbf{Christopher John Date}}}{Christopher John Date}}\label{christopher-john-date}
+\end{minipage} \\
+\textbf{Editora} & LTC \\
+\textbf{Idioma} & Português \\
+\textbf{ISBN} & 978-85-352-8445-4 \\
+\textbf{Formato} & Capa dura \\
+\textbf{Páginas} & 1623 \\
+\textbf{Código Biblioteca} & \\
+\end{longtable}
+
+\subsection{\texorpdfstring{\href{https://drive.google.com/file/d/0B452rmbcudPSVFdCZ09vVkJUUUd2dlpMNS1vaEczUQ/view?pli=1&resourcekey=0-3MTcHlAYjPX6YSvBQGweUQ}{``\textbf{Projeto de bancos de dados}'' do autor ``Carlos Alberto HEUSER''}}{``Projeto de bancos de dados'' do autor ``Carlos Alberto HEUSER''}}\label{projeto-de-bancos-de-dados-do-autor-carlos-alberto-heuser}
+
+\includegraphics{images/livros/livro2.jpg}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.2069}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.7931}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Autor(es)} & \begin{minipage}[t]{\linewidth}\raggedright
+\subsection{\texorpdfstring{\href{https://www.inf.ufrgs.br/site/docente/carlos-alberto-heuser/}{Carlos Alberto HEUSER}}{Carlos Alberto HEUSER}}\label{carlos-alberto-heuser}
+\end{minipage} \\
+\textbf{Editora} & Bookman \\
+\textbf{Idioma} & Português \\
+\textbf{ISBN-10} & 8577803821 \\
+\textbf{Formato} & Impresso \\
+\textbf{Páginas} & 282 \\
+\textbf{Código Biblioteca} & \\
+\end{longtable}
+
+\section{Calendário das aulas}\label{calenduxe1rio-das-aulas}
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+\paragraph{AGOSTO DE 2025}\label{agosto-de-2025}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Data & Dia da Semana & Aulas & Conteúdo \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+04/08/2025 & Segunda-Feira & Aula Inaugural & \\
+11/08/2025 & Segunda-Feira & Aula 2 & \\
+18/08/2025 & Segunda-Feira & Aula 3 & \\
+25/08/2025 & Segunda-Feira & Aula 4 & \\
+\end{longtable}
+
+\paragraph{SETEMBRO DE 2025}\label{setembro-de-2025}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Data & Dia da Semana & Aulas & Conteúdo \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+01/09/2025 & Segunda-Feira & Aula 5 & \\
+08/09/2025 & Segunda-Feira & Aula 6 & \\
+15/09/2025 & Segunda-Feira & NP1 & PROVA \\
+22/09/2025 & Segunda-Feira & Aula 7 & \\
+29/09/2025 & Segunda-Feira & Aula 8 & \\
+\end{longtable}
+
+\paragraph{OUTUBRO DE 2025}\label{outubro-de-2025}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Data & Dia da Semana & Aulas & Conteúdo \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+06/10/2025 & Segunda-Feira & Aula 9 & \\
+13/10/2025 & Segunda-Feira & Aula 10 & \\
+20/10/2025 & Segunda-Feira & Aula 11 & \\
+27/10/2025 & Segunda-Feira & Aula 12 & \\
+\end{longtable}
+
+\paragraph{NOVEMBRO DE 2025}\label{novembro-de-2025}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Data & Dia da Semana & Aulas & Conteúdo \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+03/11/2025 & Segunda-Feira & NP2 & PROVA \\
+10/11/2025 & Segunda-Feira & & N/A \\
+17/11/2025 & Segunda-Feira & SUB & PROVA \\
+24/11/2025 & Segunda-Feira & & N/A \\
+\end{longtable}
+
+\paragraph{DEZEMBRO DE 2025}\label{dezembro-de-2025}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Data & Dia da Semana & Aulas & Conteúdo \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+01/12/2025 & Segunda-Feira & & N/A \\
+08/12/2025 & Segunda-Feira & EXAME & PROVA \\
+15/12/2025 & Segunda-Feira & & N/A \\
+\end{longtable}
+
+\section{Alunos 2025 - 2o Semestre}\label{alunos-2025---2o-semestre}
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+\subsection{Campus Chácara Santo Antônio}\label{campus-chuxe1cara-santo-antuxf4nio}
+
+\subsubsection{Turma TI2P40}\label{turma-ti2p40}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule\noalign{}
+Matrícula & Nome do aluno \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+F362BF0 & BRUNO ANTONIO MARQUES \\
+R536FA6 & CAIO CESAR BALBINO DA SILVA \\
+H6094I1 & DOUGLAS VINICIUS M DOS SANTOS \\
+R6607G5 & GABRIEL ROQUE DOS SANTOS \\
+R8133G7 & ÍTALO KEVIN RODRIGUES DA SILVA \\
+R837AA0 & LUCAS SOUZA RODRIGUES \\
+H714419 & MARCOS PAULO CORDEIRO GOES \\
+\end{longtable}
+
+\chapter{Aula Inaugural}\label{aula-inaugural}
+
+\subsubsection*{04/08/2025}\label{section}
+\addcontentsline{toc}{subsubsection}{04/08/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\section{\texorpdfstring{Disciplina: \textbf{Banco de Dados}}{Disciplina: Banco de Dados}}\label{disciplina-banco-de-dados}
+
+\begin{itemize}
+\tightlist
+\item
+  Curso: Gestão em Tecnologia da Informação (GTI)\\
+\item
+  Período: \textbf{Noturno}\\
+\item
+  Turma: \textbf{2º semestre de 2025}
+\item
+  Campus: \textbf{Chácara Santo Antônio}
+\end{itemize}
+
+\begin{quote}
+``Dados são o novo petróleo.'' -- Clive Humby!
+\end{quote}
+
+\includegraphics[width=3.125in,height=\textheight]{images/2025-08-04/Boas_Vindas.jpg}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{👨‍🏫 Sobre o Professor}\label{sobre-o-professor}
+
+\begin{itemize}
+\item
+  Nome: Prof.~Miguél Suares
+\item
+  Formação: Mestre em Engenharia da Computação e Energia da Agricultura
+\item
+  Experiência: +10 anos com bancos de dados relacionais e análise de dados
+\item
+  Contato: \href{mailto:miguel.penteado@docente.unip.br}{\nolinkurl{miguel.penteado@docente.unip.br}}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{🎯 Objetivos da Disciplina}\label{objetivos-da-disciplina}
+
+\begin{itemize}
+\item
+  Compreender os fundamentos de bancos de dados
+\item
+  Modelar dados com diagramas ER
+\item
+  Implementar e consultar bases de dados com SQL
+\item
+  Utilizar ferramentas como MySQL, PostgreSQL, QGIS e R
+\item
+  Desenvolver raciocínio lógico para resolver problemas com dados
+
+  \includegraphics[width=3.47917in,height=\textheight]{images/2025-08-04/logos.jpg}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{📅 Calendário da Disciplina}\label{calenduxe1rio-da-disciplina}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Data & Aula & Tema \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+04/08/2025 & Aula 1 & Aula Inaugural \\
+11/08/2025 & Aula 2 & Fundamentos \\
+18/08/2025 & Aula 3 & Modelagem e Diagramas \\
+25/08/2025 & Aula 4 & Administração e Gerenciamento \\
+01/09/2025 & Aula 5 & Aplicação CRUD \\
+08/09/2025 & Aula 6 & MySQL \\
+15/09/2025 & \textbf{NP1} & \textbf{Prova} \\
+22/09/2025 & Aula 7 & Postgres \\
+29/09/2025 & Aula 8 & QGIS \\
+06/10/2025 & Aula 9 & RStudio \\
+13/10/2025 & Aula 10 & Análise I \\
+20/10/2025 & Aula 11 & Análise II \\
+27/10/2025 & Aula 12 & Análise III \\
+03/11/2025 & \textbf{NP2} & \textbf{Prova} \\
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{📚 Ementa Resumida}\label{ementa-resumida}
+
+\begin{itemize}
+\item
+  Introdução a bancos de dados relacionais (RDBMS)
+\item
+  Modelagem de dados (M.E.R.) e diagramas Entidade Relacionamento (D.E.R.)
+\item
+  Linguagem SQL: DDL, DML, DCL
+\item
+  Ferramentas: MySQL, PostgreSQL
+\item
+  Visualização geoespacial (QGIS)
+\item
+  Análise e exploração de dados (R e RStudio)
+
+  \includegraphics[width=3.44792in,height=\textheight]{images/2025-08-04/modelagem.jpg}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{📝 Avaliação}\label{avaliauxe7uxe3o}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Provas (NP1 + NP2)}
+\item
+  \textbf{Prova Substitutiva}
+\item
+  \textbf{Exame}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{🛠️ Ferramentas da Disciplina}\label{ferramentas-da-disciplina}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Servidores de Banco de Dados}: MySQL, PostgreSQL
+\item
+  \textbf{Servidores de Banco de Dados}: pgAdmin, MySQL Workbench, DBeaver\\
+\item
+  \textbf{Geoprocessamento}: QGIS\\
+\item
+  \textbf{Análise de Dados}: R + RStudio\\
+\item
+  \textbf{Versionamento e Organização}: GitHub, Teams
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{📌 Expectativas e Regras}\label{expectativas-e-regras}
+
+\begin{itemize}
+\tightlist
+\item
+  Pontualidade e entrega de atividades no prazo
+\item
+  Trabalhos devem ser originais (sem plágio)
+\item
+  Participação ativa nas discussões e práticas
+\item
+  Uso responsável das ferramentas
+\item
+  Respeito e colaboração entre colegas
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{💡 Dicas para Mandar Bem}\label{dicas-para-mandar-bem}
+
+\begin{itemize}
+\tightlist
+\item
+  Faça os exercícios logo após a aula
+\item
+  Participe das práticas com base real
+\item
+  Mantenha o repositório do projeto atualizado
+\item
+  Refaça consultas SQL até entender
+\item
+  Teste e documente suas soluções
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{🙌 Encerramento}\label{encerramento}
+
+\section{Estamos prontos?}\label{estamos-prontos}
+
+📧 Dúvidas? Estou à disposição\\
+📊 Vamos construir conhecimento juntos!
+
+\begin{quote}
+Próxima aula: \textbf{Fundamentos de Banco de Dados} -- 11/08/2025
+\end{quote}
+
+\chapter{Fundamentos de Sistemas de Bancos de Dados}\label{fundamentos-de-sistemas-de-bancos-de-dados}
+
+\subsubsection*{11/08/2025}\label{section-1}
+\addcontentsline{toc}{subsubsection}{11/08/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-1}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{O início : Edgar Frank ``Ted'' Codd (19/08/1923 -- 18/04/2003)}\label{o-inuxedcio-edgar-frank-ted-codd-19081923-18042003}
+
+\begin{itemize}
+\item
+  Nome: Professor Codd - Matemático da IBM
+
+  \includegraphics[width=1.39583in,height=\textheight]{images/2025-08-11/01-codd.jpg}
+\item
+  1965: Cria modelo relacional nos tempos da IBM/NASA/Projeto Apolo
+\end{itemize}
+
+\includegraphics[width=3.47917in,height=\textheight]{images/2025-08-11/modelagem.jpg}
+
+\begin{itemize}
+\item
+  1969: Codd não é levado a sério
+\item
+  1970: Publica a teoria relacional nas universidades (Berkley, Califórnia)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Anos 1970: IBM entra no Modelo relacional: SystemR e SEQUEL/SQL}\label{anos-1970-ibm-entra-no-modelo-relacional-systemr-e-sequelsql}
+
+\begin{itemize}
+\item
+  1970: IBM entende a importância do modelo de Codd
+\item
+  1971: Como Codd publica o conhecimento, o projeto vai para \emph{Raymond Francis Boyce}
+
+  \includegraphics[width=1.4375in,height=\textheight]{images/2025-08-11/05-Boyce.png}
+\item
+  1974: Donald D. Chamberlin e \emph{Raymond Francis Boyce} criam a SQL na IBM
+\item
+  1973: \emph{Raymond Francis Boyce} criam o SystemR (Banco Relacional da IBM)
+\item
+  Codd continua publicando artigos sobre modelo relacional
+\item
+  1977: Ex-alunos prof Michael StoneBraker fundam a (Relational Inc) ORACLE ``copiando'' o SystemR da IBM.
+
+  \includegraphics[width=1.375in,height=\textheight]{images/2025-08-11/06-oracle.png}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Anos 1970: Prof Codd inspira Prof StoneBraker: BANCO INGRES}\label{anos-1970-prof-codd-inspira-prof-stonebraker-banco-ingres}
+
+\begin{itemize}
+\item
+  1974: Michael StoneBraker começa projeto INGRES na Universidade de Berkley
+
+  \includegraphics[width=2.10417in,height=\textheight]{images/2025-08-11/07-Michael_StoneBraker.png}
+\item
+  1976: Nasce o INGRES, pai de muitos Bancos de Dados Modernos.
+
+  \includegraphics[width=1.80208in,height=\textheight]{images/2025-08-11/03-ingress-1.0.jpg}
+\item
+  1976: INGRES nasce com linguagem prórpia, o QUEL, ao invés do SQL
+\item
+  INGRESS cria a empresa Relational INC
+\item
+  Ex-funcionários (alunos) da Relational Inc fundam a SYBASE.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Anos 1980: INGRES (SEMI-LIVRE) vs IBM System R ( pago ) vs ORACLE}\label{anos-1980-ingres-semi-livre-vs-ibm-system-r-pago-vs-oracle}
+
+\begin{itemize}
+\item
+  1982 IBM transforma SystemR em IBM DB2.
+\item
+  1984 Ex-funcionários (alunos) da Relational Inc fundam a SYBASE.
+
+  \includegraphics[width=2.67708in,height=\textheight]{images/2025-08-11/08-sybase.png}
+\item
+  1985: SoneBraker cria o PostGRES (Banco de Dados Objeto-Relacional)
+\item
+  1986: INGRES perde para a ORACLE no mercado de SGBDs
+\item
+  1989: SQL vira padrão ANSI e padrão ISO
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Anos 1990: MySQL e POSTGRES que vira POSTGRESQL}\label{anos-1990-mysql-e-postgres-que-vira-postgresql}
+
+\begin{itemize}
+\item
+  1993: O SYBASE SQL Server é portado para o Windows NT 4.0
+\item
+  1994: Fim do relacionamento entre Microsoft e SYBASE: nasce o MS-SQL Server
+\item
+  1994: \textbf{Andrew Yu} e \textbf{Jolly Chen} Adicionam SQL ao POSTGRES: nasce o \textbf{PostgreSQL}
+
+  \includegraphics[width=1.46875in,height=\textheight]{images/2025-08-11/10-postgresql.png}
+\item
+  1994: David Axmark, Allan Larsson e Michael ``Monty'' Widenius criam o MySQL.
+
+  \includegraphics[width=1.36458in,height=\textheight]{images/2025-08-11/09-mysql.png}
+\item
+  1997: Nasce o postgreSQL 6.0
+\item
+  1998: Carlo Strozzi - Modelo Não-SQL (conceito de SGBDs que não usam interface SQL)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Anos 2000: Sybase eo No-SQL}\label{anos-2000-sybase-eo-no-sql}
+
+\begin{itemize}
+\item
+  2003 - Doug Cutting e Mike Cafarella, projeto \emph{Hadoop} baeado no documento \emph{Google File System}
+\item
+  2007 - 10gen (MongoDB Inc) inicia o projeto MongoDB (Não SQL)
+
+  \includegraphics[width=2.70833in,height=\textheight]{images/2025-08-11/11-mongodb.png}
+\item
+  2007 - Avinash Lakshman do facebook disponibiliza o Apache Cassandra (Não SQL)
+
+  \includegraphics[width=1.3125in,height=\textheight]{images/2025-08-11/12-cassandra.png}
+\item
+  2008 - BIG DATA Lançado o Apache HADOOP e o Apache Hive (emulador SQL)
+
+  \includegraphics[width=4.59375in,height=\textheight]{images/2025-08-11/13-hadoop.png}BIG
+
+  \includegraphics[width=1.44792in,height=\textheight]{images/2025-08-11/14-Apache_Hive.png}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rmarkdown}\SpecialCharTok{::}\FunctionTok{render}\NormalTok{(}\StringTok{"03{-}2025{-}08{-}19\_20\_.Rmd"}\NormalTok{, }\AttributeTok{output\_dir=}\StringTok{"docs"}\NormalTok{, }\AttributeTok{output\_file =}\StringTok{"temporario.html"}\NormalTok{ , }\AttributeTok{output\_format =} \StringTok{"html\_document"}\NormalTok{) ; utils}\SpecialCharTok{::}\FunctionTok{browseURL}\NormalTok{(}\StringTok{"docs/temporario.html"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Exercícios}\label{exercuxedcios}
+
+\chapter{Modelagem de Bancos de Dados}\label{modelagem-de-bancos-de-dados}
+
+\subsubsection*{18/08/2025}\label{section-2}
+\addcontentsline{toc}{subsubsection}{18/08/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-2}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\section{Introdução: Visitando a teoria de Bancos de Dados}\label{introduuxe7uxe3o-visitando-a-teoria-de-bancos-de-dados}
+
+\includegraphics[width=4.70833in,height=\textheight]{images/5-bi/01-banco-de-dados.jpg}
+
+\begin{quote}
+\textbf{Banco de Dados} Um banco de dados é uma coleção compartilhada de dados logicamente relacionados, projetada para atender às necessidades informacionais de uma organização. - \emph{DATE, C. J. An Introduction to Database Systems. 8. ed.~Boston: Addison-Wesley, 2003}.
+\end{quote}
+
+Ou seja, alguns pontos-chave da definição de Date:
+
+\begin{itemize}
+\item
+  ``Coleção de dados \ldots{}'' → não é um conjunto de arquivos soltos, mas dados organizados.
+\item
+  ``Compartilhada \ldots{}'' → não pertence a apenas um usuário ou aplicação; é usada por vários.
+\item
+  ``Dados logicamente relacionados \ldots{}'' → os dados têm um relacionamento semântico, não são apenas agrupamentos arbitrários.
+\item
+  ``Projetada para atender necessidades \ldots{}'' → o banco existe para suportar os processos de uma organização (consultas, relatórios, controle, tomada de decisão).
+\end{itemize}
+
+\includegraphics{images/5-bi/07-tabela_relacional.jpg}
+
+\begin{quote}
+\textbf{Banco de Dados Relacional} Um banco de dados relacional é um banco de dados baseado em um modelo de dados relacional, no qual os dados são representados como um conjunto de relações (tabelas), e cada relação consiste em tuplas (linhas) e atributos (colunas). - \emph{SILBERSCHATZ, Abraham; KORTH, Henry F.; SUDARSHAN, S. Database System Concepts. 6. ed.~New York: McGraw-Hill, 2010.}
+\end{quote}
+
+Agora, alguns pontos-chave da definição de \emph{Abraham Silberschatz} :
+
+\begin{itemize}
+\item
+  Base no modelo relacional de Codd (1970).
+\item
+  Dados representados em tabelas (relações).
+\item
+  Cada tabela é composta de tuplas (linhas) e atributos (colunas).
+\item
+  Integridade garantida por restrições (chaves, integridade referencial, domínio de atributos).
+\item
+  Manipulação feita por linguagens relacionais (álgebra relacional, cálculo relacional, SQL).
+\end{itemize}
+
+O Banco de Dados Relacional organiza as informações em \textbf{tabelas bidiomensionais} constituídas de \textbf{linhas e colunas} chamadas e essas tabelas recebem o nome de \textbf{relações}. Cada \textbf{relação} possui um \textbf{campo-chave} que confere identificação exclusiva a cada registro da tabela.
+
+\section{Modelo Matemático de um Banco de Dados}\label{modelo-matemuxe1tico-de-um-banco-de-dados}
+
+Considere um Banco de Dados para representar, com consistência Matemática os funcionários e Departamentos de uma Empresa.
+
+\subsection{Podemos representa-lo matemáticamente utilizando a teoria dos conjuntos}\label{podemos-representa-lo-matemuxe1ticamente-utilizando-a-teoria-dos-conjuntos}
+
+\begin{figure}
+\centering
+\includegraphics{2025-GTI-Sem-BancoDeDados_files/figure-latex/tikz-diagrama0-1.pdf}
+\caption{\label{fig:tikz-diagrama0}Diagrama de Montadoras, Veículos e Proprietários}
+\end{figure}
+
+\subsubsection{\texorpdfstring{Edgard F Cood explica em sua obra ``A Relational Model of Data for Large Shared Data Banks'' como definir uma Banco de Dados compartilhado \emph{matemáticamente}}{Edgard F Cood explica em sua obra ``A Relational Model of Data for Large Shared Data Banks'' como definir uma Banco de Dados compartilhado matemáticamente}}\label{edgard-f-cood-explica-em-sua-obra-a-relational-model-of-data-for-large-shared-data-banks-como-definir-uma-banco-de-dados-compartilhado-matemuxe1ticamente}
+
+\begin{quote}
+Um \textbf{banco de dados relacional} é um banco de dados no qual todos os dados são representados por meio de \textbf{relações (matematicamente, conjuntos de tuplas)}, e todas as operações sobre os dados são baseadas em operadores formais do cálculo relacional e da álgebra relacional. - \emph{A Relational Model of Data for Large Shared Data Banks'' (Communications of the ACM, vol.~13, n.~6, pp.~377--387, 1970).}
+\end{quote}
+
+\href{https://buttondown.com/jaffray/archive/in-codd-we-trust-or-not/}{\includegraphics{images/2025-08-18/02-Edgard_Frank_Codd.jpg}}
+
+\subsection{Então para podemos relacionar estes dois conjuntos (Funcionários e Departamentos) utilizando a Teoria das Funções}\label{entuxe3o-para-podemos-relacionar-estes-dois-conjuntos-funcionuxe1rios-e-departamentos-utilizando-a-teoria-das-funuxe7uxf5es}
+
+\[
+\text{Edgard Frank Codd era um matemático tradicional} \\
+\text{Considere o conseito de função: } \\
+f(x) = Y \\
+\text{era dessa forma que ele imaginava relacionamento e } \\
+\text{ garantia matemática de CONSISTÊNCIA entre } \\
+\text{ elementos de 2 conjuntos de dados diferentes }
+\]
+
+\begin{figure}
+\centering
+\includegraphics{2025-GTI-Sem-BancoDeDados_files/figure-latex/tikz-diagrama10-1.pdf}
+\caption{\label{fig:tikz-diagrama10}Diagrama de Montadoras, Veículos e Proprietários}
+\end{figure}
+
+Mas vai ficar faltando como representar os atributos nesse modelo (colunas das tabelas):
+
+\[
+\begin{array}{c| c | c}
+\textbf{ Conjunto Funcionários}    & \textbf{ Relacionamento Trabalha} & \textbf{Conjunto Departamentos)} \\ 
+\hline 
+FULANO                             &  \quad TRABALHA                   & \quad RH \\
+BELTRANO                           &  \quad TRABALHA                   & \quad FINANCEIRO \\
+CICLANO                            &  \quad TRABALHA                   & \quad DEIRETORIA \\
+\hline
+\textbf{Total: 3 ELEMENTOS }       & \textbf{ CONECTADOS }             & \textbf{Total: 3 ELEMENTOS }
+\end{array}
+\]
+
+Ainda, é necessário acrescentar algumas regras de integridade a representação;
+
+\section{Modelo Lógico de Banco de Dados}\label{modelo-luxf3gico-de-banco-de-dados}
+
+\subsection{Modelo Conceitual ``Entidade Relacionamento'' de Banco de Dados}\label{modelo-conceitual-entidade-relacionamento-de-banco-de-dados}
+
+O Modelo Entidade-Relacionamento (MER), proposto por Peter Chen em 1976, é uma ferramenta fundamental na modelagem de dados. É um modelo de dados de alto nível que descreve a estrutura conceitual de um banco de dados. O Modelo Entidade-Relacionamento (MER) é representado graficamente através de um DER (Diagrama Entidade-Relacionamento).
+
+\href{https://personalidades-tecnologia.blogspot.com/2011/06/peter-pin-shan-chen-peter-pin-shan-chen.html}{\includegraphics[width=1.80208in,height=\textheight]{images/2025-08-18/03-Peter_Chen.jpg}}
+
+É utilizado para projetar Bancos de Dados Relacionais a partir de entrevistas onde se descreve as informações que se deseja armazenar de forma consistente. Exemplo:
+
+``\emph{Desenhe um diagrama entidade-relacionamento DER contendo as entidades funcionarios e departamentos. A entidade ''funcionários'' possui os atributos ''nome'' e ''CPF''. A entidade ''Departamentos'' possui os atributos ''Nome'' e ''sigla''. O atributo ''CPF'' é chave primária da entidade ''Funcionários''. O atributo ''sigla'' é chave primária da entidade ''Departamentos''. As entidades ''Funcionários'' e ''Departamentos'' se relacionam através de um relacionamento chamado ''Pertence''}.''
+
+\includesvg{images/Exemplo-01.svg}
+
+Segundo Laudon
+
+\begin{quote}
+\textbf{Diagrama Entidade/Relacionamento (DER)} é uma representação esquemática utilizada para entender as relações entre as tabelas de um banco de dados relacional. {[}{[}1{]} - LAUDON, Kenneth C.; LAUDON, Jane P. *Sistemas de informação gerenciais*. 11. ed.~São Paulo: Pearson Education do Brasil, 2010. p.~180.{]}
+\end{quote}
+
+\subsection{Composição e Significado do Diagrama Entidade Relacionamento (DER)}\label{composiuxe7uxe3o-e-significado-do-diagrama-entidade-relacionamento-der}
+
+\[
+\begin{array}{c| c | c}
+\textbf{ NOME DO COMPONENTE}    & \textbf{Representação Gráfica}   & \textbf{ Liguagem Natural (texto)} \\ 
+\hline 
+ENTIDADE                        &  \quad RETÂNGULO                 & \quad SUBSTÃNTIVO \\
+ATRIBUTO                        &  \quad ELÍPSE                    & \quad ADJETIVO \\
+RELACIONAMENTO                  &  \quad LOSÂNGULO                 & \quad VERBO \\
+\hline
+\textbf{Total: 3 ELEMENTOS }    & \textbf{ FORMA GRÁFICA }         & \textbf{ FORMA MOFOLÓGICA GRAMATICAL }
+\end{array}
+\]
+
+\begin{figure}
+\centering
+\includegraphics{2025-GTI-Sem-BancoDeDados_files/figure-latex/tikz-diagrama-DER-00-1.pdf}
+\caption{\label{fig:tikz-diagrama-DER-00}Diagrama de Montadoras, Veículos e Proprietários}
+\end{figure}
+
+\section{Modelo Físico de Banco de Dados}\label{modelo-fuxedsico-de-banco-de-dados}
+
+\subsection{Geração do modelo Físico para aplica-lo ao SGBD (Sistema de Gerenciamento de Banco de Dados):}\label{gerauxe7uxe3o-do-modelo-fuxedsico-para-aplica-lo-ao-sgbd-sistema-de-gerenciamento-de-banco-de-dados}
+
+Uma vez que o modelo conceitual seja gerado, o analista pode mapea-lo para um ``modelo físico''. Aqui, cada entidade irá gerar uma tebela, cada atributo irá originar uma coluna pertinente da tabela em questão e cada relacionamento irá mapear \textbf{chaves primárias} e \textbf{chaves forasteiras} nas tabelas interrelacionadas.
+
+\[
+\begin{array}{c| c | c}
+\textbf{Componente Lógico}    & \textbf{ Componente Físico}   & \textbf{Liguagem Natural (texto)} \\ 
+\hline 
+ENTIDADE                        &  \quad TABELA               & \quad SUBSTÃNTIVO \\
+ATRIBUTO                        &  \quad COLUNA               & \quad ADJETIVO \\
+RELACIONAMENTO                  &  \quad CHAVE-ESTRANGEIRA    & \quad VERBO \\
+\hline
+\textbf{Diagrama Lógico DER }    & \textbf{ FORMA FÍSICA - SGBD }    & \textbf{ FORMA MOFOLÓGICA GRAMATICAL ORIGINAL }
+\end{array}
+\]
+
+A ferramenta que irá criar as estruturas Físicas (tabelas, colunas, chaves) dentro do Banco de Dados é o Sistema de Gerenciamento de Banco de Dados através da linguagem \textbf{SQL}.
+
+\includegraphics{images/5-bi/06-modelo_fisico.jpg}
+
+\subsection{Interagindo com o Modelo Físico - A linguagem SQL (Structured Query Language)}\label{interagindo-com-o-modelo-fuxedsico---a-linguagem-sql-structured-query-language}
+
+A linguagem SQL foi criada nos laboratórios da IBM em 1974, como interface de manipulação ao Bando de Dados Relacional System-R , atualmente denominado IBM DB2. Os criadores foram engenheiros de sistemas que sucederam o professor Edgard Frank Codd no projeto de Banco de Dados Relacional: Donald Chamberlain e Raymond Boyce.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5189}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4811}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{center}
+\includegraphics[width=3.72917in,height=\textheight]{images/2025-08-18/04-Donald_Chamberlain.jpg}
+
+\textbf{Donald Chamberlain} - Criador da linguagem SQL nos laboratórios da IBM
+\end{center}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{center}
+\includegraphics[width=2.47917in,height=\textheight]{images/2025-08-18/04-Raymond_Boyce.jpg}
+
+\textbf{Raymond Boyce} - Criador da linguagem SQL nos laboratórios da IBM
+\end{center}
+\end{minipage} \\
+\end{longtable}
+
+A lingauem SQL é a ponte com o mundo exterior para um Sistema de Gerenciamento de Banco de Dados (SGBD). Os conjunto de comandos da linguagem SQL são divididos em 3 grandes grupos:
+
+\[
+\begin{array}{c| c | c}
+\textbf{GRUPO}    & \textbf{ Comandos}   & \textbf{Finalidade} \\ 
+\hline 
+Grupo \ DDL         &  \quad \ Data \ Definion \ Language        & \quad Criar \ estruturas \ de \ dados \\
+Grupo \ DML         &  \quad \ Data \ Manipulation \ Language    & \quad Manipular \ dados \ armazenados \\
+Grupo \ DCL         &  \quad \ Data \ Control \ Language         & \quad Criar \ Regras \ para \ os \ dados \\
+Grupo \ TCL         &  \quad \ Transaction \ Control \ Language  & \quad Criar \ Transações \ para \ os \ dados \\
+\hline
+\textbf{Subconjunto SQL }    & \textbf{ Significado }    & \textbf{ Conjunto Completo }
+\end{array}
+\]
+
+Comandos exemplo:
+
+\[
+\begin{array}{c| c }
+\textbf{GRUPO}    & \textbf{ Comandos}    \\ 
+\hline 
+Grupo \ DDL         &  \quad  CREATE, \quad ALTER,\quad DROP \ \        \\
+Grupo \ DML         &  \quad SELECT, \quad INSERT, \quad UPDATE, \quad DELETE, \quad JOIN    \\
+Grupo \ DCL         &  \quad GRANT, \quad REVOKE  \\
+Grupo \ TCL         &  \quad COMMIT, \quad ROLLBACK, \quad SAVEPOINT   \\
+\hline
+\textbf{Subconjunto SQL }    & \textbf{ Significado }     
+\end{array}
+\]
+
+O código abaixo escrito em Lingauem SQL padrão transfere para o modelo físico o modelo lógico anterior:
+
+\includesvg{images/Exemplo-01-continuação.svg}
+
+Transformando em SQL - EQUIVALENTE:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{{-}{-} Exemplo testado e gerado no SGBD Postgres versão 15}
+
+\CommentTok{{-}{-} Tabela Funcionários}
+\KeywordTok{CREATE} \KeywordTok{TABLE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS} \OtherTok{"public"}\NormalTok{.funcionarios}
+\NormalTok{(}
+\NormalTok{    cpf bigint }\KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    nome }\DataTypeTok{varchar}\NormalTok{(}\DecValTok{200}\NormalTok{)}
+\NormalTok{);}
+
+\CommentTok{{-}{-} Tabela Departamentos}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS} \OtherTok{"public"}\NormalTok{.departamentos}
+\NormalTok{(}
+\NormalTok{    sigla }\DataTypeTok{integer} \KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    nome }\DataTypeTok{varchar}\NormalTok{(}\DecValTok{200}\NormalTok{)}
+\NormalTok{);}
+
+\CommentTok{{-}{-} Definindo a coluna "cpf" da tabela "funcionários" como chave primária}
+\KeywordTok{alter} \KeywordTok{table} \OtherTok{"public"}\NormalTok{.funcionarios }\KeywordTok{add} \KeywordTok{constraint} \OtherTok{"chave\_primaria\_funcionarios"} \KeywordTok{primary} \KeywordTok{key}\NormalTok{ (cpf);}
+
+\CommentTok{{-}{-} Definindo a coluna "sigla"" da tabela "departamentos" como chave primária}
+\KeywordTok{alter} \KeywordTok{table} \OtherTok{"public"}\NormalTok{.departamentos }\KeywordTok{add} \KeywordTok{constraint} \OtherTok{"chave\_primaria\_departamentos"} \KeywordTok{primary} \KeywordTok{key}\NormalTok{ (sigla);}
+
+\CommentTok{{-}{-} Gerando a integridade referêncial }
+\CommentTok{{-}{-} Importando a chave primária da tabela "departamentos" como "chave estrangeira"}
+\CommentTok{{-}{-} na tabela "funcionários"}
+
+\CommentTok{{-}{-} primeiro adiciona{-}se a coluna estrageira "sigla" que é coluna originalmente }
+\CommentTok{{-}{-} pertencente a tabela departamentos}
+\KeywordTok{alter} \KeywordTok{table} \OtherTok{"public"}\NormalTok{.funcionarios }\KeywordTok{add} \KeywordTok{column}\NormalTok{ sigla }\DataTypeTok{integer}\NormalTok{;}
+
+\CommentTok{{-}{-} finalmente conecte a coluna sigla a chave primária da tabela "departamento"}
+\CommentTok{{-}{-} criando então uma chave estrageira na tabela "funcionários".}
+\KeywordTok{alter} \KeywordTok{table} \OtherTok{"public"}\NormalTok{.funcionarios }\KeywordTok{add} \KeywordTok{constraint} \OtherTok{"Chave\_estrangeira\_Departamento\_funcionarios"} \KeywordTok{foreign} \KeywordTok{key}\NormalTok{ (sigla) }\KeywordTok{references} \OtherTok{"public"}\NormalTok{.departamentos(sigla);}
+\end{Highlighting}
+\end{Shaded}
+
+\section{EXEMPLO: REVENDA DE VEÍCULOS MULTI-MARCAS}\label{exemplo-revenda-de-veuxedculos-multi-marcas}
+
+Uma revenda de veículos multimarcas deseja informatizar seu negócio e precisa de um banco de dados que registre informações sobre veículos, fabricantes e clientes. Cada veículo deve ter código de identificação, modelo, ano de fabricação, cor, preço e chassi. Todo veículo pertence a um fabricante. O fabricante é identificado por um código e deve ter armazenados seu nome e país de origem. A revenda vende veículos para clientes, e cada venda deve registrar a data, o valor da negociação e a forma de pagamento. Um cliente pode comprar mais de um veículo, mas cada veículo só pode ser vendido uma vez. Cada cliente é identificado por um código e deve ter armazenados seu nome, CPF/CNPJ, telefone e endereço.
+
+\subsection{Passo 1 - Visualizando matemáticamente os dados:}\label{passo-1---visualizando-matemuxe1ticamente-os-dados}
+
+Vejamos como ficaria representar matemáticamente o enunciado acima:
+
+\begin{itemize}
+\item
+  Teoria dos Conjuntos - Ajudaria a organizar e agrupar os dados em conjuntos;
+\item
+  Teoria das Funções - A idéia era fornecer um mecanismo de consistência aos dados de conjuntos diferentes relacionados. Por exemplo, haveria uma função que mapeasse um um elemento do conjunto \texttt{veículo} a outro elemento do conjunto \texttt{montadora}.
+\end{itemize}
+
+\subsubsection{Representação Matemática em Conjuntos e seus Elementos :}\label{representauxe7uxe3o-matemuxe1tica-em-conjuntos-e-seus-elementos}
+
+Vamos visualizar gráficamente os conjuntos de \texttt{Marcas}, \texttt{modelos} e \texttt{proprietários} :
+
+\begin{figure}
+\centering
+\includegraphics{2025-GTI-Sem-BancoDeDados_files/figure-latex/tikz-diagrama1-1.pdf}
+\caption{\label{fig:tikz-diagrama1}Diagrama de Montadoras, Veículos e Proprietários}
+\end{figure}
+
+\subsubsection{Gerando os Relacionamentos ``Matemáticamente'' - (Teoria das Funções, Domínios e Imagens):}\label{gerando-os-relacionamentos-matemuxe1ticamente---teoria-das-funuxe7uxf5es-domuxednios-e-imagens}
+
+Vamos visualizar gráficamente os relacionamentos entre os lementos dos conjuntos \texttt{Marcas}, \texttt{modelos} e \texttt{proprietários} :
+
+\begin{figure}
+\centering
+\includegraphics{2025-GTI-Sem-BancoDeDados_files/figure-latex/tikz-diagrama2-1.pdf}
+\caption{\label{fig:tikz-diagrama2}Diagrama de Montadoras, Veículos e Proprietários}
+\end{figure}
+
+A limitação desta representação gráfica logo fica evidente: por mais que na forma matemática se consiga representar os elementos dos conjuntos e o relacionamento entre eles, a representação não consegue representar os diferentes atributos (características) que os elementos dos conjuntos compartilham.
+
+\subsection{Modelo Lógico: Modelo Entidade Relacionamento}\label{modelo-luxf3gico-modelo-entidade-relacionamento}
+
+Vamos agora converter a representação matemática para uma representação lógica utilizando o modelo M.E.R. (modelo entidade-relacionamento ) proposto pelo professor Peter Chen
+
+\subsubsection{Modelo Entidade Relacionamento}\label{modelo-entidade-relacionamento}
+
+O modelo Entidade Relacionamento consistem em traduzir elementos morfológicos da gramática da língua portuguesa em um texto para um modelo de Banco de dados utilizando a com a seguinte regra de montagem:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2078}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2532}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2273}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2987}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Classe morfológica da palavra & CORRESPONDÊNCIA NO MODELO MATEMÁTICO & CORRESPONDÊNCIA NO MODELO LÓGICO & CORRESPONDÊNCIA NO MODELO FÍSICO-RELACIONAL \\
+\texttt{Substantivos} & \texttt{CONJUNTOS} & \texttt{ENTIDADES} & \texttt{TABELAS} \\
+\textbf{\texttt{Adjetivos}} & N/A & \textbf{\texttt{ATRIBUTO}} & \textbf{\texttt{COLUNAS}} \\
+\textbf{\texttt{Verbos}} & Idéia de ``funções y=f(x)'' & \textbf{\texttt{RELACIONAMENTOS}} & \textbf{\texttt{CHAVE\ ESTRANGEIRA}} \\
+\end{longtable}
+
+Tomando como exemplo a revenda de carros:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.2909}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.7091}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Classe morfológica da palavra & \\
+\texttt{Substantivos} & VEÍCULOS, FABRICANTES, CLIENTES \\
+\textbf{\texttt{Adjetivos}} & Referentes a veículos: \texttt{Modelo}, \texttt{Ano\_Fabricacao}, \texttt{Cor}, \texttt{Preco}, \texttt{Chassi}
+
+Referentes a fabricante: \texttt{Nome}, \texttt{Pais\_Origem}
+
+Referentes a cliente: \texttt{Nome}, \texttt{CPF\_CNPJ}, \texttt{Telefone}, \texttt{Endereco} \\
+\textbf{\texttt{Verbos}} & Fabricante - \texttt{PRODUZ}- Veículo
+
+clinte - \texttt{COMPRA/VENDE} - Veículo \\
+\end{longtable}
+
+\subsubsection{Modelo Entidade Relacionamento - representação gráfica}\label{modelo-entidade-relacionamento---representauxe7uxe3o-gruxe1fica}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Classe morfológica da palavra & REPRESENTAÇÃO GRÁFICA \\
+\texttt{Substantivos} & RETÂNGULOS \\
+\textbf{\texttt{Adjetivos}} & \textbf{ELIPSES} \\
+\textbf{\texttt{Verbos}} & \textbf{LOSÂNGULOS} \\
+\end{longtable}
+
+\includesvg{images/modelo01.svg}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+
+\CommentTok{{-}{-} ================================================}
+\CommentTok{{-}{-} 1) TRANSFORME AS ENTIDADES E ATRIBUTOS EM }
+\CommentTok{{-}{-}    TABELAS E COLUNAS}
+\CommentTok{{-}{-} ================================================}
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ fabricantes}
+\NormalTok{(}
+\NormalTok{    codigo\_fabricante  }\DataTypeTok{INTEGER}      \KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    nome               }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{100}\NormalTok{) }\KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    pais\_origem        }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{60}\NormalTok{)  }\KeywordTok{NOT} \KeywordTok{NULL}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ clientes}
+\NormalTok{(}
+\NormalTok{    codigo\_cliente   }\DataTypeTok{INTEGER}      \KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    nome             }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{120}\NormalTok{) }\KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    cpf\_cnpj         }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{20}\NormalTok{)  }\KeywordTok{NOT} \KeywordTok{NULL} \KeywordTok{UNIQUE}\NormalTok{,}
+\NormalTok{    telefone         }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{30}\NormalTok{),}
+\NormalTok{    endereco         TEXT}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ veiculos }
+\NormalTok{(}
+\NormalTok{    codigo\_veiculo      }\DataTypeTok{INTEGER}       \KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    modelo              }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{100}\NormalTok{)  }\KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    ano\_fabricacao      }\DataTypeTok{INTEGER}       \KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    cor                 }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{40}\NormalTok{),}
+\NormalTok{    preco               }\DataTypeTok{NUMERIC}\NormalTok{(}\DecValTok{12}\NormalTok{,}\DecValTok{2}\NormalTok{) }\KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    chassi              }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{30}\NormalTok{)   }\KeywordTok{UNIQUE} \KeywordTok{NOT} \KeywordTok{NULL}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ vendas}
+\NormalTok{(}
+\NormalTok{    codigo\_venda     }\DataTypeTok{INTEGER}          \KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    data\_venda       }\DataTypeTok{DATE}             \KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    valor\_negociado  }\DataTypeTok{NUMERIC}\NormalTok{(}\DecValTok{12}\NormalTok{,}\DecValTok{2}\NormalTok{)    }\KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    forma\_pagamento  }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{50}\NormalTok{)      }\KeywordTok{NOT} \KeywordTok{NULL}
+\NormalTok{);}
+
+\CommentTok{{-}{-} ================================================}
+\CommentTok{{-}{-} 2) TRANSFORME OS ATRIBUTOS CHAVE PRIMÁRIA}
+\CommentTok{{-}{-} EM CHAVES{-}PRIMÁRIAS DAS TABELAS}
+\CommentTok{{-}{-} ================================================}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ fabricantes }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ chave}\OperatorTok{{-}}\NormalTok{primaria\_fabricante }\KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (codigo\_fabricante);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ clientes    }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ chave}\OperatorTok{{-}}\NormalTok{primaria\_cliente }\KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (codigo\_cliente);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ veiculos    }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ chave}\OperatorTok{{-}}\NormalTok{primaria\_veiculo }\KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (codigo\_veiculo);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ vendas      }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ chave}\OperatorTok{{-}}\NormalTok{primaria\_venda }\KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (codigo\_venda);}
+
+\CommentTok{{-}{-} ================================================}
+\CommentTok{{-}{-} 3) ADICIONAR NAS TABELAS AS COLUNAS EXTRAS}
+\CommentTok{{-}{-}    QUE VÃO RECEBER AS CHAVES ESTRANGEIRAS}
+\CommentTok{{-}{-} ================================================}
+
+\CommentTok{{-}{-} adicione uma coluna que irá acomodar a chave primária da tabela fabricantes como chave estrangeira}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ veiculos }\KeywordTok{add}\NormalTok{ cloumn  codigo\_fabricante   }\DataTypeTok{INTEGER} \KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{;}
+
+\CommentTok{{-}{-} adicione uma coluna que irá acomodar a chave primária da tabela clientes como chave estrangeira}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ vendas   }\KeywordTok{add}\NormalTok{ cloumn  codigo\_cliente      }\DataTypeTok{INTEGER} \KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{;}
+
+\CommentTok{{-}{-} adicione uma coluna que irá acomodar a chave primária da tabela veículos como chave estrangeira}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ vendas   }\KeywordTok{add}\NormalTok{ cloumn  codigo\_veiculo      }\DataTypeTok{INTEGER} \KeywordTok{NOT} \KeywordTok{NULL} \KeywordTok{UNIQUE}\NormalTok{;}
+
+\CommentTok{{-}{-} ================================================}
+\CommentTok{{-}{-} 3) CRIE AS CHAVES ESTRANGEIRAS QUE FAZEM A LIGAÇÃO}
+\CommentTok{{-}{-} DAS TABELAS "LADO N" DO RELACIONAMENTO NO }
+\CommentTok{{-}{-} DIAGRAMA ENTIDADE{-}RELACIONAMENTO COM AS}
+\CommentTok{{-}{-} COLUNAS DO LADO 1}
+\CommentTok{{-}{-} ================================================}
+
+\CommentTok{{-}{-} utilizando chave estrangeira, faça esta tabela veículos referenciar a tabela fabricantes}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ veiculos}
+    \KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ chave}\OperatorTok{{-}}\NormalTok{estrageira\_veiculo\_fabricante}
+    \KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (codigo\_fabricante)}
+    \KeywordTok{REFERENCES}\NormalTok{ fabricantes (codigo\_fabricante)}
+    \KeywordTok{ON} \KeywordTok{UPDATE} \KeywordTok{CASCADE}
+    \KeywordTok{ON} \KeywordTok{DELETE} \KeywordTok{RESTRICT}\NormalTok{;}
+
+\CommentTok{{-}{-} utilizando chave estrangeira, faça esta tabela vendas referenciar a tabela clientes}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ vendas}
+    \KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ chave}\OperatorTok{{-}}\NormalTok{estrageira\_venda\_cliente}
+    \KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (codigo\_cliente)}
+    \KeywordTok{REFERENCES}\NormalTok{ clientes (codigo\_cliente)}
+    \KeywordTok{ON} \KeywordTok{UPDATE} \KeywordTok{CASCADE}
+    \KeywordTok{ON} \KeywordTok{DELETE} \KeywordTok{RESTRICT}\NormalTok{;}
+
+\CommentTok{{-}{-} utilizando chave estrangeira, faça esta tabela vendas referenciar a tabela veículos }
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ vendas}
+    \KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ chave}\OperatorTok{{-}}\NormalTok{estrageira\_venda\_veiculo}
+    \KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (codigo\_veiculo)}
+    \KeywordTok{REFERENCES}\NormalTok{ veiculos (codigo\_veiculo)}
+    \KeywordTok{ON} \KeywordTok{UPDATE} \KeywordTok{CASCADE}
+    \KeywordTok{ON} \KeywordTok{DELETE} \KeywordTok{RESTRICT}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\section{VERBOS: Relacionamentos e Cardinalidade}\label{verbos-relacionamentos-e-cardinalidade}
+
+A \textbf{cardinalidade} define \textbf{quantas ocorrências de uma entidade podem estar associadas} a ocorrências de outra entidade em um relacionamento.
+
+Ela é fundamental para entender as regras de negócio do banco de dados e deve estar sempre representada no \textbf{Diagrama Entidade-Relacionamento (DER)}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{🔹 Tipos principais de cardinalidade}\label{tipos-principais-de-cardinalidade}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Um para Um (1:1)}\\
+\item
+  \textbf{Um para Muitos (1:N)}\\
+\item
+  \textbf{Muitos para Muitos (N:N)}
+\end{enumerate}
+
+A seguir, vamos detalhar cada caso.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{\texorpdfstring{1. Relacionamento \textbf{1:1 (Um para Um)}}{1. Relacionamento 1:1 (Um para Um)}}\label{relacionamento-11-um-para-um}
+
+Um exemplo clássico:\\
+- Cada MARIDO possui \textbf{uma única ESPOSA}.\\
+- Cada ESPOSA pertence a \textbf{um único MARIDO}.
+
+\subsubsection{Representação no DER:}\label{representauxe7uxe3o-no-der}
+
+\includesvg{images/cardinalidade01.svg}
+
+\subsection{\texorpdfstring{Relacionamento \textbf{1:N (Um para Muitos)}}{Relacionamento 1:N (Um para Muitos)}}\label{relacionamento-1n-um-para-muitos}
+
+Exemplo:
+
+Um \textbf{Cliente} pode fazer \textbf{muitos Pedidos}.
+
+Mas cada \textbf{Pedido} só pode pertencer a \textbf{um Cliente}.
+
+\subsubsection{Representação no DER:}\label{representauxe7uxe3o-no-der-1}
+
+\includesvg{images/cardinalidade02.svg}
+
+\subsection{Relacionamento N:N (Muitos para Muitos)}\label{relacionamento-nn-muitos-para-muitos}
+
+Exemplo:
+
+Um \textbf{Aluno} pode se matricular \textbf{em muitas Disciplinas}.
+
+Cada \textbf{Disciplina} pode ter \textbf{muitos Alunos}.
+
+( Esse tipo de relacionamento precisa de uma entidade associativa para ser implementado no banco (ex.: Matricula) )
+
+\subsubsection{Representação no DER:}\label{representauxe7uxe3o-no-der-2}
+
+\includesvg{images/cardinalidade03.svg}
+
+\section{Entidade Dominante e Entidade Subordinada}\label{entidade-dominante-e-entidade-subordinada}
+
+No \textbf{Modelo Entidade-Relacionamento (MER)}, algumas entidades só existem \textbf{dependendo da existência de outra}.\\
+Nesses casos, usamos os conceitos de \textbf{Entidade Dominante} e \textbf{Entidade Subordinada}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Definições:}\label{definiuxe7uxf5es}
+
+\begin{itemize}
+\item
+  \textbf{Entidade Dominante (ou Forte):}\\
+  É uma entidade que \textbf{existe por si só}, sem depender de nenhuma outra.\\
+  Ex.: Cliente, Produto, Funcionário.
+\item
+  \textbf{Entidade Subordinada (ou Fraca):}\\
+  É uma entidade que \textbf{depende de outra} para existir.\\
+  Ela \textbf{não possui chave primária própria} completa e precisa da chave da entidade dominante.\\
+  Ex.: ItemPedido, Dependente, Parcela.
+\end{itemize}
+
+A entidade subordinada é representada por um \textbf{losango duplo} (relacionamento identificador) em algumas notações, ou simplesmente destacada como \textbf{entidade fraca}.
+
+\includesvg{images/EntidadeDominante01.svg}
+
+Outro Exemplo:
+
+\includesvg{images/EntidadeDominante02.svg}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{CARDINALIDADE DO MODELO LÓGICO E A CRIAÇÃO DE CHAVES ESTRANGEIRAS NO MODELO FÍSICO-RELACIONAL}\label{cardinalidade-do-modelo-luxf3gico-e-a-criauxe7uxe3o-de-chaves-estrangeiras-no-modelo-fuxedsico-relacional}
+
+Vai ser a cardinalidade que irá ditar em quais tabelas criaremos chaves estrangeiras.
+
+\section{Normalização em Bancos de Dados Relaionais}\label{normalizauxe7uxe3o-em-bancos-de-dados-relaionais}
+
+\subsection{Tabela Desnormalizada}\label{tabela-desnormalizada}
+
+\includegraphics[width=3.57292in,height=\textheight]{images/5-bi/01-montadora.jpg}
+
+Considere a tabela Veículos abaixo:
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule\noalign{}
+Modelo & Montadora \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Strada & Fiat \\
+Mobi & Fiat \\
+Pulse & Fiat \\
+Onix & Chevrolet \\
+Tracker & Chevrolet \\
+Onix Plus & Chevrolet \\
+Polo & Volkswagen \\
+Nivus & Volkswagen \\
+T-Cross & Volkswagen \\
+HB20 & Hyundai \\
+Creta & Hyundai \\
+\end{longtable}
+
+Separamos o conjunto de elemntos \emph{Montadoras} e \emph{Modelos}.
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule\noalign{}
+MontadoraID & Montadora \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & Fiat \\
+2 & Chevrolet \\
+3 & Volkswagen \\
+4 & Hyundai \\
+\end{longtable}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule\noalign{}
+ModeloID & Modelo \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+101 & Strada \\
+102 & Mobi \\
+103 & Pulse \\
+201 & Onix \\
+202 & Tracker \\
+203 & Onix Plus \\
+301 & Polo \\
+302 & Nivus \\
+303 & T-Cross \\
+401 & HB20 \\
+402 & Creta \\
+\end{longtable}
+
+\begin{quote}
+O processo de fragmentar agrupamentos complexos de dados e simplifica-los a fim de minimizar redundâncias e economizar espaço no Banco de Dados Relacional é chamado de \textbf{NORMALIZAÇÃO.} {[}{[}1{]} - LAUDON, Kenneth C.; LAUDON, Jane P. *Sistemas de informação gerenciais*. 11. ed.~São Paulo: Pearson Education do Brasil, 2010. p.~180.{]}
+\end{quote}
+
+Mas Como indicar que cada elemento da tabela ``Modelo'' está associado a um elemento da tabela ``Montadora'' ?
+
+\subsection{Tabela Normalizada}\label{tabela-normalizada}
+
+Considere as tabelas abaixo:
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule\noalign{}
+MontadoraID & Montadora \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & Fiat \\
+2 & Chevrolet \\
+3 & Volkswagen \\
+4 & Hyundai \\
+\end{longtable}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule\noalign{}
+ModeloID & Modelo & MontadoraID \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+101 & Strada & 1 \\
+102 & Mobi & 1 \\
+103 & Pulse & 1 \\
+201 & Onix & 2 \\
+202 & Tracker & 2 \\
+203 & Onix Plus & 2 \\
+301 & Polo & 3 \\
+302 & Nivus & 3 \\
+303 & T-Cross & 3 \\
+401 & HB20 & 4 \\
+402 & Creta & 4 \\
+\end{longtable}
+
+Repare que:
+
+\begin{itemize}
+\item
+  É possível identificar que não existem montadoras repetidas na tabela ``Montadoras'';
+\item
+  É possível identificar que não existem modelos repetidos na tabela ``Montadoras'';
+\end{itemize}
+
+A coluna (atributo) \textbf{ModeloID} é a \textbf{chave primária} da tabela \textbf{Modelos.} A coluna (atributo) \textbf{MontadoraID} é a \textbf{chave primária} da tabela \textbf{Montadoras.}
+
+Na tabela \textbf{Modelos}, a coluna \textbf{MontadoraID}, acrescentada a tabela Modelos representa a ligação de cada elemento da tabela Modelos e Montadoras. Essa coluna ``importada'' da tabela Montadoras para a tabela Modelos se chama \textbf{chave estrangeira}.
+
+\section{Referências}\label{referuxeancias}
+
+\textbf{CHEN}, Peter (1990).~\textbf{\emph{Gerenciando Banco de Dados}. A Abordagem Entidade-Relacionamento para Projeto Lógico}. São Paulo: McGraw-Hill. 80~páginas.~\href{https://pt.wikipedia.org/wiki/International_Standard_Book_Number}{ISBN}~\href{https://pt.wikipedia.org/wiki/Especial:Fontes_de_livros/0-07-460575-5}{0-07-460575-5}
+
+\textbf{DATE}, C. J. \textbf{An Introduction to Database Systems.} 8. ed.~Boston: Addison-Wesley, 2003.
+
+\textbf{SILBERSCHATZ}, Abraham; KORTH, Henry F.; SUDARSHAN, S. \textbf{Database System Concepts.} 6. ed.~New York: McGraw-Hill, 2010.
+
+\textbf{CODD}, E. F. \textbf{A Relational Model of Data for Large Shared Data Banks.} Communications of the ACM, New York, v. 13, n.~6, p.~377--387, 1970.
+
+\section{Exercícios RESOLVIDOS}\label{exercuxedcios-resolvidos}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0035}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Exercício 1 --- Universidade
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Considere uma Universidade que possui vários Cursos. Cada curso tem um nome, uma duração em semestres e um coordenador. A universidade possui Professores, cada um com um nome, título e CPF. Um professor pode ministrar várias disciplinas, e cada disciplina pertence a um único curso. \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  Identifique as entidades
+\end{enumerate}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Identifique os atributos de cada Entidade
+\end{enumerate}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Identifique os relacionamentos entre as Entidades
+\end{enumerate}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Faça o diagrama DEM (Diagrama Entidade Relacionamento) contendo as entidades, atributos e relacionamentos que você mapeou.
+\end{enumerate}
+\end{minipage} \\
+\end{longtable}
+
+\subsubsection{Passo \#1 -}\label{passo-1--}
+
+Identificar \textbf{SUBSTANTIVOS} no contexto; identificar os \textbf{ADJETIVOS} pertinentes a cada SUBSTANTIVO; identificar os \textbf{VERBOS} de relação entre os substantivos.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3399}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3072}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3464}}@{}}
+\caption{Identificando SUBSTANTIVOS, ADJETIVOS referentes e VERBOS de relação}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Substantivos} \textbf{do contexto}: leve-os ao plural
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Adjetivos}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Verbos}
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Substantivos} \textbf{do contexto}: leve-os ao plural
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Adjetivos}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Verbos}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+UNIVERSIDADE -\textgreater{} \textbf{\texttt{UNIVERSIDADES}} & \texttt{NOME} (implícito no enunciado)
+
+\texttt{CNPJ} (implícito no enunciado) & universidade \texttt{POSSUI} (vários) cursos \\
+CURSO -\textgreater{} \textbf{\texttt{CURSOS}} & \texttt{NOME} (explícito no enunciado)
+
+\texttt{DURAÇÃO} (explícito no enunciado)
+
+\texttt{COORDENADOR} (explícito no enunciado)
+
+\texttt{CODIGO\_CURSO} (implícito no enunciado) & cursos são \texttt{POSSUÍDOS} por (vários) universidades \\
+PROFESSOR -\textgreater{} \textbf{\texttt{PROFESSORES}} & \texttt{CPF} (explícito no enunciado)
+
+\texttt{NOME} (explícito no enunciado)
+
+\texttt{TÍTULO} (explícito no enunciado) & universidade \texttt{POSSUI} (vários) professores
+
+professor \texttt{MINISTRA} (várias) disciplinas \\
+DISCIPLINA -\textgreater{} \textbf{\texttt{DISCIPLINAS}} & \texttt{NOME} (implícito no enunciado)
+
+\texttt{CODIGO\_DISCIPLINA} (implícito no enunciado) & disciplina \texttt{É\ MINISTRADA} por (vários) professores
+
+disciplina \texttt{PERTENCE} a (um único) curso \\
+\end{longtable}
+
+\subsubsection{Passo \#2}\label{passo-2}
+
+Criar o \textbf{\texttt{MODELO\ ENTIDADE\ RELACIONAMENTO\ (M.E.R.)}} - Converter SUBSTANTIVO em \textbf{\texttt{ENTIDADES}}; converter ADJETIVOS em \textbf{\texttt{ATRIBUTOS}} e converter VERBOS em \textbf{\texttt{RELACIONAMENTOS}}.
+
+\begin{itemize}
+\item
+  ENTIDADES identificadas: \textbf{\texttt{UNIVERSIDADES}}, \textbf{\texttt{CURSOS}}, \textbf{\texttt{PROFESSORES}} e \textbf{\texttt{DISCIPLINAS}}
+\item
+  ATRIBUTOS identificados: UNIVERSIDADES {[} nome,cnpj {]} ; CURSOS {[} nome, duração, coordenador, codigo\_curso{]} ; PROFESSORES {[} cpf, nome e título{]} ; DISCIPLINAS {[}nome e codigo\_disciplina{]}
+\item
+  RELACIONAMENTOS: {[}universidade-\texttt{POSSUI}-curso{]} ; {[}universidade-\texttt{POSSUI}-professores{]}; {[}professor-\texttt{MINISTRA}-disciplina{]} ; {[}disciplina-\texttt{PERTENCE}-curso{]}
+\end{itemize}
+
+\subsubsection{Passo \#3}\label{passo-3}
+
+Criar um DIAGRAMA ENTIDADE-RELACIONAMENTO (D.E.R.) com as informações levantadas:
+
+\includesvg{images/exercicio01-01.svg}
+
+\includesvg{images/exercicio01-02.svg}
+
+\includesvg{images/exercicio01-03.svg}
+
+\includesvg{images/exercicio01-04.svg}
+
+\subsubsection{Passo \#4}\label{passo-4}
+
+Identificar os Relacionamentos:
+
+\begin{itemize}
+\tightlist
+\item
+  {[}universidade-\texttt{POSSUI}-curso{]} ; {[}universidade-\texttt{POSSUI}-professores{]}; {[}professor-\texttt{MINISTRA}-disciplina{]} ; {[}disciplina-\texttt{PERTENCE}-curso{]}
+\end{itemize}
+
+\includesvg{images/exercicio01-05.svg}
+
+\subsubsection{Passo \#5 - Crie o código SQL referente ao diagrama que você desenhou:}\label{passo-5---crie-o-cuxf3digo-sql-referente-ao-diagrama-que-vocuxea-desenhou}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{/* =========================================================}
+\CommentTok{   Passo 1️{-} CRIAR TABELAS (somente colunas, sem PK nem FK)}
+\CommentTok{   ========================================================= */}
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ UNIVERSIDADES }
+\NormalTok{(}
+\NormalTok{    nome            }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    CNPJ            }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{14}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ CURSOS }
+\NormalTok{(}
+\NormalTok{    nome            }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    duracao         }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    coordenador     }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    codigo\_curso    }\DataTypeTok{INTEGER}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ PROFESSORES }
+\NormalTok{(}
+\NormalTok{    cpf             }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{11}\NormalTok{),}
+\NormalTok{    nome            }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    titulo          }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ DISCIPLINAS }
+\NormalTok{(}
+\NormalTok{    nome                }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    codigo\_disciplina   }\DataTypeTok{INTEGER}
+\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Passo 2{-} ADICIONAR CHAVES PRIMÁRIAS}
+\CommentTok{   ========================================================= */}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ UNIVERSIDADES }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (CNPJ);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ CURSOS        }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (codigo\_curso);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PROFESSORES   }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (cpf);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ DISCIPLINAS   }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (codigo\_disciplina);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Passo 3{-} CRIAR COLUNAS PARA FUTURAS CHAVES ESTRANGEIRAS}
+\CommentTok{   {-}{-} Sempre no lado N de cada relacionamento}
+\CommentTok{   ========================================================= */}
+\CommentTok{{-}{-} UNIVERSIDADES (1) —— (N) CURSOS  → CURSOS precisa de CNPJ}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ CURSOS   }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ CNPJ }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{14}\NormalTok{);}
+
+\CommentTok{{-}{-} UNIVERSIDADES (1) —— (N) PROFESSORES → PROFESSORES precisa de CNPJ}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PROFESSORES  }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ CNPJ }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{14}\NormalTok{);}
+
+\CommentTok{{-}{-} PROFESSORES (1) —— (N) DISCIPLINAS → DISCIPLINAS precisa de cpf}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ DISCIPLINAS }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ cpf }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{11}\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Passo 4{-} CRIAR AS CHAVES ESTRANGEIRAS}
+\CommentTok{   ========================================================= */}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ CURSOS      }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_cursos\_universidade      }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (CNPJ) }\KeywordTok{REFERENCES}\NormalTok{ UNIVERSIDADES (CNPJ);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PROFESSORES }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_professores\_universidade }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (CNPJ) }\KeywordTok{REFERENCES}\NormalTok{ UNIVERSIDADES (CNPJ);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ DISCIPLINAS }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_disciplinas\_professor    }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (cpf)  }\KeywordTok{REFERENCES}\NormalTok{ PROFESSORES (cpf);}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0044}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Exercício 2 --- Um Projeto de e-commerce
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Um Cliente faz Pedidos em um sistema de e-commerce. Cada cliente tem um nome, endereço e telefone. Os pedidos possuem uma data, um valor total e podem conter vários Produtos. Cada produto tem um nome, uma descrição e um preço. \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  Identifique as \textbf{entidades}
+\end{enumerate}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Identifique os \textbf{atributos} de cada Entidade
+\end{enumerate}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Identifique os \textbf{relacionamentos} entre as Entidades
+\end{enumerate}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Faça o \textbf{diagrama DEM (Diagrama Entidade Relacionamento)} contendo as entidades, atributos e relacionamentos que você mapeou.
+\end{enumerate}
+\end{minipage} \\
+\end{longtable}
+
+\subsubsection{Passo \#1 -}\label{passo-1---1}
+
+Identificar \textbf{SUBSTANTIVOS} no contexto; identificar os \textbf{ADJETIVOS} pertinentes a cada SUBSTANTIVO; identificar os \textbf{VERBOS} de relação entre os substantivos.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4302}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2384}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3256}}@{}}
+\caption{Identificando SUBSTANTIVOS, ADJETIVOS referentes e VERBOS de relação}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Substantivos} \textbf{do contexto}: leve-os ao plural
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Adjetivos}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Verbos}
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Substantivos} \textbf{do contexto}: leve-os ao plural
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Adjetivos}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Verbos}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+CLIENTE -\textgreater{} \textbf{\texttt{CLIENTES}} & \texttt{NOME} (explícito no enunciado)
+
+\texttt{ENDERECO} (explícito no enunciado)
+
+\texttt{TELEFONE} (explícito no enunciado)
+
+\texttt{CPF} (implícito no enunciado) & (vários) clientes \texttt{PEDEM} (vários) produtos \\
+PEDIDO -\textgreater{} \textbf{\texttt{PEDIDOS\ ????}}
+
+PEDIDO NÃO É SUBSTABNTIVO, MAS SIM O PARTICÍPIO PASSADO DO VERBO PEDIR.
+
+(PEDIR É VERBO !!!) & \texttt{DATA} (explícito no enunciado)
+
+\texttt{VALOR\_TOTAL} (explícito no enunciado) & (vários) clientes \texttt{PEDEM} (vários) produtos \\
+PRODUTO -\textgreater{} \textbf{\texttt{PRODUTOS}} & \texttt{NOME} (implícito no enunciado)
+
+\texttt{DESCRICAO} (explícito no enunciado)
+
+\texttt{PRECO} (explícito no enunciado)
+
+\texttt{COD\_PRODUTO} (implícito no enunciado) & (vários) produtos são \texttt{PEDidos} por (vários) clientes \\
+\end{longtable}
+
+\subsubsection{Passo \#2}\label{passo-2-1}
+
+Criar o \textbf{\texttt{MODELO\ ENTIDADE\ RELACIONAMENTO\ (M.E.R.)}} - Converter SUBSTANTIVO em \textbf{\texttt{ENTIDADES}}; converter ADJETIVOS em \textbf{\texttt{ATRIBUTOS}} e converter VERBOS em \textbf{\texttt{RELACIONAMENTOS}}.
+
+Normalmente apenas as ENTIDADES levam atributos. Quando aparece um relacionamento N-N entre duas entidades, também podem aparecer atributos atrelados aos relacionamentos (como é o caso de PEDIDO aqui).
+
+\begin{itemize}
+\item
+  ENTIDADES identificadas: \textbf{\texttt{CLIENTES}}, \textbf{\texttt{PRODUTOS}}
+\item
+  ATRIBUTOS identificados: CLIENTES {[} nome, endereco, telefone, cpf{]} ; PRODUTOS {[} nome, descricao, preco, cod\_produto{]} ; PEDIDO{[}data, valor\_total{]}
+\item
+  RELACIONAMENTOS: {[}cliente-\texttt{PEDE}-produto{]} ; {[}produto-\texttt{PEDIDO}-cliente{]};
+\end{itemize}
+
+\subsubsection{Passo \#3}\label{passo-3-1}
+
+Criar um DIAGRAMA ENTIDADE-RELACIONAMENTO (D.E.R.) com as informações levantadas:
+
+\includesvg{images/exercicio02-01.svg}
+
+\subsubsection{Passo \#5 - Crie o código SQL referente ao diagrama que você desenhou:}\label{passo-5---crie-o-cuxf3digo-sql-referente-ao-diagrama-que-vocuxea-desenhou-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{{-}{-} CRIAR AS TABELAS}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ Cliente }
+\NormalTok{(}
+\NormalTok{    id\_cliente }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    nome }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ CPF }
+\NormalTok{(}
+\NormalTok{    numero\_cpf }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{11}\NormalTok{)}
+\NormalTok{);}
+
+\CommentTok{{-}{-} ADICIONAR AS CHAVES PRIMÁRIAS}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ Cliente }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_cliente);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ CPF }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (numero\_cpf);}
+
+
+\CommentTok{{-}{-} O relacionamento é 1:1. Podemos escolher um dos lados para armazenar a chave.}
+\CommentTok{{-}{-} Aqui vamos seguir o diagrama, colocando a chave estrangeira de CPF em Cliente.}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ Cliente }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ numero\_cpf }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{11}\NormalTok{);}
+
+\CommentTok{{-}{-} CRIAR AS CHAVES ESTRANGEIRAS}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ Cliente }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_cliente\_cpf }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (numero\_cpf) }\KeywordTok{REFERENCES}\NormalTok{ CPF (numero\_cpf);}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0036}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Exercício 3 --- Hospital
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Um Hospital registra Pacientes, cada um com nome, idade, endereço e telefone. Os pacientes podem realizar várias Consultas com Médicos. Cada médico possui um CRM, um nome e uma especialidade. Durante a consulta, o médico pode prescrever Receitas, que possuem medicação e dosagem. \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  Identifique as \textbf{entidades}
+\end{enumerate}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Identifique os \textbf{atributos} de cada Entidade
+\end{enumerate}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Identifique os \textbf{relacionamentos} entre as Entidades
+\end{enumerate}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Faça o \textbf{diagrama DEM (Diagrama Entidade Relacionamento) contendo as entidades, atributos e relacionamentos} que você mapeou.
+\end{enumerate}
+\end{minipage} \\
+\end{longtable}
+
+\subsubsection{Passo \#1 -}\label{passo-1---2}
+
+Identificar \textbf{SUBSTANTIVOS} no contexto; identificar os \textbf{ADJETIVOS} pertinentes a cada SUBSTANTIVO; identificar os \textbf{VERBOS} de relação entre os substantivos.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3171}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2622}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4146}}@{}}
+\caption{Identificando SUBSTANTIVOS, ADJETIVOS referentes e VERBOS de relação}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Substantivos} \textbf{do contexto}: leve-os ao plural
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Adjetivos}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Verbos}
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Substantivos} \textbf{do contexto}: leve-os ao plural
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Adjetivos}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\texttt{Verbos}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+HOSPITAL -\textgreater{} \textbf{\texttt{HOSPITAIS}} & \texttt{NOME} (implícito no enunciado)
+
+\texttt{CNPJ} (implícito no enunciado) & (explícito) hospital \texttt{REGISTRA} (vários) pacientes
+
+(implícito) hospital \texttt{POSSUI} medicos \\
+PACIENTE -\textgreater{} \textbf{\texttt{PACIENTES}} & \texttt{NOME} (explícito no enunciado)
+
+\texttt{IDADE} (explícito no enunciado)
+
+\texttt{ENDERECO} (explícito no enunciado)
+
+\texttt{TELEFONE} (explícito no enunciado)
+
+\texttt{CPF} (implícito no enunciado) & pacientes são \texttt{REGISTRADOS} em (um) hospital
+
+(vários) pacientes \texttt{CONSULTAM} (vários) médicos
+
+(vários) pacientes \texttt{SÃO\ RECEITADOS} por (vários) médicos \\
+MÉDICO -\textgreater{} \textbf{\texttt{MEDICOS}} & \texttt{CRM} (explícito no enunciado)
+
+\texttt{NOME} (explícito no enunciado)
+
+\texttt{ESPECIALIDADE} (explícito no enunciado) & (vários) médico(s) \texttt{CONSULTA} (vários) pacientes
+
+(vários) médico(s) \texttt{RECEITAM} (vários) pacientes \\
+RECEITA ?? -\textgreater{} \textbf{\texttt{RECEITAR}} é VERBO & \texttt{MEDICACAO} (explícito no enunciado)
+
+\texttt{DOSAGEM}(explícito no enunciado) & médico \texttt{RECEITA} ao paciente
+
+(vários) paciente(s) \texttt{É(SÃO)\ RECEITADO(s)} por (vários) médico(s) \\
+CONSULTA ?? -\textgreater{} \textbf{\texttt{CONSULTAR}} é VERBO & \texttt{DATA} (implícito no enunciado)
+
+\texttt{HORA}(implícito no enunciado)
+
+\texttt{sala}(implícito no enunciado) & (vários) pacientes(s) \texttt{CONSULTA(M)} (vários) médico(s) \\
+\end{longtable}
+
+\subsubsection{Passo \#2}\label{passo-2-2}
+
+Criar o \textbf{\texttt{MODELO\ ENTIDADE\ RELACIONAMENTO\ (M.E.R.)}} - Converter SUBSTANTIVO em \textbf{\texttt{ENTIDADES}}; converter ADJETIVOS em \textbf{\texttt{ATRIBUTOS}} e converter VERBOS em \textbf{\texttt{RELACIONAMENTOS}}.
+
+\begin{itemize}
+\item
+  ENTIDADES identificadas: \textbf{\texttt{HOSPITAIS}}, \textbf{\texttt{PACIENTES}}, \textbf{\texttt{MEDICOS}}
+\item
+  ATRIBUTOS identificados: HOSPITAIS {[} nome,cnpj {]} ; PACIENTES {[} nome, idade, endereco, telefone, cpf{]} ; MEDICOS {[} crm, nome e especialidade{]} ;
+\item
+  RELACIONAMENTOS: {[}medico-\texttt{consulta}-paciente{]} ; {[}medico-\texttt{receita}-paciente{]}; {[}hospital-registra-paciente{]} ; {[}hospital-\texttt{POSSUI}-medicos{]}
+\end{itemize}
+
+\subsubsection{Passo \#3}\label{passo-3-2}
+
+Criar um DIAGRAMA ENTIDADE-RELACIONAMENTO (D.E.R.) com as informações levantadas:
+
+\includesvg{images/exercicio03-01.svg}
+
+\subsubsection{Passo \#5 - Faça o código SQL do diagrama acima}\label{passo-5---fauxe7a-o-cuxf3digo-sql-do-diagrama-acima}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Passo 1{-} TABELAS (apenas colunas, sem PK ou FK)}
+\CommentTok{   ========================================================= */}
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ HOSPITAIS }
+\NormalTok{(}
+\NormalTok{    nome    }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    cnpj    }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{14}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ PACIENTES }
+\NormalTok{(}
+\NormalTok{    nome        }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    idade       }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    endereco    }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    telefone    }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{20}\NormalTok{),}
+\NormalTok{    cpf         }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{11}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ MEDICOS }
+\NormalTok{(}
+\NormalTok{    nome            }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    especialidade   }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    crm             }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{15}\NormalTok{)}
+\NormalTok{);}
+
+\CommentTok{/* As próximas tabelas representam os relacionamentos N:N}
+\CommentTok{   com atributos próprios (tabelas de junção) */}
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ REGISTRAM }
+\NormalTok{(}
+    \CommentTok{{-}{-} sem colunas de FK por enquanto}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ CONSULTAM }
+\NormalTok{(}
+\NormalTok{    data\_consulta   }\DataTypeTok{DATE}\NormalTok{,}
+\NormalTok{    hora            }\DataTypeTok{TIME}\NormalTok{,}
+\NormalTok{    sala            }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{50}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ RECEITAM }
+\NormalTok{(}
+\NormalTok{    medicacao       }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    dosagem         }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Passo 2{-} ADICIONAR CHAVES PRIMÁRIAS}
+\CommentTok{   ========================================================= */}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ HOSPITAIS  }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (cnpj);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PACIENTES  }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (cpf);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ MEDICOS    }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (crm);}
+
+\CommentTok{/* Para tabelas de relacionamento com atributos, a PK será composta}
+\CommentTok{   (as FKs a serem criadas formarão a chave primária). Faremos isso depois}
+\CommentTok{   de adicionar as colunas de FK. */}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Passo 3{-} CRIAR COLUNAS PARA FUTURAS CHAVES ESTRANGEIRAS}
+\CommentTok{   ========================================================= */}
+\CommentTok{{-}{-} REGISTRAM: HOSPITAIS (1) —— (N) PACIENTES}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ REGISTRAM }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ cnpj }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{14}\NormalTok{), }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ cpf  }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{11}\NormalTok{);}
+
+\CommentTok{{-}{-} CONSULTAM: MEDICOS (N) —— (N) PACIENTES}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ CONSULTAM }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ crm  }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{15}\NormalTok{), }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ cpf  }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{11}\NormalTok{);}
+
+\CommentTok{{-}{-} RECEITAM: MEDICOS (N) —— (N) PACIENTES}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ RECEITAM  }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ crm  }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{15}\NormalTok{), }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ cpf  }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{11}\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Passo 4{-} CRIAR CHAVES ESTRANGEIRAS}
+\CommentTok{   ========================================================= */}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ REGISTRAM}
+    \KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_registram\_hospitais}
+        \KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (cnpj)}
+        \KeywordTok{REFERENCES}\NormalTok{ HOSPITAIS (cnpj),}
+    \KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_registram\_pacientes}
+        \KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (cpf)}
+        \KeywordTok{REFERENCES}\NormalTok{ PACIENTES (cpf);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ CONSULTAM}
+    \KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_consultam\_medicos}
+        \KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (crm)}
+        \KeywordTok{REFERENCES}\NormalTok{ MEDICOS (crm),}
+    \KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_consultam\_pacientes}
+        \KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (cpf)}
+        \KeywordTok{REFERENCES}\NormalTok{ PACIENTES (cpf);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ RECEITAM}
+    \KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_receitam\_medicos}
+        \KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (crm)}
+        \KeywordTok{REFERENCES}\NormalTok{ MEDICOS (crm),}
+    \KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_receitam\_pacientes}
+        \KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (cpf)}
+        \KeywordTok{REFERENCES}\NormalTok{ PACIENTES (cpf);}
+
+\CommentTok{/* Definir chaves primárias compostas para tabelas de relacionamento */}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ REGISTRAM }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (cnpj, cpf);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ CONSULTAM }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (crm, cpf, data\_consulta, hora);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ RECEITAM  }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (crm, cpf, medicacao);}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Exercícios}\label{exercuxedcios-1}
+
+\subsection{📝 Lista de Exercícios -- Modelo Entidade-Relacionamento (MER)}\label{lista-de-exercuxedcios-modelo-entidade-relacionamento-mer}
+
+\subsubsection{Exercício 1 -- Cliente e CPF (1:1)}\label{exercuxedcio-1-cliente-e-cpf-11}
+
+Considere um projeto de Banco de Dados.Faça a modelagem utilizando o Modelo Entidade-Relacionamento de Peter Chen (M.E.R.).\\
+Cada \textbf{Cliente} possui exatamente \textbf{um CPF}, e cada CPF só pode estar associado a um único Cliente.\\
+- Identifique entidades, atributos e relacionamento.\\
+- Represente o MER com cardinalidade 1:1.
+
+\includesvg{images/exercicio-01.svg}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício 2 -- Cliente e Pedidos (1:N)}\label{exercuxedcio-2-cliente-e-pedidos-1n}
+
+Considere um projeto de Banco de Dados.Faça a modelagem utilizando o Modelo Entidade-Relacionamento de Peter Chen (M.E.R.).\\
+Um \textbf{Cliente} pode fazer \textbf{vários Pedidos}, mas cada Pedido pertence a apenas um Cliente.\\
+- Liste as entidades e atributos.\\
+- Defina o relacionamento e a cardinalidade.\\
+- Monte o DER.
+
+\includesvg{images/exercicio-02.svg}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício 3 -- Alunos e Disciplinas (N:N)}\label{exercuxedcio-3-alunos-e-disciplinas-nn}
+
+Considere um projeto de Banco de Dados.Faça a modelagem utilizando o Modelo Entidade-Relacionamento de Peter Chen (M.E.R.).\\
+Um \textbf{Aluno} pode se matricular em várias \textbf{Disciplinas}, e cada Disciplina pode ter vários Alunos.\\
+- Identifique entidades e atributos. - Qual entidade associativa deve ser criada? - Desenhe o DER com a entidade associativa.
+
+\includesvg{images/exercicio-03.svg}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício 4 -- Funcionário e Dependentes (Entidade Fraca)}\label{exercuxedcio-4-funcionuxe1rio-e-dependentes-entidade-fraca}
+
+Considere um projeto de Banco de Dados.Faça a modelagem utilizando o Modelo Entidade-Relacionamento de Peter Chen (M.E.R.).\\
+Cada \textbf{Funcionário} pode ter \textbf{vários Dependentes}. Um Dependente não existe sem um Funcionário.\\
+- Identifique a entidade forte e a entidade fraca.\\
+- Defina atributos e chaves.\\
+- Monte o DER indicando a dependência existencial.
+
+\includesvg{images/exercicio-04.svg}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{{-}{-} Coloque aqui o código SQL criar as tabelas:}
+
+
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício 5 -- Pedido e Itens de Pedido (Entidade Associativa + Fraca)}\label{exercuxedcio-5-pedido-e-itens-de-pedido-entidade-associativa-fraca}
+
+Considere um projeto de Banco de Dados.Faça a modelagem utilizando o Modelo Entidade-Relacionamento de Peter Chen (M.E.R.).\\
+Um \textbf{Pedido} contém vários \textbf{Itens}, mas cada Item está sempre vinculado a apenas um Pedido.\\
+- Qual entidade é dominante e qual é subordinada?\\
+- Identifique atributos das duas entidades.\\
+- Represente o DER com cardinalidade 1:N.
+
+\includesvg{images/exercicio-05.svg}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{{-}{-} Coloque aqui o código SQL criar as tabelas:}
+
+
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício 6 -- Médicos e Consultas (1:N)}\label{exercuxedcio-6-muxe9dicos-e-consultas-1n}
+
+Considere um projeto de Banco de Dados.Faça a modelagem utilizando o Modelo Entidade-Relacionamento de Peter Chen (M.E.R.).\\
+Um \textbf{Médico} pode realizar várias \textbf{Consultas}, mas cada Consulta está associada a apenas um Médico.\\
+- Identifique entidades e atributos.\\
+- Desenhe o DER.\\
+- Indique as cardinalidades.
+
+\includesvg{images/exercicio-06.svg}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{{-}{-} Coloque aqui o código SQL criar as tabelas:}
+
+
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício 7 -- Professor e Departamento (1:1)}\label{exercuxedcio-7-professor-e-departamento-11}
+
+Considere um projeto de Banco de Dados.Faça a modelagem utilizando o Modelo Entidade-Relacionamento de Peter Chen (M.E.R.).\\
+Cada \textbf{Professor} dirige apenas \textbf{um Departamento}, e cada Departamento tem apenas um Professor responsável.\\
+- Identifique entidades, atributos e relacionamento.\\
+- Defina cardinalidade 1:1 no DER.
+
+\includesvg{images/exercicio-07.svg}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{{-}{-} Coloque aqui o código SQL criar as tabelas:}
+
+
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício 8 -- Livros e Autores (N:N)}\label{exercuxedcio-8-livros-e-autores-nn}
+
+Considere um projeto de Banco de Dados.Faça a modelagem utilizando o Modelo Entidade-Relacionamento de Peter Chen (M.E.R.).\\
+Um \textbf{Livro} pode ter vários \textbf{Autores}, e cada Autor pode escrever vários Livros.\\
+- Identifique as entidades e atributos.\\
+- Qual entidade associativa deve ser criada?\\
+- Monte o DER em notação conceitual.
+
+\includesvg{images/exercicio-08.svg}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{{-}{-} Coloque aqui o código SQL criar as tabelas:}
+
+
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício 9 -- Biblioteca (Entidades Fortes e Fracas)}\label{exercuxedcio-9-biblioteca-entidades-fortes-e-fracas}
+
+Considere um projeto de Banco de Dados.Faça a modelagem utilizando o Modelo Entidade-Relacionamento de Peter Chen (M.E.R.).\\
+Um \textbf{Livro} pode ter vários \textbf{Exemplares}. Um Exemplar só existe se estiver associado a um Livro.\\
+- Identifique entidades fortes e fracas.\\
+- Defina atributos (Livro: título, ano; Exemplar: código\_exemplar, status).\\
+- Monte o DER com a dependência existencial.
+
+\includesvg{images/exercicio-09.svg}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{{-}{-} Coloque aqui o código SQL criar as tabelas:}
+
+
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício 10 -- Empresa, Funcionário e Projeto (Misto 1:N e N:N)}\label{exercuxedcio-10-empresa-funcionuxe1rio-e-projeto-misto-1n-e-nn}
+
+Considere um projeto de Banco de Dados.Faça a modelagem utilizando o Modelo Entidade-Relacionamento de Peter Chen (M.E.R.).\\
+- Uma \textbf{Empresa} possui vários \textbf{Funcionários}.\\
+- Cada \textbf{Funcionário} pode participar de vários \textbf{Projetos}, e cada Projeto pode ter vários Funcionários.\\
+- Identifique todas as entidades, atributos e relacionamentos.\\
+- Determine cardinalidades corretas (Empresa--Funcionário 1:N, Funcionário--Projeto N:N).\\
+- Crie o DER completo.
+
+\includesvg{images/exercicio-10.svg}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{{-}{-} Coloque aqui o código SQL criar as tabelas:}
+
+
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Tarefas propostas para cada exercício:}\label{tarefas-propostas-para-cada-exercuxedcio}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Identificar entidades e atributos.\\
+\item
+  Definir relacionamentos.\\
+\item
+  Especificar cardinalidades.\\
+\item
+  Indicar entidades fortes e fracas (quando houver).\\
+\item
+  Representar graficamente o DER.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Respostas dos Exercícios:}\label{respostas-dos-exercuxedcios}
+
+\subsubsection{Exercício \#1}\label{exercuxedcio-1}
+
+\includesvg{images/exercicio-01-resposta.svg}
+
+\paragraph{Exercício 1 - SQL referênte ao diagrama anterior}\label{exercuxedcio-1---sql-referuxeante-ao-diagrama-anterior}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{/* =========================================================}
+\CommentTok{   TRANSFORMA AS ENTIDADES EM TABELAS E ATRIBUTOS EM COLUNAS}
+\CommentTok{   ========================================================= */}
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ CLIENTES }
+\NormalTok{(}
+\NormalTok{    id\_cliente }\DataTypeTok{INTEGER}\NormalTok{,}
+\NormalTok{    nome }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ CPFS}
+\NormalTok{(}
+\NormalTok{    numero\_cpf }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{11}\NormalTok{)}
+\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Definir chaves primárias}
+\CommentTok{   ========================================================= */}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ CLIENTES }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_cliente);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ CPFS }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (numero\_cpf);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{    Criar coluna para futura chave estrangeira}
+\CommentTok{   ========================================================= */}
+\CommentTok{{-}{-} Relacionamento 1:1 (um cliente possui um CPF)}
+\CommentTok{{-}{-} Vamos colocar a FK na tabela CLIENTES}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ CLIENTES   }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ numero\_cpf }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{11}\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{    Criar chave estrangeira}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ CLIENTES }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_clientes\_cpfs }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (numero\_cpf) EFERENCES CPFS (numero\_cpf);}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício \#2}\label{exercuxedcio-2}
+
+\includesvg{images/exercicio-02-resposta.svg}
+
+\paragraph{Exercício 2 - SQL referênte ao diagrama anterior}\label{exercuxedcio-2---sql-referuxeante-ao-diagrama-anterior}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar tabelas (sem PK ou FK)}
+\CommentTok{   ========================================================= */}
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ CLIENTES }
+\NormalTok{(}
+\NormalTok{    cpf }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{11}\NormalTok{),}
+\NormalTok{    nome }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ PEDIDOS }
+\NormalTok{(}
+\NormalTok{    cod\_pedido }\DataTypeTok{INT}\NormalTok{,}
+    \KeywordTok{data} \DataTypeTok{DATE}\NormalTok{,}
+\NormalTok{    valor\_total }\DataTypeTok{DECIMAL}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Definir chaves primárias}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ CLIENTES  }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (cpf);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PEDIDOS   }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (cod\_pedido);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar coluna para futura chave estrangeira}
+\CommentTok{   ========================================================= */}
+\CommentTok{{-}{-} Relacionamento CLIENTES 1:N PEDIDOS }
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PEDIDOS }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ cpf\_cliente }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{11}\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar chave estrangeira}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PEDIDOS }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_pedidos\_clientes  }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (cpf\_cliente) }\KeywordTok{REFERENCES}\NormalTok{ CLIENTES (cpf);}
+
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício \#3}\label{exercuxedcio-3}
+
+\includesvg{images/exercicio-03-resposta.svg}
+
+\paragraph{Exercício 3 - SQL referênte ao diagrama anterior}\label{exercuxedcio-3---sql-referuxeante-ao-diagrama-anterior}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar tabelas (sem PK ou FK)}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ ALUNOS }
+\NormalTok{(}
+\NormalTok{    id\_aluno }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    nome }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ DISCIPLINAS }
+\NormalTok{(}
+\NormalTok{    id\_disciplina }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    nome }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{)}
+\NormalTok{);}
+
+\CommentTok{/* Tabela para o relacionamento N:N */}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ MATRICULA }
+\NormalTok{(}
+\NormalTok{    semestre }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Definir chaves primárias}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ ALUNOS  }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_aluno);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ DISCIPLINAS }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_disciplina);}
+
+\CommentTok{/* A PK da tabela MATRICULA será composta pelas FKs */}
+\CommentTok{{-}{-} Definiremos depois de criar as colunas de FK}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar colunas para futuras chaves estrangeiras (lado N)}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ MATRICULA }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ id\_aluno }\DataTypeTok{INT}\NormalTok{, }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ id\_disciplina }\DataTypeTok{INT}\NormalTok{;}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar chaves estrangeiras}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ MATRICULA }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_matricula\_aluno }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (id\_aluno) }\KeywordTok{REFERENCES}\NormalTok{ ALUNOS (id\_aluno);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ MATRICULA }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_matricula\_disciplina }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (id\_disciplina) }\KeywordTok{REFERENCES}\NormalTok{ DISCIPLINAS (id\_disciplina);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Definir chave primária composta da tabela MATRICULA}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ MATRICULA }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_aluno, id\_disciplina);}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício \#4}\label{exercuxedcio-4}
+
+\includesvg{images/exercicio-04-resposta.svg}
+
+\paragraph{Exercício 4 - SQL referênte ao diagrama anterior}\label{exercuxedcio-4---sql-referuxeante-ao-diagrama-anterior}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar tabelas (sem PK ou FK)}
+\CommentTok{   ========================================================= */}
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ FUNCIONARIOS }
+\NormalTok{(}
+\NormalTok{    id\_funcionario }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    nome }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    cargo }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{100}\NormalTok{),}
+\NormalTok{    salario }\DataTypeTok{DECIMAL}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ DEPENDENTES }
+\NormalTok{(}
+\NormalTok{    id\_dependente }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    nome }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    parentesco }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{50}\NormalTok{),}
+\NormalTok{    data\_nascimento }\DataTypeTok{DATE}
+\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Definir chaves primárias}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ FUNCIONARIOS }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_funcionario);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ DEPENDENTES }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_dependente);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar coluna para futura chave estrangeira}
+\CommentTok{   ========================================================= */}
+
+\CommentTok{{-}{-} Relacionamento FUNCIONARIOS 1:N DEPENDENTES}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ DEPENDENTES }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ id\_funcionario }\DataTypeTok{INT}\NormalTok{;}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar chave estrangeira}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ DEPENDENTES }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_dependentes\_funcionarios }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (id\_funcionario) }\KeywordTok{REFERENCES}\NormalTok{ FUNCIONARIOS  (id\_funcionario);}
+
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício \#5}\label{exercuxedcio-5}
+
+\includesvg{images/exercicio-05-resposta.svg}
+
+\paragraph{Exercício 5 - SQL referênte ao diagrama anterior}\label{exercuxedcio-5---sql-referuxeante-ao-diagrama-anterior}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar tabelas (sem PK ou FK)}
+\CommentTok{   ========================================================= */}
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ PEDIDOS }
+\NormalTok{(}
+\NormalTok{    id\_pedido }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    data\_pedido }\DataTypeTok{DATE}\NormalTok{,}
+\NormalTok{    valor\_total }\DataTypeTok{DECIMAL}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{2}\NormalTok{),}
+\NormalTok{    status }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{50}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ ITENS }
+\NormalTok{(}
+\NormalTok{    id\_item }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    descricao }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    quantidade }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    preco\_unitario }\DataTypeTok{DECIMAL}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Definir chaves primárias}
+\CommentTok{   ========================================================= */}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PEDIDOS }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_pedido);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ ITENS }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_item);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar coluna para futura chave estrangeira}
+\CommentTok{   ========================================================= */}
+
+\CommentTok{{-}{-} Relacionamento PEDIDOS 1:N ITENS}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ ITENS }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ id\_pedido }\DataTypeTok{INT}\NormalTok{;}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar chave estrangeira}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ ITENS }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_itens\_pedidos }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (id\_pedido) }\KeywordTok{REFERENCES}\NormalTok{ PEDIDOS (id\_pedido);}
+
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício \#6}\label{exercuxedcio-6}
+
+\includesvg{images/exercicio-06-resposta.svg}
+
+\paragraph{Exercício 6 - SQL referênte ao diagrama anterior}\label{exercuxedcio-6---sql-referuxeante-ao-diagrama-anterior}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar tabelas (sem PK ou FK)}
+\CommentTok{   ========================================================= */}
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ MEDICOS }
+\NormalTok{(}
+\NormalTok{    id\_medico }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    nome }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    especialidade }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{100}\NormalTok{),}
+\NormalTok{    crm }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{20}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ CONSULTAS }
+\NormalTok{(}
+\NormalTok{    id\_consulta }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    data\_consulta }\DataTypeTok{DATE}\NormalTok{,}
+\NormalTok{    hora }\DataTypeTok{TIME}\NormalTok{,}
+\NormalTok{    observacoes }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{)}
+\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Definir chaves primárias}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ MEDICOS }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_medico);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ CONSULTAS }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_consulta);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar coluna para futura chave estrangeira}
+\CommentTok{   ========================================================= */}
+\CommentTok{{-}{-} Relacionamento MEDICOS 1:N CONSULTAS}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ CONSULTAS }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ id\_medico }\DataTypeTok{INT}\NormalTok{;}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar chave estrangeira}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ CONSULTAS }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_consultas\_medicos }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (id\_medico) }\KeywordTok{REFERENCES}\NormalTok{ MEDICOS (id\_medico);}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício \#7}\label{exercuxedcio-7}
+
+\includesvg{images/exercicio-07-resposta.svg}
+
+\paragraph{Exercício 7 - SQL referênte ao diagrama anterior}\label{exercuxedcio-7---sql-referuxeante-ao-diagrama-anterior}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar tabelas (sem PK ou FK)}
+\CommentTok{   ========================================================= */}
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ PROFESSORES }
+\NormalTok{(}
+\NormalTok{    id\_professor }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    nome }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    titulacao }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{100}\NormalTok{),}
+\NormalTok{    email }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ DEPARTAMENTOS }
+\NormalTok{(}
+\NormalTok{    id\_departamento }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    nome }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    localizacao }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    telefone }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{20}\NormalTok{)}
+\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Definir chaves primárias}
+\CommentTok{   ========================================================= */}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PROFESSORES }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_professor);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ DEPARTAMENTOS }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_departamento);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar coluna para futura chave estrangeira}
+\CommentTok{   ========================================================= */}
+\CommentTok{{-}{-} Relacionamento 1:1 entre PROFESSORES e DEPARTAMENTOS}
+\CommentTok{{-}{-} Aqui vamos colocar a FK em DEPARTAMENTOS, vinculando ao professor responsável}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ DEPARTAMENTOS }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ id\_professor }\DataTypeTok{INT}\NormalTok{;}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar chave estrangeira}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ DEPARTAMENTOS }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_departamentos\_professores }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (id\_professor) }\KeywordTok{REFERENCES}\NormalTok{ PROFESSORES (id\_professor);}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício \#8}\label{exercuxedcio-8}
+
+\includesvg{images/exercicio-08-resposta.svg}
+
+\paragraph{Exercício 8 - SQL referênte ao diagrama anterior}\label{exercuxedcio-8---sql-referuxeante-ao-diagrama-anterior}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar tabelas (sem PK ou FK)}
+\CommentTok{   ========================================================= */}
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ LIVROS }
+\NormalTok{(}
+\NormalTok{    id\_livro }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    titulo }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    ano\_publicacao }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    editora }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ AUTORES }
+\NormalTok{(}
+\NormalTok{    id\_autor }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    nome }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    nacionalidade }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\NormalTok{);}
+
+\CommentTok{/* Tabela para relacionamento N:N com atributos */}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ ESCREVEM }
+\NormalTok{(}
+\NormalTok{    data\_participacao }\DataTypeTok{DATE}\NormalTok{,}
+\NormalTok{    ordem\_autoria }\DataTypeTok{INT}
+\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Definir chaves primárias}
+\CommentTok{   ========================================================= */}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ LIVROS }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_livro);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ AUTORES }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_autor);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar colunas para futuras chaves estrangeiras}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ ESCREVEM }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ id\_livro }\DataTypeTok{INT}\NormalTok{, }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ id\_autor }\DataTypeTok{INT}\NormalTok{;}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar chaves estrangeiras}
+\CommentTok{   =====================================}
+
+\CommentTok{ALTER TABLE ESCREVEM ADD CONSTRAINT fk\_escrevem\_livros   FOREIGN KEY (id\_livro) REFERENCES LIVROS (id\_livro);}
+
+\CommentTok{ALTER TABLE ESCREVEM ADD CONSTRAINT fk\_escrevem\_autores  FOREIGN KEY (id\_autor) REFERENCES AUTORES (id\_autor);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Definir chave primária composta da tabela ESCREVEM}
+\CommentTok{   ========================================================= */}
+
+\CommentTok{ALTER TABLE ESCREVEM  ADD PRIMARY KEY (id\_livro, id\_autor);}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício \#9}\label{exercuxedcio-9}
+
+\includesvg{images/exercicio-09-resposta.svg}
+
+\paragraph{Exercício 9 - SQL referênte ao diagrama anterior}\label{exercuxedcio-9---sql-referuxeante-ao-diagrama-anterior}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar tabelas (sem PK ou FK)}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ LIVROS }
+\NormalTok{(}
+\NormalTok{    id\_livro }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    titulo }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    ano }\DataTypeTok{INT}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ EXEMPLARES }
+\NormalTok{(}
+\NormalTok{    codigo\_exemplar }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    status }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{50}\NormalTok{)}
+\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Definir chaves primárias}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ LIVROS }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_livro);}
+
+\CommentTok{/* A chave primária de EXEMPLARES será composta depois, usando FK + codigo\_exemplar */}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar coluna para futura chave estrangeira}
+\CommentTok{   ========================================================= */}
+\CommentTok{{-}{-} Relacionamento LIVROS 1:N EXEMPLARES}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ EXEMPLARES }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ id\_livro }\DataTypeTok{INT}\NormalTok{;}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar chave estrangeira}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ EXEMPLARES }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_exemplares\_livros }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (id\_livro) }\KeywordTok{REFERENCES}\NormalTok{ LIVROS (id\_livro);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Definir chave primária composta da tabela EXEMPLARES}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ EXEMPLARES }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_livro, codigo\_exemplar);}
+
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Exercício \#10}\label{exercuxedcio-10}
+
+\includesvg{images/exercicio-10-resposta.svg}
+
+\paragraph{Exercício 10 - SQL referênte ao diagrama anterior}\label{exercuxedcio-10---sql-referuxeante-ao-diagrama-anterior}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar tabelas (sem PK ou FK)}
+\CommentTok{   ========================================================= */}
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ EMPRESAS (}
+\NormalTok{    id\_empresa }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    nome }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    cnpj }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{14}\NormalTok{),}
+\NormalTok{    endereco }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ FUNCIONARIOS (}
+\NormalTok{    id\_funcionario }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    nome }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    cargo }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{100}\NormalTok{),}
+\NormalTok{    salario }\DataTypeTok{DECIMAL}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ PROJETOS (}
+\NormalTok{    id\_projeto }\DataTypeTok{INT}\NormalTok{,}
+\NormalTok{    nome }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{),}
+\NormalTok{    data\_inicio }\DataTypeTok{DATE}\NormalTok{,}
+\NormalTok{    data\_fim }\DataTypeTok{DATE}\NormalTok{,}
+\NormalTok{    descricao }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{255}\NormalTok{)}
+\NormalTok{);}
+
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ PARTICIPAM (}
+\NormalTok{    data\_inicio }\DataTypeTok{DATE}\NormalTok{,}
+\NormalTok{    data\_fim }\DataTypeTok{DATE}\NormalTok{,}
+\NormalTok{    papel }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\NormalTok{);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Definir chaves primárias}
+\CommentTok{   ========================================================= */}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ EMPRESAS }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_empresa);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ FUNCIONARIOS }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_funcionario);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PROJETOS }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_projeto);}
+
+\CommentTok{/* A tabela PARTICIPAM terá PK composta, definida depois */}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar colunas para futuras chaves estrangeiras}
+\CommentTok{   ========================================================= */}
+\CommentTok{{-}{-} Relacionamento EMPRESAS 1:N FUNCIONARIOS}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ FUNCIONARIOS  }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ id\_empresa }\DataTypeTok{INT}\NormalTok{;}
+
+\CommentTok{{-}{-} Relacionamento FUNCIONARIOS N:N PROJETOS}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PARTICIPAM }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ id\_funcionario }\DataTypeTok{INT}\NormalTok{, }\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ id\_projeto }\DataTypeTok{INT}\NormalTok{;}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Criar chaves estrangeiras}
+\CommentTok{   ========================================================= */}
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ FUNCIONARIOS }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_funcionarios\_empresas }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (id\_empresa) }\KeywordTok{REFERENCES}\NormalTok{ EMPRESAS (id\_empresa);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PARTICIPAM }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_participam\_funcionarios }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (id\_funcionario) }\KeywordTok{REFERENCES}\NormalTok{ FUNCIONARIOS (id\_funcionario);}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PARTICIPAM }\KeywordTok{ADD} \KeywordTok{CONSTRAINT}\NormalTok{ fk\_participam\_projetos }\KeywordTok{FOREIGN} \KeywordTok{KEY}\NormalTok{ (id\_projeto) }\KeywordTok{REFERENCES}\NormalTok{ PROJETOS (id\_projeto);}
+
+\CommentTok{/* =========================================================}
+\CommentTok{   Definir chave primária composta da tabela PARTICIPAM}
+\CommentTok{   ========================================================= */}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PARTICIPAM }\KeywordTok{ADD} \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{ (id\_funcionario, id\_projeto);}
+
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\chapter{Administração e Gerenciamento de Bancos de Dados}\label{administrauxe7uxe3o-e-gerenciamento-de-bancos-de-dados}
+
+\subsubsection*{25/08/2025}\label{section-3}
+\addcontentsline{toc}{subsubsection}{25/08/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-3}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Administração e Gerenciamento de Bancos de Dados}\label{administrauxe7uxe3o-e-gerenciamento-de-bancos-de-dados-1}
+
+\subsubsection*{25/08/2025}\label{section-4}
+\addcontentsline{toc}{subsubsection}{25/08/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-4}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados: Uma Aplicação CRUD}\label{banco-de-dados-uma-aplicauxe7uxe3o-crud}
+
+\subsubsection*{01/09/2025}\label{section-5}
+\addcontentsline{toc}{subsubsection}{01/09/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-5}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados: Uma Aplicação CRUD}\label{banco-de-dados-uma-aplicauxe7uxe3o-crud-1}
+
+\subsubsection*{01/09/2025}\label{section-6}
+\addcontentsline{toc}{subsubsection}{01/09/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-6}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados: MySQL (MariaDB)}\label{banco-de-dados-mysql-mariadb}
+
+\subsubsection*{08/09/2025}\label{section-7}
+\addcontentsline{toc}{subsubsection}{08/09/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-7}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados: MySQL (MariaDB)}\label{banco-de-dados-mysql-mariadb-1}
+
+\subsubsection*{08/09/2025}\label{section-8}
+\addcontentsline{toc}{subsubsection}{08/09/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-8}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados: Postgres}\label{banco-de-dados-postgres}
+
+\subsubsection*{22/09/2025}\label{section-9}
+\addcontentsline{toc}{subsubsection}{22/09/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-9}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados: Postgres}\label{banco-de-dados-postgres-1}
+
+\subsubsection*{22/09/2025}\label{section-10}
+\addcontentsline{toc}{subsubsection}{22/09/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-10}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados Espaciais - Cliente QGIS}\label{banco-de-dados-espaciais---cliente-qgis}
+
+\subsubsection*{29/09/2025}\label{section-11}
+\addcontentsline{toc}{subsubsection}{29/09/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-11}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados Espaciais - Cliente QGIS}\label{banco-de-dados-espaciais---cliente-qgis-1}
+
+\subsubsection*{29/09/2025}\label{section-12}
+\addcontentsline{toc}{subsubsection}{29/09/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-12}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados Estatístico - Cliente Rstudio}\label{banco-de-dados-estatuxedstico---cliente-rstudio}
+
+\subsubsection*{06/10/2025}\label{section-13}
+\addcontentsline{toc}{subsubsection}{06/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-13}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados Estatístico - Cliente Rstudio}\label{banco-de-dados-estatuxedstico---cliente-rstudio-1}
+
+\subsubsection*{06/10/2025}\label{section-14}
+\addcontentsline{toc}{subsubsection}{06/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-14}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados - Análise de Dados Parte 01}\label{banco-de-dados---anuxe1lise-de-dados-parte-01}
+
+\subsubsection*{13/10/2025}\label{section-15}
+\addcontentsline{toc}{subsubsection}{13/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-15}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados - Análise de Dados Parte 01}\label{banco-de-dados---anuxe1lise-de-dados-parte-01-1}
+
+\subsubsection*{13/10/2025}\label{section-16}
+\addcontentsline{toc}{subsubsection}{13/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-16}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados - Análise de Dados Parte 02}\label{banco-de-dados---anuxe1lise-de-dados-parte-02}
+
+\subsubsection*{20/10/2025}\label{section-17}
+\addcontentsline{toc}{subsubsection}{20/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-17}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados - Análise de Dados Parte 02}\label{banco-de-dados---anuxe1lise-de-dados-parte-02-1}
+
+\subsubsection*{20/10/2025}\label{section-18}
+\addcontentsline{toc}{subsubsection}{20/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-18}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados - Análise de Dados Parte 03}\label{banco-de-dados---anuxe1lise-de-dados-parte-03}
+
+\subsubsection*{27/10/2025}\label{section-19}
+\addcontentsline{toc}{subsubsection}{27/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-19}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\chapter{Banco de Dados - Análise de Dados Parte 03}\label{banco-de-dados---anuxe1lise-de-dados-parte-03-1}
+
+\subsubsection*{27/10/2025}\label{section-20}
+\addcontentsline{toc}{subsubsection}{27/10/2025}
+
+\subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-20}
+\addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+  \bibliography{book.bib}
+
+\end{document}
