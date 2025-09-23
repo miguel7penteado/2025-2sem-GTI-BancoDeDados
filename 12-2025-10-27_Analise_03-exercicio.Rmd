@@ -4,36 +4,3 @@
 
 #### Professor Miguél Suares {.unnumbered}
 
-1)  Em 1970, o professor Edgard Frank Codd utilizou a matemática para conceber um modelo de Banco de Dados Relacional. Contudo, para mapear os requisitos de um projeto de Banco de Dados ( descrição de objetos observados no mundo real agrupados em conjuntos homogêneos interrelacionados) para o Modelo de Banco de Dados Relacional, faz-se uso de um Modelo Lógico de Banco de Dados como Intermediário. Segundo o professor Carlos Alberto Heuser, um "Modelo Lógico" nada mais é do que um modelo de dados abstrato, que descreve a estrutura de um banco de dados de forma independente de um Sistema de Gerenciamento de Banco de Dados (SGBD) em particular, tal como MySQL, POSTGRES ou ORACLE. O Modelo Entidade-Relacionamento (MER) e seu Diagrama (DER) proposto por Peter Chen em 1976 é classificado como:
-
-<!-- -->
-
-A)  Um modelo lógico de implementação física através da linguagem SQL
-B)  Um modelo conceitual, independente de SGBD, que mapeia elementos morfológicos da gramática (substantivos, adjetivos e verbos)
-C)  Linguagem procedural de consulta, uma forma gráfica de SQL-DML (Data Manipulation Language)
-D)  Extensão da Álgebra Relacional
-E)  Diagrama de fluxo de dados (DFD) puro
-
-```{plantuml exercicio01-01, plantuml.path="images"}
-@startchen
-left to right direction
-
-entity LIVROS {
-  isbn <<KEY>>
-  titulo
-}
-
-entity AUTORES {
-  cpf
-  nome
-}
-
-relationship ESCREVEM { 
-}
-
-AUTORES   -N- ESCREVEM
-ESCREVEM  -N- LIVROS
-
-
-@endchen
-```

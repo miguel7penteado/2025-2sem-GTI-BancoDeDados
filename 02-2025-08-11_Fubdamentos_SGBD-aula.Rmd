@@ -4,6 +4,7 @@ output:
     highlight: tango
     theme: cerulean
 ---
+
 # Fundamentos de Sistemas de Bancos de Dados
 
 #### 11/08/2025 {.unnumbered}
@@ -122,6 +123,6 @@ output:
 
 ------------------------------------------------------------------------
 
-```R
+```{r imprimir-01, eval=FALSE, include=FALSE}
 rmarkdown::render("03-2025-08-19_20_.Rmd", output_dir="docs", output_file ="temporario.html" , output_format = "html_document") ; utils::browseURL("docs/temporario.html")
 ```

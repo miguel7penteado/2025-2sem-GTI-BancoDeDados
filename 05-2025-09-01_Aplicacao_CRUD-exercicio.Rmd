@@ -1,3 +1,797 @@
 # Banco de Dados: Uma Aplicação CRUD
+
 #### 01/09/2025 {.unnumbered}
+
 #### Professor Miguél Suares {.unnumbered}
+
+## Exercício 01
+
+``` html
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Pessoas - Supabase</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  body { font-family: sans-serif; max-width: 800px; margin: 20px auto; }
+  label { display: block; margin-top: 10px; }
+  button { margin-top: 10px; margin-right: 5px; }
+  table { border-collapse: collapse; width:100%; margin-top:20px; }
+  th, td { border:1px solid #ccc; padding:6px; text-align:left; }
+  img.thumb { width:60px; height:60px; object-fit:cover; border-radius:4px; }
+</style>
+</head>
+<body>
+<h1>Cadastro de Pessoas (Supabase)</h1>
+
+<form id="formPessoa">
+  <label>CPF (chave primária): <input id="cpf" required></label>
+  <label>Nome: <input id="nome" required></label>
+  <label>Endereço: <input id="endereco" required></label>
+  <label>Data Nasc.: <input type="date" id="data_nascimento" required></label>
+  <label>Foto: <input type="file" id="foto" accept="image/*"></label>
+
+  <button type="button" onclick="inserir()">Inserir</button>
+  <button type="button" onclick="alterar()">Alterar</button>
+  <button type="button" onclick="remover()">Remover</button>
+</form>
+
+<h2>Pesquisar</h2>
+<input id="pesquisa" placeholder="Digite nome ou CPF">
+<button type="button" onclick="pesquisar()">Pesquisar</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>CPF</th><th>Foto</th><th>Nome</th>
+      <th>Endereço</th><th>Nascimento</th>
+    </tr>
+  </thead>
+  <tbody id="tabela"></tbody>
+</table>
+
+<script>
+/* ===============================
+   CONFIGURAÇÃO SUPABASE
+   =============================== */
+const SUPABASE_URL = 'https://pbbtfwmydxmxdibmtbqq.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiYnRmd215ZHhteGRpYm10YnFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg2NTIwNjksImV4cCI6MjA3NDIyODA2OX0.-41ZWZmoYbnA9YUw1kutcWrk7IIMZ6mjTmzsBvtHPEo';
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+/* ---------- Funções utilitárias ---------- */
+function validaCampos() {
+  const campos = ['cpf','nome','endereco','data_nascimento'];
+  for (const id of campos) {
+    const valor = document.getElementById(id).value.trim();
+    if (!valor) {
+      alert(`O campo "${id}" não pode ficar em branco.`);
+      return false;
+    }
+  }
+  return true;
+}
+function getFotoBase64() {
+  const file = document.getElementById('foto').files[0];
+  if(!file) return Promise.resolve('');
+  return new Promise((resolve,reject)=>{
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+function coletaDados(base64Foto){
+  return {
+    cpf: document.getElementById('cpf').value.trim(),
+    nome: document.getElementById('nome').value.trim(),
+    endereco: document.getElementById('endereco').value.trim(),
+    data_nascimento: document.getElementById('data_nascimento').value,
+    foto: base64Foto || ''
+  };
+}
+
+/* ---------- CRUD Supabase ---------- */
+async function inserir() {
+  if (!validaCampos()) return;
+  const base64 = await getFotoBase64();
+  const pessoa = coletaDados(base64);
+
+  // Verifica se já existe
+  const { data:existe } = await supabase
+      .from('pessoas')
+      .select('cpf')
+      .eq('cpf', pessoa.cpf);
+  if(existe && existe.length) {
+    alert('Já existe um registro com este CPF.');
+    return;
+  }
+
+  const { error } = await supabase
+    .from('pessoas')
+    .insert([pessoa]);
+  if(error) alert('Erro ao inserir: ' + error.message);
+  else { alert('Inserido!'); listar(); }
+}
+
+async function alterar() {
+  if (!validaCampos()) return;
+  const cpf = document.getElementById('cpf').value.trim();
+  const base64 = await getFotoBase64();
+  const novosDados = coletaDados();
+  if(base64) novosDados.foto = base64;
+
+  const { error } = await supabase
+    .from('pessoas')
+    .update(novosDados)
+    .eq('cpf', cpf);
+  if(error) alert('Erro ao alterar: ' + error.message);
+  else { alert('Alterado!'); listar(); }
+}
+
+async function remover() {
+  const cpf = document.getElementById('cpf').value.trim();
+  if(!cpf) return alert('Informe o CPF para remover.');
+  if(confirm('Confirma a exclusão?')){
+    const { error } = await supabase
+      .from('pessoas')
+      .delete()
+      .eq('cpf', cpf);
+    if(error) alert('Erro ao remover: ' + error.message);
+    else { alert('Removido!'); listar(); }
+  }
+}
+
+async function pesquisar() {
+  const termo = document.getElementById('pesquisa').value.trim();
+  if(!termo){ listar(); return; }
+  const { data, error } = await supabase
+    .from('pessoas')
+    .select('*')
+    .or(`cpf.ilike.%${termo}%,nome.ilike.%${termo}%`);
+  if(error) alert('Erro: ' + error.message);
+  else preencheTabela(data);
+}
+
+async function listar(){
+  const { data, error } = await supabase
+    .from('pessoas')
+    .select('*');
+  if(error) alert('Erro: ' + error.message);
+  else preencheTabela(data);
+}
+
+/* ---------- UI ---------- */
+function preencheTabela(lista){
+  const tbody = document.getElementById('tabela');
+  tbody.innerHTML = '';
+  lista.forEach(p=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${p.cpf}</td>
+      <td>${p.foto ? `<img class="thumb" src="${p.foto}" alt="foto">` : ''}</td>
+      <td>${p.nome}</td>
+      <td>${p.endereco}</td>
+      <td>${p.data_nascimento}</td>`;
+    tr.onclick = () => {
+      document.getElementById('cpf').value = p.cpf;
+      document.getElementById('nome').value = p.nome;
+      document.getElementById('endereco').value = p.endereco;
+      document.getElementById('data_nascimento').value = p.data_nascimento;
+    };
+    tbody.appendChild(tr);
+  });
+}
+
+listar(); // carrega ao abrir
+</script>
+</body>
+</html>
+```
+
+## Exercício 02
+
+``` cmd
+python -m pip install --user --upgrade flask flask-cors sqlalchemy psycopg2-binary
+```
+
+### Servidor python
+
+``` python
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+from sqlalchemy import create_engine, Column, String, Date, Text
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+# ------------------------------
+# Configuração do Flask e CORS
+# ------------------------------
+app = Flask(__name__)
+CORS(app)
+
+# ------------------------------
+# Configuração do banco PostgreSQL
+# ------------------------------
+DATABASE_URL = "postgresql://postgres:MinhaSuperSenha@db.pbbtfwmydxmxdibmtbqq.supabase.co:5432/postgres"
+
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(bind=engine)
+Base = declarative_base()
+
+# ------------------------------
+# Modelo Pessoa
+# ------------------------------
+class Pessoa(Base):
+    __tablename__ = "pessoas"
+    cpf = Column(String(14), primary_key=True)
+    nome = Column(Text, nullable=False)
+    endereco = Column(Text, nullable=False)
+    data_nascimento = Column(Date, nullable=False)
+    foto = Column(Text)  # Base64 ou URL
+
+# Cria a tabela se não existir
+Base.metadata.create_all(engine)
+
+# ------------------------------
+# CRUD
+# ------------------------------
+
+# Listar todas as pessoas ou pesquisar por termo
+@app.route('/pessoas', methods=['GET'])
+def listar():
+    termo = request.args.get('q', '').lower()
+    session = SessionLocal()
+    if termo:
+        pessoas = session.query(Pessoa).filter(
+            (Pessoa.nome.ilike(f"%{termo}%")) | (Pessoa.cpf.ilike(f"%{termo}%"))
+        ).all()
+    else:
+        pessoas = session.query(Pessoa).all()
+    session.close()
+    return jsonify([{
+        "cpf": p.cpf,
+        "nome": p.nome,
+        "endereco": p.endereco,
+        "data_nascimento": p.data_nascimento.isoformat(),
+        "foto": p.foto
+    } for p in pessoas])
+
+# Inserir nova pessoa
+@app.route('/pessoas', methods=['POST'])
+def inserir():
+    dados = request.get_json()
+    session = SessionLocal()
+    if session.query(Pessoa).filter_by(cpf=dados['cpf']).first():
+        session.close()
+        return jsonify({"error": "CPF já cadastrado"}), 400
+    pessoa = Pessoa(
+        cpf=dados['cpf'],
+        nome=dados['nome'],
+        endereco=dados['endereco'],
+        data_nascimento=dados['data_nascimento'],
+        foto=dados.get('foto')
+    )
+    session.add(pessoa)
+    session.commit()
+    session.close()
+    return jsonify({"message": "Inserido com sucesso"}), 201
+
+# Alterar pessoa
+@app.route('/pessoas/<cpf>', methods=['PUT'])
+def alterar(cpf):
+    dados = request.get_json()
+    session = SessionLocal()
+    pessoa = session.query(Pessoa).filter_by(cpf=cpf).first()
+    if not pessoa:
+        session.close()
+        return jsonify({"error": "CPF não encontrado"}), 404
+    pessoa.nome = dados.get('nome', pessoa.nome)
+    pessoa.endereco = dados.get('endereco', pessoa.endereco)
+    pessoa.data_nascimento = dados.get('data_nascimento', pessoa.data_nascimento)
+    pessoa.foto = dados.get('foto', pessoa.foto)
+    session.commit()
+    session.close()
+    return jsonify({"message": "Alterado com sucesso"})
+
+# Remover pessoa
+@app.route('/pessoas/<cpf>', methods=['DELETE'])
+def remover(cpf):
+    session = SessionLocal()
+    pessoa = session.query(Pessoa).filter_by(cpf=cpf).first()
+    if not pessoa:
+        session.close()
+        return jsonify({"error": "CPF não encontrado"}), 404
+    session.delete(pessoa)
+    session.commit()
+    session.close()
+    return jsonify({"message": "Removido com sucesso"})
+
+# Buscar pessoa por CPF
+@app.route('/pessoas/<cpf>', methods=['GET'])
+def buscar(cpf):
+    session = SessionLocal()
+    pessoa = session.query(Pessoa).filter_by(cpf=cpf).first()
+    session.close()
+    if not pessoa:
+        return jsonify({"error": "CPF não encontrado"}), 404
+    return jsonify({
+        "cpf": pessoa.cpf,
+        "nome": pessoa.nome,
+        "endereco": pessoa.endereco,
+        "data_nascimento": pessoa.data_nascimento.isoformat(),
+        "foto": pessoa.foto
+    })
+
+# ------------------------------
+# Inicia o servidor
+# ------------------------------
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
+```
+
+### Cliente HTML (conexão Restful)
+
+``` html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Pessoas - Flask/PostgreSQL</title>
+<style>
+  body { font-family: sans-serif; max-width: 800px; margin: 20px auto; }
+  label { display: block; margin-top: 10px; }
+  button { margin-top: 10px; margin-right: 5px; }
+  table { border-collapse: collapse; width:100%; margin-top:20px; }
+  th, td { border:1px solid #ccc; padding:6px; text-align:left; }
+  img.thumb { width:60px; height:60px; object-fit:cover; border-radius:4px; }
+</style>
+</head>
+<body>
+<h1>Cadastro de Pessoas (Flask/PostgreSQL)</h1>
+
+<form id="formPessoa">
+  <label>CPF (chave primária): <input id="cpf" required></label>
+  <label>Nome: <input id="nome" required></label>
+  <label>Endereço: <input id="endereco" required></label>
+  <label>Data Nasc.: <input type="date" id="data_nascimento" required></label>
+  <label>Foto: <input type="file" id="foto" accept="image/*"></label>
+
+  <button type="button" onclick="inserir()">Inserir</button>
+  <button type="button" onclick="alterar()">Alterar</button>
+  <button type="button" onclick="remover()">Remover</button>
+</form>
+
+<h2>Pesquisar</h2>
+<input id="pesquisa" placeholder="Digite nome ou CPF">
+<button type="button" onclick="pesquisar()">Pesquisar</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>CPF</th><th>Foto</th><th>Nome</th>
+      <th>Endereço</th><th>Nascimento</th>
+    </tr>
+  </thead>
+  <tbody id="tabela"></tbody>
+</table>
+
+<script>
+const API = 'http://localhost:5000/pessoas';
+
+/* ---------- Funções utilitárias ---------- */
+function validaCampos() {
+  const campos = ['cpf','nome','endereco','data_nascimento'];
+  for (const id of campos) {
+    const valor = document.getElementById(id).value.trim();
+    if (!valor) {
+      alert(`O campo "${id}" não pode ficar em branco.`);
+      return false;
+    }
+  }
+  return true;
+}
+
+function getFotoBase64() {
+  const file = document.getElementById('foto').files[0];
+  if(!file) return Promise.resolve('');
+  return new Promise((resolve,reject)=>{
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function coletaDados(base64Foto){
+  return {
+    cpf: document.getElementById('cpf').value.trim(),
+    nome: document.getElementById('nome').value.trim(),
+    endereco: document.getElementById('endereco').value.trim(),
+    data_nascimento: document.getElementById('data_nascimento').value,
+    foto: base64Foto || ''
+  };
+}
+
+/* ---------- CRUD ---------- */
+async function inserir() {
+  if(!validaCampos()) return;
+  const base64 = await getFotoBase64();
+  const pessoa = coletaDados(base64);
+
+  const res = await fetch(API, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(pessoa)
+  });
+  const data = await res.json();
+  if(res.ok) alert('Inserido com sucesso!');
+  else alert('Erro: ' + (data.error || ''));
+  listar();
+}
+
+async function alterar() {
+  if(!validaCampos()) return;
+  const cpf = document.getElementById('cpf').value.trim();
+  const base64 = await getFotoBase64();
+  const novosDados = coletaDados();
+  if(base64) novosDados.foto = base64;
+
+  const res = await fetch(`${API}/${encodeURIComponent(cpf)}`, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(novosDados)
+  });
+  const data = await res.json();
+  if(res.ok) alert('Alterado com sucesso!');
+  else alert('Erro: ' + (data.error || ''));
+  listar();
+}
+
+async function remover() {
+  const cpf = document.getElementById('cpf').value.trim();
+  if(!cpf) return alert('Informe o CPF para remover.');
+  if(confirm('Confirma a exclusão?')){
+    const res = await fetch(`${API}/${encodeURIComponent(cpf)}`, {method:'DELETE'});
+    const data = await res.json();
+    if(res.ok) alert('Removido com sucesso!');
+    else alert('Erro: ' + (data.error || ''));
+    listar();
+  }
+}
+
+async function pesquisar() {
+  const termo = document.getElementById('pesquisa').value.trim();
+  if(!termo){ listar(); return; }
+  const res = await fetch(`${API}?q=${encodeURIComponent(termo)}`);
+  const data = await res.json();
+  preencheTabela(data);
+}
+
+async function listar() {
+  const res = await fetch(API);
+  const data = await res.json();
+  preencheTabela(data);
+}
+
+/* ---------- UI ---------- */
+function preencheTabela(lista){
+  const tbody = document.getElementById('tabela');
+  tbody.innerHTML = '';
+  lista.forEach(p=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${p.cpf}</td>
+      <td>${p.foto ? `<img class="thumb" src="${p.foto}" alt="foto">` : ''}</td>
+      <td>${p.nome}</td>
+      <td>${p.endereco}</td>
+      <td>${p.data_nascimento}</td>`;
+    tr.onclick = () => {
+      document.getElementById('cpf').value = p.cpf;
+      document.getElementById('nome').value = p.nome;
+      document.getElementById('endereco').value = p.endereco;
+      document.getElementById('data_nascimento').value = p.data_nascimento;
+    };
+    tbody.appendChild(tr);
+  });
+}
+
+listar();
+</script>
+</body>
+</html>
+```
+
+## Exercício 03
+
+``` cmd
+cpan Dancer2 DBI DBD::Pg JSON
+```
+
+### Servidor Perl
+
+``` perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+use Dancer2;
+use DBI;
+use JSON;
+
+# -----------------------------
+# Configurações do banco
+# -----------------------------
+my $dsn = "dbi:Pg:dbname=postgres;host=db.pbbtfwmydxmxdibmtbqq.supabase.co;port=5432";
+my $db_user = "postgres";
+my $db_pass = "MinhaSuperSenha";
+
+my $dbh = DBI->connect($dsn, $db_user, $db_pass, { RaiseError => 1, AutoCommit => 1 });
+
+# -----------------------------
+# Helpers
+# -----------------------------
+sub json_response {
+    content_type 'application/json';
+    return encode_json($_[0]);
+}
+
+# -----------------------------
+# Endpoints REST
+# -----------------------------
+
+# Listar todas ou pesquisar
+get '/pessoas' => sub {
+    my $q = query_parameters->get('q') || '';
+    my $sql = "SELECT * FROM pessoas";
+    my @params;
+    if ($q ne '') {
+        $sql .= " WHERE cpf ILIKE ? OR nome ILIKE ?";
+        @params = ("%$q%", "%$q%");
+    }
+    my $sth = $dbh->prepare($sql);
+    $sth->execute(@params);
+    my @rows;
+    while (my $row = $sth->fetchrow_hashref) {
+        push @rows, $row;
+    }
+    return json_response(\@rows);
+};
+
+# Buscar por CPF
+get '/pessoas/:cpf' => sub {
+    my $cpf = route_parameters->get('cpf');
+    my $sth = $dbh->prepare("SELECT * FROM pessoas WHERE cpf = ?");
+    $sth->execute($cpf);
+    my $row = $sth->fetchrow_hashref;
+    return $row ? json_response($row) : status(404)->json_response({ error => "CPF não encontrado" });
+};
+
+# Inserir
+post '/pessoas' => sub {
+    my $data = from_json(request->body);
+    my $cpf = $data->{cpf};
+    # Verifica se existe
+    my $check = $dbh->prepare("SELECT cpf FROM pessoas WHERE cpf = ?");
+    $check->execute($cpf);
+    if ($check->fetchrow_array) {
+        status(400);
+        return json_response({ error => "CPF já cadastrado" });
+    }
+    my $sth = $dbh->prepare("INSERT INTO pessoas (cpf, nome, endereco, data_nascimento, foto) VALUES (?, ?, ?, ?, ?)");
+    $sth->execute($cpf, $data->{nome}, $data->{endereco}, $data->{data_nascimento}, $data->{foto});
+    status(201);
+    return json_response({ message => "Inserido com sucesso" });
+};
+
+# Alterar
+put '/pessoas/:cpf' => sub {
+    my $cpf = route_parameters->get('cpf');
+    my $data = from_json(request->body);
+    # Verifica se existe
+    my $check = $dbh->prepare("SELECT cpf FROM pessoas WHERE cpf = ?");
+    $check->execute($cpf);
+    unless ($check->fetchrow_array) {
+        status(404);
+        return json_response({ error => "CPF não encontrado" });
+    }
+    my $sth = $dbh->prepare("UPDATE pessoas SET nome=?, endereco=?, data_nascimento=?, foto=? WHERE cpf=?");
+    $sth->execute($data->{nome}, $data->{endereco}, $data->{data_nascimento}, $data->{foto}, $cpf);
+    return json_response({ message => "Alterado com sucesso" });
+};
+
+# Remover
+del '/pessoas/:cpf' => sub {
+    my $cpf = route_parameters->get('cpf');
+    my $sth = $dbh->prepare("DELETE FROM pessoas WHERE cpf=?");
+    my $rows = $sth->execute($cpf);
+    if ($rows) {
+        return json_response({ message => "Removido com sucesso" });
+    } else {
+        status(404);
+        return json_response({ error => "CPF não encontrado" });
+    }
+};
+
+# -----------------------------
+# Inicializa o servidor
+# -----------------------------
+set port => 5000;
+set serializer => 'JSON';
+
+start;
+```
+
+### Cliente HTML (conexão Restful)
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Pessoas - Perl/PostgreSQL</title>
+<style>
+  body { font-family: sans-serif; max-width: 800px; margin: 20px auto; }
+  label { display: block; margin-top: 10px; }
+  button { margin-top: 10px; margin-right: 5px; }
+  table { border-collapse: collapse; width:100%; margin-top:20px; }
+  th, td { border:1px solid #ccc; padding:6px; text-align:left; }
+  img.thumb { width:60px; height:60px; object-fit:cover; border-radius:4px; }
+</style>
+</head>
+<body>
+<h1>Cadastro de Pessoas (Perl/PostgreSQL)</h1>
+
+<form id="formPessoa">
+  <label>CPF (chave primária): <input id="cpf" required></label>
+  <label>Nome: <input id="nome" required></label>
+  <label>Endereço: <input id="endereco" required></label>
+  <label>Data Nasc.: <input type="date" id="data_nascimento" required></label>
+  <label>Foto: <input type="file" id="foto" accept="image/*"></label>
+
+  <button type="button" onclick="inserir()">Inserir</button>
+  <button type="button" onclick="alterar()">Alterar</button>
+  <button type="button" onclick="remover()">Remover</button>
+</form>
+
+<h2>Pesquisar</h2>
+<input id="pesquisa" placeholder="Digite nome ou CPF">
+<button type="button" onclick="pesquisar()">Pesquisar</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>CPF</th><th>Foto</th><th>Nome</th>
+      <th>Endereço</th><th>Nascimento</th>
+    </tr>
+  </thead>
+  <tbody id="tabela"></tbody>
+</table>
+
+<script>
+const API = 'http://localhost:5000/pessoas';
+
+/* ---------- Funções utilitárias ---------- */
+function validaCampos() {
+  const campos = ['cpf','nome','endereco','data_nascimento'];
+  for (const id of campos) {
+    const valor = document.getElementById(id).value.trim();
+    if (!valor) {
+      alert(`O campo "${id}" não pode ficar em branco.`);
+      return false;
+    }
+  }
+  return true;
+}
+
+function getFotoBase64() {
+  const file = document.getElementById('foto').files[0];
+  if(!file) return Promise.resolve('');
+  return new Promise((resolve,reject)=>{
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function coletaDados(base64Foto){
+  return {
+    cpf: document.getElementById('cpf').value.trim(),
+    nome: document.getElementById('nome').value.trim(),
+    endereco: document.getElementById('endereco').value.trim(),
+    data_nascimento: document.getElementById('data_nascimento').value,
+    foto: base64Foto || ''
+  };
+}
+
+/* ---------- CRUD ---------- */
+async function inserir() {
+  if(!validaCampos()) return;
+  const base64 = await getFotoBase64();
+  const pessoa = coletaDados(base64);
+
+  const res = await fetch(API, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(pessoa)
+  });
+  const data = await res.json();
+  if(res.ok) alert('Inserido com sucesso!');
+  else alert('Erro: ' + (data.error || ''));
+  listar();
+}
+
+async function alterar() {
+  if(!validaCampos()) return;
+  const cpf = document.getElementById('cpf').value.trim();
+  const base64 = await getFotoBase64();
+  const novosDados = coletaDados();
+  if(base64) novosDados.foto = base64;
+
+  const res = await fetch(`${API}/${encodeURIComponent(cpf)}`, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(novosDados)
+  });
+  const data = await res.json();
+  if(res.ok) alert('Alterado com sucesso!');
+  else alert('Erro: ' + (data.error || ''));
+  listar();
+}
+
+async function remover() {
+  const cpf = document.getElementById('cpf').value.trim();
+  if(!cpf) return alert('Informe o CPF para remover.');
+  if(confirm('Confirma a exclusão?')){
+    const res = await fetch(`${API}/${encodeURIComponent(cpf)}`, {method:'DELETE'});
+    const data = await res.json();
+    if(res.ok) alert('Removido com sucesso!');
+    else alert('Erro: ' + (data.error || ''));
+    listar();
+  }
+}
+
+async function pesquisar() {
+  const termo = document.getElementById('pesquisa').value.trim();
+  if(!termo){ listar(); return; }
+  const res = await fetch(`${API}?q=${encodeURIComponent(termo)}`);
+  const data = await res.json();
+  preencheTabela(data);
+}
+
+async function listar() {
+  const res = await fetch(API);
+  const data = await res.json();
+  preencheTabela(data);
+}
+
+/* ---------- UI ---------- */
+function preencheTabela(lista){
+  const tbody = document.getElementById('tabela');
+  tbody.innerHTML = '';
+  lista.forEach(p=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${p.cpf}</td>
+      <td>${p.foto ? `<img class="thumb" src="${p.foto}" alt="foto">` : ''}</td>
+      <td>${p.nome}</td>
+      <td>${p.endereco}</td>
+      <td>${p.data_nascimento}</td>`;
+    tr.onclick = () => {
+      document.getElementById('cpf').value = p.cpf;
+      document.getElementById('nome').value = p.nome;
+      document.getElementById('endereco').value = p.endereco;
+      document.getElementById('data_nascimento').value = p.data_nascimento;
+    };
+    tbody.appendChild(tr);
+  });
+}
+
+listar();
+</script>
+</body>
+</html>
+
+```
+

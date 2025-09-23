@@ -1,3 +1,8 @@
+fig:tikz-diagrama0
+fig:tikz-diagrama10
+fig:tikz-diagrama-DER-00
+fig:tikz-diagrama1
+fig:tikz-diagrama2
 acesso-ao-gitbook-celular
 httpsmiguel7penteado.github.io2025-2sem-gti-bancodedados
 leitores-de-formato-de-arquivo-epub-para-smartphone
@@ -121,6 +126,13 @@ administração-e-gerenciamento-de-bancos-de-dados
 administração-e-gerenciamento-de-bancos-de-dados-1
 banco-de-dados-uma-aplicação-crud
 banco-de-dados-uma-aplicação-crud-1
+exercício-01
+exercício-02
+servidor-python
+cliente-html-conexão-restful
+exercício-03
+servidor-perl
+cliente-html-conexão-restful-1
 banco-de-dados-mysql-mariadb
 banco-de-dados-mysql-mariadb-1
 banco-de-dados-postgres
