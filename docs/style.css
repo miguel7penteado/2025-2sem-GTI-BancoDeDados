@@ -14,8 +14,8 @@
   --accent: #14b8a6;       /* teal-500 */
   --link: var(--primary);
   --border: #e5e7eb;       /* gray-200 */
-  --code-bg: #0b1021;      /* deep navy */
-  --code-text: #e5e7eb;    /* light gray */
+  --code-bg: #34abcc;      /* #0b1021; */      /* deep navy */
+  --code-text: #000000;    /* light gray */
   --inline-code-bg: #f3f4f6; /* gray-100 */
   --highlight: #fff8e1;    /* soft yellow */
   --kbd-bg: #111827;       /* gray-900 */
@@ -78,7 +78,9 @@ a, code, pre, span.url
 
 .book .book-body .page-wrapper .page-inner { max-width: 860px; }
 
-p { font-size: 1.05rem; }
+p {
+    font-size: 1.3rem;
+}
 strong { color: #111827; }
 em { color: #111827; }
 
@@ -186,22 +188,32 @@ pre, .sourceCode pre { padding: 1rem 1.1rem; overflow: auto; box-shadow: var(--s
 pre.numberSource code > span { display: inline-block; min-width: 2.25em; padding-right: .75em; color: #94a3b8; border-right: 1px solid rgba(255,255,255,.08); margin-right: .75em; }
 
 /* Syntax accents (works with pandoc classes) */
-code span.kw { color: #93c5fd; }
+code span.kw {
+    color: #06376E;
+    font-weight: bolder;
+    text-shadow: 4px 0px 40em #00075E;
+}
 code span.st { color: #fde68a; }
-code span.dv, code span.bn, code span.fl { color: #a7f3d0; }
+code span.dv, code span.bn, code span.fl {
+    color: #CE000C;
+}
 code span.ch, code span.sc { color: #fbcfe8; }
-code span.cf { color: #c7d2fe; font-weight: 600; }
+code span.cf {
+    color: #89026F;
+    font-weight: 600;
+}
 code span.fu { color: #bef264; }
 code span.op { color: #e5e7eb; }
 
 /* Blockquotes & callouts -------------------------------------------- */
 blockquote {
-  margin: 1.25rem 0;
-  padding: 1rem 1.25rem 1rem 1.1rem;
-  border-left: 6px solid var(--accent);
-  background: linear-gradient(180deg, #ecfeff, #ffffff);
-  border-radius: 10px;
-  box-shadow: var(--shadow-sm);
+    margin: 1.25rem 0;
+    padding: 1rem 1.25rem 1rem 1.1rem;
+    border-left: 6px solid var(--accent);
+    background: linear-gradient(180deg, #ecfeff, #ffffff);
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+    color: inherit;
 }
 blockquote p { margin: 0.2rem 0; }
 
