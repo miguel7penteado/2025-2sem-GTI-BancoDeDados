@@ -121,7 +121,7 @@
 
 \title{GTI - Banco de dados - 2025 - Anotações de aula}
 \author{Professor Miguél Suares}
-\date{2025-09-18}
+\date{2025-09-28}
 
 \begin{document}
 \maketitle
@@ -638,12 +638,6 @@ Próxima aula: \textbf{Fundamentos de Banco de Dados} -- 11/08/2025
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{rmarkdown}\SpecialCharTok{::}\FunctionTok{render}\NormalTok{(}\StringTok{"03{-}2025{-}08{-}19\_20\_.Rmd"}\NormalTok{, }\AttributeTok{output\_dir=}\StringTok{"docs"}\NormalTok{, }\AttributeTok{output\_file =}\StringTok{"temporario.html"}\NormalTok{ , }\AttributeTok{output\_format =} \StringTok{"html\_document"}\NormalTok{) ; utils}\SpecialCharTok{::}\FunctionTok{browseURL}\NormalTok{(}\StringTok{"docs/temporario.html"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \section{Exercícios}\label{exercuxedcios}
 
 \chapter{Modelagem de Bancos de Dados}\label{modelagem-de-bancos-de-dados}
@@ -818,25 +812,13 @@ A ferramenta que irá criar as estruturas Físicas (tabelas, colunas, chaves) de
 A linguagem SQL foi criada nos laboratórios da IBM em 1974, como interface de manipulação ao Bando de Dados Relacional System-R , atualmente denominado IBM DB2. Os criadores foram engenheiros de sistemas que sucederam o professor Edgard Frank Codd no projeto de Banco de Dados Relacional: Donald Chamberlain e Raymond Boyce.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5189}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4811}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{center}
-\includegraphics[width=3.72917in,height=\textheight]{images/2025-08-18/04-Donald_Chamberlain.jpg}
-
-\textbf{Donald Chamberlain} - Criador da linguagem SQL nos laboratórios da IBM
-\end{center}
-\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\begin{center}
-\includegraphics[width=2.47917in,height=\textheight]{images/2025-08-18/04-Raymond_Boyce.jpg}
-
-\textbf{Raymond Boyce} - Criador da linguagem SQL nos laboratórios da IBM
-\end{center}
-\end{minipage} \\
+\includegraphics[width=3.72917in,height=\textheight]{images/2025-08-18/04-Donald_Chamberlain.jpg} & \includegraphics[width=2.47917in,height=\textheight]{images/2025-08-18/04-Raymond_Boyce.jpg} \\
 \end{longtable}
 
 A lingauem SQL é a ponte com o mundo exterior para um Sistema de Gerenciamento de Banco de Dados (SGBD). Os conjunto de comandos da linguagem SQL são divididos em 3 grandes grupos:
@@ -960,10 +942,10 @@ Vamos agora converter a representação matemática para uma representação ló
 O modelo Entidade Relacionamento consistem em traduzir elementos morfológicos da gramática da língua portuguesa em um texto para um modelo de Banco de dados utilizando a com a seguinte regra de montagem:
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2078}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2532}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2273}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2987}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -2741,6 +2723,383 @@ Considere um projeto de Banco de Dados.Faça a modelagem utilizando o Modelo Ent
 \subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-3}
 \addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
 
+\section{Administração e Gerenciamento de Banco de Dados:}\label{administrauxe7uxe3o-e-gerenciamento-de-banco-de-dados}
+
+\section{Usuários, Grupos e Esquemas de Bancos de Dados}\label{usuuxe1rios-grupos-e-esquemas-de-bancos-de-dados}
+
+\subsection{Esquemas de Banco de Dados}\label{esquemas-de-banco-de-dados}
+
+\includesvg{images/aula_04-Exemplo-01-esquemas.svg}
+
+\subsection{Criação de usuários no MySQL}\label{criauxe7uxe3o-de-usuuxe1rios-no-mysql}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{{-}{-} turma TI2P40}
+
+\CommentTok{{-}{-} usuários no MySQL}
+
+\KeywordTok{DROP} \FunctionTok{USER} \ControlFlowTok{IF} \KeywordTok{EXISTS} \StringTok{\textquotesingle{}f362bf0\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{; }\CommentTok{{-}{-} apaga o \textquotesingle{}Bruno Antonio Marques\textquotesingle{};}
+\KeywordTok{DROP} \FunctionTok{USER} \ControlFlowTok{IF} \KeywordTok{EXISTS} \StringTok{\textquotesingle{}r536fa6\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{; }\CommentTok{{-}{-} apaga o \textquotesingle{}Caio Cesar Balbino Da Silva\textquotesingle{};}
+\KeywordTok{DROP} \FunctionTok{USER} \ControlFlowTok{IF} \KeywordTok{EXISTS} \StringTok{\textquotesingle{}h756960\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{; }\CommentTok{{-}{-} apaga o \textquotesingle{}Heder Rodrigues Da Silva\textquotesingle{};}
+\KeywordTok{DROP} \FunctionTok{USER} \ControlFlowTok{IF} \KeywordTok{EXISTS} \StringTok{\textquotesingle{}r8133g7\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{; }\CommentTok{{-}{-} apaga o \textquotesingle{}Ítalo Kevin Rodrigues Da Silva\textquotesingle{};}
+\KeywordTok{DROP} \FunctionTok{USER} \ControlFlowTok{IF} \KeywordTok{EXISTS} \StringTok{\textquotesingle{}r837aa0\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{; }\CommentTok{{-}{-} apaga o \textquotesingle{}Lucas Souza Rodrigues\textquotesingle{};}
+\KeywordTok{DROP} \FunctionTok{USER} \ControlFlowTok{IF} \KeywordTok{EXISTS} \StringTok{\textquotesingle{}h714419\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{; }\CommentTok{{-}{-} apaga o \textquotesingle{}Marcos Paulo Cordeiro Goes\textquotesingle{};}
+\KeywordTok{DROP} \FunctionTok{USER} \ControlFlowTok{IF} \KeywordTok{EXISTS} \StringTok{\textquotesingle{}r854124\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{; }\CommentTok{{-}{-} apaga o \textquotesingle{}Ramon Borges De Holanda\textquotesingle{};}
+
+
+\KeywordTok{CREATE} \FunctionTok{USER} \StringTok{\textquotesingle{}f362bf0\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}} \KeywordTok{IDENTIFIED} \KeywordTok{BY} \StringTok{\textquotesingle{}unip\textquotesingle{}} \KeywordTok{COMMENT}  \StringTok{\textquotesingle{}Bruno Antonio Marques\textquotesingle{}}\NormalTok{;}
+\KeywordTok{CREATE} \FunctionTok{USER} \StringTok{\textquotesingle{}r536fa6\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}} \KeywordTok{IDENTIFIED} \KeywordTok{BY} \StringTok{\textquotesingle{}unip\textquotesingle{}} \KeywordTok{COMMENT}  \StringTok{\textquotesingle{}Caio Cesar Balbino Da Silva\textquotesingle{}}\NormalTok{;}
+\KeywordTok{CREATE} \FunctionTok{USER} \StringTok{\textquotesingle{}h756960\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}} \KeywordTok{IDENTIFIED} \KeywordTok{BY} \StringTok{\textquotesingle{}unip\textquotesingle{}} \KeywordTok{COMMENT}  \StringTok{\textquotesingle{}Heder Rodrigues Da Silva\textquotesingle{}}\NormalTok{;}
+\KeywordTok{CREATE} \FunctionTok{USER} \StringTok{\textquotesingle{}r8133g7\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}} \KeywordTok{IDENTIFIED} \KeywordTok{BY} \StringTok{\textquotesingle{}unip\textquotesingle{}} \KeywordTok{COMMENT}  \StringTok{\textquotesingle{}Ítalo Kevin Rodrigues Da Silva\textquotesingle{}}\NormalTok{;}
+\KeywordTok{CREATE} \FunctionTok{USER} \StringTok{\textquotesingle{}r837aa0\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}} \KeywordTok{IDENTIFIED} \KeywordTok{BY} \StringTok{\textquotesingle{}unip\textquotesingle{}} \KeywordTok{COMMENT}  \StringTok{\textquotesingle{}Lucas Souza Rodrigues\textquotesingle{}}\NormalTok{;}
+\KeywordTok{CREATE} \FunctionTok{USER} \StringTok{\textquotesingle{}h714419\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}} \KeywordTok{IDENTIFIED} \KeywordTok{BY} \StringTok{\textquotesingle{}unip\textquotesingle{}} \KeywordTok{COMMENT}  \StringTok{\textquotesingle{}Marcos Paulo Cordeiro Goes\textquotesingle{}}\NormalTok{;}
+\KeywordTok{CREATE} \FunctionTok{USER} \StringTok{\textquotesingle{}r854124\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}} \KeywordTok{IDENTIFIED} \KeywordTok{BY} \StringTok{\textquotesingle{}unip\textquotesingle{}} \KeywordTok{COMMENT}  \StringTok{\textquotesingle{}Ramon Borges De Holanda\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} turma TI1P40}
+
+\KeywordTok{DROP} \FunctionTok{USER} \ControlFlowTok{IF} \KeywordTok{EXISTS} \StringTok{\textquotesingle{}n0296a6\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{; }\CommentTok{{-}{-} apaga o \textquotesingle{}Bryan Lucena Barbosa Da Silva\textquotesingle{};}
+\KeywordTok{DROP} \FunctionTok{USER} \ControlFlowTok{IF} \KeywordTok{EXISTS} \StringTok{\textquotesingle{}h788986\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{; }\CommentTok{{-}{-} apaga o \textquotesingle{}Igor Soares Lima Da Cunha\textquotesingle{};}
+\KeywordTok{DROP} \FunctionTok{USER} \ControlFlowTok{IF} \KeywordTok{EXISTS} \StringTok{\textquotesingle{}h77gii5\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{; }\CommentTok{{-}{-} apaga o \textquotesingle{}Jessica Cristina De S Silva\textquotesingle{};}
+\KeywordTok{DROP} \FunctionTok{USER} \ControlFlowTok{IF} \KeywordTok{EXISTS} \StringTok{\textquotesingle{}f3648i0\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{; }\CommentTok{{-}{-} apaga o \textquotesingle{}Maysa Kelly Dos Santos Freitas\textquotesingle{};}
+
+
+\KeywordTok{CREATE} \FunctionTok{USER} \StringTok{\textquotesingle{}n0296a6\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}} \KeywordTok{IDENTIFIED} \KeywordTok{BY} \StringTok{\textquotesingle{}unip\textquotesingle{}} \KeywordTok{COMMENT}  \StringTok{\textquotesingle{}Bryan Lucena Barbosa Da Silva\textquotesingle{}}\NormalTok{;}
+\KeywordTok{CREATE} \FunctionTok{USER} \StringTok{\textquotesingle{}h788986\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}} \KeywordTok{IDENTIFIED} \KeywordTok{BY} \StringTok{\textquotesingle{}unip\textquotesingle{}} \KeywordTok{COMMENT}  \StringTok{\textquotesingle{}Igor Soares Lima Da Cunha\textquotesingle{}}\NormalTok{;}
+\KeywordTok{CREATE} \FunctionTok{USER} \StringTok{\textquotesingle{}h77gii5\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}} \KeywordTok{IDENTIFIED} \KeywordTok{BY} \StringTok{\textquotesingle{}unip\textquotesingle{}} \KeywordTok{COMMENT}  \StringTok{\textquotesingle{}Jessica Cristina De S Silva\textquotesingle{}}\NormalTok{;}
+\KeywordTok{CREATE} \FunctionTok{USER} \StringTok{\textquotesingle{}f3648i0\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}} \KeywordTok{IDENTIFIED} \KeywordTok{BY} \StringTok{\textquotesingle{}unip\textquotesingle{}} \KeywordTok{COMMENT}  \StringTok{\textquotesingle{}Maysa Kelly Dos Santos Freitas\textquotesingle{}}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Criação de Esquemas de Banco de Dados no MySQL}\label{criauxe7uxe3o-de-esquemas-de-banco-de-dados-no-mysql}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{{-}{-} Script para criar um esquema (database) para cada UF brasileira}
+\CommentTok{{-}{-} Nome do esquema: \textless{}código IBGE\textgreater{}{-}\textless{}nome\_uf\textgreater{}}
+\CommentTok{{-}{-} Ordenado pelo código IBGE}
+\CommentTok{{-}{-} Compatível com MySQL 8}
+
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{11}\OperatorTok{{-}}\NormalTok{rondonia\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{12}\OperatorTok{{-}}\NormalTok{acre\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{13}\OperatorTok{{-}}\NormalTok{amazonas\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{14}\OperatorTok{{-}}\NormalTok{roraima\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{15}\OperatorTok{{-}}\NormalTok{para\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{16}\OperatorTok{{-}}\NormalTok{amapa\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{17}\OperatorTok{{-}}\NormalTok{tocantins\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{21}\OperatorTok{{-}}\NormalTok{maranhao\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{22}\OperatorTok{{-}}\NormalTok{piaui\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{23}\OperatorTok{{-}}\NormalTok{ceara\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{24}\OperatorTok{{-}}\NormalTok{rio\_grande\_do\_norte\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{25}\OperatorTok{{-}}\NormalTok{paraiba\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{26}\OperatorTok{{-}}\NormalTok{pernambuco\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{27}\OperatorTok{{-}}\NormalTok{alagoas\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{28}\OperatorTok{{-}}\NormalTok{sergipe\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{29}\OperatorTok{{-}}\NormalTok{bahia\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{31}\OperatorTok{{-}}\NormalTok{minas\_gerais\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{32}\OperatorTok{{-}}\NormalTok{espiritosanto\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{33}\OperatorTok{{-}}\NormalTok{rio\_de\_janeiro\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{35}\OperatorTok{{-}}\NormalTok{sao\_paulo\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{41}\OperatorTok{{-}}\NormalTok{parana\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{42}\OperatorTok{{-}}\NormalTok{santa\_catarina\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{43}\OperatorTok{{-}}\NormalTok{rio\_grande\_do\_sul\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{50}\OperatorTok{{-}}\NormalTok{mato\_grosso\_do\_sul\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{51}\OperatorTok{{-}}\NormalTok{mato\_grosso\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{52}\OperatorTok{{-}}\NormalTok{goias\textasciigrave{};}
+\KeywordTok{CREATE} \KeywordTok{DATABASE} \ControlFlowTok{IF} \KeywordTok{NOT} \KeywordTok{EXISTS}\NormalTok{ \textasciigrave{}}\DecValTok{53}\OperatorTok{{-}}\NormalTok{distrito\_federal\textasciigrave{};}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Criando de Grupos de Permissões no MySQL:}\label{criando-de-grupos-de-permissuxf5es-no-mysql}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{{-}{-} ===========================================}
+\CommentTok{{-}{-} Criação de roles para as 5 regiões do Brasil}
+\CommentTok{{-}{-} ===========================================}
+
+\KeywordTok{CREATE} \KeywordTok{ROLE} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{CREATE} \KeywordTok{ROLE} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{CREATE} \KeywordTok{ROLE} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{CREATE} \KeywordTok{ROLE} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{CREATE} \KeywordTok{ROLE} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} ===========================================}
+\CommentTok{/*}
+\CommentTok{Concedendo privilégios de leitura (SELECT) a cada grupo criado}
+\CommentTok{*/}
+\CommentTok{{-}{-} ===========================================}
+
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON} \OperatorTok{*}\NormalTok{.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON} \OperatorTok{*}\NormalTok{.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON} \OperatorTok{*}\NormalTok{.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON} \OperatorTok{*}\NormalTok{.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON} \OperatorTok{*}\NormalTok{.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} ===========================================}
+\CommentTok{{-}{-} Para atribuir um role a um usuário:}
+\CommentTok{{-}{-} ===========================================}
+\CommentTok{{-}{-} GRANT \textquotesingle{}norte\textquotesingle{} TO \textquotesingle{}usuario\_exemplo\textquotesingle{}@\textquotesingle{}\%\textquotesingle{};}
+\CommentTok{{-}{-} SET DEFAULT ROLE \textquotesingle{}norte\textquotesingle{} TO \textquotesingle{}usuario\_exemplo\textquotesingle{}@\textquotesingle{}\%\textquotesingle{};}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Fazendo tudo funcionar: Colocando usuários em grupos e concedendo a estes acesso a Esquemas de Banco de Dados:}\label{fazendo-tudo-funcionar-colocando-usuuxe1rios-em-grupos-e-concedendo-a-estes-acesso-a-esquemas-de-banco-de-dados}
+
+\subsection{Associando os esquemas que representam cada estado a cada grupo (que representa cada regição):}\label{associando-os-esquemas-que-representam-cada-estado-a-cada-grupo-que-representa-cada-regiuxe7uxe3o}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{{-}{-} ================================================}
+\CommentTok{{-}{-} Associação dos esquemas (databases) aos roles}
+\CommentTok{{-}{-} Roles criadas previamente:}
+\CommentTok{{-}{-}   norte, nordeste, centro\_oeste, sudeste, sul}
+\CommentTok{{-}{-} ================================================}
+
+\CommentTok{{-}{-} \textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{} REGIÃO NORTE \textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}}
+
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{11}\OperatorTok{{-}}\NormalTok{rondonia\textasciigrave{}.}\OperatorTok{*}       \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{12}\OperatorTok{{-}}\NormalTok{acre\textasciigrave{}.}\OperatorTok{*}           \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{13}\OperatorTok{{-}}\NormalTok{amazonas\textasciigrave{}.}\OperatorTok{*}       \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{14}\OperatorTok{{-}}\NormalTok{roraima\textasciigrave{}.}\OperatorTok{*}        \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{15}\OperatorTok{{-}}\NormalTok{para\textasciigrave{}.}\OperatorTok{*}           \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{16}\OperatorTok{{-}}\NormalTok{amapa\textasciigrave{}.}\OperatorTok{*}          \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{17}\OperatorTok{{-}}\NormalTok{tocantins\textasciigrave{}.}\OperatorTok{*}      \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} \textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{} REGIÃO NORDESTE \textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}}
+
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{21}\OperatorTok{{-}}\NormalTok{maranhao\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{22}\OperatorTok{{-}}\NormalTok{piaui\textasciigrave{}.}\OperatorTok{*}               \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{23}\OperatorTok{{-}}\NormalTok{ceara\textasciigrave{}.}\OperatorTok{*}               \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{24}\OperatorTok{{-}}\NormalTok{rio\_grande\_do\_norte\textasciigrave{}.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{25}\OperatorTok{{-}}\NormalTok{paraiba\textasciigrave{}.}\OperatorTok{*}             \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{26}\OperatorTok{{-}}\NormalTok{pernambuco\textasciigrave{}.}\OperatorTok{*}          \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{27}\OperatorTok{{-}}\NormalTok{alagoas\textasciigrave{}.}\OperatorTok{*}             \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{28}\OperatorTok{{-}}\NormalTok{sergipe\textasciigrave{}.}\OperatorTok{*}             \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{29}\OperatorTok{{-}}\NormalTok{bahia\textasciigrave{}.}\OperatorTok{*}               \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} \textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{} REGIÃO CENTRO\_OESTE \textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}}
+
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{50}\OperatorTok{{-}}\NormalTok{mato\_grosso\_do\_sul\textasciigrave{}.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{51}\OperatorTok{{-}}\NormalTok{mato\_grosso\textasciigrave{}.}\OperatorTok{*}       \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{52}\OperatorTok{{-}}\NormalTok{goias\textasciigrave{}.}\OperatorTok{*}             \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{53}\OperatorTok{{-}}\NormalTok{distrito\_federal\textasciigrave{}.}\OperatorTok{*}  \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} \textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{} REGIÃO SUDESTE \textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}}
+
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{31}\OperatorTok{{-}}\NormalTok{minas\_gerais\textasciigrave{}.}\OperatorTok{*}   \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{32}\OperatorTok{{-}}\NormalTok{espiritosanto\textasciigrave{}.}\OperatorTok{*}  \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{33}\OperatorTok{{-}}\NormalTok{rio\_de\_janeiro\textasciigrave{}.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{35}\OperatorTok{{-}}\NormalTok{sao\_paulo\textasciigrave{}.}\OperatorTok{*}      \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} \textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{} REGIÃO SUL \textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}\textgreater{}}
+
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{41}\OperatorTok{{-}}\NormalTok{parana\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{42}\OperatorTok{{-}}\NormalTok{santa\_catarina\textasciigrave{}.}\OperatorTok{*}    \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{ALL} \KeywordTok{PRIVILEGES} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{43}\OperatorTok{{-}}\NormalTok{rio\_grande\_do\_sul\textasciigrave{}.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Associando associando alunos a cada grupo (região):}\label{associando-associando-alunos-a-cada-grupo-regiuxe3o}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule\noalign{}
+Role (grupo) & Usuários (login) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+norte & f362bf0, r536fa6 \\
+nordeste & h756960, r8133g7 \\
+centro\_oeste & r837aa0, h714419 \\
+sudeste & r854124, n0296a6 \\
+sul & h788986, h77gii5, f3648i0 \\
+\end{longtable}
+
+\includesvg{images/aula_04-Exemplo-01-grupos.svg}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{{-}{-} =========================================}
+\CommentTok{{-}{-} Associação de usuários aos roles (grupos)}
+\CommentTok{{-}{-} =========================================}
+
+\CommentTok{{-}{-} Grupo Norte}
+\KeywordTok{GRANT} \StringTok{\textquotesingle{}norte\textquotesingle{}} \KeywordTok{TO} \StringTok{\textquotesingle{}f362bf0\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \StringTok{\textquotesingle{}norte\textquotesingle{}} \KeywordTok{TO} \StringTok{\textquotesingle{}r536fa6\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} Grupo Nordeste}
+\KeywordTok{GRANT} \StringTok{\textquotesingle{}nordeste\textquotesingle{}} \KeywordTok{TO} \StringTok{\textquotesingle{}h756960\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \StringTok{\textquotesingle{}nordeste\textquotesingle{}} \KeywordTok{TO} \StringTok{\textquotesingle{}r8133g7\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} Grupo Centro{-}Oeste}
+\KeywordTok{GRANT} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}} \KeywordTok{TO} \StringTok{\textquotesingle{}r837aa0\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}} \KeywordTok{TO} \StringTok{\textquotesingle{}h714419\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} Grupo Sudeste}
+\KeywordTok{GRANT} \StringTok{\textquotesingle{}sudeste\textquotesingle{}} \KeywordTok{TO} \StringTok{\textquotesingle{}r854124\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \StringTok{\textquotesingle{}sudeste\textquotesingle{}} \KeywordTok{TO} \StringTok{\textquotesingle{}n0296a6\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} Grupo Sul}
+\KeywordTok{GRANT} \StringTok{\textquotesingle{}sul\textquotesingle{}} \KeywordTok{TO} \StringTok{\textquotesingle{}h788986\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \StringTok{\textquotesingle{}sul\textquotesingle{}} \KeywordTok{TO} \StringTok{\textquotesingle{}h77gii5\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \StringTok{\textquotesingle{}sul\textquotesingle{}} \KeywordTok{TO} \StringTok{\textquotesingle{}f3648i0\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} (Opcional) Definir cada role como padrão para o usuário}
+\KeywordTok{SET} \KeywordTok{DEFAULT} \KeywordTok{ROLE} \KeywordTok{ALL} \KeywordTok{TO}
+    \StringTok{\textquotesingle{}f362bf0\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}r536fa6\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}h756960\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}r8133g7\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}r837aa0\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}h714419\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}r854124\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}n0296a6\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}h788986\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}h77gii5\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}f3648i0\textquotesingle{}}\NormalTok{@}\StringTok{\textquotesingle{}\%\textquotesingle{}}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Concedendo privilégios aos grupos:}\label{concedendo-priviluxe9gios-aos-grupos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{{-}{-} ============================================}
+\CommentTok{{-}{-} NORTE lê os demais grupos (Nordeste, Centro{-}Oeste, Sudeste, Sul)}
+\CommentTok{{-}{-} ============================================}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{21}\OperatorTok{{-}}\NormalTok{maranhao\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{22}\OperatorTok{{-}}\NormalTok{piaui\textasciigrave{}.}\OperatorTok{*}               \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{23}\OperatorTok{{-}}\NormalTok{ceara\textasciigrave{}.}\OperatorTok{*}               \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{24}\OperatorTok{{-}}\NormalTok{rio\_grande\_do\_norte\textasciigrave{}.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{25}\OperatorTok{{-}}\NormalTok{paraiba\textasciigrave{}.}\OperatorTok{*}             \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{26}\OperatorTok{{-}}\NormalTok{pernambuco\textasciigrave{}.}\OperatorTok{*}          \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{27}\OperatorTok{{-}}\NormalTok{alagoas\textasciigrave{}.}\OperatorTok{*}             \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{28}\OperatorTok{{-}}\NormalTok{sergipe\textasciigrave{}.}\OperatorTok{*}             \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{29}\OperatorTok{{-}}\NormalTok{bahia\textasciigrave{}.}\OperatorTok{*}               \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{50}\OperatorTok{{-}}\NormalTok{mato\_grosso\_do\_sul\textasciigrave{}.}\OperatorTok{*}  \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{51}\OperatorTok{{-}}\NormalTok{mato\_grosso\textasciigrave{}.}\OperatorTok{*}        \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{52}\OperatorTok{{-}}\NormalTok{goias\textasciigrave{}.}\OperatorTok{*}              \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{53}\OperatorTok{{-}}\NormalTok{distrito\_federal\textasciigrave{}.}\OperatorTok{*}   \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{31}\OperatorTok{{-}}\NormalTok{minas\_gerais\textasciigrave{}.}\OperatorTok{*}       \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{32}\OperatorTok{{-}}\NormalTok{espiritosanto\textasciigrave{}.}\OperatorTok{*}      \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{33}\OperatorTok{{-}}\NormalTok{rio\_de\_janeiro\textasciigrave{}.}\OperatorTok{*}     \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{35}\OperatorTok{{-}}\NormalTok{sao\_paulo\textasciigrave{}.}\OperatorTok{*}          \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{41}\OperatorTok{{-}}\NormalTok{parana\textasciigrave{}.}\OperatorTok{*}             \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{42}\OperatorTok{{-}}\NormalTok{santa\_catarina\textasciigrave{}.}\OperatorTok{*}     \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{43}\OperatorTok{{-}}\NormalTok{rio\_grande\_do\_sul\textasciigrave{}.}\OperatorTok{*}  \KeywordTok{TO} \StringTok{\textquotesingle{}norte\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} ============================================}
+\CommentTok{{-}{-} NORDESTE lê os demais grupos (Norte, Centro{-}Oeste, Sudeste, Sul)}
+\CommentTok{{-}{-} ============================================}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{11}\OperatorTok{{-}}\NormalTok{rondonia\textasciigrave{}.}\OperatorTok{*}           \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{12}\OperatorTok{{-}}\NormalTok{acre\textasciigrave{}.}\OperatorTok{*}               \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{13}\OperatorTok{{-}}\NormalTok{amazonas\textasciigrave{}.}\OperatorTok{*}           \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{14}\OperatorTok{{-}}\NormalTok{roraima\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{15}\OperatorTok{{-}}\NormalTok{para\textasciigrave{}.}\OperatorTok{*}               \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{16}\OperatorTok{{-}}\NormalTok{amapa\textasciigrave{}.}\OperatorTok{*}              \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{17}\OperatorTok{{-}}\NormalTok{tocantins\textasciigrave{}.}\OperatorTok{*}          \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{50}\OperatorTok{{-}}\NormalTok{mato\_grosso\_do\_sul\textasciigrave{}.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{51}\OperatorTok{{-}}\NormalTok{mato\_grosso\textasciigrave{}.}\OperatorTok{*}       \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{52}\OperatorTok{{-}}\NormalTok{goias\textasciigrave{}.}\OperatorTok{*}             \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{53}\OperatorTok{{-}}\NormalTok{distrito\_federal\textasciigrave{}.}\OperatorTok{*}  \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{31}\OperatorTok{{-}}\NormalTok{minas\_gerais\textasciigrave{}.}\OperatorTok{*}      \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{32}\OperatorTok{{-}}\NormalTok{espiritosanto\textasciigrave{}.}\OperatorTok{*}     \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{33}\OperatorTok{{-}}\NormalTok{rio\_de\_janeiro\textasciigrave{}.}\OperatorTok{*}    \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{35}\OperatorTok{{-}}\NormalTok{sao\_paulo\textasciigrave{}.}\OperatorTok{*}         \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{41}\OperatorTok{{-}}\NormalTok{parana\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{42}\OperatorTok{{-}}\NormalTok{santa\_catarina\textasciigrave{}.}\OperatorTok{*}    \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{43}\OperatorTok{{-}}\NormalTok{rio\_grande\_do\_sul\textasciigrave{}.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}nordeste\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} ============================================}
+\CommentTok{{-}{-} CENTRO{-}OESTE lê os demais grupos (Norte, Nordeste, Sudeste, Sul)}
+\CommentTok{{-}{-} ============================================}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{11}\OperatorTok{{-}}\NormalTok{rondonia\textasciigrave{}.}\OperatorTok{*}           \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{12}\OperatorTok{{-}}\NormalTok{acre\textasciigrave{}.}\OperatorTok{*}               \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{13}\OperatorTok{{-}}\NormalTok{amazonas\textasciigrave{}.}\OperatorTok{*}           \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{14}\OperatorTok{{-}}\NormalTok{roraima\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{15}\OperatorTok{{-}}\NormalTok{para\textasciigrave{}.}\OperatorTok{*}               \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{16}\OperatorTok{{-}}\NormalTok{amapa\textasciigrave{}.}\OperatorTok{*}              \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{17}\OperatorTok{{-}}\NormalTok{tocantins\textasciigrave{}.}\OperatorTok{*}          \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{21}\OperatorTok{{-}}\NormalTok{maranhao\textasciigrave{}.}\OperatorTok{*}           \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{22}\OperatorTok{{-}}\NormalTok{piaui\textasciigrave{}.}\OperatorTok{*}              \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{23}\OperatorTok{{-}}\NormalTok{ceara\textasciigrave{}.}\OperatorTok{*}              \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{24}\OperatorTok{{-}}\NormalTok{rio\_grande\_do\_norte\textasciigrave{}.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{25}\OperatorTok{{-}}\NormalTok{paraiba\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{26}\OperatorTok{{-}}\NormalTok{pernambuco\textasciigrave{}.}\OperatorTok{*}         \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{27}\OperatorTok{{-}}\NormalTok{alagoas\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{28}\OperatorTok{{-}}\NormalTok{sergipe\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{29}\OperatorTok{{-}}\NormalTok{bahia\textasciigrave{}.}\OperatorTok{*}              \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{31}\OperatorTok{{-}}\NormalTok{minas\_gerais\textasciigrave{}.}\OperatorTok{*}       \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{32}\OperatorTok{{-}}\NormalTok{espiritosanto\textasciigrave{}.}\OperatorTok{*}      \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{33}\OperatorTok{{-}}\NormalTok{rio\_de\_janeiro\textasciigrave{}.}\OperatorTok{*}     \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{35}\OperatorTok{{-}}\NormalTok{sao\_paulo\textasciigrave{}.}\OperatorTok{*}          \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{41}\OperatorTok{{-}}\NormalTok{parana\textasciigrave{}.}\OperatorTok{*}             \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{42}\OperatorTok{{-}}\NormalTok{santa\_catarina\textasciigrave{}.}\OperatorTok{*}     \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{43}\OperatorTok{{-}}\NormalTok{rio\_grande\_do\_sul\textasciigrave{}.}\OperatorTok{*}  \KeywordTok{TO} \StringTok{\textquotesingle{}centro\_oeste\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} ============================================}
+\CommentTok{{-}{-} SUDESTE lê os demais grupos (Norte, Nordeste, Centro{-}Oeste, Sul)}
+\CommentTok{{-}{-} ============================================}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{11}\OperatorTok{{-}}\NormalTok{rondonia\textasciigrave{}.}\OperatorTok{*}           \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{12}\OperatorTok{{-}}\NormalTok{acre\textasciigrave{}.}\OperatorTok{*}               \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{13}\OperatorTok{{-}}\NormalTok{amazonas\textasciigrave{}.}\OperatorTok{*}           \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{14}\OperatorTok{{-}}\NormalTok{roraima\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{15}\OperatorTok{{-}}\NormalTok{para\textasciigrave{}.}\OperatorTok{*}               \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{16}\OperatorTok{{-}}\NormalTok{amapa\textasciigrave{}.}\OperatorTok{*}              \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{17}\OperatorTok{{-}}\NormalTok{tocantins\textasciigrave{}.}\OperatorTok{*}          \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{21}\OperatorTok{{-}}\NormalTok{maranhao\textasciigrave{}.}\OperatorTok{*}           \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{22}\OperatorTok{{-}}\NormalTok{piaui\textasciigrave{}.}\OperatorTok{*}              \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{23}\OperatorTok{{-}}\NormalTok{ceara\textasciigrave{}.}\OperatorTok{*}              \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{24}\OperatorTok{{-}}\NormalTok{rio\_grande\_do\_norte\textasciigrave{}.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{25}\OperatorTok{{-}}\NormalTok{paraiba\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{26}\OperatorTok{{-}}\NormalTok{pernambuco\textasciigrave{}.}\OperatorTok{*}         \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{27}\OperatorTok{{-}}\NormalTok{alagoas\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{28}\OperatorTok{{-}}\NormalTok{sergipe\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{29}\OperatorTok{{-}}\NormalTok{bahia\textasciigrave{}.}\OperatorTok{*}              \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{50}\OperatorTok{{-}}\NormalTok{mato\_grosso\_do\_sul\textasciigrave{}.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{51}\OperatorTok{{-}}\NormalTok{mato\_grosso\textasciigrave{}.}\OperatorTok{*}       \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{52}\OperatorTok{{-}}\NormalTok{goias\textasciigrave{}.}\OperatorTok{*}             \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{53}\OperatorTok{{-}}\NormalTok{distrito\_federal\textasciigrave{}.}\OperatorTok{*}  \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{41}\OperatorTok{{-}}\NormalTok{parana\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{42}\OperatorTok{{-}}\NormalTok{santa\_catarina\textasciigrave{}.}\OperatorTok{*}    \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{43}\OperatorTok{{-}}\NormalTok{rio\_grande\_do\_sul\textasciigrave{}.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}sudeste\textquotesingle{}}\NormalTok{;}
+
+\CommentTok{{-}{-} ============================================}
+\CommentTok{{-}{-} SUL lê os demais grupos (Norte, Nordeste, Centro{-}Oeste, Sudeste)}
+\CommentTok{{-}{-} ============================================}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{11}\OperatorTok{{-}}\NormalTok{rondonia\textasciigrave{}.}\OperatorTok{*}           \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{12}\OperatorTok{{-}}\NormalTok{acre\textasciigrave{}.}\OperatorTok{*}               \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{13}\OperatorTok{{-}}\NormalTok{amazonas\textasciigrave{}.}\OperatorTok{*}           \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{14}\OperatorTok{{-}}\NormalTok{roraima\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{15}\OperatorTok{{-}}\NormalTok{para\textasciigrave{}.}\OperatorTok{*}               \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{16}\OperatorTok{{-}}\NormalTok{amapa\textasciigrave{}.}\OperatorTok{*}              \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{17}\OperatorTok{{-}}\NormalTok{tocantins\textasciigrave{}.}\OperatorTok{*}          \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{21}\OperatorTok{{-}}\NormalTok{maranhao\textasciigrave{}.}\OperatorTok{*}           \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{22}\OperatorTok{{-}}\NormalTok{piaui\textasciigrave{}.}\OperatorTok{*}              \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{23}\OperatorTok{{-}}\NormalTok{ceara\textasciigrave{}.}\OperatorTok{*}              \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{24}\OperatorTok{{-}}\NormalTok{rio\_grande\_do\_norte\textasciigrave{}.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{25}\OperatorTok{{-}}\NormalTok{paraiba\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{26}\OperatorTok{{-}}\NormalTok{pernambuco\textasciigrave{}.}\OperatorTok{*}         \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{27}\OperatorTok{{-}}\NormalTok{alagoas\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{28}\OperatorTok{{-}}\NormalTok{sergipe\textasciigrave{}.}\OperatorTok{*}            \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{29}\OperatorTok{{-}}\NormalTok{bahia\textasciigrave{}.}\OperatorTok{*}              \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{50}\OperatorTok{{-}}\NormalTok{mato\_grosso\_do\_sul\textasciigrave{}.}\OperatorTok{*} \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{51}\OperatorTok{{-}}\NormalTok{mato\_grosso\textasciigrave{}.}\OperatorTok{*}       \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{52}\OperatorTok{{-}}\NormalTok{goias\textasciigrave{}.}\OperatorTok{*}             \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{53}\OperatorTok{{-}}\NormalTok{distrito\_federal\textasciigrave{}.}\OperatorTok{*}  \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{31}\OperatorTok{{-}}\NormalTok{minas\_gerais\textasciigrave{}.}\OperatorTok{*}      \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{32}\OperatorTok{{-}}\NormalTok{espiritosanto\textasciigrave{}.}\OperatorTok{*}     \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{33}\OperatorTok{{-}}\NormalTok{rio\_de\_janeiro\textasciigrave{}.}\OperatorTok{*}    \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\KeywordTok{GRANT} \KeywordTok{SELECT} \KeywordTok{ON}\NormalTok{ \textasciigrave{}}\DecValTok{35}\OperatorTok{{-}}\NormalTok{sao\_paulo\textasciigrave{}.}\OperatorTok{*}         \KeywordTok{TO} \StringTok{\textquotesingle{}sul\textquotesingle{}}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Exemplo no MySQL}\label{exemplo-no-mysql}
+
+\subsection{Exemplo no PostGreSQL}\label{exemplo-no-postgresql}
+
 \chapter{Administração e Gerenciamento de Bancos de Dados}\label{administrauxe7uxe3o-e-gerenciamento-de-bancos-de-dados-1}
 
 \subsubsection*{25/08/2025}\label{section-4}
@@ -2764,6 +3123,1471 @@ Considere um projeto de Banco de Dados.Faça a modelagem utilizando o Modelo Ent
 
 \subsubsection*{Professor Miguél Suares}\label{professor-miguuxe9l-suares-6}
 \addcontentsline{toc}{subsubsection}{Professor Miguél Suares}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\#\# Exemplo 01 \\
+Neste exemplo, temos uma aplicação cliente feita html e javascript \\
+A interface do Cliente é feita em HTML5 \\
+A conexão com o servidor é feita pelo javascript incorporado no HTML: \\
+CRUD no cliente é feito peloa javascript utilizando metodologia Restful sobre protocolo HTTP 2.0 \\
+O servidor Restful é interno ao próprio SUPABASE (não precisa programar) \\
+OBS: NÃO TEMOS CONTROLE DE SESSÃO DE CLIENTE IMPLEMENTADO. \\
+crie o arquivo index.html e abra-o no navegador \\
+servidor estará rodando na porta 80 e EXPÕE A API de operações na URI \url{https://pbbtfwmydxmxdibmtbqq.supabase.co:80/} com a senha eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiYnRmd215ZHhteGRpYm10YnFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg2NTIwNjksImV4cCI6MjA3NDIyODA2OX0.-41ZWZmoYbnA9YUw1kutcWrk7IIMZ6mjTmzsBvtHPEo \\
+\texttt{css\ https://pbbtfwmydxmxdibmtbqq.supabase.co:80/} \\
+``` html \\
+\textless!DOCTYPE html\textgreater{} \\
+ \\
+Inserir
+Alterar
+Remover \\
+ \\
+ \\
+ \\
+/* ---------- Funções utilitárias ---------- */
+function validaCampos() \{
+const campos = {[}`cpf',`nome',`endereco',`data\_nascimento'{]};
+for (const id of campos) \{
+const valor = document.getElementById(id).value.trim();
+if (!valor) \{
+alert(\texttt{O\ campo\ "\$\{id\}"\ não\ pode\ ficar\ em\ branco.});
+return false;
+\}
+\}
+return true;
+\}
+function getFotoBase64() \{
+const file = document.getElementById(`foto').files{[}0{]};
+if(!file) return Promise.resolve('\,`);
+return new Promise((resolve,reject)=\textgreater\{
+const reader = new FileReader();
+reader.onload = () =\textgreater{} resolve(reader.result);
+reader.onerror = reject;
+reader.readAsDataURL(file);
+\});
+\}
+function coletaDados(base64Foto)\{
+return \{
+cpf: document.getElementById('cpf').value.trim(),
+nome: document.getElementById(`nome').value.trim(),
+endereco: document.getElementById(`endereco').value.trim(),
+data\_nascimento: document.getElementById(`data\_nascimento').value,
+foto: base64Foto \textbar\textbar{} '\,'
+\};
+\} \\
+/* ---------- CRUD Supabase ---------- */
+async function inserir() \{
+if (!validaCampos()) return;
+const base64 = await getFotoBase64();
+const pessoa = coletaDados(base64); \\
+// Verifica se já existe
+const \{ \url{data:existe} \} = await supabase
+.from(`pessoas')
+.select(`cpf')
+.eq(`cpf', pessoa.cpf);
+if(existe \&\& existe.length) \{
+alert(`Já existe um registro com este CPF.');
+return;
+\} \\
+const \{ error \} = await supabase
+.from(`pessoas')
+.insert({[}pessoa{]});
+if(error) alert(`Erro ao inserir:' + error.message);
+else \{ alert(`Inserido!'); listar(); \}
+\} \\
+async function alterar() \{
+if (!validaCampos()) return;
+const cpf = document.getElementById(`cpf').value.trim();
+const base64 = await getFotoBase64();
+const novosDados = coletaDados();
+if(base64) novosDados.foto = base64; \\
+const \{ error \} = await supabase
+.from(`pessoas')
+.update(novosDados)
+.eq(`cpf', cpf);
+if(error) alert(`Erro ao alterar:' + error.message);
+else \{ alert(`Alterado!'); listar(); \}
+\} \\
+async function remover() \{
+const cpf = document.getElementById(`cpf').value.trim();
+if(!cpf) return alert(`Informe o CPF para remover.');
+if(confirm(`Confirma a exclusão?'))\{
+const \{ error \} = await supabase
+.from(`pessoas')
+.delete()
+.eq(`cpf', cpf);
+if(error) alert(`Erro ao remover:' + error.message);
+else \{ alert(`Removido!'); listar(); \}
+\}
+\} \\
+async function pesquisar() \{
+const termo = document.getElementById(`pesquisa').value.trim();
+if(!termo)\{ listar(); return; \}
+const \{ data, error \} = await supabase
+.from(`pessoas')
+.select('*`)
+.or(\texttt{cpf.ilike.\%\$\{termo\}\%,nome.ilike.\%\$\{termo\}\%});
+if(error) alert('Erro:' + error.message);
+else preencheTabela(data);
+\} \\
+async function listar()\{
+const \{ data, error \} = await supabase
+.from(`pessoas')
+.select('*`);
+if(error) alert('Erro:' + error.message);
+else preencheTabela(data);
+\} \\
+/* ---------- UI ---------- */
+function preencheTabela(lista)\{
+const tbody = document.getElementById(`tabela');
+tbody.innerHTML = '\,`;
+lista.forEach(p=\textgreater\{
+const tr = document.createElement('tr');
+tr.innerHTML = \texttt{\textless{}td\textgreater{}\$\{p.cpf\}\textless{}/td\textgreater{}\ \textless{}td\textgreater{}\$\{p.foto\ ?}\texttt{:\ \textquotesingle{}\textquotesingle{}\}\textless{}/td\textgreater{}\ \textless{}td\textgreater{}\$\{p.nome\}\textless{}/td\textgreater{}\ \textless{}td\textgreater{}\$\{p.endereco\}\textless{}/td\textgreater{}\ \textless{}td\textgreater{}\$\{p.data\_nascimento\}\textless{}/td\textgreater{}};
+tr.onclick = () =\textgreater{} \{
+document.getElementById(`cpf').value = p.cpf;
+document.getElementById(`nome').value = p.nome;
+document.getElementById(`endereco').value = p.endereco;
+document.getElementById(`data\_nascimento').value = p.data\_nascimento;
+\};
+tbody.appendChild(tr);
+\});
+\} \\
+listar(); // carrega ao abrir
+ \\
+\end{longtable}
+
+\section{Exemplo 02}\label{exemplo-02}
+
+Neste exemplo, temos uma aplicação cliente feita html e javascript
+
+A interface do Cliente é feita em HTML5
+
+A conexão com o servidor é feita pelo javascript incorporado no HTML:
+
+CRUD no cliente é feito peloa javascript utilizando metodologia Restful sobre protocolo HTTP 2.0
+
+O servidor Restful é feito em linguagem PYTHON
+
+OBS: NÃO TEMOS CONTROLE DE SESSÃO DE CLIENTE IMPLEMENTADO.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{python }\AttributeTok{{-}m}\NormalTok{ pip install {-}}\AttributeTok{{-}user}\NormalTok{ {-}}\AttributeTok{{-}upgrade}\NormalTok{ flask flask}\AttributeTok{{-}cors}\NormalTok{ sqlalchemy psycopg2}\AttributeTok{{-}binary}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Servidor python}\label{servidor-python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{from}\NormalTok{ flask }\ImportTok{import}\NormalTok{ Flask, request, jsonify}
+\ImportTok{from}\NormalTok{ flask\_cors }\ImportTok{import}\NormalTok{ CORS}
+\ImportTok{from}\NormalTok{ sqlalchemy }\ImportTok{import}\NormalTok{ create\_engine, Column, String, Date, Text}
+\ImportTok{from}\NormalTok{ sqlalchemy.ext.declarative }\ImportTok{import}\NormalTok{ declarative\_base}
+\ImportTok{from}\NormalTok{ sqlalchemy.orm }\ImportTok{import}\NormalTok{ sessionmaker}
+
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Configuração do Flask e CORS}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{app }\OperatorTok{=}\NormalTok{ Flask(}\VariableTok{\_\_name\_\_}\NormalTok{)}
+\NormalTok{CORS(app)}
+
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Configuração do banco PostgreSQL}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{DATABASE\_URL }\OperatorTok{=} \StringTok{"postgresql://postgres:MinhaSuperSenha@db.pbbtfwmydxmxdibmtbqq.supabase.co:5432/postgres"}
+
+\NormalTok{engine }\OperatorTok{=}\NormalTok{ create\_engine(DATABASE\_URL)}
+\NormalTok{SessionLocal }\OperatorTok{=}\NormalTok{ sessionmaker(bind}\OperatorTok{=}\NormalTok{engine)}
+\NormalTok{Base }\OperatorTok{=}\NormalTok{ declarative\_base()}
+
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Modelo Pessoa}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\KeywordTok{class}\NormalTok{ Pessoa(Base):}
+\NormalTok{    \_\_tablename\_\_ }\OperatorTok{=} \StringTok{"pessoas"}
+\NormalTok{    cpf }\OperatorTok{=}\NormalTok{ Column(String(}\DecValTok{14}\NormalTok{), primary\_key}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\NormalTok{    nome }\OperatorTok{=}\NormalTok{ Column(Text, nullable}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\NormalTok{    endereco }\OperatorTok{=}\NormalTok{ Column(Text, nullable}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\NormalTok{    data\_nascimento }\OperatorTok{=}\NormalTok{ Column(Date, nullable}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+\NormalTok{    foto }\OperatorTok{=}\NormalTok{ Column(Text)  }\CommentTok{\# Base64 ou URL}
+
+\CommentTok{\# Cria a tabela se não existir}
+\NormalTok{Base.metadata.create\_all(engine)}
+
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# CRUD}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
+\CommentTok{\# Listar todas as pessoas ou pesquisar por termo}
+\AttributeTok{@app.route}\NormalTok{(}\StringTok{\textquotesingle{}/pessoas\textquotesingle{}}\NormalTok{, methods}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}GET\textquotesingle{}}\NormalTok{])}
+\KeywordTok{def}\NormalTok{ listar():}
+\NormalTok{    termo }\OperatorTok{=}\NormalTok{ request.args.get(}\StringTok{\textquotesingle{}q\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{).lower()}
+\NormalTok{    session }\OperatorTok{=}\NormalTok{ SessionLocal()}
+    \ControlFlowTok{if}\NormalTok{ termo:}
+\NormalTok{        pessoas }\OperatorTok{=}\NormalTok{ session.query(Pessoa).}\BuiltInTok{filter}\NormalTok{(}
+\NormalTok{            (Pessoa.nome.ilike(}\SpecialStringTok{f"\%}\SpecialCharTok{\{}\NormalTok{termo}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{)) }\OperatorTok{|}\NormalTok{ (Pessoa.cpf.ilike(}\SpecialStringTok{f"\%}\SpecialCharTok{\{}\NormalTok{termo}\SpecialCharTok{\}}\SpecialStringTok{\%"}\NormalTok{))}
+\NormalTok{        ).}\BuiltInTok{all}\NormalTok{()}
+    \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{        pessoas }\OperatorTok{=}\NormalTok{ session.query(Pessoa).}\BuiltInTok{all}\NormalTok{()}
+\NormalTok{    session.close()}
+    \ControlFlowTok{return}\NormalTok{ jsonify([\{}
+        \StringTok{"cpf"}\NormalTok{: p.cpf,}
+        \StringTok{"nome"}\NormalTok{: p.nome,}
+        \StringTok{"endereco"}\NormalTok{: p.endereco,}
+        \StringTok{"data\_nascimento"}\NormalTok{: p.data\_nascimento.isoformat(),}
+        \StringTok{"foto"}\NormalTok{: p.foto}
+\NormalTok{    \} }\ControlFlowTok{for}\NormalTok{ p }\KeywordTok{in}\NormalTok{ pessoas])}
+
+\CommentTok{\# Inserir nova pessoa}
+\AttributeTok{@app.route}\NormalTok{(}\StringTok{\textquotesingle{}/pessoas\textquotesingle{}}\NormalTok{, methods}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}POST\textquotesingle{}}\NormalTok{])}
+\KeywordTok{def}\NormalTok{ inserir():}
+\NormalTok{    dados }\OperatorTok{=}\NormalTok{ request.get\_json()}
+\NormalTok{    session }\OperatorTok{=}\NormalTok{ SessionLocal()}
+    \ControlFlowTok{if}\NormalTok{ session.query(Pessoa).filter\_by(cpf}\OperatorTok{=}\NormalTok{dados[}\StringTok{\textquotesingle{}cpf\textquotesingle{}}\NormalTok{]).first():}
+\NormalTok{        session.close()}
+        \ControlFlowTok{return}\NormalTok{ jsonify(\{}\StringTok{"error"}\NormalTok{: }\StringTok{"CPF já cadastrado"}\NormalTok{\}), }\DecValTok{400}
+\NormalTok{    pessoa }\OperatorTok{=}\NormalTok{ Pessoa(}
+\NormalTok{        cpf}\OperatorTok{=}\NormalTok{dados[}\StringTok{\textquotesingle{}cpf\textquotesingle{}}\NormalTok{],}
+\NormalTok{        nome}\OperatorTok{=}\NormalTok{dados[}\StringTok{\textquotesingle{}nome\textquotesingle{}}\NormalTok{],}
+\NormalTok{        endereco}\OperatorTok{=}\NormalTok{dados[}\StringTok{\textquotesingle{}endereco\textquotesingle{}}\NormalTok{],}
+\NormalTok{        data\_nascimento}\OperatorTok{=}\NormalTok{dados[}\StringTok{\textquotesingle{}data\_nascimento\textquotesingle{}}\NormalTok{],}
+\NormalTok{        foto}\OperatorTok{=}\NormalTok{dados.get(}\StringTok{\textquotesingle{}foto\textquotesingle{}}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{    session.add(pessoa)}
+\NormalTok{    session.commit()}
+\NormalTok{    session.close()}
+    \ControlFlowTok{return}\NormalTok{ jsonify(\{}\StringTok{"message"}\NormalTok{: }\StringTok{"Inserido com sucesso"}\NormalTok{\}), }\DecValTok{201}
+
+\CommentTok{\# Alterar pessoa}
+\AttributeTok{@app.route}\NormalTok{(}\StringTok{\textquotesingle{}/pessoas/\textless{}cpf\textgreater{}\textquotesingle{}}\NormalTok{, methods}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}PUT\textquotesingle{}}\NormalTok{])}
+\KeywordTok{def}\NormalTok{ alterar(cpf):}
+\NormalTok{    dados }\OperatorTok{=}\NormalTok{ request.get\_json()}
+\NormalTok{    session }\OperatorTok{=}\NormalTok{ SessionLocal()}
+\NormalTok{    pessoa }\OperatorTok{=}\NormalTok{ session.query(Pessoa).filter\_by(cpf}\OperatorTok{=}\NormalTok{cpf).first()}
+    \ControlFlowTok{if} \KeywordTok{not}\NormalTok{ pessoa:}
+\NormalTok{        session.close()}
+        \ControlFlowTok{return}\NormalTok{ jsonify(\{}\StringTok{"error"}\NormalTok{: }\StringTok{"CPF não encontrado"}\NormalTok{\}), }\DecValTok{404}
+\NormalTok{    pessoa.nome }\OperatorTok{=}\NormalTok{ dados.get(}\StringTok{\textquotesingle{}nome\textquotesingle{}}\NormalTok{, pessoa.nome)}
+\NormalTok{    pessoa.endereco }\OperatorTok{=}\NormalTok{ dados.get(}\StringTok{\textquotesingle{}endereco\textquotesingle{}}\NormalTok{, pessoa.endereco)}
+\NormalTok{    pessoa.data\_nascimento }\OperatorTok{=}\NormalTok{ dados.get(}\StringTok{\textquotesingle{}data\_nascimento\textquotesingle{}}\NormalTok{, pessoa.data\_nascimento)}
+\NormalTok{    pessoa.foto }\OperatorTok{=}\NormalTok{ dados.get(}\StringTok{\textquotesingle{}foto\textquotesingle{}}\NormalTok{, pessoa.foto)}
+\NormalTok{    session.commit()}
+\NormalTok{    session.close()}
+    \ControlFlowTok{return}\NormalTok{ jsonify(\{}\StringTok{"message"}\NormalTok{: }\StringTok{"Alterado com sucesso"}\NormalTok{\})}
+
+\CommentTok{\# Remover pessoa}
+\AttributeTok{@app.route}\NormalTok{(}\StringTok{\textquotesingle{}/pessoas/\textless{}cpf\textgreater{}\textquotesingle{}}\NormalTok{, methods}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}DELETE\textquotesingle{}}\NormalTok{])}
+\KeywordTok{def}\NormalTok{ remover(cpf):}
+\NormalTok{    session }\OperatorTok{=}\NormalTok{ SessionLocal()}
+\NormalTok{    pessoa }\OperatorTok{=}\NormalTok{ session.query(Pessoa).filter\_by(cpf}\OperatorTok{=}\NormalTok{cpf).first()}
+    \ControlFlowTok{if} \KeywordTok{not}\NormalTok{ pessoa:}
+\NormalTok{        session.close()}
+        \ControlFlowTok{return}\NormalTok{ jsonify(\{}\StringTok{"error"}\NormalTok{: }\StringTok{"CPF não encontrado"}\NormalTok{\}), }\DecValTok{404}
+\NormalTok{    session.delete(pessoa)}
+\NormalTok{    session.commit()}
+\NormalTok{    session.close()}
+    \ControlFlowTok{return}\NormalTok{ jsonify(\{}\StringTok{"message"}\NormalTok{: }\StringTok{"Removido com sucesso"}\NormalTok{\})}
+
+\CommentTok{\# Buscar pessoa por CPF}
+\AttributeTok{@app.route}\NormalTok{(}\StringTok{\textquotesingle{}/pessoas/\textless{}cpf\textgreater{}\textquotesingle{}}\NormalTok{, methods}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}GET\textquotesingle{}}\NormalTok{])}
+\KeywordTok{def}\NormalTok{ buscar(cpf):}
+\NormalTok{    session }\OperatorTok{=}\NormalTok{ SessionLocal()}
+\NormalTok{    pessoa }\OperatorTok{=}\NormalTok{ session.query(Pessoa).filter\_by(cpf}\OperatorTok{=}\NormalTok{cpf).first()}
+\NormalTok{    session.close()}
+    \ControlFlowTok{if} \KeywordTok{not}\NormalTok{ pessoa:}
+        \ControlFlowTok{return}\NormalTok{ jsonify(\{}\StringTok{"error"}\NormalTok{: }\StringTok{"CPF não encontrado"}\NormalTok{\}), }\DecValTok{404}
+    \ControlFlowTok{return}\NormalTok{ jsonify(\{}
+        \StringTok{"cpf"}\NormalTok{: pessoa.cpf,}
+        \StringTok{"nome"}\NormalTok{: pessoa.nome,}
+        \StringTok{"endereco"}\NormalTok{: pessoa.endereco,}
+        \StringTok{"data\_nascimento"}\NormalTok{: pessoa.data\_nascimento.isoformat(),}
+        \StringTok{"foto"}\NormalTok{: pessoa.foto}
+\NormalTok{    \})}
+
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Inicia o servidor}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\ControlFlowTok{if} \VariableTok{\_\_name\_\_} \OperatorTok{==} \StringTok{\textquotesingle{}\_\_main\_\_\textquotesingle{}}\NormalTok{:}
+\NormalTok{    app.run(debug}\OperatorTok{=}\VariableTok{True}\NormalTok{, port}\OperatorTok{=}\DecValTok{5000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+servidor estará rodando na porta 5000 e EXPÕE A API de operações na URI \url{http://localhost:5000/pessoas} sem senha
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{http}\InformationTok{:}\ErrorTok{//localhost:5000/pessoas}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Cliente HTML (conexão Restful)}\label{cliente-html-conexuxe3o-restful}
+
+crie o arquivo index.html e abra-o no navegador
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{\textless{}!DOCTYPE}\NormalTok{ html}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{html}\OtherTok{ lang}\OperatorTok{=}\StringTok{"pt{-}BR"}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{head}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{meta}\OtherTok{ charset}\OperatorTok{=}\StringTok{"UTF{-}8"}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{title}\DataTypeTok{\textgreater{}}\NormalTok{Cadastro de Pessoas {-} Flask/PostgreSQL}\DataTypeTok{\textless{}/}\KeywordTok{title}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{style}\DataTypeTok{\textgreater{}}
+\NormalTok{  body \{ }\KeywordTok{font{-}family}\CharTok{:} \DecValTok{sans{-}serif}\OperatorTok{;} \KeywordTok{max{-}width}\CharTok{:} \DecValTok{800}\DataTypeTok{px}\OperatorTok{;} \KeywordTok{margin}\CharTok{:} \DecValTok{20}\DataTypeTok{px} \BuiltInTok{auto}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  label \{ }\KeywordTok{display}\CharTok{:} \DecValTok{block}\OperatorTok{;} \KeywordTok{margin{-}top}\CharTok{:} \DecValTok{10}\DataTypeTok{px}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  button \{ }\KeywordTok{margin{-}top}\CharTok{:} \DecValTok{10}\DataTypeTok{px}\OperatorTok{;} \KeywordTok{margin{-}right}\CharTok{:} \DecValTok{5}\DataTypeTok{px}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  table \{ }\KeywordTok{border{-}collapse}\CharTok{:} \DecValTok{collapse}\OperatorTok{;} \KeywordTok{width}\CharTok{:}\DecValTok{100}\DataTypeTok{\%}\OperatorTok{;} \KeywordTok{margin{-}top}\CharTok{:}\DecValTok{20}\DataTypeTok{px}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  th}\OperatorTok{,}\NormalTok{ td \{ }\KeywordTok{border}\CharTok{:}\DecValTok{1}\DataTypeTok{px} \DecValTok{solid} \ConstantTok{\#ccc}\OperatorTok{;} \KeywordTok{padding}\CharTok{:}\DecValTok{6}\DataTypeTok{px}\OperatorTok{;} \KeywordTok{text{-}align}\CharTok{:}\DecValTok{left}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  img}\FunctionTok{.thumb}\NormalTok{ \{ }\KeywordTok{width}\CharTok{:}\DecValTok{60}\DataTypeTok{px}\OperatorTok{;} \KeywordTok{height}\CharTok{:}\DecValTok{60}\DataTypeTok{px}\OperatorTok{;} \KeywordTok{object{-}fit}\CharTok{:}\DecValTok{cover}\OperatorTok{;} \KeywordTok{border{-}radius}\CharTok{:}\DecValTok{4}\DataTypeTok{px}\OperatorTok{;}\NormalTok{ \}}
+\DataTypeTok{\textless{}/}\KeywordTok{style}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{head}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{body}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{h1}\DataTypeTok{\textgreater{}}\NormalTok{Cadastro de Pessoas (Flask/PostgreSQL)}\DataTypeTok{\textless{}/}\KeywordTok{h1}\DataTypeTok{\textgreater{}}
+
+\DataTypeTok{\textless{}}\KeywordTok{form}\OtherTok{ id}\OperatorTok{=}\StringTok{"formPessoa"}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{label}\DataTypeTok{\textgreater{}}\NormalTok{CPF (chave primária): }\DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ id}\OperatorTok{=}\StringTok{"cpf"}\OtherTok{ required}\DataTypeTok{\textgreater{}\textless{}/}\KeywordTok{label}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{label}\DataTypeTok{\textgreater{}}\NormalTok{Nome: }\DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ id}\OperatorTok{=}\StringTok{"nome"}\OtherTok{ required}\DataTypeTok{\textgreater{}\textless{}/}\KeywordTok{label}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{label}\DataTypeTok{\textgreater{}}\NormalTok{Endereço: }\DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ id}\OperatorTok{=}\StringTok{"endereco"}\OtherTok{ required}\DataTypeTok{\textgreater{}\textless{}/}\KeywordTok{label}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{label}\DataTypeTok{\textgreater{}}\NormalTok{Data Nasc.: }\DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ type}\OperatorTok{=}\StringTok{"date"}\OtherTok{ id}\OperatorTok{=}\StringTok{"data\_nascimento"}\OtherTok{ required}\DataTypeTok{\textgreater{}\textless{}/}\KeywordTok{label}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{label}\DataTypeTok{\textgreater{}}\NormalTok{Foto: }\DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ type}\OperatorTok{=}\StringTok{"file"}\OtherTok{ id}\OperatorTok{=}\StringTok{"foto"}\OtherTok{ accept}\OperatorTok{=}\StringTok{"image/*"}\DataTypeTok{\textgreater{}\textless{}/}\KeywordTok{label}\DataTypeTok{\textgreater{}}
+
+  \DataTypeTok{\textless{}}\KeywordTok{button}\OtherTok{ type}\OperatorTok{=}\StringTok{"button"}\OtherTok{ onclick}\OperatorTok{=}\StringTok{"inserir()"}\DataTypeTok{\textgreater{}}\NormalTok{Inserir}\DataTypeTok{\textless{}/}\KeywordTok{button}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{button}\OtherTok{ type}\OperatorTok{=}\StringTok{"button"}\OtherTok{ onclick}\OperatorTok{=}\StringTok{"alterar()"}\DataTypeTok{\textgreater{}}\NormalTok{Alterar}\DataTypeTok{\textless{}/}\KeywordTok{button}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{button}\OtherTok{ type}\OperatorTok{=}\StringTok{"button"}\OtherTok{ onclick}\OperatorTok{=}\StringTok{"remover()"}\DataTypeTok{\textgreater{}}\NormalTok{Remover}\DataTypeTok{\textless{}/}\KeywordTok{button}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{form}\DataTypeTok{\textgreater{}}
+
+\DataTypeTok{\textless{}}\KeywordTok{h2}\DataTypeTok{\textgreater{}}\NormalTok{Pesquisar}\DataTypeTok{\textless{}/}\KeywordTok{h2}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ id}\OperatorTok{=}\StringTok{"pesquisa"}\OtherTok{ placeholder}\OperatorTok{=}\StringTok{"Digite nome ou CPF"}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{button}\OtherTok{ type}\OperatorTok{=}\StringTok{"button"}\OtherTok{ onclick}\OperatorTok{=}\StringTok{"pesquisar()"}\DataTypeTok{\textgreater{}}\NormalTok{Pesquisar}\DataTypeTok{\textless{}/}\KeywordTok{button}\DataTypeTok{\textgreater{}}
+
+\DataTypeTok{\textless{}}\KeywordTok{table}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{thead}\DataTypeTok{\textgreater{}}
+    \DataTypeTok{\textless{}}\KeywordTok{tr}\DataTypeTok{\textgreater{}}
+      \DataTypeTok{\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{CPF}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{Foto}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{Nome}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}}
+      \DataTypeTok{\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{Endereço}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{Nascimento}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}}
+    \DataTypeTok{\textless{}/}\KeywordTok{tr}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}/}\KeywordTok{thead}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{tbody}\OtherTok{ id}\OperatorTok{=}\StringTok{"tabela"}\DataTypeTok{\textgreater{}\textless{}/}\KeywordTok{tbody}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{table}\DataTypeTok{\textgreater{}}
+
+\DataTypeTok{\textless{}}\KeywordTok{script}\DataTypeTok{\textgreater{}}
+\KeywordTok{const}\NormalTok{ API }\OperatorTok{=} \StringTok{\textquotesingle{}http://localhost:5000/pessoas\textquotesingle{}}\OperatorTok{;}
+
+\CommentTok{/* {-}{-}{-}{-}{-}{-}{-}{-}{-}{-} Funções utilitárias {-}{-}{-}{-}{-}{-}{-}{-}{-}{-} */}
+\KeywordTok{function} \FunctionTok{validaCampos}\NormalTok{() \{}
+  \KeywordTok{const}\NormalTok{ campos }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}cpf\textquotesingle{}}\OperatorTok{,}\StringTok{\textquotesingle{}nome\textquotesingle{}}\OperatorTok{,}\StringTok{\textquotesingle{}endereco\textquotesingle{}}\OperatorTok{,}\StringTok{\textquotesingle{}data\_nascimento\textquotesingle{}}\NormalTok{]}\OperatorTok{;}
+  \ControlFlowTok{for}\NormalTok{ (}\KeywordTok{const}\NormalTok{ id }\KeywordTok{of}\NormalTok{ campos) \{}
+    \KeywordTok{const}\NormalTok{ valor }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(id)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{;}
+    \ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\NormalTok{valor) \{}
+      \FunctionTok{alert}\NormalTok{(}\VerbatimStringTok{\textasciigrave{}O campo "}\SpecialCharTok{$\{}\NormalTok{id}\SpecialCharTok{\}}\VerbatimStringTok{" não pode ficar em branco.\textasciigrave{}}\NormalTok{)}\OperatorTok{;}
+      \ControlFlowTok{return} \KeywordTok{false}\OperatorTok{;}
+\NormalTok{    \}}
+\NormalTok{  \}}
+  \ControlFlowTok{return} \KeywordTok{true}\OperatorTok{;}
+\NormalTok{\}}
+
+\KeywordTok{function} \FunctionTok{getFotoBase64}\NormalTok{() \{}
+  \KeywordTok{const}\NormalTok{ file }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}foto\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{files}\NormalTok{[}\DecValTok{0}\NormalTok{]}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\NormalTok{file) }\ControlFlowTok{return} \BuiltInTok{Promise}\OperatorTok{.}\FunctionTok{resolve}\NormalTok{(}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+  \ControlFlowTok{return} \KeywordTok{new} \BuiltInTok{Promise}\NormalTok{((resolve}\OperatorTok{,}\NormalTok{reject)}\KeywordTok{=\textgreater{}}\NormalTok{\{}
+    \KeywordTok{const}\NormalTok{ reader }\OperatorTok{=} \KeywordTok{new} \BuiltInTok{FileReader}\NormalTok{()}\OperatorTok{;}
+\NormalTok{    reader}\OperatorTok{.}\AttributeTok{onload} \OperatorTok{=}\NormalTok{ () }\KeywordTok{=\textgreater{}} \FunctionTok{resolve}\NormalTok{(reader}\OperatorTok{.}\AttributeTok{result}\NormalTok{)}\OperatorTok{;}
+\NormalTok{    reader}\OperatorTok{.}\AttributeTok{onerror} \OperatorTok{=}\NormalTok{ reject}\OperatorTok{;}
+\NormalTok{    reader}\OperatorTok{.}\FunctionTok{readAsDataURL}\NormalTok{(file)}\OperatorTok{;}
+\NormalTok{  \})}\OperatorTok{;}
+\NormalTok{\}}
+
+\KeywordTok{function} \FunctionTok{coletaDados}\NormalTok{(base64Foto)\{}
+  \ControlFlowTok{return}\NormalTok{ \{}
+    \DataTypeTok{cpf}\OperatorTok{:} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}cpf\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{,}
+    \DataTypeTok{nome}\OperatorTok{:} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}nome\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{,}
+    \DataTypeTok{endereco}\OperatorTok{:} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}endereco\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{,}
+    \DataTypeTok{data\_nascimento}\OperatorTok{:} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}data\_nascimento\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{,}
+    \DataTypeTok{foto}\OperatorTok{:}\NormalTok{ base64Foto }\OperatorTok{||} \StringTok{\textquotesingle{}\textquotesingle{}}
+\NormalTok{  \}}\OperatorTok{;}
+\NormalTok{\}}
+
+\CommentTok{/* {-}{-}{-}{-}{-}{-}{-}{-}{-}{-} CRUD {-}{-}{-}{-}{-}{-}{-}{-}{-}{-} */}
+\KeywordTok{async} \KeywordTok{function} \FunctionTok{inserir}\NormalTok{() \{}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\FunctionTok{validaCampos}\NormalTok{()) }\ControlFlowTok{return}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ base64 }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{getFotoBase64}\NormalTok{()}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ pessoa }\OperatorTok{=} \FunctionTok{coletaDados}\NormalTok{(base64)}\OperatorTok{;}
+
+  \KeywordTok{const}\NormalTok{ res }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{fetch}\NormalTok{(API}\OperatorTok{,}\NormalTok{ \{}
+    \DataTypeTok{method}\OperatorTok{:} \StringTok{\textquotesingle{}POST\textquotesingle{}}\OperatorTok{,}
+    \DataTypeTok{headers}\OperatorTok{:}\NormalTok{ \{}\StringTok{\textquotesingle{}Content{-}Type\textquotesingle{}}\OperatorTok{:} \StringTok{\textquotesingle{}application/json\textquotesingle{}}\NormalTok{\}}\OperatorTok{,}
+    \DataTypeTok{body}\OperatorTok{:} \BuiltInTok{JSON}\OperatorTok{.}\FunctionTok{stringify}\NormalTok{(pessoa)}
+\NormalTok{  \})}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ data }\OperatorTok{=} \ControlFlowTok{await}\NormalTok{ res}\OperatorTok{.}\FunctionTok{json}\NormalTok{()}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{(res}\OperatorTok{.}\AttributeTok{ok}\NormalTok{) }\FunctionTok{alert}\NormalTok{(}\StringTok{\textquotesingle{}Inserido com sucesso!\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+  \ControlFlowTok{else} \FunctionTok{alert}\NormalTok{(}\StringTok{\textquotesingle{}Erro: \textquotesingle{}} \OperatorTok{+}\NormalTok{ (data}\OperatorTok{.}\AttributeTok{error} \OperatorTok{||} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{))}\OperatorTok{;}
+  \FunctionTok{listar}\NormalTok{()}\OperatorTok{;}
+\NormalTok{\}}
+
+\KeywordTok{async} \KeywordTok{function} \FunctionTok{alterar}\NormalTok{() \{}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\FunctionTok{validaCampos}\NormalTok{()) }\ControlFlowTok{return}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ cpf }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}cpf\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ base64 }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{getFotoBase64}\NormalTok{()}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ novosDados }\OperatorTok{=} \FunctionTok{coletaDados}\NormalTok{()}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{(base64) novosDados}\OperatorTok{.}\AttributeTok{foto} \OperatorTok{=}\NormalTok{ base64}\OperatorTok{;}
+
+  \KeywordTok{const}\NormalTok{ res }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{fetch}\NormalTok{(}\VerbatimStringTok{\textasciigrave{}}\SpecialCharTok{$\{}\NormalTok{API}\SpecialCharTok{\}}\VerbatimStringTok{/}\SpecialCharTok{$\{}\PreprocessorTok{encodeURIComponent}\NormalTok{(cpf)}\SpecialCharTok{\}}\VerbatimStringTok{\textasciigrave{}}\OperatorTok{,}\NormalTok{ \{}
+    \DataTypeTok{method}\OperatorTok{:} \StringTok{\textquotesingle{}PUT\textquotesingle{}}\OperatorTok{,}
+    \DataTypeTok{headers}\OperatorTok{:}\NormalTok{ \{}\StringTok{\textquotesingle{}Content{-}Type\textquotesingle{}}\OperatorTok{:} \StringTok{\textquotesingle{}application/json\textquotesingle{}}\NormalTok{\}}\OperatorTok{,}
+    \DataTypeTok{body}\OperatorTok{:} \BuiltInTok{JSON}\OperatorTok{.}\FunctionTok{stringify}\NormalTok{(novosDados)}
+\NormalTok{  \})}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ data }\OperatorTok{=} \ControlFlowTok{await}\NormalTok{ res}\OperatorTok{.}\FunctionTok{json}\NormalTok{()}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{(res}\OperatorTok{.}\AttributeTok{ok}\NormalTok{) }\FunctionTok{alert}\NormalTok{(}\StringTok{\textquotesingle{}Alterado com sucesso!\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+  \ControlFlowTok{else} \FunctionTok{alert}\NormalTok{(}\StringTok{\textquotesingle{}Erro: \textquotesingle{}} \OperatorTok{+}\NormalTok{ (data}\OperatorTok{.}\AttributeTok{error} \OperatorTok{||} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{))}\OperatorTok{;}
+  \FunctionTok{listar}\NormalTok{()}\OperatorTok{;}
+\NormalTok{\}}
+
+\KeywordTok{async} \KeywordTok{function} \FunctionTok{remover}\NormalTok{() \{}
+  \KeywordTok{const}\NormalTok{ cpf }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}cpf\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\NormalTok{cpf) }\ControlFlowTok{return} \FunctionTok{alert}\NormalTok{(}\StringTok{\textquotesingle{}Informe o CPF para remover.\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{(}\FunctionTok{confirm}\NormalTok{(}\StringTok{\textquotesingle{}Confirma a exclusão?\textquotesingle{}}\NormalTok{))\{}
+    \KeywordTok{const}\NormalTok{ res }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{fetch}\NormalTok{(}\VerbatimStringTok{\textasciigrave{}}\SpecialCharTok{$\{}\NormalTok{API}\SpecialCharTok{\}}\VerbatimStringTok{/}\SpecialCharTok{$\{}\PreprocessorTok{encodeURIComponent}\NormalTok{(cpf)}\SpecialCharTok{\}}\VerbatimStringTok{\textasciigrave{}}\OperatorTok{,}\NormalTok{ \{}\DataTypeTok{method}\OperatorTok{:}\StringTok{\textquotesingle{}DELETE\textquotesingle{}}\NormalTok{\})}\OperatorTok{;}
+    \KeywordTok{const}\NormalTok{ data }\OperatorTok{=} \ControlFlowTok{await}\NormalTok{ res}\OperatorTok{.}\FunctionTok{json}\NormalTok{()}\OperatorTok{;}
+    \ControlFlowTok{if}\NormalTok{(res}\OperatorTok{.}\AttributeTok{ok}\NormalTok{) }\FunctionTok{alert}\NormalTok{(}\StringTok{\textquotesingle{}Removido com sucesso!\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+    \ControlFlowTok{else} \FunctionTok{alert}\NormalTok{(}\StringTok{\textquotesingle{}Erro: \textquotesingle{}} \OperatorTok{+}\NormalTok{ (data}\OperatorTok{.}\AttributeTok{error} \OperatorTok{||} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{))}\OperatorTok{;}
+    \FunctionTok{listar}\NormalTok{()}\OperatorTok{;}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\KeywordTok{async} \KeywordTok{function} \FunctionTok{pesquisar}\NormalTok{() \{}
+  \KeywordTok{const}\NormalTok{ termo }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}pesquisa\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\NormalTok{termo)\{ }\FunctionTok{listar}\NormalTok{()}\OperatorTok{;} \ControlFlowTok{return}\OperatorTok{;}\NormalTok{ \}}
+  \KeywordTok{const}\NormalTok{ res }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{fetch}\NormalTok{(}\VerbatimStringTok{\textasciigrave{}}\SpecialCharTok{$\{}\NormalTok{API}\SpecialCharTok{\}}\VerbatimStringTok{?q=}\SpecialCharTok{$\{}\PreprocessorTok{encodeURIComponent}\NormalTok{(termo)}\SpecialCharTok{\}}\VerbatimStringTok{\textasciigrave{}}\NormalTok{)}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ data }\OperatorTok{=} \ControlFlowTok{await}\NormalTok{ res}\OperatorTok{.}\FunctionTok{json}\NormalTok{()}\OperatorTok{;}
+  \FunctionTok{preencheTabela}\NormalTok{(data)}\OperatorTok{;}
+\NormalTok{\}}
+
+\KeywordTok{async} \KeywordTok{function} \FunctionTok{listar}\NormalTok{() \{}
+  \KeywordTok{const}\NormalTok{ res }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{fetch}\NormalTok{(API)}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ data }\OperatorTok{=} \ControlFlowTok{await}\NormalTok{ res}\OperatorTok{.}\FunctionTok{json}\NormalTok{()}\OperatorTok{;}
+  \FunctionTok{preencheTabela}\NormalTok{(data)}\OperatorTok{;}
+\NormalTok{\}}
+
+\CommentTok{/* {-}{-}{-}{-}{-}{-}{-}{-}{-}{-} UI {-}{-}{-}{-}{-}{-}{-}{-}{-}{-} */}
+\KeywordTok{function} \FunctionTok{preencheTabela}\NormalTok{(lista)\{}
+  \KeywordTok{const}\NormalTok{ tbody }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}tabela\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+\NormalTok{  tbody}\OperatorTok{.}\AttributeTok{innerHTML} \OperatorTok{=} \StringTok{\textquotesingle{}\textquotesingle{}}\OperatorTok{;}
+\NormalTok{  lista}\OperatorTok{.}\FunctionTok{forEach}\NormalTok{(p}\KeywordTok{=\textgreater{}}\NormalTok{\{}
+    \KeywordTok{const}\NormalTok{ tr }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{createElement}\NormalTok{(}\StringTok{\textquotesingle{}tr\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+\NormalTok{    tr}\OperatorTok{.}\AttributeTok{innerHTML} \OperatorTok{=} \VerbatimStringTok{\textasciigrave{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{cpf}\SpecialCharTok{\}}\VerbatimStringTok{\textless{}/td\textgreater{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{foto} \OperatorTok{?} \VerbatimStringTok{\textasciigrave{}\textless{}img class="thumb" src="}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{foto}\SpecialCharTok{\}}\VerbatimStringTok{" alt="foto"\textgreater{}\textasciigrave{}} \OperatorTok{:} \StringTok{\textquotesingle{}\textquotesingle{}}\SpecialCharTok{\}}\VerbatimStringTok{\textless{}/td\textgreater{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{nome}\SpecialCharTok{\}}\VerbatimStringTok{\textless{}/td\textgreater{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{endereco}\SpecialCharTok{\}}\VerbatimStringTok{\textless{}/td\textgreater{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{data\_nascimento}\SpecialCharTok{\}}\VerbatimStringTok{\textless{}/td\textgreater{}\textasciigrave{}}\OperatorTok{;}
+\NormalTok{    tr}\OperatorTok{.}\AttributeTok{onclick} \OperatorTok{=}\NormalTok{ () }\KeywordTok{=\textgreater{}}\NormalTok{ \{}
+      \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}cpf\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value} \OperatorTok{=}\NormalTok{ p}\OperatorTok{.}\AttributeTok{cpf}\OperatorTok{;}
+      \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}nome\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value} \OperatorTok{=}\NormalTok{ p}\OperatorTok{.}\AttributeTok{nome}\OperatorTok{;}
+      \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}endereco\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value} \OperatorTok{=}\NormalTok{ p}\OperatorTok{.}\AttributeTok{endereco}\OperatorTok{;}
+      \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}data\_nascimento\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value} \OperatorTok{=}\NormalTok{ p}\OperatorTok{.}\AttributeTok{data\_nascimento}\OperatorTok{;}
+\NormalTok{    \}}\OperatorTok{;}
+\NormalTok{    tbody}\OperatorTok{.}\FunctionTok{appendChild}\NormalTok{(tr)}\OperatorTok{;}
+\NormalTok{  \})}\OperatorTok{;}
+\NormalTok{\}}
+
+\FunctionTok{listar}\NormalTok{()}\OperatorTok{;}
+\DataTypeTok{\textless{}/}\KeywordTok{script}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{body}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{html}\DataTypeTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Exemplo 03}\label{exemplo-03}
+
+Neste exemplo, temos uma aplicação cliente feita html e javascript
+
+A interface do Cliente é feita em HTML5
+
+A conexão com o servidor é feita pelo javascript incorporado no HTML:
+
+CRUD no cliente é feito peloa javascript utilizando metodologia Restful sobre protocolo HTTP 2.0
+
+O servidor Restful é feito em linguagem PERL
+
+OBS: NÃO TEMOS CONTROLE DE SESSÃO DE CLIENTE IMPLEMENTADO.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cpan Dancer2 DBI DBD::Pg JSON}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Servidor Perl}\label{servidor-perl}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{\#!/usr/bin/perl}
+\FunctionTok{use} \KeywordTok{strict}\NormalTok{;}
+\FunctionTok{use} \KeywordTok{warnings}\NormalTok{;}
+\FunctionTok{use}\NormalTok{ Dancer2;}
+\FunctionTok{use}\NormalTok{ DBI;}
+\FunctionTok{use}\NormalTok{ JSON;}
+
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Configurações do banco}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\KeywordTok{my} \DataTypeTok{$dsn}\NormalTok{ = }\OtherTok{"}\StringTok{dbi:Pg:dbname=postgres;host=db.pbbtfwmydxmxdibmtbqq.supabase.co;port=5432}\OtherTok{"}\NormalTok{;}
+\KeywordTok{my} \DataTypeTok{$db\_user}\NormalTok{ = }\OtherTok{"}\StringTok{postgres}\OtherTok{"}\NormalTok{;}
+\KeywordTok{my} \DataTypeTok{$db\_pass}\NormalTok{ = }\OtherTok{"}\StringTok{MinhaSuperSenha}\OtherTok{"}\NormalTok{;}
+
+\KeywordTok{my} \DataTypeTok{$dbh}\NormalTok{ = DBI{-}\textgreater{}}\FunctionTok{connect}\NormalTok{(}\DataTypeTok{$dsn}\NormalTok{, }\DataTypeTok{$db\_user}\NormalTok{, }\DataTypeTok{$db\_pass}\NormalTok{, \{ RaiseError =\textgreater{} }\DecValTok{1}\NormalTok{, AutoCommit =\textgreater{} }\DecValTok{1}\NormalTok{ \});}
+
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Helpers}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\KeywordTok{sub }\FunctionTok{json\_response}\NormalTok{ \{}
+\NormalTok{    content\_type }\OtherTok{\textquotesingle{}}\SpecialStringTok{application/json}\OtherTok{\textquotesingle{}}\NormalTok{;}
+    \KeywordTok{return}\NormalTok{ encode\_json(}\WarningTok{$\_}\NormalTok{[}\DecValTok{0}\NormalTok{]);}
+\NormalTok{\}}
+
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Endpoints REST}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
+\CommentTok{\# Listar todas ou pesquisar}
+\NormalTok{get }\OtherTok{\textquotesingle{}}\SpecialStringTok{/pessoas}\OtherTok{\textquotesingle{}}\NormalTok{ =\textgreater{} }\KeywordTok{sub }\NormalTok{\{}
+    \KeywordTok{my} \DataTypeTok{$q}\NormalTok{ = query\_parameters{-}\textgreater{}get(}\OtherTok{\textquotesingle{}}\SpecialStringTok{q}\OtherTok{\textquotesingle{}}\NormalTok{) || }\OtherTok{\textquotesingle{}\textquotesingle{}}\NormalTok{;}
+    \KeywordTok{my} \DataTypeTok{$sql}\NormalTok{ = }\OtherTok{"}\StringTok{SELECT * FROM pessoas}\OtherTok{"}\NormalTok{;}
+    \KeywordTok{my} \DataTypeTok{@params}\NormalTok{;}
+    \KeywordTok{if}\NormalTok{ (}\DataTypeTok{$q} \OtherTok{ne} \OtherTok{\textquotesingle{}\textquotesingle{}}\NormalTok{) \{}
+        \DataTypeTok{$sql}\NormalTok{ .= }\OtherTok{"}\StringTok{ WHERE cpf ILIKE ? OR nome ILIKE ?}\OtherTok{"}\NormalTok{;}
+        \DataTypeTok{@params}\NormalTok{ = (}\OtherTok{"}\StringTok{\%}\DataTypeTok{$q}\StringTok{\%}\OtherTok{"}\NormalTok{, }\OtherTok{"}\StringTok{\%}\DataTypeTok{$q}\StringTok{\%}\OtherTok{"}\NormalTok{);}
+\NormalTok{    \}}
+    \KeywordTok{my} \DataTypeTok{$sth}\NormalTok{ = }\DataTypeTok{$dbh}\NormalTok{{-}\textgreater{}}\DataTypeTok{prepare}\NormalTok{(}\DataTypeTok{$sql}\NormalTok{);}
+    \DataTypeTok{$sth}\NormalTok{{-}\textgreater{}}\DataTypeTok{execute}\NormalTok{(}\DataTypeTok{@params}\NormalTok{);}
+    \KeywordTok{my} \DataTypeTok{@rows}\NormalTok{;}
+    \KeywordTok{while}\NormalTok{ (}\KeywordTok{my} \DataTypeTok{$row}\NormalTok{ = }\DataTypeTok{$sth}\NormalTok{{-}\textgreater{}}\DataTypeTok{fetchrow\_hashref}\NormalTok{) \{}
+        \FunctionTok{push} \DataTypeTok{@rows}\NormalTok{, }\DataTypeTok{$row}\NormalTok{;}
+\NormalTok{    \}}
+    \KeywordTok{return}\NormalTok{ json\_response(\textbackslash{}}\DataTypeTok{@rows}\NormalTok{);}
+\NormalTok{\};}
+
+\CommentTok{\# Buscar por CPF}
+\NormalTok{get }\OtherTok{\textquotesingle{}}\SpecialStringTok{/pessoas/:cpf}\OtherTok{\textquotesingle{}}\NormalTok{ =\textgreater{} }\KeywordTok{sub }\NormalTok{\{}
+    \KeywordTok{my} \DataTypeTok{$cpf}\NormalTok{ = route\_parameters{-}\textgreater{}get(}\OtherTok{\textquotesingle{}}\SpecialStringTok{cpf}\OtherTok{\textquotesingle{}}\NormalTok{);}
+    \KeywordTok{my} \DataTypeTok{$sth}\NormalTok{ = }\DataTypeTok{$dbh}\NormalTok{{-}\textgreater{}}\DataTypeTok{prepare}\NormalTok{(}\OtherTok{"}\StringTok{SELECT * FROM pessoas WHERE cpf = ?}\OtherTok{"}\NormalTok{);}
+    \DataTypeTok{$sth}\NormalTok{{-}\textgreater{}}\DataTypeTok{execute}\NormalTok{(}\DataTypeTok{$cpf}\NormalTok{);}
+    \KeywordTok{my} \DataTypeTok{$row}\NormalTok{ = }\DataTypeTok{$sth}\NormalTok{{-}\textgreater{}}\DataTypeTok{fetchrow\_hashref}\NormalTok{;}
+    \KeywordTok{return} \DataTypeTok{$row}\NormalTok{ ? json\_response(}\DataTypeTok{$row}\NormalTok{) : status(}\DecValTok{404}\NormalTok{){-}\textgreater{}json\_response(\{ error =\textgreater{} }\OtherTok{"}\StringTok{CPF não encontrado}\OtherTok{"}\NormalTok{ \});}
+\NormalTok{\};}
+
+\CommentTok{\# Inserir}
+\NormalTok{post }\OtherTok{\textquotesingle{}}\SpecialStringTok{/pessoas}\OtherTok{\textquotesingle{}}\NormalTok{ =\textgreater{} }\KeywordTok{sub }\NormalTok{\{}
+    \KeywordTok{my} \DataTypeTok{$data}\NormalTok{ = from\_json(request{-}\textgreater{}body);}
+    \KeywordTok{my} \DataTypeTok{$cpf}\NormalTok{ = }\DataTypeTok{$data}\NormalTok{{-}\textgreater{}\{cpf\};}
+    \CommentTok{\# Verifica se existe}
+    \KeywordTok{my} \DataTypeTok{$check}\NormalTok{ = }\DataTypeTok{$dbh}\NormalTok{{-}\textgreater{}}\DataTypeTok{prepare}\NormalTok{(}\OtherTok{"}\StringTok{SELECT cpf FROM pessoas WHERE cpf = ?}\OtherTok{"}\NormalTok{);}
+    \DataTypeTok{$check}\NormalTok{{-}\textgreater{}}\DataTypeTok{execute}\NormalTok{(}\DataTypeTok{$cpf}\NormalTok{);}
+    \KeywordTok{if}\NormalTok{ (}\DataTypeTok{$check}\NormalTok{{-}\textgreater{}}\DataTypeTok{fetchrow\_array}\NormalTok{) \{}
+\NormalTok{        status(}\DecValTok{400}\NormalTok{);}
+        \KeywordTok{return}\NormalTok{ json\_response(\{ error =\textgreater{} }\OtherTok{"}\StringTok{CPF já cadastrado}\OtherTok{"}\NormalTok{ \});}
+\NormalTok{    \}}
+    \KeywordTok{my} \DataTypeTok{$sth}\NormalTok{ = }\DataTypeTok{$dbh}\NormalTok{{-}\textgreater{}}\DataTypeTok{prepare}\NormalTok{(}\OtherTok{"}\StringTok{INSERT INTO pessoas (cpf, nome, endereco, data\_nascimento, foto) VALUES (?, ?, ?, ?, ?)}\OtherTok{"}\NormalTok{);}
+    \DataTypeTok{$sth}\NormalTok{{-}\textgreater{}}\DataTypeTok{execute}\NormalTok{(}\DataTypeTok{$cpf}\NormalTok{, }\DataTypeTok{$data}\NormalTok{{-}\textgreater{}\{nome\}, }\DataTypeTok{$data}\NormalTok{{-}\textgreater{}\{endereco\}, }\DataTypeTok{$data}\NormalTok{{-}\textgreater{}\{data\_nascimento\}, }\DataTypeTok{$data}\NormalTok{{-}\textgreater{}\{foto\});}
+\NormalTok{    status(}\DecValTok{201}\NormalTok{);}
+    \KeywordTok{return}\NormalTok{ json\_response(\{ message =\textgreater{} }\OtherTok{"}\StringTok{Inserido com sucesso}\OtherTok{"}\NormalTok{ \});}
+\NormalTok{\};}
+
+\CommentTok{\# Alterar}
+\NormalTok{put }\OtherTok{\textquotesingle{}}\SpecialStringTok{/pessoas/:cpf}\OtherTok{\textquotesingle{}}\NormalTok{ =\textgreater{} }\KeywordTok{sub }\NormalTok{\{}
+    \KeywordTok{my} \DataTypeTok{$cpf}\NormalTok{ = route\_parameters{-}\textgreater{}get(}\OtherTok{\textquotesingle{}}\SpecialStringTok{cpf}\OtherTok{\textquotesingle{}}\NormalTok{);}
+    \KeywordTok{my} \DataTypeTok{$data}\NormalTok{ = from\_json(request{-}\textgreater{}body);}
+    \CommentTok{\# Verifica se existe}
+    \KeywordTok{my} \DataTypeTok{$check}\NormalTok{ = }\DataTypeTok{$dbh}\NormalTok{{-}\textgreater{}}\DataTypeTok{prepare}\NormalTok{(}\OtherTok{"}\StringTok{SELECT cpf FROM pessoas WHERE cpf = ?}\OtherTok{"}\NormalTok{);}
+    \DataTypeTok{$check}\NormalTok{{-}\textgreater{}}\DataTypeTok{execute}\NormalTok{(}\DataTypeTok{$cpf}\NormalTok{);}
+    \KeywordTok{unless}\NormalTok{ (}\DataTypeTok{$check}\NormalTok{{-}\textgreater{}}\DataTypeTok{fetchrow\_array}\NormalTok{) \{}
+\NormalTok{        status(}\DecValTok{404}\NormalTok{);}
+        \KeywordTok{return}\NormalTok{ json\_response(\{ error =\textgreater{} }\OtherTok{"}\StringTok{CPF não encontrado}\OtherTok{"}\NormalTok{ \});}
+\NormalTok{    \}}
+    \KeywordTok{my} \DataTypeTok{$sth}\NormalTok{ = }\DataTypeTok{$dbh}\NormalTok{{-}\textgreater{}}\DataTypeTok{prepare}\NormalTok{(}\OtherTok{"}\StringTok{UPDATE pessoas SET nome=?, endereco=?, data\_nascimento=?, foto=? WHERE cpf=?}\OtherTok{"}\NormalTok{);}
+    \DataTypeTok{$sth}\NormalTok{{-}\textgreater{}}\DataTypeTok{execute}\NormalTok{(}\DataTypeTok{$data}\NormalTok{{-}\textgreater{}\{nome\}, }\DataTypeTok{$data}\NormalTok{{-}\textgreater{}\{endereco\}, }\DataTypeTok{$data}\NormalTok{{-}\textgreater{}\{data\_nascimento\}, }\DataTypeTok{$data}\NormalTok{{-}\textgreater{}\{foto\}, }\DataTypeTok{$cpf}\NormalTok{);}
+    \KeywordTok{return}\NormalTok{ json\_response(\{ message =\textgreater{} }\OtherTok{"}\StringTok{Alterado com sucesso}\OtherTok{"}\NormalTok{ \});}
+\NormalTok{\};}
+
+\CommentTok{\# Remover}
+\NormalTok{del }\OtherTok{\textquotesingle{}}\SpecialStringTok{/pessoas/:cpf}\OtherTok{\textquotesingle{}}\NormalTok{ =\textgreater{} }\KeywordTok{sub }\NormalTok{\{}
+    \KeywordTok{my} \DataTypeTok{$cpf}\NormalTok{ = route\_parameters{-}\textgreater{}get(}\OtherTok{\textquotesingle{}}\SpecialStringTok{cpf}\OtherTok{\textquotesingle{}}\NormalTok{);}
+    \KeywordTok{my} \DataTypeTok{$sth}\NormalTok{ = }\DataTypeTok{$dbh}\NormalTok{{-}\textgreater{}}\DataTypeTok{prepare}\NormalTok{(}\OtherTok{"}\StringTok{DELETE FROM pessoas WHERE cpf=?}\OtherTok{"}\NormalTok{);}
+    \KeywordTok{my} \DataTypeTok{$rows}\NormalTok{ = }\DataTypeTok{$sth}\NormalTok{{-}\textgreater{}}\DataTypeTok{execute}\NormalTok{(}\DataTypeTok{$cpf}\NormalTok{);}
+    \KeywordTok{if}\NormalTok{ (}\DataTypeTok{$rows}\NormalTok{) \{}
+        \KeywordTok{return}\NormalTok{ json\_response(\{ message =\textgreater{} }\OtherTok{"}\StringTok{Removido com sucesso}\OtherTok{"}\NormalTok{ \});}
+\NormalTok{    \} }\KeywordTok{else}\NormalTok{ \{}
+\NormalTok{        status(}\DecValTok{404}\NormalTok{);}
+        \KeywordTok{return}\NormalTok{ json\_response(\{ error =\textgreater{} }\OtherTok{"}\StringTok{CPF não encontrado}\OtherTok{"}\NormalTok{ \});}
+\NormalTok{    \}}
+\NormalTok{\};}
+
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# Inicializa o servidor}
+\CommentTok{\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{set port =\textgreater{} }\DecValTok{5000}\NormalTok{;}
+\NormalTok{set serializer =\textgreater{} }\OtherTok{\textquotesingle{}}\SpecialStringTok{JSON}\OtherTok{\textquotesingle{}}\NormalTok{;}
+
+\NormalTok{start;}
+\end{Highlighting}
+\end{Shaded}
+
+servidor estará rodando na porta 5000 e EXPÕE A API de operações na URI \url{http://localhost:5000/pessoas} sem senha
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{http}\InformationTok{:}\ErrorTok{//localhost:5000/pessoas}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Cliente HTML (conexão Restful)}\label{cliente-html-conexuxe3o-restful-1}
+
+crie o arquivo index.html e abra-o no navegador
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{\textless{}!DOCTYPE}\NormalTok{ html}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{html}\OtherTok{ lang}\OperatorTok{=}\StringTok{"pt{-}BR"}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{head}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{meta}\OtherTok{ charset}\OperatorTok{=}\StringTok{"UTF{-}8"}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{title}\DataTypeTok{\textgreater{}}\NormalTok{Cadastro de Pessoas {-} Perl/PostgreSQL}\DataTypeTok{\textless{}/}\KeywordTok{title}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{style}\DataTypeTok{\textgreater{}}
+\NormalTok{  body \{ }\KeywordTok{font{-}family}\CharTok{:} \DecValTok{sans{-}serif}\OperatorTok{;} \KeywordTok{max{-}width}\CharTok{:} \DecValTok{800}\DataTypeTok{px}\OperatorTok{;} \KeywordTok{margin}\CharTok{:} \DecValTok{20}\DataTypeTok{px} \BuiltInTok{auto}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  label \{ }\KeywordTok{display}\CharTok{:} \DecValTok{block}\OperatorTok{;} \KeywordTok{margin{-}top}\CharTok{:} \DecValTok{10}\DataTypeTok{px}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  button \{ }\KeywordTok{margin{-}top}\CharTok{:} \DecValTok{10}\DataTypeTok{px}\OperatorTok{;} \KeywordTok{margin{-}right}\CharTok{:} \DecValTok{5}\DataTypeTok{px}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  table \{ }\KeywordTok{border{-}collapse}\CharTok{:} \DecValTok{collapse}\OperatorTok{;} \KeywordTok{width}\CharTok{:}\DecValTok{100}\DataTypeTok{\%}\OperatorTok{;} \KeywordTok{margin{-}top}\CharTok{:}\DecValTok{20}\DataTypeTok{px}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  th}\OperatorTok{,}\NormalTok{ td \{ }\KeywordTok{border}\CharTok{:}\DecValTok{1}\DataTypeTok{px} \DecValTok{solid} \ConstantTok{\#ccc}\OperatorTok{;} \KeywordTok{padding}\CharTok{:}\DecValTok{6}\DataTypeTok{px}\OperatorTok{;} \KeywordTok{text{-}align}\CharTok{:}\DecValTok{left}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  img}\FunctionTok{.thumb}\NormalTok{ \{ }\KeywordTok{width}\CharTok{:}\DecValTok{60}\DataTypeTok{px}\OperatorTok{;} \KeywordTok{height}\CharTok{:}\DecValTok{60}\DataTypeTok{px}\OperatorTok{;} \KeywordTok{object{-}fit}\CharTok{:}\DecValTok{cover}\OperatorTok{;} \KeywordTok{border{-}radius}\CharTok{:}\DecValTok{4}\DataTypeTok{px}\OperatorTok{;}\NormalTok{ \}}
+\DataTypeTok{\textless{}/}\KeywordTok{style}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{head}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{body}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{h1}\DataTypeTok{\textgreater{}}\NormalTok{Cadastro de Pessoas (Perl/PostgreSQL)}\DataTypeTok{\textless{}/}\KeywordTok{h1}\DataTypeTok{\textgreater{}}
+
+\DataTypeTok{\textless{}}\KeywordTok{form}\OtherTok{ id}\OperatorTok{=}\StringTok{"formPessoa"}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{label}\DataTypeTok{\textgreater{}}\NormalTok{CPF (chave primária): }\DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ id}\OperatorTok{=}\StringTok{"cpf"}\OtherTok{ required}\DataTypeTok{\textgreater{}\textless{}/}\KeywordTok{label}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{label}\DataTypeTok{\textgreater{}}\NormalTok{Nome: }\DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ id}\OperatorTok{=}\StringTok{"nome"}\OtherTok{ required}\DataTypeTok{\textgreater{}\textless{}/}\KeywordTok{label}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{label}\DataTypeTok{\textgreater{}}\NormalTok{Endereço: }\DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ id}\OperatorTok{=}\StringTok{"endereco"}\OtherTok{ required}\DataTypeTok{\textgreater{}\textless{}/}\KeywordTok{label}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{label}\DataTypeTok{\textgreater{}}\NormalTok{Data Nasc.: }\DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ type}\OperatorTok{=}\StringTok{"date"}\OtherTok{ id}\OperatorTok{=}\StringTok{"data\_nascimento"}\OtherTok{ required}\DataTypeTok{\textgreater{}\textless{}/}\KeywordTok{label}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{label}\DataTypeTok{\textgreater{}}\NormalTok{Foto: }\DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ type}\OperatorTok{=}\StringTok{"file"}\OtherTok{ id}\OperatorTok{=}\StringTok{"foto"}\OtherTok{ accept}\OperatorTok{=}\StringTok{"image/*"}\DataTypeTok{\textgreater{}\textless{}/}\KeywordTok{label}\DataTypeTok{\textgreater{}}
+
+  \DataTypeTok{\textless{}}\KeywordTok{button}\OtherTok{ type}\OperatorTok{=}\StringTok{"button"}\OtherTok{ onclick}\OperatorTok{=}\StringTok{"inserir()"}\DataTypeTok{\textgreater{}}\NormalTok{Inserir}\DataTypeTok{\textless{}/}\KeywordTok{button}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{button}\OtherTok{ type}\OperatorTok{=}\StringTok{"button"}\OtherTok{ onclick}\OperatorTok{=}\StringTok{"alterar()"}\DataTypeTok{\textgreater{}}\NormalTok{Alterar}\DataTypeTok{\textless{}/}\KeywordTok{button}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{button}\OtherTok{ type}\OperatorTok{=}\StringTok{"button"}\OtherTok{ onclick}\OperatorTok{=}\StringTok{"remover()"}\DataTypeTok{\textgreater{}}\NormalTok{Remover}\DataTypeTok{\textless{}/}\KeywordTok{button}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{form}\DataTypeTok{\textgreater{}}
+
+\DataTypeTok{\textless{}}\KeywordTok{h2}\DataTypeTok{\textgreater{}}\NormalTok{Pesquisar}\DataTypeTok{\textless{}/}\KeywordTok{h2}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ id}\OperatorTok{=}\StringTok{"pesquisa"}\OtherTok{ placeholder}\OperatorTok{=}\StringTok{"Digite nome ou CPF"}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{button}\OtherTok{ type}\OperatorTok{=}\StringTok{"button"}\OtherTok{ onclick}\OperatorTok{=}\StringTok{"pesquisar()"}\DataTypeTok{\textgreater{}}\NormalTok{Pesquisar}\DataTypeTok{\textless{}/}\KeywordTok{button}\DataTypeTok{\textgreater{}}
+
+\DataTypeTok{\textless{}}\KeywordTok{table}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{thead}\DataTypeTok{\textgreater{}}
+    \DataTypeTok{\textless{}}\KeywordTok{tr}\DataTypeTok{\textgreater{}}
+      \DataTypeTok{\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{CPF}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{Foto}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{Nome}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}}
+      \DataTypeTok{\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{Endereço}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{Nascimento}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}}
+    \DataTypeTok{\textless{}/}\KeywordTok{tr}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}/}\KeywordTok{thead}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{tbody}\OtherTok{ id}\OperatorTok{=}\StringTok{"tabela"}\DataTypeTok{\textgreater{}\textless{}/}\KeywordTok{tbody}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{table}\DataTypeTok{\textgreater{}}
+
+\DataTypeTok{\textless{}}\KeywordTok{script}\DataTypeTok{\textgreater{}}
+\KeywordTok{const}\NormalTok{ API }\OperatorTok{=} \StringTok{\textquotesingle{}http://localhost:5000/pessoas\textquotesingle{}}\OperatorTok{;}
+
+\CommentTok{/* {-}{-}{-}{-}{-}{-}{-}{-}{-}{-} Funções utilitárias {-}{-}{-}{-}{-}{-}{-}{-}{-}{-} */}
+\KeywordTok{function} \FunctionTok{validaCampos}\NormalTok{() \{}
+  \KeywordTok{const}\NormalTok{ campos }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}cpf\textquotesingle{}}\OperatorTok{,}\StringTok{\textquotesingle{}nome\textquotesingle{}}\OperatorTok{,}\StringTok{\textquotesingle{}endereco\textquotesingle{}}\OperatorTok{,}\StringTok{\textquotesingle{}data\_nascimento\textquotesingle{}}\NormalTok{]}\OperatorTok{;}
+  \ControlFlowTok{for}\NormalTok{ (}\KeywordTok{const}\NormalTok{ id }\KeywordTok{of}\NormalTok{ campos) \{}
+    \KeywordTok{const}\NormalTok{ valor }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(id)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{;}
+    \ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\NormalTok{valor) \{}
+      \FunctionTok{alert}\NormalTok{(}\VerbatimStringTok{\textasciigrave{}O campo "}\SpecialCharTok{$\{}\NormalTok{id}\SpecialCharTok{\}}\VerbatimStringTok{" não pode ficar em branco.\textasciigrave{}}\NormalTok{)}\OperatorTok{;}
+      \ControlFlowTok{return} \KeywordTok{false}\OperatorTok{;}
+\NormalTok{    \}}
+\NormalTok{  \}}
+  \ControlFlowTok{return} \KeywordTok{true}\OperatorTok{;}
+\NormalTok{\}}
+
+\KeywordTok{function} \FunctionTok{getFotoBase64}\NormalTok{() \{}
+  \KeywordTok{const}\NormalTok{ file }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}foto\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{files}\NormalTok{[}\DecValTok{0}\NormalTok{]}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\NormalTok{file) }\ControlFlowTok{return} \BuiltInTok{Promise}\OperatorTok{.}\FunctionTok{resolve}\NormalTok{(}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+  \ControlFlowTok{return} \KeywordTok{new} \BuiltInTok{Promise}\NormalTok{((resolve}\OperatorTok{,}\NormalTok{reject)}\KeywordTok{=\textgreater{}}\NormalTok{\{}
+    \KeywordTok{const}\NormalTok{ reader }\OperatorTok{=} \KeywordTok{new} \BuiltInTok{FileReader}\NormalTok{()}\OperatorTok{;}
+\NormalTok{    reader}\OperatorTok{.}\AttributeTok{onload} \OperatorTok{=}\NormalTok{ () }\KeywordTok{=\textgreater{}} \FunctionTok{resolve}\NormalTok{(reader}\OperatorTok{.}\AttributeTok{result}\NormalTok{)}\OperatorTok{;}
+\NormalTok{    reader}\OperatorTok{.}\AttributeTok{onerror} \OperatorTok{=}\NormalTok{ reject}\OperatorTok{;}
+\NormalTok{    reader}\OperatorTok{.}\FunctionTok{readAsDataURL}\NormalTok{(file)}\OperatorTok{;}
+\NormalTok{  \})}\OperatorTok{;}
+\NormalTok{\}}
+
+\KeywordTok{function} \FunctionTok{coletaDados}\NormalTok{(base64Foto)\{}
+  \ControlFlowTok{return}\NormalTok{ \{}
+    \DataTypeTok{cpf}\OperatorTok{:} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}cpf\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{,}
+    \DataTypeTok{nome}\OperatorTok{:} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}nome\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{,}
+    \DataTypeTok{endereco}\OperatorTok{:} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}endereco\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{,}
+    \DataTypeTok{data\_nascimento}\OperatorTok{:} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}data\_nascimento\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{,}
+    \DataTypeTok{foto}\OperatorTok{:}\NormalTok{ base64Foto }\OperatorTok{||} \StringTok{\textquotesingle{}\textquotesingle{}}
+\NormalTok{  \}}\OperatorTok{;}
+\NormalTok{\}}
+
+\CommentTok{/* {-}{-}{-}{-}{-}{-}{-}{-}{-}{-} CRUD {-}{-}{-}{-}{-}{-}{-}{-}{-}{-} */}
+\KeywordTok{async} \KeywordTok{function} \FunctionTok{inserir}\NormalTok{() \{}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\FunctionTok{validaCampos}\NormalTok{()) }\ControlFlowTok{return}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ base64 }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{getFotoBase64}\NormalTok{()}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ pessoa }\OperatorTok{=} \FunctionTok{coletaDados}\NormalTok{(base64)}\OperatorTok{;}
+
+  \KeywordTok{const}\NormalTok{ res }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{fetch}\NormalTok{(API}\OperatorTok{,}\NormalTok{ \{}
+    \DataTypeTok{method}\OperatorTok{:} \StringTok{\textquotesingle{}POST\textquotesingle{}}\OperatorTok{,}
+    \DataTypeTok{headers}\OperatorTok{:}\NormalTok{ \{}\StringTok{\textquotesingle{}Content{-}Type\textquotesingle{}}\OperatorTok{:} \StringTok{\textquotesingle{}application/json\textquotesingle{}}\NormalTok{\}}\OperatorTok{,}
+    \DataTypeTok{body}\OperatorTok{:} \BuiltInTok{JSON}\OperatorTok{.}\FunctionTok{stringify}\NormalTok{(pessoa)}
+\NormalTok{  \})}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ data }\OperatorTok{=} \ControlFlowTok{await}\NormalTok{ res}\OperatorTok{.}\FunctionTok{json}\NormalTok{()}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{(res}\OperatorTok{.}\AttributeTok{ok}\NormalTok{) }\FunctionTok{alert}\NormalTok{(}\StringTok{\textquotesingle{}Inserido com sucesso!\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+  \ControlFlowTok{else} \FunctionTok{alert}\NormalTok{(}\StringTok{\textquotesingle{}Erro: \textquotesingle{}} \OperatorTok{+}\NormalTok{ (data}\OperatorTok{.}\AttributeTok{error} \OperatorTok{||} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{))}\OperatorTok{;}
+  \FunctionTok{listar}\NormalTok{()}\OperatorTok{;}
+\NormalTok{\}}
+
+\KeywordTok{async} \KeywordTok{function} \FunctionTok{alterar}\NormalTok{() \{}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\FunctionTok{validaCampos}\NormalTok{()) }\ControlFlowTok{return}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ cpf }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}cpf\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ base64 }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{getFotoBase64}\NormalTok{()}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ novosDados }\OperatorTok{=} \FunctionTok{coletaDados}\NormalTok{()}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{(base64) novosDados}\OperatorTok{.}\AttributeTok{foto} \OperatorTok{=}\NormalTok{ base64}\OperatorTok{;}
+
+  \KeywordTok{const}\NormalTok{ res }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{fetch}\NormalTok{(}\VerbatimStringTok{\textasciigrave{}}\SpecialCharTok{$\{}\NormalTok{API}\SpecialCharTok{\}}\VerbatimStringTok{/}\SpecialCharTok{$\{}\PreprocessorTok{encodeURIComponent}\NormalTok{(cpf)}\SpecialCharTok{\}}\VerbatimStringTok{\textasciigrave{}}\OperatorTok{,}\NormalTok{ \{}
+    \DataTypeTok{method}\OperatorTok{:} \StringTok{\textquotesingle{}PUT\textquotesingle{}}\OperatorTok{,}
+    \DataTypeTok{headers}\OperatorTok{:}\NormalTok{ \{}\StringTok{\textquotesingle{}Content{-}Type\textquotesingle{}}\OperatorTok{:} \StringTok{\textquotesingle{}application/json\textquotesingle{}}\NormalTok{\}}\OperatorTok{,}
+    \DataTypeTok{body}\OperatorTok{:} \BuiltInTok{JSON}\OperatorTok{.}\FunctionTok{stringify}\NormalTok{(novosDados)}
+\NormalTok{  \})}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ data }\OperatorTok{=} \ControlFlowTok{await}\NormalTok{ res}\OperatorTok{.}\FunctionTok{json}\NormalTok{()}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{(res}\OperatorTok{.}\AttributeTok{ok}\NormalTok{) }\FunctionTok{alert}\NormalTok{(}\StringTok{\textquotesingle{}Alterado com sucesso!\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+  \ControlFlowTok{else} \FunctionTok{alert}\NormalTok{(}\StringTok{\textquotesingle{}Erro: \textquotesingle{}} \OperatorTok{+}\NormalTok{ (data}\OperatorTok{.}\AttributeTok{error} \OperatorTok{||} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{))}\OperatorTok{;}
+  \FunctionTok{listar}\NormalTok{()}\OperatorTok{;}
+\NormalTok{\}}
+
+\KeywordTok{async} \KeywordTok{function} \FunctionTok{remover}\NormalTok{() \{}
+  \KeywordTok{const}\NormalTok{ cpf }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}cpf\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\NormalTok{cpf) }\ControlFlowTok{return} \FunctionTok{alert}\NormalTok{(}\StringTok{\textquotesingle{}Informe o CPF para remover.\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{(}\FunctionTok{confirm}\NormalTok{(}\StringTok{\textquotesingle{}Confirma a exclusão?\textquotesingle{}}\NormalTok{))\{}
+    \KeywordTok{const}\NormalTok{ res }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{fetch}\NormalTok{(}\VerbatimStringTok{\textasciigrave{}}\SpecialCharTok{$\{}\NormalTok{API}\SpecialCharTok{\}}\VerbatimStringTok{/}\SpecialCharTok{$\{}\PreprocessorTok{encodeURIComponent}\NormalTok{(cpf)}\SpecialCharTok{\}}\VerbatimStringTok{\textasciigrave{}}\OperatorTok{,}\NormalTok{ \{}\DataTypeTok{method}\OperatorTok{:}\StringTok{\textquotesingle{}DELETE\textquotesingle{}}\NormalTok{\})}\OperatorTok{;}
+    \KeywordTok{const}\NormalTok{ data }\OperatorTok{=} \ControlFlowTok{await}\NormalTok{ res}\OperatorTok{.}\FunctionTok{json}\NormalTok{()}\OperatorTok{;}
+    \ControlFlowTok{if}\NormalTok{(res}\OperatorTok{.}\AttributeTok{ok}\NormalTok{) }\FunctionTok{alert}\NormalTok{(}\StringTok{\textquotesingle{}Removido com sucesso!\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+    \ControlFlowTok{else} \FunctionTok{alert}\NormalTok{(}\StringTok{\textquotesingle{}Erro: \textquotesingle{}} \OperatorTok{+}\NormalTok{ (data}\OperatorTok{.}\AttributeTok{error} \OperatorTok{||} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{))}\OperatorTok{;}
+    \FunctionTok{listar}\NormalTok{()}\OperatorTok{;}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\KeywordTok{async} \KeywordTok{function} \FunctionTok{pesquisar}\NormalTok{() \{}
+  \KeywordTok{const}\NormalTok{ termo }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}pesquisa\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\NormalTok{termo)\{ }\FunctionTok{listar}\NormalTok{()}\OperatorTok{;} \ControlFlowTok{return}\OperatorTok{;}\NormalTok{ \}}
+  \KeywordTok{const}\NormalTok{ res }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{fetch}\NormalTok{(}\VerbatimStringTok{\textasciigrave{}}\SpecialCharTok{$\{}\NormalTok{API}\SpecialCharTok{\}}\VerbatimStringTok{?q=}\SpecialCharTok{$\{}\PreprocessorTok{encodeURIComponent}\NormalTok{(termo)}\SpecialCharTok{\}}\VerbatimStringTok{\textasciigrave{}}\NormalTok{)}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ data }\OperatorTok{=} \ControlFlowTok{await}\NormalTok{ res}\OperatorTok{.}\FunctionTok{json}\NormalTok{()}\OperatorTok{;}
+  \FunctionTok{preencheTabela}\NormalTok{(data)}\OperatorTok{;}
+\NormalTok{\}}
+
+\KeywordTok{async} \KeywordTok{function} \FunctionTok{listar}\NormalTok{() \{}
+  \KeywordTok{const}\NormalTok{ res }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{fetch}\NormalTok{(API)}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ data }\OperatorTok{=} \ControlFlowTok{await}\NormalTok{ res}\OperatorTok{.}\FunctionTok{json}\NormalTok{()}\OperatorTok{;}
+  \FunctionTok{preencheTabela}\NormalTok{(data)}\OperatorTok{;}
+\NormalTok{\}}
+
+\CommentTok{/* {-}{-}{-}{-}{-}{-}{-}{-}{-}{-} UI {-}{-}{-}{-}{-}{-}{-}{-}{-}{-} */}
+\KeywordTok{function} \FunctionTok{preencheTabela}\NormalTok{(lista)\{}
+  \KeywordTok{const}\NormalTok{ tbody }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}tabela\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+\NormalTok{  tbody}\OperatorTok{.}\AttributeTok{innerHTML} \OperatorTok{=} \StringTok{\textquotesingle{}\textquotesingle{}}\OperatorTok{;}
+\NormalTok{  lista}\OperatorTok{.}\FunctionTok{forEach}\NormalTok{(p}\KeywordTok{=\textgreater{}}\NormalTok{\{}
+    \KeywordTok{const}\NormalTok{ tr }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{createElement}\NormalTok{(}\StringTok{\textquotesingle{}tr\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+\NormalTok{    tr}\OperatorTok{.}\AttributeTok{innerHTML} \OperatorTok{=} \VerbatimStringTok{\textasciigrave{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{cpf}\SpecialCharTok{\}}\VerbatimStringTok{\textless{}/td\textgreater{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{foto} \OperatorTok{?} \VerbatimStringTok{\textasciigrave{}\textless{}img class="thumb" src="}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{foto}\SpecialCharTok{\}}\VerbatimStringTok{" alt="foto"\textgreater{}\textasciigrave{}} \OperatorTok{:} \StringTok{\textquotesingle{}\textquotesingle{}}\SpecialCharTok{\}}\VerbatimStringTok{\textless{}/td\textgreater{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{nome}\SpecialCharTok{\}}\VerbatimStringTok{\textless{}/td\textgreater{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{endereco}\SpecialCharTok{\}}\VerbatimStringTok{\textless{}/td\textgreater{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{data\_nascimento}\SpecialCharTok{\}}\VerbatimStringTok{\textless{}/td\textgreater{}\textasciigrave{}}\OperatorTok{;}
+\NormalTok{    tr}\OperatorTok{.}\AttributeTok{onclick} \OperatorTok{=}\NormalTok{ () }\KeywordTok{=\textgreater{}}\NormalTok{ \{}
+      \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}cpf\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value} \OperatorTok{=}\NormalTok{ p}\OperatorTok{.}\AttributeTok{cpf}\OperatorTok{;}
+      \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}nome\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value} \OperatorTok{=}\NormalTok{ p}\OperatorTok{.}\AttributeTok{nome}\OperatorTok{;}
+      \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}endereco\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value} \OperatorTok{=}\NormalTok{ p}\OperatorTok{.}\AttributeTok{endereco}\OperatorTok{;}
+      \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{\textquotesingle{}data\_nascimento\textquotesingle{}}\NormalTok{)}\OperatorTok{.}\AttributeTok{value} \OperatorTok{=}\NormalTok{ p}\OperatorTok{.}\AttributeTok{data\_nascimento}\OperatorTok{;}
+\NormalTok{    \}}\OperatorTok{;}
+\NormalTok{    tbody}\OperatorTok{.}\FunctionTok{appendChild}\NormalTok{(tr)}\OperatorTok{;}
+\NormalTok{  \})}\OperatorTok{;}
+\NormalTok{\}}
+
+\FunctionTok{listar}\NormalTok{()}\OperatorTok{;}
+\DataTypeTok{\textless{}/}\KeywordTok{script}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{body}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{html}\DataTypeTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\#\# Exemplo 04 \\
+Neste exemplo, temos uma aplicação cliente feita html e javascript \\
+A interface do Cliente é feita em HTML5 \\
+A conexão com o servidor é feita pelo javascript incorporado no HTML: \\
+CRUD no cliente é feito peloa javascript utilizando metodologia Restful sobre protocolo HTTP 2.0 \\
+O servidor Restful é feito em linguagem JAVA \\
+A linguagem JAVA precisa ser compilada e empacotada. \\
+PORTANTO O CÓDIGO DO SERVIDOR PRECISARÁ SER COMPILADO E EMPACOTADO. \\
+OBS: NÃO TEMOS CONTROLE DE SESSÃO DE CLIENTE IMPLEMENTADO. \\
+\#\#\# preparar a arvore de diretórios do pacote servidor \\
+\texttt{css\ pessoas-rest-java/\ ├─\ src/main/java/com/example/pessoas/\ │\ \ \ ├─\ PessoasApplication.java\ │\ \ \ ├─\ controller/\ │\ \ \ │\ \ \ \ └─\ PessoaController.java\ │\ \ \ ├─\ model/\ │\ \ \ │\ \ \ \ └─\ Pessoa.java\ │\ \ \ └─\ repository/\ │\ \ \ \ \ \ \ \ └─\ PessoaRepository.java\ └─\ src/main/resources/\ └─\ application.properties}
+\#\#\#\# passo 1 - criar estrutura de arquivos no diretório: \\
+\texttt{cmd\ echo\ criando\ diretório\ raiz\ mkdir\ pessoas-rest-java\ cd\ pessoas-rest-java} \\
+Agora vamos criar os subdiretórios que vão representar a estrutura do pacote: \\
+criação do pacote \emph{java.com.example.pessoas} \\
+Criar a seguinte \emph{árvore de diretórios}: \\
+\texttt{cmd\ mkdir\ src\textbackslash{}main\textbackslash{}java\textbackslash{}com\textbackslash{}example\textbackslash{}pessoas\textbackslash{}}
+Criar o subdiretórios com instrução de montagem do pacote: ``resources'' \\
+\texttt{cmd\ echo\ criando\ pacote\ java.com.example.pessoas\ no\ windows\ mkdir\ src\textbackslash{}main\textbackslash{}resources\textbackslash{}} \\
+Criar os subdiretórios padrão do novo pacote: ``controller'', ``model'', ``repository'' \\
+```cmd
+echo criando diretorio CONTROLER do
+mkdir src\main\java\com\example\pessoas\controller \\
+echo criando diretorio MODEL do
+mkdir src\main\java\com\example\pessoas\model \\
+echo criando diretorio REPOSITORY do
+mkdir src\main\java\com\example\pessoas\repository \\
+``` \\
+\#\#\# Criando as classes java que vão conversar com o banco: \\
+\#\#\#\# passo 2 - criar as classes JAVA nos arquivos .java \\
+\#\#\#\# Diretório MODEL do pacote - Classe que mapeia a tabela (ou ``entidade'') \\
+\#\#\#\#\# CLASSE QUE MAPEIA TABELA NA MEMÓRIA (equivalente a um CREATE TABLE no sql) \\
+crie o arquivo \emph{Pessoa.java} dentro do diretório \texttt{src\textbackslash{}main\textbackslash{}java\textbackslash{}com\textbackslash{}example\textbackslash{}pessoas\textbackslash{}model} \\
+arquivo \emph{Pessoa.java} \\
+```java
+package com.example.pessoas.model; \\
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Column; \\
+\citet{Entity}
+public class Pessoa \{
+\citet{Id}
+private String cpf; \\
+private String nome;
+private String endereco; \\
+\citet{Column}(name = ``data\_nascimento'')
+private String dataNascimento; // armazenando como string ISO (yyyy-MM-dd) \\
+\citet{Column}(columnDefinition = ``TEXT'')
+private String foto; // Base64 \\
+// getters e setters
+public String getCpf() \{ return cpf; \}
+public void setCpf(String cpf) \{ this.cpf = cpf; \} \\
+public String getNome() \{ return nome; \}
+public void setNome(String nome) \{ this.nome = nome; \} \\
+public String getEndereco() \{ return endereco; \}
+public void setEndereco(String endereco) \{ this.endereco = endereco; \} \\
+public String getDataNascimento() \{ return dataNascimento; \}
+public void setDataNascimento(String dataNascimento) \{ this.dataNascimento = dataNascimento; \} \\
+public String getFoto() \{ return foto; \}
+public void setFoto(String foto) \{ this.foto = foto; \}
+\} \\
+``` \\
+\#\#\#\# Diretório REPOSITORY do pacote - Classe que guarda o SQL para buscar dados existentes na tabela \\
+\#\#\#\#\# CLASSE QUE EXTRAI DADOS DA TABELA NA MEMÓRIA (equivalente a um SELECT * FROM no sql) \\
+crie o arquivo \emph{PessoaRepository.java} dentro do diretório \texttt{src\textbackslash{}main\textbackslash{}java\textbackslash{}com\textbackslash{}example\textbackslash{}pessoas\textbackslash{}repository} \\
+arquivo \emph{PessoaRepository.java} \\
+```java
+package com.example.pessoas.repository; \\
+import java.util.List; \\
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query; \\
+import com.example.pessoas.model.Pessoa; \\
+public interface PessoaRepository extends JpaRepository\textless Pessoa, String\textgreater{}
+\{
+\citet{Query}(``SELECT p FROM Pessoa p WHERE LOWER(p.nome) LIKE LOWER(CONCAT(`\%', :termo, `\%'))'' +
+``OR LOWER(p.cpf) LIKE LOWER(CONCAT(`\%', :termo, `\%'))'')
+List searchByNomeOrCpf(String termo);
+\} \\
+``` \\
+\#\#\#\# Diretório CONTROLLER do pacote - Classe que MAPEIA operações INSERIR, ALTERAR, REMOVER e PESQUISAR \\
+\#\#\#\#\# CLASSE INSERE, ALTERA E APAGA DADOS NA TABELA NA MEMÓRIA (equivalente a um INSERT, UPDATE E DELETE no sql) \\
+crie o arquivo \emph{PessoaController.java} dentro do diretório \texttt{src\textbackslash{}main\textbackslash{}java\textbackslash{}com\textbackslash{}example\textbackslash{}pessoas\textbackslash{}controller} \\
+arquivo \emph{PessoaController.java} \\
+```JAVA
+package com.example.pessoas.controller; \\
+import java.util.List; \\
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity; \\
+import com.example.pessoas.model.Pessoa;
+import com.example.pessoas.repository.PessoaRepository; \\
+\citet{RestController}
+\citet{RequestMapping}(``/pessoas'')
+\citet{CrossOrigin}(origins = ``*``) // habilita CORS para o front-end HTML
+public class PessoaController \{ \\
+private final PessoaRepository repo; \\
+public PessoaController(PessoaRepository repo) \{
+this.repo = repo;
+\} \\
+// GET /pessoas?q=termo
+\citet{GetMapping}
+public List listar(\citet{RequestParam}(required = false) String q) \{
+if (q == null \textbar\textbar{} q.isEmpty()) \{
+return repo.findAll();
+\}
+return repo.searchByNomeOrCpf(q);
+\} \\
+// POST /pessoas
+\citet{PostMapping}
+public Pessoa criar(\citet{RequestBody} Pessoa p) \{
+return repo.save(p);
+\} \\
+// PUT /pessoas/\{cpf\}
+\citet{PutMapping}(``/\{cpf\}'')
+public ResponseEntity atualizar(\citet{PathVariable} String cpf, \citet{RequestBody} Pessoa p) \{
+return repo.findById(cpf)
+.map(existente -\textgreater{} \{
+existente.setNome(p.getNome());
+existente.setEndereco(p.getEndereco());
+existente.setDataNascimento(p.getDataNascimento());
+if (p.getFoto() != null \&\& !p.getFoto().isEmpty()) \{
+existente.setFoto(p.getFoto());
+\}
+return ResponseEntity.ok(repo.save(existente));
+\})
+.orElse(ResponseEntity.notFound().build());
+\} \\
+// DELETE /pessoas/\{cpf\}
+\citet{DeleteMapping}(``/\{cpf\}'')
+public ResponseEntity remover(\citet{PathVariable} String cpf) \{
+if (!repo.existsById(cpf)) \{
+return ResponseEntity.notFound().build();
+\}
+repo.deleteById(cpf);
+return ResponseEntity.noContent().build();
+\}
+\} \\
+``` \\
+\#\#\# Criando ARQUIVOS AUXILIARES para o JAVA compilar e criar o pacote: \\
+\#\#\#\# passo 3 - criar arquivos de parametros, compilação e criação de acote \\
+\#\#\#\#\# Arquivo texto de parâmetros \\
+crie o arquivo \emph{application.properties} dentro do diretório \texttt{src\textbackslash{}main\textbackslash{}resources\textbackslash{}} \\
+arquivo \emph{application.properties} \\
+```css
+spring.datasource.url=jdbc:postgresql://db.pbbtfwmydxmxdibmtbqq.supabase.co:5432/postgres
+spring.datasource.username=postgres
+spring.datasource.password=MinhaSuperSenha \\
+spring.jpa.hibernate.ddl-auto=update \# cria/atualiza tabelas
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format\_sql=true \\
+``` \\
+\#\#\#\#\# Arquivo de compilação e criação de pacote (arquivo JAR) \\
+Arquivo XML para ferramenta MAVEN fazer compliação e empacotamento \\
+arquivo \emph{pom.xml} \\
+```xml
+4.0.0 \\
+com.example
+pessoas-rest-java
+0.0.1-SNAPSHOT
+pessoas-rest-java
+Servidor REST de Pessoas em Java \\
+org.springframework.boot
+spring-boot-starter-parent
+3.3.4
+ \\
+org.springframework.boot
+spring-boot-starter-web
+org.springframework.boot
+spring-boot-starter-data-jpa
+org.postgresql
+postgresql
+runtime
+ \\
+org.springframework.boot
+spring-boot-maven-plugin
+ \\
+``` \\
+finalmente, você deve compilar e criar o pacote JAVA servidor \\
+\texttt{mvn\ mvn\ spring-boot:run} \\
+servidor estará rodando na porta 8080 e EXPÕE A API de operações na URI \url{http://localhost:8080/pessoas} sem senha \\
+\texttt{css\ http://localhost:8080/pessoas} \\
+\#\#\# Cliente HTML (conexão Restful) \\
+crie o arquivo index.html e abra-o no navegador \\
+```html
+\textless!DOCTYPE html\textgreater{} \\
+ \\
+ \\
+Inserir
+Alterar
+Remover \\
+ \\
+ \\
+// Pré-visualização da imagem em Base64
+document.getElementById(`foto').addEventListener(`change', function(e)\{
+const file = e.target.files{[}0{]};
+if (!file) return;
+const reader = new FileReader();
+reader.onload = ev =\textgreater{} \{
+document.getElementById(`preview').src = ev.target.result;
+\};
+reader.readAsDataURL(file);
+\}); \\
+async function inserir() \{
+const cpf = document.getElementById(`cpf').value.trim();
+if (!cpf) \{ alert(`CPF é obrigatório.'); return; \}
+const dados = coletarDados();
+const resp = await fetch(API, \{
+method: `POST',
+headers: \{`Content-Type': `application/json'\},
+body: JSON.stringify(dados)
+\});
+if (resp.ok) \{ alert(`Pessoa inserida!'); pesquisar(); \}
+else alert(`Erro ao inserir:' + resp.statusText);
+\} \\
+async function alterar() \{
+const cpf = document.getElementById(`cpf').value.trim();
+if (!cpf) \{ alert(`CPF é obrigatório.'); return; \}
+const dados = coletarDados();
+const resp = await fetch(\texttt{\$\{API\}/\$\{encodeURIComponent(cpf)\}}, \{
+method: `PUT',
+headers: \{`Content-Type': `application/json'\},
+body: JSON.stringify(dados)
+\});
+if (resp.ok) \{ alert(`Alterado!'); pesquisar(); \}
+else alert(`Erro ao alterar:' + resp.statusText);
+\} \\
+async function remover() \{
+const cpf = document.getElementById(`cpf').value.trim();
+if (!cpf) \{ alert(`CPF é obrigatório.'); return; \}
+if (!confirm(`Tem certeza que deseja remover?')) return;
+const resp = await fetch(\texttt{\$\{API\}/\$\{encodeURIComponent(cpf)\}}, \{ method: `DELETE' \});
+if (resp.ok) \{ alert(`Removido!'); pesquisar(); \}
+else alert(`Erro ao remover:' + resp.statusText);
+\} \\
+async function pesquisar() \{
+const termo = document.getElementById(`pesquisa').value.trim();
+const url = termo ? \texttt{\$\{API\}?q=\$\{encodeURIComponent(termo)\}} : API;
+const resp = await fetch(url);
+const lista = await resp.json();
+mostrarResultados(lista);
+\} \\
+function coletarDados() \{
+return \{
+cpf: document.getElementById(`cpf').value.trim(),
+nome: document.getElementById(`nome').value.trim(),
+endereco: document.getElementById(`endereco').value.trim(),
+dataNascimento: document.getElementById(`data\_nascimento').value,
+foto: document.getElementById(`preview').src \textbar\textbar{} '\,'
+\};
+\} \\
+function mostrarResultados(pessoas)
+\{
+const tbody = document.querySelector(`\#resultados tbody');
+tbody.innerHTML = '\,`;
+pessoas.forEach(p =\textgreater{} \{
+const tr = document.createElement('tr');
+tr.innerHTML = \texttt{\textless{}td\textgreater{}\$\{p.cpf\}\textless{}/td\textgreater{}\ \textless{}td\textgreater{}\$\{p.nome\ \textbar{}\textbar{}\ \textquotesingle{}\textquotesingle{}\}\textless{}/td\textgreater{}\ \textless{}td\textgreater{}\$\{p.endereco\ \textbar{}\textbar{}\ \textquotesingle{}\textquotesingle{}\}\textless{}/td\textgreater{}\ \textless{}td\textgreater{}\$\{p.dataNascimento\ \textbar{}\textbar{}\ \textquotesingle{}\textquotesingle{}\}\textless{}/td\textgreater{}\ \textless{}td\textgreater{}\$\{p.foto\ ?}\texttt{:\ \textquotesingle{}\textquotesingle{}\}\textless{}/td\textgreater{}};
+tbody.appendChild(tr);
+\});
+\}
+ \\
+ \\
+``` \\
+\end{longtable}
+
+\section{Exemplo 05}\label{exemplo-05}
+
+Neste exemplo, temos uma aplicação cliente feita html e javascript
+
+A interface do Cliente é feita em HTML5
+
+A conexão com o servidor é feita pelo javascript incorporado no HTML:
+
+CRUD no cliente é feito peloa javascript utilizando metodologia Restful sobre protocolo HTTP 2.0
+
+O servidor Restful é feito em linguagem C++
+
+A linguagem C++ precisa ser compilada.
+
+PORTANTO O CÓDIGO DO SERVIDOR PRECISARÁ SER COMPILADO.
+
+EM C++ VAMOS USAR BIBLIOTECAS EXTERNAS libpqxx e crow
+
+OBS: NÃO TEMOS CONTROLE DE SESSÃO DE CLIENTE IMPLEMENTADO.
+
+estrutura de diretórios:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pessoas{-}rest{-}cpp/}
+\NormalTok{├─ CMakeLists}\FunctionTok{.txt}
+\NormalTok{├─ src/}
+\NormalTok{│   └─ main}\FunctionTok{.cpp}
+\NormalTok{└─ include/}
+\NormalTok{    └─ crow\_all}\FunctionTok{.h}\NormalTok{        ← header único da biblioteca Crow}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Criando o arquivo C++ do servidor}\label{criando-o-arquivo-c-do-servidor}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{"crow\_all.h"}
+\PreprocessorTok{\#include }\ImportTok{\textless{}pqxx/pqxx\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}iostream\textgreater{}}
+
+\AttributeTok{const} \BuiltInTok{std::}\NormalTok{string CONN\_STR }\OperatorTok{=}
+    \StringTok{"postgresql://postgres:MinhaSuperSenha@db.pbbtfwmydxmxdibmtbqq.supabase.co:5432/postgres"}\OperatorTok{;}
+
+\DataTypeTok{int}\NormalTok{ main}\OperatorTok{()} \OperatorTok{\{}
+\NormalTok{    crow}\OperatorTok{::}\NormalTok{SimpleApp app}\OperatorTok{;}
+
+    \CommentTok{// GET /pessoas}
+\NormalTok{    CROW\_ROUTE}\OperatorTok{(}\NormalTok{app}\OperatorTok{,} \StringTok{"/pessoas"}\OperatorTok{).}\NormalTok{methods}\OperatorTok{(}\StringTok{"GET"}\OperatorTok{\_method)}
+    \OperatorTok{([](}\AttributeTok{const}\NormalTok{ crow}\OperatorTok{::}\NormalTok{request}\OperatorTok{\&}\NormalTok{ req}\OperatorTok{)\{}
+\NormalTok{        pqxx}\OperatorTok{::}\NormalTok{connection c}\OperatorTok{(}\NormalTok{CONN\_STR}\OperatorTok{);}
+\NormalTok{        pqxx}\OperatorTok{::}\NormalTok{work w}\OperatorTok{(}\NormalTok{c}\OperatorTok{);}
+        \BuiltInTok{std::}\NormalTok{string q }\OperatorTok{=}\NormalTok{ req}\OperatorTok{.}\NormalTok{url\_params}\OperatorTok{.}\NormalTok{get}\OperatorTok{(}\StringTok{"q"}\OperatorTok{)} \OperatorTok{?}\NormalTok{ req}\OperatorTok{.}\NormalTok{url\_params}\OperatorTok{.}\NormalTok{get}\OperatorTok{(}\StringTok{"q"}\OperatorTok{)} \OperatorTok{:} \StringTok{""}\OperatorTok{;}
+\NormalTok{        pqxx}\OperatorTok{::}\NormalTok{result r}\OperatorTok{;}
+        \ControlFlowTok{if}\OperatorTok{(!}\NormalTok{q}\OperatorTok{.}\NormalTok{empty}\OperatorTok{())} \OperatorTok{\{}
+\NormalTok{            r }\OperatorTok{=}\NormalTok{ w}\OperatorTok{.}\NormalTok{exec\_params}\OperatorTok{(}
+                \StringTok{"SELECT cpf,nome,endereco,data\_nascimento,foto "}
+                \StringTok{"FROM pessoas WHERE lower(nome) LIKE lower(\textquotesingle{}\%\textquotesingle{}||$1||\textquotesingle{}\%\textquotesingle{}) OR cpf LIKE \textquotesingle{}\%\textquotesingle{}||$1||\textquotesingle{}\%\textquotesingle{}"}\OperatorTok{,}
+\NormalTok{                q}\OperatorTok{);}
+        \OperatorTok{\}} \ControlFlowTok{else} \OperatorTok{\{}
+\NormalTok{            r }\OperatorTok{=}\NormalTok{ w}\OperatorTok{.}\NormalTok{exec}\OperatorTok{(}\StringTok{"SELECT cpf,nome,endereco,data\_nascimento,foto FROM pessoas"}\OperatorTok{);}
+        \OperatorTok{\}}
+\NormalTok{        crow}\OperatorTok{::}\NormalTok{json}\OperatorTok{::}\NormalTok{wvalue out}\OperatorTok{;}
+        \DataTypeTok{size\_t}\NormalTok{ i}\OperatorTok{=}\DecValTok{0}\OperatorTok{;}
+        \ControlFlowTok{for}\OperatorTok{(}\KeywordTok{auto}\NormalTok{ row }\OperatorTok{:}\NormalTok{ r}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{            out}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\StringTok{"cpf"}\OperatorTok{]} \OperatorTok{=}\NormalTok{ row}\OperatorTok{[}\StringTok{"cpf"}\OperatorTok{].}\NormalTok{c\_str}\OperatorTok{();}
+\NormalTok{            out}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\StringTok{"nome"}\OperatorTok{]} \OperatorTok{=}\NormalTok{ row}\OperatorTok{[}\StringTok{"nome"}\OperatorTok{].}\NormalTok{c\_str}\OperatorTok{();}
+\NormalTok{            out}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\StringTok{"endereco"}\OperatorTok{]} \OperatorTok{=}\NormalTok{ row}\OperatorTok{[}\StringTok{"endereco"}\OperatorTok{].}\NormalTok{c\_str}\OperatorTok{();}
+\NormalTok{            out}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\StringTok{"dataNascimento"}\OperatorTok{]} \OperatorTok{=}\NormalTok{ row}\OperatorTok{[}\StringTok{"data\_nascimento"}\OperatorTok{].}\NormalTok{c\_str}\OperatorTok{();}
+\NormalTok{            out}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\StringTok{"foto"}\OperatorTok{]} \OperatorTok{=}\NormalTok{ row}\OperatorTok{[}\StringTok{"foto"}\OperatorTok{].}\NormalTok{is\_null}\OperatorTok{()} \OperatorTok{?} \StringTok{""} \OperatorTok{:}\NormalTok{ row}\OperatorTok{[}\StringTok{"foto"}\OperatorTok{].}\NormalTok{c\_str}\OperatorTok{();}
+            \OperatorTok{++}\NormalTok{i}\OperatorTok{;}
+        \OperatorTok{\}}
+        \ControlFlowTok{return}\NormalTok{ crow}\OperatorTok{::}\NormalTok{response}\OperatorTok{(}\NormalTok{out}\OperatorTok{);}
+    \OperatorTok{\});}
+
+    \CommentTok{// POST /pessoas}
+\NormalTok{    CROW\_ROUTE}\OperatorTok{(}\NormalTok{app}\OperatorTok{,} \StringTok{"/pessoas"}\OperatorTok{).}\NormalTok{methods}\OperatorTok{(}\StringTok{"POST"}\OperatorTok{\_method)}
+    \OperatorTok{([](}\AttributeTok{const}\NormalTok{ crow}\OperatorTok{::}\NormalTok{request}\OperatorTok{\&}\NormalTok{ req}\OperatorTok{)\{}
+        \KeywordTok{auto}\NormalTok{ body }\OperatorTok{=}\NormalTok{ crow}\OperatorTok{::}\NormalTok{json}\OperatorTok{::}\NormalTok{load}\OperatorTok{(}\NormalTok{req}\OperatorTok{.}\NormalTok{body}\OperatorTok{);}
+        \ControlFlowTok{if}\OperatorTok{(!}\NormalTok{body }\OperatorTok{||} \OperatorTok{!}\NormalTok{body}\OperatorTok{.}\NormalTok{has}\OperatorTok{(}\StringTok{"cpf"}\OperatorTok{))}
+            \ControlFlowTok{return}\NormalTok{ crow}\OperatorTok{::}\NormalTok{response}\OperatorTok{(}\DecValTok{400}\OperatorTok{,} \StringTok{"CPF é obrigatório"}\OperatorTok{);}
+
+        \ControlFlowTok{try} \OperatorTok{\{}
+\NormalTok{            pqxx}\OperatorTok{::}\NormalTok{connection c}\OperatorTok{(}\NormalTok{CONN\_STR}\OperatorTok{);}
+\NormalTok{            pqxx}\OperatorTok{::}\NormalTok{work w}\OperatorTok{(}\NormalTok{c}\OperatorTok{);}
+\NormalTok{            w}\OperatorTok{.}\NormalTok{exec\_params}\OperatorTok{(}
+                \StringTok{"INSERT INTO pessoas (cpf,nome,endereco,data\_nascimento,foto) "}
+                \StringTok{"VALUES ($1,$2,$3,$4,$5)"}\OperatorTok{,}
+\NormalTok{                body}\OperatorTok{[}\StringTok{"cpf"}\OperatorTok{].}\NormalTok{s}\OperatorTok{(),}
+\NormalTok{                body}\OperatorTok{[}\StringTok{"nome"}\OperatorTok{].}\VariableTok{s\_or}\OperatorTok{(}\StringTok{""}\OperatorTok{),}
+\NormalTok{                body}\OperatorTok{[}\StringTok{"endereco"}\OperatorTok{].}\VariableTok{s\_or}\OperatorTok{(}\StringTok{""}\OperatorTok{),}
+\NormalTok{                body}\OperatorTok{[}\StringTok{"dataNascimento"}\OperatorTok{].}\VariableTok{s\_or}\OperatorTok{(}\StringTok{""}\OperatorTok{),}
+\NormalTok{                body}\OperatorTok{[}\StringTok{"foto"}\OperatorTok{].}\VariableTok{s\_or}\OperatorTok{(}\StringTok{""}\OperatorTok{)}
+            \OperatorTok{);}
+\NormalTok{            w}\OperatorTok{.}\NormalTok{commit}\OperatorTok{();}
+            \ControlFlowTok{return}\NormalTok{ crow}\OperatorTok{::}\NormalTok{response}\OperatorTok{(}\DecValTok{201}\OperatorTok{,} \StringTok{"Inserido"}\OperatorTok{);}
+        \OperatorTok{\}} \ControlFlowTok{catch}\OperatorTok{(}\AttributeTok{const} \BuiltInTok{std::}\NormalTok{exception }\OperatorTok{\&}\NormalTok{e}\OperatorTok{)} \OperatorTok{\{}
+            \ControlFlowTok{return}\NormalTok{ crow}\OperatorTok{::}\NormalTok{response}\OperatorTok{(}\DecValTok{400}\OperatorTok{,}\NormalTok{ e}\OperatorTok{.}\NormalTok{what}\OperatorTok{());}
+        \OperatorTok{\}}
+    \OperatorTok{\});}
+
+    \CommentTok{// PUT /pessoas/\textless{}cpf\textgreater{}}
+\NormalTok{    CROW\_ROUTE}\OperatorTok{(}\NormalTok{app}\OperatorTok{,} \StringTok{"/pessoas/\textless{}string\textgreater{}"}\OperatorTok{).}\NormalTok{methods}\OperatorTok{(}\StringTok{"PUT"}\OperatorTok{\_method)}
+    \OperatorTok{([](}\AttributeTok{const}\NormalTok{ crow}\OperatorTok{::}\NormalTok{request}\OperatorTok{\&}\NormalTok{ req}\OperatorTok{,} \BuiltInTok{std::}\NormalTok{string cpf}\OperatorTok{)\{}
+        \KeywordTok{auto}\NormalTok{ body }\OperatorTok{=}\NormalTok{ crow}\OperatorTok{::}\NormalTok{json}\OperatorTok{::}\NormalTok{load}\OperatorTok{(}\NormalTok{req}\OperatorTok{.}\NormalTok{body}\OperatorTok{);}
+        \ControlFlowTok{if}\OperatorTok{(!}\NormalTok{body}\OperatorTok{)}
+            \ControlFlowTok{return}\NormalTok{ crow}\OperatorTok{::}\NormalTok{response}\OperatorTok{(}\DecValTok{400}\OperatorTok{,} \StringTok{"JSON inválido"}\OperatorTok{);}
+        \ControlFlowTok{try} \OperatorTok{\{}
+\NormalTok{            pqxx}\OperatorTok{::}\NormalTok{connection c}\OperatorTok{(}\NormalTok{CONN\_STR}\OperatorTok{);}
+\NormalTok{            pqxx}\OperatorTok{::}\NormalTok{work w}\OperatorTok{(}\NormalTok{c}\OperatorTok{);}
+\NormalTok{            w}\OperatorTok{.}\NormalTok{exec\_params}\OperatorTok{(}
+                \StringTok{"UPDATE pessoas SET nome=$1,endereco=$2,data\_nascimento=$3,foto=$4 WHERE cpf=$5"}\OperatorTok{,}
+\NormalTok{                body}\OperatorTok{[}\StringTok{"nome"}\OperatorTok{].}\VariableTok{s\_or}\OperatorTok{(}\StringTok{""}\OperatorTok{),}
+\NormalTok{                body}\OperatorTok{[}\StringTok{"endereco"}\OperatorTok{].}\VariableTok{s\_or}\OperatorTok{(}\StringTok{""}\OperatorTok{),}
+\NormalTok{                body}\OperatorTok{[}\StringTok{"dataNascimento"}\OperatorTok{].}\VariableTok{s\_or}\OperatorTok{(}\StringTok{""}\OperatorTok{),}
+\NormalTok{                body}\OperatorTok{[}\StringTok{"foto"}\OperatorTok{].}\VariableTok{s\_or}\OperatorTok{(}\StringTok{""}\OperatorTok{),}
+\NormalTok{                cpf}
+            \OperatorTok{);}
+            \ControlFlowTok{if}\OperatorTok{(}\NormalTok{w}\OperatorTok{.}\NormalTok{affected\_rows}\OperatorTok{()} \OperatorTok{==} \DecValTok{0}\OperatorTok{)} \ControlFlowTok{return}\NormalTok{ crow}\OperatorTok{::}\NormalTok{response}\OperatorTok{(}\DecValTok{404}\OperatorTok{,} \StringTok{"CPF não encontrado"}\OperatorTok{);}
+\NormalTok{            w}\OperatorTok{.}\NormalTok{commit}\OperatorTok{();}
+            \ControlFlowTok{return}\NormalTok{ crow}\OperatorTok{::}\NormalTok{response}\OperatorTok{(}\DecValTok{200}\OperatorTok{,} \StringTok{"Alterado"}\OperatorTok{);}
+        \OperatorTok{\}} \ControlFlowTok{catch}\OperatorTok{(}\AttributeTok{const} \BuiltInTok{std::}\NormalTok{exception }\OperatorTok{\&}\NormalTok{e}\OperatorTok{)} \OperatorTok{\{}
+            \ControlFlowTok{return}\NormalTok{ crow}\OperatorTok{::}\NormalTok{response}\OperatorTok{(}\DecValTok{400}\OperatorTok{,}\NormalTok{ e}\OperatorTok{.}\NormalTok{what}\OperatorTok{());}
+        \OperatorTok{\}}
+    \OperatorTok{\});}
+
+    \CommentTok{// DELETE /pessoas/\textless{}cpf\textgreater{}}
+\NormalTok{    CROW\_ROUTE}\OperatorTok{(}\NormalTok{app}\OperatorTok{,} \StringTok{"/pessoas/\textless{}string\textgreater{}"}\OperatorTok{).}\NormalTok{methods}\OperatorTok{(}\StringTok{"DELETE"}\OperatorTok{\_method)}
+    \OperatorTok{([](}\AttributeTok{const}\NormalTok{ crow}\OperatorTok{::}\NormalTok{request}\OperatorTok{\&,} \BuiltInTok{std::}\NormalTok{string cpf}\OperatorTok{)\{}
+        \ControlFlowTok{try} \OperatorTok{\{}
+\NormalTok{            pqxx}\OperatorTok{::}\NormalTok{connection c}\OperatorTok{(}\NormalTok{CONN\_STR}\OperatorTok{);}
+\NormalTok{            pqxx}\OperatorTok{::}\NormalTok{work w}\OperatorTok{(}\NormalTok{c}\OperatorTok{);}
+\NormalTok{            w}\OperatorTok{.}\NormalTok{exec\_params}\OperatorTok{(}\StringTok{"DELETE FROM pessoas WHERE cpf=$1"}\OperatorTok{,}\NormalTok{ cpf}\OperatorTok{);}
+            \ControlFlowTok{if}\OperatorTok{(}\NormalTok{w}\OperatorTok{.}\NormalTok{affected\_rows}\OperatorTok{()} \OperatorTok{==} \DecValTok{0}\OperatorTok{)} \ControlFlowTok{return}\NormalTok{ crow}\OperatorTok{::}\NormalTok{response}\OperatorTok{(}\DecValTok{404}\OperatorTok{,} \StringTok{"CPF não encontrado"}\OperatorTok{);}
+\NormalTok{            w}\OperatorTok{.}\NormalTok{commit}\OperatorTok{();}
+            \ControlFlowTok{return}\NormalTok{ crow}\OperatorTok{::}\NormalTok{response}\OperatorTok{(}\DecValTok{200}\OperatorTok{,} \StringTok{"Removido"}\OperatorTok{);}
+        \OperatorTok{\}} \ControlFlowTok{catch}\OperatorTok{(}\AttributeTok{const} \BuiltInTok{std::}\NormalTok{exception }\OperatorTok{\&}\NormalTok{e}\OperatorTok{)} \OperatorTok{\{}
+            \ControlFlowTok{return}\NormalTok{ crow}\OperatorTok{::}\NormalTok{response}\OperatorTok{(}\DecValTok{400}\OperatorTok{,}\NormalTok{ e}\OperatorTok{.}\NormalTok{what}\OperatorTok{());}
+        \OperatorTok{\}}
+    \OperatorTok{\});}
+
+    \BuiltInTok{std::}\NormalTok{cout }\OperatorTok{\textless{}\textless{}} \StringTok{"Servidor rodando em http://0.0.0.0:8080}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\OperatorTok{;}
+\NormalTok{    app}\OperatorTok{.}\NormalTok{port}\OperatorTok{(}\DecValTok{8080}\OperatorTok{).}\NormalTok{multithreaded}\OperatorTok{().}\NormalTok{run}\OperatorTok{();}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ferramenta de compilação CMAKE}\label{ferramenta-de-compilauxe7uxe3o-cmake}
+
+Preparando o arquivo de instruções da ferramenta de projeto CMAKE
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cmake\_minimum\_required(VERSION 3.20)}
+\NormalTok{project(PessoasRestCpp LANGUAGES CXX)}
+
+\NormalTok{set(CMAKE\_CXX\_STANDARD 17)}
+\NormalTok{set(CMAKE\_CXX\_STANDARD\_REQUIRED ON)}
+
+\NormalTok{\# Caminho para os headers (Crow e outros)}
+\NormalTok{include\_directories($\{CMAKE\_SOURCE\_DIR\}/include)}
+
+\NormalTok{\# Localização de libpqxx (ajuste se estiver em pasta diferente)}
+\NormalTok{find\_package(PostgreSQL REQUIRED)}
+\NormalTok{find\_path(PQXX\_INCLUDE\_DIR pqxx/pqxx)}
+\NormalTok{find\_library(PQXX\_LIBRARY pqxx)}
+
+\NormalTok{if(NOT PQXX\_INCLUDE\_DIR OR NOT PQXX\_LIBRARY)}
+\NormalTok{    message(FATAL\_ERROR "libpqxx não encontrada. Instale com vcpkg ou aponte manualmente.")}
+\NormalTok{endif()}
+
+\NormalTok{add\_executable(pessoas{-}rest}
+\NormalTok{    src/main.cpp}
+\NormalTok{)}
+
+\NormalTok{target\_include\_directories(pessoas{-}rest PRIVATE $\{PQXX\_INCLUDE\_DIR\})}
+\NormalTok{target\_link\_libraries(pessoas{-}rest}
+\NormalTok{    $\{PQXX\_LIBRARY\}}
+\NormalTok{    PostgreSQL::PostgreSQL}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Adicionando biblioteca extra no compilador C++ do windows
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vcpkg install libpqxx}
+\end{Highlighting}
+\end{Shaded}
+
+Gere o projeto do servidor para ``Visual Studio 17 2022'' E ARQUITETURA x64
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cmake }\AttributeTok{{-}B}\NormalTok{ build }\AttributeTok{{-}G} \StringTok{"Visual Studio 17 2022"} \AttributeTok{{-}A}\NormalTok{ x64  }\AttributeTok{{-}DCMAKE\_TOOLCHAIN\_FILE}\NormalTok{=C:}\AttributeTok{/path/to/vcpkg/scripts/buildsystems/vcpkg}\NormalTok{.cmake}
+\end{Highlighting}
+\end{Shaded}
+
+Compile e linque todo o projeto
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cmake {-}}\AttributeTok{{-}build}\NormalTok{ build {-}}\AttributeTok{{-}config}\NormalTok{ Release}
+\end{Highlighting}
+\end{Shaded}
+
+execute o servidor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{build/Release/pessoas{-}rest.exe}
+\end{Highlighting}
+\end{Shaded}
+
+servidor estará rodando na porta 8080 e EXPÕE A API de operações na URI \url{http://localhost:8080/pessoas} sem senha
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{http}\InformationTok{:}\ErrorTok{//localhost:8080/pessoas}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Cliente HTML (conexão Restful)}\label{cliente-html-conexuxe3o-restful-2}
+
+crie o arquivo index.html e abra-o no navegador
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{\textless{}!DOCTYPE}\NormalTok{ html}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{html}\OtherTok{ lang}\OperatorTok{=}\StringTok{"pt{-}BR"}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{head}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{meta}\OtherTok{ charset}\OperatorTok{=}\StringTok{"UTF{-}8"}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{title}\DataTypeTok{\textgreater{}}\NormalTok{Cadastro de Pessoas}\DataTypeTok{\textless{}/}\KeywordTok{title}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{style}\DataTypeTok{\textgreater{}}
+\NormalTok{  body \{ }\KeywordTok{font{-}family}\CharTok{:} \DecValTok{Arial}\OperatorTok{,} \DecValTok{sans{-}serif}\OperatorTok{;} \KeywordTok{margin}\CharTok{:} \DecValTok{20}\DataTypeTok{px}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  h1 \{ }\KeywordTok{color}\CharTok{:} \ConstantTok{\#333}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  form \{ }\KeywordTok{margin{-}bottom}\CharTok{:} \DecValTok{20}\DataTypeTok{px}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  label \{ }\KeywordTok{display}\CharTok{:} \DecValTok{block}\OperatorTok{;} \KeywordTok{margin{-}top}\CharTok{:} \DecValTok{10}\DataTypeTok{px}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  input}\ExtensionTok{[}\SpecialStringTok{type}\OperatorTok{=}\StringTok{text}\ExtensionTok{]}\OperatorTok{,}\NormalTok{ input}\ExtensionTok{[}\SpecialStringTok{type}\OperatorTok{=}\StringTok{date}\ExtensionTok{]}\OperatorTok{,}\NormalTok{ input}\ExtensionTok{[}\SpecialStringTok{type}\OperatorTok{=}\StringTok{file}\ExtensionTok{]}\NormalTok{ \{}
+    \KeywordTok{width}\CharTok{:} \DecValTok{300}\DataTypeTok{px}\OperatorTok{;} \KeywordTok{padding}\CharTok{:} \DecValTok{5}\DataTypeTok{px}\OperatorTok{;}
+\NormalTok{  \}}
+\NormalTok{  table \{ }\KeywordTok{border{-}collapse}\CharTok{:} \DecValTok{collapse}\OperatorTok{;} \KeywordTok{width}\CharTok{:} \DecValTok{100}\DataTypeTok{\%}\OperatorTok{;} \KeywordTok{margin{-}top}\CharTok{:} \DecValTok{20}\DataTypeTok{px}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  th}\OperatorTok{,}\NormalTok{ td \{ }\KeywordTok{border}\CharTok{:} \DecValTok{1}\DataTypeTok{px} \DecValTok{solid} \ConstantTok{\#aaa}\OperatorTok{;} \KeywordTok{padding}\CharTok{:} \DecValTok{6}\DataTypeTok{px}\OperatorTok{;} \KeywordTok{text{-}align}\CharTok{:} \DecValTok{left}\OperatorTok{;}\NormalTok{ \}}
+\NormalTok{  img \{ }\KeywordTok{max{-}width}\CharTok{:} \DecValTok{80}\DataTypeTok{px}\OperatorTok{;} \KeywordTok{max{-}height}\CharTok{:} \DecValTok{80}\DataTypeTok{px}\OperatorTok{;}\NormalTok{ \}}
+  \FunctionTok{.btn}\NormalTok{ \{ }\KeywordTok{padding}\CharTok{:} \DecValTok{4}\DataTypeTok{px} \DecValTok{8}\DataTypeTok{px}\OperatorTok{;} \KeywordTok{cursor}\CharTok{:} \DecValTok{pointer}\OperatorTok{;} \KeywordTok{margin}\CharTok{:} \DecValTok{0} \DecValTok{2}\DataTypeTok{px}\OperatorTok{;}\NormalTok{ \}}
+\DataTypeTok{\textless{}/}\KeywordTok{style}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{head}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}}\KeywordTok{body}\DataTypeTok{\textgreater{}}
+
+\DataTypeTok{\textless{}}\KeywordTok{h1}\DataTypeTok{\textgreater{}}\NormalTok{Cadastro de Pessoas}\DataTypeTok{\textless{}/}\KeywordTok{h1}\DataTypeTok{\textgreater{}}
+
+\DataTypeTok{\textless{}}\KeywordTok{form}\OtherTok{ id}\OperatorTok{=}\StringTok{"pessoaForm"}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{label}\DataTypeTok{\textgreater{}}\NormalTok{CPF*:}
+    \DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ type}\OperatorTok{=}\StringTok{"text"}\OtherTok{ id}\OperatorTok{=}\StringTok{"cpf"}\OtherTok{ required}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}/}\KeywordTok{label}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{label}\DataTypeTok{\textgreater{}}\NormalTok{Nome:}
+    \DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ type}\OperatorTok{=}\StringTok{"text"}\OtherTok{ id}\OperatorTok{=}\StringTok{"nome"}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}/}\KeywordTok{label}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{label}\DataTypeTok{\textgreater{}}\NormalTok{Endereço:}
+    \DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ type}\OperatorTok{=}\StringTok{"text"}\OtherTok{ id}\OperatorTok{=}\StringTok{"endereco"}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}/}\KeywordTok{label}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{label}\DataTypeTok{\textgreater{}}\NormalTok{Data de Nascimento:}
+    \DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ type}\OperatorTok{=}\StringTok{"date"}\OtherTok{ id}\OperatorTok{=}\StringTok{"dataNascimento"}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}/}\KeywordTok{label}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{label}\DataTypeTok{\textgreater{}}\NormalTok{Foto:}
+    \DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ type}\OperatorTok{=}\StringTok{"file"}\OtherTok{ id}\OperatorTok{=}\StringTok{"foto"}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}/}\KeywordTok{label}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{button}\OtherTok{ type}\OperatorTok{=}\StringTok{"submit"}\OtherTok{ class}\OperatorTok{=}\StringTok{"btn"}\DataTypeTok{\textgreater{}}\NormalTok{Salvar}\DataTypeTok{\textless{}/}\KeywordTok{button}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{form}\DataTypeTok{\textgreater{}}
+
+\DataTypeTok{\textless{}}\KeywordTok{div}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{input}\OtherTok{ type}\OperatorTok{=}\StringTok{"text"}\OtherTok{ id}\OperatorTok{=}\StringTok{"search"}\OtherTok{ placeholder}\OperatorTok{=}\StringTok{"Buscar por CPF ou Nome"}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{button}\OtherTok{ id}\OperatorTok{=}\StringTok{"btnBuscar"}\OtherTok{ class}\OperatorTok{=}\StringTok{"btn"}\DataTypeTok{\textgreater{}}\NormalTok{Buscar}\DataTypeTok{\textless{}/}\KeywordTok{button}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{button}\OtherTok{ id}\OperatorTok{=}\StringTok{"btnListar"}\OtherTok{ class}\OperatorTok{=}\StringTok{"btn"}\DataTypeTok{\textgreater{}}\NormalTok{Listar Todos}\DataTypeTok{\textless{}/}\KeywordTok{button}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{div}\DataTypeTok{\textgreater{}}
+
+\DataTypeTok{\textless{}}\KeywordTok{table}\OtherTok{ id}\OperatorTok{=}\StringTok{"tabelaPessoas"}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{thead}\DataTypeTok{\textgreater{}}
+    \DataTypeTok{\textless{}}\KeywordTok{tr}\DataTypeTok{\textgreater{}}
+      \DataTypeTok{\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{CPF}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{Nome}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{Endereço}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{Nascimento}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{Foto}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}\textless{}}\KeywordTok{th}\DataTypeTok{\textgreater{}}\NormalTok{Ações}\DataTypeTok{\textless{}/}\KeywordTok{th}\DataTypeTok{\textgreater{}}
+    \DataTypeTok{\textless{}/}\KeywordTok{tr}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}/}\KeywordTok{thead}\DataTypeTok{\textgreater{}}
+  \DataTypeTok{\textless{}}\KeywordTok{tbody}\DataTypeTok{\textgreater{}\textless{}/}\KeywordTok{tbody}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{table}\DataTypeTok{\textgreater{}}
+
+\DataTypeTok{\textless{}}\KeywordTok{script}\DataTypeTok{\textgreater{}}
+\KeywordTok{const}\NormalTok{ API\_URL }\OperatorTok{=} \StringTok{"http://localhost:8080/pessoas"}\OperatorTok{;}
+
+\KeywordTok{async} \KeywordTok{function} \FunctionTok{carregarPessoas}\NormalTok{(query}\OperatorTok{=}\StringTok{""}\NormalTok{) \{}
+  \KeywordTok{const}\NormalTok{ url }\OperatorTok{=}\NormalTok{ query }\OperatorTok{?} \VerbatimStringTok{\textasciigrave{}}\SpecialCharTok{$\{}\NormalTok{API\_URL}\SpecialCharTok{\}}\VerbatimStringTok{?q=}\SpecialCharTok{$\{}\PreprocessorTok{encodeURIComponent}\NormalTok{(query)}\SpecialCharTok{\}}\VerbatimStringTok{\textasciigrave{}} \OperatorTok{:}\NormalTok{ API\_URL}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ resp }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{fetch}\NormalTok{(url)}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ data }\OperatorTok{=} \ControlFlowTok{await}\NormalTok{ resp}\OperatorTok{.}\FunctionTok{json}\NormalTok{()}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ tbody }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{querySelector}\NormalTok{(}\StringTok{"\#tabelaPessoas tbody"}\NormalTok{)}\OperatorTok{;}
+\NormalTok{  tbody}\OperatorTok{.}\AttributeTok{innerHTML} \OperatorTok{=} \StringTok{""}\OperatorTok{;}
+\NormalTok{  data}\OperatorTok{.}\FunctionTok{forEach}\NormalTok{(p }\KeywordTok{=\textgreater{}}\NormalTok{ \{}
+    \KeywordTok{const}\NormalTok{ tr }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{createElement}\NormalTok{(}\StringTok{"tr"}\NormalTok{)}\OperatorTok{;}
+\NormalTok{    tr}\OperatorTok{.}\AttributeTok{innerHTML} \OperatorTok{=} \VerbatimStringTok{\textasciigrave{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{cpf}\SpecialCharTok{\}}\VerbatimStringTok{\textless{}/td\textgreater{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{nome} \OperatorTok{||} \StringTok{""}\SpecialCharTok{\}}\VerbatimStringTok{\textless{}/td\textgreater{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{endereco} \OperatorTok{||} \StringTok{""}\SpecialCharTok{\}}\VerbatimStringTok{\textless{}/td\textgreater{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{dataNascimento} \OperatorTok{||} \StringTok{""}\SpecialCharTok{\}}\VerbatimStringTok{\textless{}/td\textgreater{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{foto} \OperatorTok{?} \VerbatimStringTok{\textasciigrave{}\textless{}img src="}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{foto}\SpecialCharTok{\}}\VerbatimStringTok{" alt="foto"\textgreater{}\textasciigrave{}} \OperatorTok{:} \StringTok{""}\SpecialCharTok{\}}\VerbatimStringTok{\textless{}/td\textgreater{}}
+\VerbatimStringTok{      \textless{}td\textgreater{}}
+\VerbatimStringTok{        \textless{}button class="btn" onclick="editar(\textquotesingle{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{cpf}\SpecialCharTok{\}}\VerbatimStringTok{\textquotesingle{})"\textgreater{}Editar\textless{}/button\textgreater{}}
+\VerbatimStringTok{        \textless{}button class="btn" onclick="excluir(\textquotesingle{}}\SpecialCharTok{$\{}\NormalTok{p}\OperatorTok{.}\AttributeTok{cpf}\SpecialCharTok{\}}\VerbatimStringTok{\textquotesingle{})"\textgreater{}Excluir\textless{}/button\textgreater{}}
+\VerbatimStringTok{      \textless{}/td\textgreater{}}
+\VerbatimStringTok{    \textasciigrave{}}\OperatorTok{;}
+\NormalTok{    tbody}\OperatorTok{.}\FunctionTok{appendChild}\NormalTok{(tr)}\OperatorTok{;}
+\NormalTok{  \})}\OperatorTok{;}
+\NormalTok{\}}
+
+\KeywordTok{async} \KeywordTok{function} \FunctionTok{toBase64}\NormalTok{(file) \{}
+  \ControlFlowTok{return} \KeywordTok{new} \BuiltInTok{Promise}\NormalTok{((resolve}\OperatorTok{,}\NormalTok{ reject) }\KeywordTok{=\textgreater{}}\NormalTok{ \{}
+    \KeywordTok{const}\NormalTok{ reader }\OperatorTok{=} \KeywordTok{new} \BuiltInTok{FileReader}\NormalTok{()}\OperatorTok{;}
+\NormalTok{    reader}\OperatorTok{.}\AttributeTok{onload} \OperatorTok{=}\NormalTok{ () }\KeywordTok{=\textgreater{}} \FunctionTok{resolve}\NormalTok{(reader}\OperatorTok{.}\AttributeTok{result}\NormalTok{)}\OperatorTok{;}
+\NormalTok{    reader}\OperatorTok{.}\AttributeTok{onerror} \OperatorTok{=}\NormalTok{ reject}\OperatorTok{;}
+\NormalTok{    reader}\OperatorTok{.}\FunctionTok{readAsDataURL}\NormalTok{(file)}\OperatorTok{;}
+\NormalTok{  \})}\OperatorTok{;}
+\NormalTok{\}}
+
+\BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"pessoaForm"}\NormalTok{)}\OperatorTok{.}\FunctionTok{addEventListener}\NormalTok{(}\StringTok{"submit"}\OperatorTok{,} \KeywordTok{async}\NormalTok{ e }\KeywordTok{=\textgreater{}}\NormalTok{ \{}
+\NormalTok{  e}\OperatorTok{.}\FunctionTok{preventDefault}\NormalTok{()}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ cpf }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"cpf"}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\NormalTok{cpf) \{ }\FunctionTok{alert}\NormalTok{(}\StringTok{"CPF é obrigatório."}\NormalTok{)}\OperatorTok{;} \ControlFlowTok{return}\OperatorTok{;}\NormalTok{ \}}
+
+  \KeywordTok{const}\NormalTok{ nome }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"nome"}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ endereco }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"endereco"}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ dataNascimento }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"dataNascimento"}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ fotoFile }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"foto"}\NormalTok{)}\OperatorTok{.}\AttributeTok{files}\NormalTok{[}\DecValTok{0}\NormalTok{]}\OperatorTok{;}
+  \KeywordTok{let}\NormalTok{ fotoBase64 }\OperatorTok{=} \StringTok{""}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{ (fotoFile) \{}
+\NormalTok{    fotoBase64 }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{toBase64}\NormalTok{(fotoFile)}\OperatorTok{;}
+\NormalTok{  \}}
+
+  \CommentTok{// Se já existe, usa PUT, senão POST}
+  \KeywordTok{const}\NormalTok{ method }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"cpf"}\NormalTok{)}\OperatorTok{.}\AttributeTok{dataset}\OperatorTok{.}\AttributeTok{editing} \OperatorTok{?} \StringTok{"PUT"} \OperatorTok{:} \StringTok{"POST"}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ url }\OperatorTok{=}\NormalTok{ method }\OperatorTok{===} \StringTok{"PUT"} \OperatorTok{?} \VerbatimStringTok{\textasciigrave{}}\SpecialCharTok{$\{}\NormalTok{API\_URL}\SpecialCharTok{\}}\VerbatimStringTok{/}\SpecialCharTok{$\{}\NormalTok{cpf}\SpecialCharTok{\}}\VerbatimStringTok{\textasciigrave{}} \OperatorTok{:}\NormalTok{ API\_URL}\OperatorTok{;}
+
+  \KeywordTok{const}\NormalTok{ resp }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{fetch}\NormalTok{(url}\OperatorTok{,}\NormalTok{ \{}
+\NormalTok{    method}\OperatorTok{,}
+    \DataTypeTok{headers}\OperatorTok{:}\NormalTok{ \{ }\StringTok{"Content{-}Type"}\OperatorTok{:} \StringTok{"application/json"}\NormalTok{ \}}\OperatorTok{,}
+    \DataTypeTok{body}\OperatorTok{:} \BuiltInTok{JSON}\OperatorTok{.}\FunctionTok{stringify}\NormalTok{(\{ cpf}\OperatorTok{,}\NormalTok{ nome}\OperatorTok{,}\NormalTok{ endereco}\OperatorTok{,}\NormalTok{ dataNascimento}\OperatorTok{,} \DataTypeTok{foto}\OperatorTok{:}\NormalTok{ fotoBase64 \})}
+\NormalTok{  \})}\OperatorTok{;}
+
+  \ControlFlowTok{if}\NormalTok{ (resp}\OperatorTok{.}\AttributeTok{ok}\NormalTok{) \{}
+    \FunctionTok{alert}\NormalTok{(}\StringTok{"Salvo com sucesso!"}\NormalTok{)}\OperatorTok{;}
+    \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"pessoaForm"}\NormalTok{)}\OperatorTok{.}\FunctionTok{reset}\NormalTok{()}\OperatorTok{;}
+    \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"cpf"}\NormalTok{)}\OperatorTok{.}\AttributeTok{dataset}\OperatorTok{.}\AttributeTok{editing} \OperatorTok{=} \StringTok{""}\OperatorTok{;}
+    \FunctionTok{carregarPessoas}\NormalTok{()}\OperatorTok{;}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{alert}\NormalTok{(}\StringTok{"Erro: "} \OperatorTok{+} \ControlFlowTok{await}\NormalTok{ resp}\OperatorTok{.}\FunctionTok{text}\NormalTok{())}\OperatorTok{;}
+\NormalTok{  \}}
+\NormalTok{\})}\OperatorTok{;}
+
+\KeywordTok{function} \FunctionTok{editar}\NormalTok{(cpf) \{}
+  \KeywordTok{const}\NormalTok{ row }\OperatorTok{=}\NormalTok{ [}\OperatorTok{...}\BuiltInTok{document}\OperatorTok{.}\FunctionTok{querySelectorAll}\NormalTok{(}\StringTok{"\#tabelaPessoas tbody tr"}\NormalTok{)]}
+    \OperatorTok{.}\FunctionTok{find}\NormalTok{(tr }\KeywordTok{=\textgreater{}}\NormalTok{ tr}\OperatorTok{.}\AttributeTok{children}\NormalTok{[}\DecValTok{0}\NormalTok{]}\OperatorTok{.}\AttributeTok{textContent} \OperatorTok{===}\NormalTok{ cpf)}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\NormalTok{row) }\ControlFlowTok{return}\OperatorTok{;}
+  \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"cpf"}\NormalTok{)}\OperatorTok{.}\AttributeTok{value} \OperatorTok{=}\NormalTok{ cpf}\OperatorTok{;}
+  \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"nome"}\NormalTok{)}\OperatorTok{.}\AttributeTok{value} \OperatorTok{=}\NormalTok{ row}\OperatorTok{.}\AttributeTok{children}\NormalTok{[}\DecValTok{1}\NormalTok{]}\OperatorTok{.}\AttributeTok{textContent}\OperatorTok{;}
+  \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"endereco"}\NormalTok{)}\OperatorTok{.}\AttributeTok{value} \OperatorTok{=}\NormalTok{ row}\OperatorTok{.}\AttributeTok{children}\NormalTok{[}\DecValTok{2}\NormalTok{]}\OperatorTok{.}\AttributeTok{textContent}\OperatorTok{;}
+  \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"dataNascimento"}\NormalTok{)}\OperatorTok{.}\AttributeTok{value} \OperatorTok{=}\NormalTok{ row}\OperatorTok{.}\AttributeTok{children}\NormalTok{[}\DecValTok{3}\NormalTok{]}\OperatorTok{.}\AttributeTok{textContent}\OperatorTok{;}
+  \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"cpf"}\NormalTok{)}\OperatorTok{.}\AttributeTok{dataset}\OperatorTok{.}\AttributeTok{editing} \OperatorTok{=} \StringTok{"true"}\OperatorTok{;}
+  \BuiltInTok{window}\OperatorTok{.}\FunctionTok{scrollTo}\NormalTok{(\{ }\DataTypeTok{top}\OperatorTok{:} \DecValTok{0}\OperatorTok{,} \DataTypeTok{behavior}\OperatorTok{:} \StringTok{\textquotesingle{}smooth\textquotesingle{}}\NormalTok{ \})}\OperatorTok{;}
+\NormalTok{\}}
+
+\KeywordTok{async} \KeywordTok{function} \FunctionTok{excluir}\NormalTok{(cpf) \{}
+  \ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\FunctionTok{confirm}\NormalTok{(}\VerbatimStringTok{\textasciigrave{}Excluir CPF }\SpecialCharTok{$\{}\NormalTok{cpf}\SpecialCharTok{\}}\VerbatimStringTok{?\textasciigrave{}}\NormalTok{)) }\ControlFlowTok{return}\OperatorTok{;}
+  \KeywordTok{const}\NormalTok{ resp }\OperatorTok{=} \ControlFlowTok{await} \FunctionTok{fetch}\NormalTok{(}\VerbatimStringTok{\textasciigrave{}}\SpecialCharTok{$\{}\NormalTok{API\_URL}\SpecialCharTok{\}}\VerbatimStringTok{/}\SpecialCharTok{$\{}\NormalTok{cpf}\SpecialCharTok{\}}\VerbatimStringTok{\textasciigrave{}}\OperatorTok{,}\NormalTok{ \{ }\DataTypeTok{method}\OperatorTok{:} \StringTok{"DELETE"}\NormalTok{ \})}\OperatorTok{;}
+  \ControlFlowTok{if}\NormalTok{ (resp}\OperatorTok{.}\AttributeTok{ok}\NormalTok{) \{}
+    \FunctionTok{carregarPessoas}\NormalTok{()}\OperatorTok{;}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{alert}\NormalTok{(}\StringTok{"Erro: "} \OperatorTok{+} \ControlFlowTok{await}\NormalTok{ resp}\OperatorTok{.}\FunctionTok{text}\NormalTok{())}\OperatorTok{;}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"btnBuscar"}\NormalTok{)}\OperatorTok{.}\FunctionTok{addEventListener}\NormalTok{(}\StringTok{"click"}\OperatorTok{,}\NormalTok{ () }\KeywordTok{=\textgreater{}}\NormalTok{ \{}
+  \KeywordTok{const}\NormalTok{ q }\OperatorTok{=} \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"search"}\NormalTok{)}\OperatorTok{.}\AttributeTok{value}\OperatorTok{.}\FunctionTok{trim}\NormalTok{()}\OperatorTok{;}
+  \FunctionTok{carregarPessoas}\NormalTok{(q)}\OperatorTok{;}
+\NormalTok{\})}\OperatorTok{;}
+
+\BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"btnListar"}\NormalTok{)}\OperatorTok{.}\FunctionTok{addEventListener}\NormalTok{(}\StringTok{"click"}\OperatorTok{,}\NormalTok{ () }\KeywordTok{=\textgreater{}}\NormalTok{ \{}
+  \BuiltInTok{document}\OperatorTok{.}\FunctionTok{getElementById}\NormalTok{(}\StringTok{"search"}\NormalTok{)}\OperatorTok{.}\AttributeTok{value} \OperatorTok{=} \StringTok{""}\OperatorTok{;}
+  \FunctionTok{carregarPessoas}\NormalTok{()}\OperatorTok{;}
+\NormalTok{\})}\OperatorTok{;}
+
+\CommentTok{// Carregar lista inicial}
+\FunctionTok{carregarPessoas}\NormalTok{()}\OperatorTok{;}
+\DataTypeTok{\textless{}/}\KeywordTok{script}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{body}\DataTypeTok{\textgreater{}}
+\DataTypeTok{\textless{}/}\KeywordTok{html}\DataTypeTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
 
 \chapter{Banco de Dados: MySQL (MariaDB)}\label{banco-de-dados-mysql-mariadb}
 

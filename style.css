@@ -193,17 +193,26 @@ code span.kw {
     font-weight: bolder;
     text-shadow: 4px 0px 40em #00075E;
 }
-code span.st { color: #fde68a; }
+code span.st {
+    color: #7A6201;
+    font-weight: bolder;
+}
 code span.dv, code span.bn, code span.fl {
     color: #CE000C;
+    font-weight: bolder;
 }
 code span.ch, code span.sc { color: #fbcfe8; }
 code span.cf {
     color: #89026F;
     font-weight: 600;
 }
-code span.fu { color: #bef264; }
-code span.op { color: #e5e7eb; }
+code span.fu {
+    color: #304707;
+}
+code span.op {
+    color: #5F0000;
+    font-weight: bolder;
+}
 
 /* Blockquotes & callouts -------------------------------------------- */
 blockquote {
