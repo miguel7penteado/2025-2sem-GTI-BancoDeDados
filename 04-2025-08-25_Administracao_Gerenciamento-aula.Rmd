@@ -9,7 +9,11 @@
 
 ## Usuários, Grupos e Esquemas de Bancos de Dados
 
-### Esquemas de Banco de Dados
+### Sistema de Gerenciamento de Banco de Dados (S.G.B.D.)
+
+O Sistema de Gerenciamento de Banco de Dados cuida não só de como as informações são armazenadas, mas também quem pode acessa-las, sob quais condições.
+
+
 
 ```{plantuml aula_04-Exemplo-01-esquemas, plantuml.path="images"}
 @startuml
@@ -122,6 +126,33 @@ esquema 43-rio_grande_do_sul   (sul)
 
 ### Criação de usuários no MySQL
 
+Podemos criar um novo usuário no SGBD MySQL através do seguinte comando SQL-DCL:
+
+```sql
+CREATE USER 'nome_login'@'host' IDENTIFIED BY 'senha' COMMENT 'descrição';
+```
+
+|         Parte         |                            Função                            |
+|:---------------------:|:------------------------------------------------------------:|
+| 'nome_login'          | Nome de login do novo usuário.                               |
+| 'host'                | Origem permitida de conexão.                                 |
+| IDENTIFIED BY 'senha' | Define a senha inicial.                                      |
+| COMMENT 'descrição'   | (Opcional) Uma anotação de texto para identificar o usuário. |
+
+Exemplo 1: 
+
+Crie o usuário do aluno "Bruno Marques". O usuário deve ser o RA do aluno e a sua senha deve ser *unip*.
+
+```sql
+CREATE USER 'f362bf0'@'%' IDENTIFIED BY 'unip' COMMENT 'Bruno Antonio Marques';
+
+```
+
+Exemplo 2: 
+
+Crie os usuários de todos os alunos da sala. O usuário deve ser o RA do aluno e a sua senha deve ser *unip*.
+
+
 ``` sql
 
 -- turma TI2P40
@@ -161,6 +192,30 @@ CREATE USER 'f3648i0'@'%' IDENTIFIED BY 'unip' COMMENT  'Maysa Kelly Dos Santos 
 
 ### Criação de Esquemas de Banco de Dados no MySQL
 
+No MySQL, schema e database são sinônimos. É o “contêiner” onde ficam tabelas, views, procedures, usuários com permissões etc.
+
+```sql
+CREATE DATABASE [IF NOT EXISTS] nome_do_schema  [OPTIONS];
+```
+
+| CREATE DATABASE: cria um novo banco.                          |
+|---------------------------------------------------------------|
+| IF NOT EXISTS: evita erro caso o schema já exista.            |
+| nome_do_schema: nome do banco.                                |
+| [OPTIONS]: parâmetros opcionais como CHARACTER SET ou COLLATE |
+
+Exemplo 1:
+
+Crie um esquema de Banco de Dados onde chamado 11-rondonia para guardar a tabela "Cidades";
+
+```sql
+CREATE DATABASE IF NOT EXISTS `11-rondonia`;
+```
+
+Exemplo 2:
+
+Crie um esquema de Banco de Dados de todas as Unidades da Federação para guardar tabelas "Cidades" dentro de cada uma:
+
 ``` sql
 -- Script para criar um esquema (database) para cada UF brasileira
 -- Nome do esquema: <código IBGE>-<nome_uf>
@@ -197,6 +252,26 @@ CREATE DATABASE IF NOT EXISTS `53-distrito_federal`;
 ```
 
 ### Criando de Grupos de Permissões no MySQL:
+No MySQL, roles (funções ou papéis) são grupos de permissões que você define uma vez e pode atribuir a vários usuários. Eles funcionam como “grupos de acesso”, facilitando o gerenciamento de privilégios.
+Em vez de conceder privilégios individualmente a cada usuário, você define tudo no role. Se precisar incluir um novo privilégio (ex.: UPDATE) para todos que já têm o role, basta atualizar o role uma vez.
+
+Como criar uma regra no MySQL utilizando SQL-DCL
+```sql
+CREATE ROLE 'nome_grupo';
+```
+onde, obviamente, *nome_grupo* é o nome do grupo a ser criado.
+
+Exemplo 1:
+
+Crie um grupo chamado *norte* para associar todas as unidades da federação da região norte do Brasil:
+
+```sql
+CREATE ROLE 'norte';
+```
+
+Exemplo 2:
+
+Crie um grupos para associar todas as unidades da federação de todas as regiões do Brasil:
 
 ``` sql
 -- ===========================================
@@ -1043,6 +1118,7 @@ Privilégios SQL-DDL
 @enduml
 ```
 
+### Associando usuários aos grupos
 
 ```sql
 -- =========================================
@@ -1222,5 +1298,7 @@ GRANT SELECT ON `35-sao_paulo`.*         TO 'sul';
 
 
 ### Exemplo no MySQL
+
+
 
 ### Exemplo no PostGreSQL

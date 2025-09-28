@@ -125,7 +125,7 @@ exercício-10---sql-referênte-ao-diagrama-anterior
 administração-e-gerenciamento-de-bancos-de-dados
 administração-e-gerenciamento-de-banco-de-dados
 usuários-grupos-e-esquemas-de-bancos-de-dados
-esquemas-de-banco-de-dados
+sistema-de-gerenciamento-de-banco-de-dados-s.g.b.d.
 criação-de-usuários-no-mysql
 criação-de-esquemas-de-banco-de-dados-no-mysql
 criando-de-grupos-de-permissões-no-mysql
@@ -137,6 +137,7 @@ região-nordeste
 região-centro-oeste
 região-sudeste
 região-sul
+associando-usuários-aos-grupos
 concedendo-privilégios-aos-grupos
 exemplo-no-mysql
 exemplo-no-postgresql
