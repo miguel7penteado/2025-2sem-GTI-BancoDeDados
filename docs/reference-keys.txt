@@ -132,6 +132,11 @@ criando-de-grupos-de-permissões-no-mysql
 fazendo-tudo-funcionar-colocando-usuários-em-grupos-e-concedendo-a-estes-acesso-a-esquemas-de-banco-de-dados
 associando-os-esquemas-que-representam-cada-estado-a-cada-grupo-que-representa-cada-regição
 associando-associando-alunos-a-cada-grupo-região
+região-norte
+região-nordeste
+região-centro-oeste
+região-sudeste
+região-sul
 concedendo-privilégios-aos-grupos
 exemplo-no-mysql
 exemplo-no-postgresql
