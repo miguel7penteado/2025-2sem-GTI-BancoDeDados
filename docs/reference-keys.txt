@@ -124,7 +124,15 @@ exercício-10
 exercício-10---sql-referênte-ao-diagrama-anterior
 administração-e-gerenciamento-de-bancos-de-dados
 administração-e-gerenciamento-de-banco-de-dados
+papel-do-dba-database-administrator
 usuários-grupos-e-esquemas-de-bancos-de-dados
+usuários
+funções-principal
+privilégios
+esquemas
+por-que-usar
+grupos-ou-roles
+vantagens
 sistema-de-gerenciamento-de-banco-de-dados-s.g.b.d.
 criação-de-usuários-no-mysql
 criação-de-esquemas-de-banco-de-dados-no-mysql
