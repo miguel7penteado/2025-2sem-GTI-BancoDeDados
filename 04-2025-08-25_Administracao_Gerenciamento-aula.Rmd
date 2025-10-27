@@ -8,47 +8,45 @@
 
 Por que administração e gerenciamento são fundamentais
 
-- Integridade e consistência
+-   Integridade e consistência
 
-- Garantir que as regras de negócio (restrições, chaves, relacionamentos) sejam sempre respeitadas.
+-   Garantir que as regras de negócio (restrições, chaves, relacionamentos) sejam sempre respeitadas.
 
-- Evitar dados duplicados ou incoerentes.
+-   Evitar dados duplicados ou incoerentes.
 
-- Disponibilidade e recuperação
+-   Disponibilidade e recuperação
 
-- Planejar backup e restore; criar políticas de alta disponibilidade e contingência para falhas ou desastres.
+-   Planejar backup e restore; criar políticas de alta disponibilidade e contingência para falhas ou desastres.
 
-- Segurança e controle de acesso
+-   Segurança e controle de acesso
 
-- Definir quem pode ver, inserir, alterar ou excluir dados.
+-   Definir quem pode ver, inserir, alterar ou excluir dados.
 
-- Atender requisitos de LGPD/privacidade e normas corporativas.
+-   Atender requisitos de LGPD/privacidade e normas corporativas.
 
-- Desempenho e escalabilidade
+-   Desempenho e escalabilidade
 
-- Monitorar consultas lentas, criar índices adequados, ajustar parâmetros do SGBD para suportar crescimento do volume de dados.
+-   Monitorar consultas lentas, criar índices adequados, ajustar parâmetros do SGBD para suportar crescimento do volume de dados.
 
-- Manutenção e evolução
+-   Manutenção e evolução
 
-- Atualizar versões, aplicar patches, revisar modelos de dados à medida que a aplicação muda.
-
+-   Atualizar versões, aplicar patches, revisar modelos de dados à medida que a aplicação muda.
 
 ## Papel do DBA (Database Administrator)
 
-
 O DBA é o profissional responsável por orquestrar tudo isso.Principais atribuições:
 
-- Projeto físico do banco (estrutura de tabelas, índices, partições).
+-   Projeto físico do banco (estrutura de tabelas, índices, partições).
 
-- Gestão de usuários e permissões – criação de contas, papéis (roles), políticas de segurança.
+-   Gestão de usuários e permissões – criação de contas, papéis (roles), políticas de segurança.
 
-- Backup e recuperação – políticas de backup, testes de restauração.
+-   Backup e recuperação – políticas de backup, testes de restauração.
 
-- Monitoramento de desempenho – tuning de consultas, manutenção de índices, análise de logs.
+-   Monitoramento de desempenho – tuning de consultas, manutenção de índices, análise de logs.
 
-- Planejamento de capacidade – prever crescimento, escalabilidade e uso de recursos.
+-   Planejamento de capacidade – prever crescimento, escalabilidade e uso de recursos.
 
-- Atualizações e patches – manter o SGBD seguro e estável.
+-   Atualizações e patches – manter o SGBD seguro e estável.
 
 Sem administração e gerenciamento adequados, um banco de dados vira um “depósito de riscos”: falhas, lentidão, vazamento de informações ou perda definitiva de dados. O DBA atua como guardião da informação, garantindo que ela esteja correta, segura, disponível e performática, sustentando todas as operações da organização.
 
@@ -58,11 +56,11 @@ Sem administração e gerenciamento adequados, um banco de dados vira um “dep�
 
 O que são ? Contas individuais que representam pessoas, aplicações ou serviços que acessam o banco.Cada usuário possui um nome de login e, geralmente, uma senha ou outro método de autenticação.
 
-#### Funções principal 
+#### Funções principal
 
-- Conectar-se ao SGBD.
+-   Conectar-se ao SGBD.
 
-- Executar operações de leitura, escrita ou administração conforme os privilégios concedidos.
+-   Executar operações de leitura, escrita ou administração conforme os privilégios concedidos.
 
 #### Privilégios:
 
@@ -70,19 +68,17 @@ Podem ser específicos (ex.: SELECT em uma tabela) ou globais (ex.: CREATE DATAB
 
 São a base do controle de acesso.
 
-
 ### Esquemas
 
-O que são ? Um esquema é um container lógico de objetos do banco de dados.
-Ele organiza tabelas, views, funções, procedures, índices, triggers etc.
+O que são ? Um esquema é um container lógico de objetos do banco de dados. Ele organiza tabelas, views, funções, procedures, índices, triggers etc.
 
 #### Por que usar
 
-- Facilita a organização (por projeto, por aplicação, por departamento).
+-   Facilita a organização (por projeto, por aplicação, por departamento).
 
-- Permite gestão de permissões mais granular: você pode conceder privilégios em nível de esquema.
+-   Permite gestão de permissões mais granular: você pode conceder privilégios em nível de esquema.
 
-- Evita conflitos de nomes, pois objetos com o mesmo nome podem existir em esquemas diferentes.
+-   Evita conflitos de nomes, pois objetos com o mesmo nome podem existir em esquemas diferentes.
 
 ### Grupos ou Roles
 
@@ -94,156 +90,44 @@ No PostgreSQL: roles podem ser usuários ou grupos.
 
 #### Vantagens
 
-- Gerenciamento simplificado: conceda privilégios ao grupo e depois apenas adicione/remova usuários.
+-   Gerenciamento simplificado: conceda privilégios ao grupo e depois apenas adicione/remova usuários.
 
-- Consistência: garante que todos de uma equipe tenham as mesmas permissões.
+-   Consistência: garante que todos de uma equipe tenham as mesmas permissões.
 
-- Escalabilidade: ao entrar um novo membro, basta associá-lo ao role, sem revisar dezenas de tabelas.
-
+-   Escalabilidade: ao entrar um novo membro, basta associá-lo ao role, sem revisar dezenas de tabelas.
 
 ### Sistema de Gerenciamento de Banco de Dados (S.G.B.D.)
 
 O Sistema de Gerenciamento de Banco de Dados cuida não só de como as informações são armazenadas, mas também quem pode acessa-las, sob quais condições.
 
-
-
-```{plantuml aula_04-Exemplo-01-esquemas, plantuml.path="images"}
-@startuml
-database Meu_Servidor_MYSQL [
-Sistema de gerenciamento de Banco de Dados
-----
-  
->>>>>>>>>> Usuários <<<<<<<<<<<
-
-----
-Usuário f362bf0 Bruno Antonio Marques
-....
-Usuário r536fa6 Caio Cesar Balbino Da Silva
-....
-Usuário h756960 Heder Rodrigues Da Silva
-....
-Usuário r8133g7 Ítalo Kevin Rodrigues Da Silva
-....
-Usuário r837aa0 Lucas Souza Rodrigues
-....
-Usuário h714419 Marcos Paulo Cordeiro Goes
-....
-Usuário r854124 Ramon Borges De Holanda
-.... 
-Usuário n0296a6 Bryan Lucena Barbosa Da Silva
-....
-Usuário h788986 Igor Soares Lima Da Cunha
-....
-Usuário h77gii5 Jessica Cristina De S Silva
-....
-Usuário f3648i0 Maysa Kelly Dos Santos Freitas
-----
-
->>>>>>>>>> GRUPOS (ROLES) <<<<<<<<<<<
-
-----
-grupo "norte"
-----
-grupo "nordeste"
-----
-grupo "centro_oeste"
-----
-grupo "sudeste"
-----
-grupo "sul"
-----
-====
-  
->>>>>>>>>> ESQUEMAS DE BANCO <<<<<<<<<<<
-
-====
-esquema 11-rondonia            (norte)
-....
-esquema 12-acre                (norte)
-....
-esquema 13-amazonas            (norte)
-....
-esquema 14-roraima             (norte)
-....
-esquema 15-para                (norte)
-....
-esquema 16-amapa               (norte)
-....
-esquema 17-tocantins           (norte)
-....
-esquema 21-maranhao            (nordeste)
-....
-esquema 22-piaui               (nordeste)
-....
-esquema 23-ceara               (nordeste)
-....
-esquema 24-rio_grande_do_norte (nordeste)
-....
-esquema 25-paraiba             (nordeste)
-....
-esquema 26-pernambuco          (nordeste)
-....
-esquema 27-alagoas             (nordeste)
-....
-esquema 28-sergipe             (nordeste)
-....
-esquema 29-bahia               (nordeste)
-....
-esquema 50-mato_grosso_do_sul  (centro_oeste)
-....
-esquema 51-mato_grosso         (centro_oeste)
-....
-esquema 52-goias               (centro_oeste)
-....
-esquema 53-distrito_federal    (centro_oeste)
-....
-esquema 31-minas_gerais        (sudeste)
-....
-esquema 32-espiritosanto       (sudeste)
-....
-esquema 33-rio_de_janeiro      (sudeste)
-....
-esquema 35-sao_paulo           (sudeste)
-....
-esquema 41-parana              (sul)
-....
-esquema 42-santa_catarina      (sul)
-....
-esquema 43-rio_grande_do_sul   (sul)
-....
-
-]
-@enduml
-```
+![](images/clipboard-497127793.png)
 
 ### Criação de usuários no MySQL
 
 Podemos criar um novo usuário no SGBD MySQL através do seguinte comando SQL-DCL:
 
-```sql
+``` sql
 CREATE USER 'nome_login'@'host' IDENTIFIED BY 'senha' COMMENT 'descrição';
 ```
 
-|         Parte         |                            Função                            |
-|:---------------------:|:------------------------------------------------------------:|
-| 'nome_login'          | Nome de login do novo usuário.                               |
-| 'host'                | Origem permitida de conexão.                                 |
-| IDENTIFIED BY 'senha' | Define a senha inicial.                                      |
-| COMMENT 'descrição'   | (Opcional) Uma anotação de texto para identificar o usuário. |
+| Parte | Função |
+|:--:|:--:|
+| 'nome_login' | Nome de login do novo usuário. |
+| 'host' | Origem permitida de conexão. |
+| IDENTIFIED BY 'senha' | Define a senha inicial. |
+| COMMENT 'descrição' | (Opcional) Uma anotação de texto para identificar o usuário. |
 
-Exemplo 1: 
+Exemplo 1:
 
 Crie o usuário do aluno "Bruno Marques". O usuário deve ser o RA do aluno e a sua senha deve ser *unip*.
 
-```sql
+``` sql
 CREATE USER 'f362bf0'@'%' IDENTIFIED BY 'unip' COMMENT 'Bruno Antonio Marques';
-
 ```
 
-Exemplo 2: 
+Exemplo 2:
 
 Crie os usuários de todos os alunos da sala. O usuário deve ser o RA do aluno e a sua senha deve ser *unip*.
-
 
 ``` sql
 
@@ -286,7 +170,7 @@ CREATE USER 'f3648i0'@'%' IDENTIFIED BY 'unip' COMMENT  'Maysa Kelly Dos Santos 
 
 No MySQL, schema e database são sinônimos. É o “contêiner” onde ficam tabelas, views, procedures, usuários com permissões etc.
 
-```sql
+``` sql
 CREATE DATABASE [IF NOT EXISTS] nome_do_schema  [OPTIONS];
 ```
 
@@ -300,7 +184,7 @@ Exemplo 1:
 
 Crie um esquema de Banco de Dados onde chamado 11-rondonia para guardar a tabela "Cidades";
 
-```sql
+``` sql
 CREATE DATABASE IF NOT EXISTS `11-rondonia`;
 ```
 
@@ -344,20 +228,22 @@ CREATE DATABASE IF NOT EXISTS `53-distrito_federal`;
 ```
 
 ### Criando de Grupos de Permissões no MySQL:
-No MySQL, roles (funções ou papéis) são grupos de permissões que você define uma vez e pode atribuir a vários usuários. Eles funcionam como “grupos de acesso”, facilitando o gerenciamento de privilégios.
-Em vez de conceder privilégios individualmente a cada usuário, você define tudo no role. Se precisar incluir um novo privilégio (ex.: UPDATE) para todos que já têm o role, basta atualizar o role uma vez.
+
+No MySQL, roles (funções ou papéis) são grupos de permissões que você define uma vez e pode atribuir a vários usuários. Eles funcionam como “grupos de acesso”, facilitando o gerenciamento de privilégios. Em vez de conceder privilégios individualmente a cada usuário, você define tudo no role. Se precisar incluir um novo privilégio (ex.: UPDATE) para todos que já têm o role, basta atualizar o role uma vez.
 
 Como criar uma regra no MySQL utilizando SQL-DCL
-```sql
+
+``` sql
 CREATE ROLE 'nome_grupo';
 ```
+
 onde, obviamente, *nome_grupo* é o nome do grupo a ser criado.
 
 Exemplo 1:
 
 Crie um grupo chamado *norte* para associar todas as unidades da federação da região norte do Brasil:
 
-```sql
+``` sql
 CREATE ROLE 'norte';
 ```
 
@@ -396,7 +282,6 @@ GRANT SELECT ON *.* TO 'sul';
 ```
 
 ## Fazendo tudo funcionar: Colocando usuários em grupos e concedendo a estes acesso a Esquemas de Banco de Dados:
-
 
 ### Associando os esquemas que representam cada estado a cada grupo (que representa cada regição):
 
@@ -452,15 +337,13 @@ GRANT ALL PRIVILEGES ON `43-rio_grande_do_sul`.* TO 'sul';
 
 ### Associando associando alunos a cada grupo (região):
 
-
-| Role (grupo) |      Usuários (login)     |
+| Role (grupo) |     Usuários (login)      |
 |:------------:|:-------------------------:|
-| norte        | f362bf0, r536fa6          |
-| nordeste     | h756960, r8133g7          |
-| centro_oeste | r837aa0, h714419          |
-| sudeste      | r854124, n0296a6          |
-| sul          | h788986, h77gii5, f3648i0 |
-
+|    norte     |     f362bf0, r536fa6      |
+|   nordeste   |     h756960, r8133g7      |
+| centro_oeste |     r837aa0, h714419      |
+|   sudeste    |     r854124, n0296a6      |
+|     sul      | h788986, h77gii5, f3648i0 |
 
 #### Região Norte
 
@@ -821,7 +704,6 @@ Privilégios SQL-DDL
 @enduml
 ```
 
-
 ```{plantuml aula_04-Exemplo-01-grupos-08, plantuml.path="images"}
 @startuml
 
@@ -903,7 +785,6 @@ Privilégios SQL-DDL
 
 @enduml
 ```
-
 
 #### Região Centro-Oeste
 
@@ -1013,7 +894,6 @@ Privilégios SQL-DDL
 @enduml
 ```
 
-
 #### Região Sudeste
 
 ```{plantuml aula_04-Exemplo-01-grupos-12, plantuml.path="images"}
@@ -1122,7 +1002,6 @@ Privilégios SQL-DDL
 @enduml
 ```
 
-
 #### Região Sul
 
 ```{plantuml aula_04-Exemplo-01-grupos-15, plantuml.path="images"}
@@ -1212,7 +1091,7 @@ Privilégios SQL-DDL
 
 ### Associando usuários aos grupos
 
-```sql
+``` sql
 -- =========================================
 -- Associação de usuários aos roles (grupos)
 -- =========================================
@@ -1251,13 +1130,11 @@ SET DEFAULT ROLE ALL TO
     'h788986'@'%',
     'h77gii5'@'%',
     'f3648i0'@'%';
-
 ```
 
 ### Concedendo privilégios aos grupos:
 
-
-```sql
+``` sql
 -- ============================================
 -- NORTE lê os demais grupos (Nordeste, Centro-Oeste, Sudeste, Sul)
 -- ============================================
@@ -1385,12 +1262,8 @@ GRANT SELECT ON `31-minas_gerais`.*      TO 'sul';
 GRANT SELECT ON `32-espiritosanto`.*     TO 'sul';
 GRANT SELECT ON `33-rio_de_janeiro`.*    TO 'sul';
 GRANT SELECT ON `35-sao_paulo`.*         TO 'sul';
-
 ```
 
-
 ### Exemplo no MySQL
-
-
 
 ### Exemplo no PostGreSQL

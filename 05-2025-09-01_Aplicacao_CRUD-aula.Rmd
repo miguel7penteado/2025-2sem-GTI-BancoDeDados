@@ -12,12 +12,7 @@ Hoje vamos desenvolver um cadastro web simples e entender o que é o acronimo C.
 
 **CRUD** é um acrônimo para quatro operações fundamentais que um sistema realiza sobre dados em um banco de dados:
 
-| Operação | Verbo HTTP (na web) | SQL | Descrição |
-|-----------------|-----------------|----------------------|-----------------|
-| **C**reate | `POST` | `INSERT` | Inserir novos registros. |
-| **R**ead | `GET` | `SELECT` | Ler (listar ou buscar) registros existentes. |
-| **U**pdate | `PUT` / `PATCH` | `UPDATE` | Atualizar dados de registros existentes. |
-| **D**elete | `DELETE` | `DELETE` | Remover registros. |
+![](images/2025-09-01/01-CRUD.jpg)
 
 Essas quatro operações compõem a base da maioria das **aplicações web** que manipulam dados persistidos em um **SGBD** (Sistema Gerenciador de Banco de Dados).
 
@@ -27,11 +22,7 @@ Essas quatro operações compõem a base da maioria das **aplicações web** que
 
 Uma aplicação Cliente-Servidor (modelo 2 camadas) geralmente segue o **padrão MVC** — **Model, View, Controller**:
 
-| Camada | Nome em Inglês | Função | Exemplo na Aplicação |
-|:--------------|:-------------|:-----------------|:------------------------|
-| **Modelo** | Model | Representa a estrutura dos dados armazenados e suas regras de negócio. | Tabela **pessoas** no banco MySQL e classe `Pessoa` no SQLAlchemy. |
-| **Visão** | View | Define a interface visual com o usuário, permitindo inserir, visualizar e interagir com os dados. | Páginas **HTML**, **CSS** e scripts **JavaScript** (formulário e tabela). |
-| **Controlador** | Controller | Recebe as ações do usuário, interpreta as solicitações e chama os serviços adequados (operações CRUD). | Rotas **Flask** (`/pessoas`, `/pessoas/<cpf>`) no servidor Python. |
+![](images/2025-09-01/03-MVC.jpg)
 
 ## Construindo uma aplicação CRUD para interfacear com a tabela "Pessoa"
 
@@ -60,125 +51,16 @@ Vamos Converte-lo para o Modelo Físico-Relacional em linguagem SQL:
 
 Vamos agora representa-lo em linguagem SQL:
 
-```{plantuml aula-05-Exemplo-01-Modelo_Fisico, plantuml.path="images"}
-@startuml
-title Modelo Físico-Relacional — Tabela PESSOAS
-left to right direction
-
-entity "PESSOAS" as PESSOAS {
-  * cpf : VARCHAR(14) <<PK>>
-  --
-  nome : TEXT
-  endereco : TEXT
-  data_nascimento : DATE
-  foto : TEXT
-}
-
-@enduml
-
-
-```
+![](images/2025-09-01/02-TabelaPessoas.jpg)
 
 ## Criação de uma aplicação CRUD
 
-Vamos criar um microsas (micro Software As A Service) , ou seja, um site para inserir informações dentro da tabela acima.
+Vamos criar um **microsas** (micro Software As A Service) , ou seja, um site para inserir informações dentro da tabela acima.
 
-```{plantuml Diagrama-Aplicacao-CRUD, plantuml.path="images"}
- 
-@startuml
-title Arquitetura da Aplicação CRUD — Pessoas (Localhost)
-
-skinparam backgroundColor #FFFFFF
-skinparam componentStyle rectangle
-skinparam rectangle {
-  RoundCorner 12
-  Shadowing false
-  BorderColor #333
-}
-skinparam node {
-  RoundCorner 15
-  BorderColor #333
-}
-skinparam database {
-  BorderColor #333
-  BackgroundColor #F9F9F9
-}
-
-left to right direction
-
-' ===================== CONTEXTO (APENHAS LOCALHOST) =====================
-node "Máquina Local\n(localhost)" as LOCAL {
-
-  ' ---------- CLIENTE ----------
-  node "Navegador Web" as BROWSER {
-    component "Cliente Web\nHTML + JavaScript" as CLIENTE <<Front-End>>
-  }
-  
-  ' ---------- SERVIDOR DE APLICAÇÃO ----------
-  node "Servidor de Aplicação\nPython 3 (Flask/FastAPI equivalente)" as APP {
-    component "API REST\n/pessoas" as API <<REST>>
-  }
-
-  ' ---------- SERVIDOR DE BANCO ----------
-  database "MySQL 8" as MYSQL {
-    rectangle "Esquema: **pessoasdb**" as ESQ
-    rectangle "Tabela: **pessoas**\n(cpf PK, nome, endereco,\n data_nascimento, foto)" as TBL
-    ESQ -down- TBL
-  }
-}
-
-' ===================== NOTAS ANEXADAS =====================
-note bottom of CLIENTE
-  Biblioteca JS para API:
-  • fetch() (nativa)
-end note
-
-note bottom of API
-  Formato de dados: **JSON**
-  Operações CRUD:
-  • POST   /pessoas        (Create)
-  • GET    /pessoas[?q=]   (Read lista)
-  • GET    /pessoas/{cpf}  (Read 1)
-  • PUT    /pessoas/{cpf}  (Update)
-  • DELETE /pessoas/{cpf}  (Delete)
-end note
-
-note right of MYSQL
-  Usuário de BD: **pessoas_user**
-  Host permitido: **localhost**
-  Porta: 3306
-end note
-
-' ===================== CONEXÕES / PROTOCOLOS =====================
-CLIENTE -[#1F78B4]-> API : HTTP/1.1\nRESTful\n**JSON**
-API -[#33A02C]-> MYSQL : TCP 3306\nSQL\nuser=pessoas_user\nschema=pessoasdb
-
-' ===================== REGRAS DE ACESSO =====================
-note as RESTRACAO <<Constraint>>
-  **Restrição de Acesso**
-  
-  • Acesso permitido apenas a partir da
-    **máquina local (localhost)**.
-  • Servidor de aplicação e SGBD residem
-    na mesma máquina.
-end note
-RESTRACAO -[dotted]-> LOCAL
-
-' ===================== LEGENDA =====================
-legend right
-  **Tecnologias**
-  - SGBD: MySQL 8
-  - App Server: Python 3 (Flask/WSGI)
-  - Cliente: HTML + JavaScript (fetch)
-  - API: RESTful (JSON)
-end legend
-
-@enduml
-
-```
+![](images/2025-09-01/04-Aplicacao.jpg)
 
 | Informações de Projeto | Tecnologias utilizadas no projeto CRUD |
-|-------------------------|-----------------------------------------------|
+|--------------------------|----------------------------------------------|
 | Servidor de banco de dados SGBD | MySQL 8 |
 | Usuário de Banco de Dados | **pessoas_user** |
 | De onde pode ser acessado | Apenas Máquina Local (localhost) |
@@ -192,6 +74,8 @@ end legend
 : Criando um Esquema de Banco de Dados - CRUD tabela Pessoas
 
 #### Criação de um usuário para Interagir com o Esquema de Banco de Dados
+
+![](images/2025-09-01/05-Usuario.jpg)
 
 ``` sql
 
@@ -210,6 +94,8 @@ FLUSH PRIVILEGES;
 
 Agora vamos criar um esquema de Banco de Dados para abrigar nossa futura tabela:
 
+![](images/2025-09-01/06-Esquema.jpg)
+
 ``` sql
 -- 1) CRIAR BANCO (ajuste o nome se quiser)
 
@@ -221,6 +107,8 @@ USE pessoasdb;
 ```
 
 #### Criação da Tabela "pessoas"
+
+![](images/2025-09-01/07-Tabela_Pessoas.jpg)
 
 ``` sql
 
@@ -611,138 +499,11 @@ if __name__ == '__main__':
 
 Vamos verificar como é o Diagrama de Classes do Cliente que vai conversar com o servidor que vimos anteriormente:
 
-```{plantuml Cliente-CRUD-Pessoas-01, plantuml.path="images"}
+![](images/2025-09-01/09-cliente.jpg)
 
-@startuml
-title Diagrama de Classes — Cliente Web (HTML + JavaScript, fetch, CRUD Pessoas)
-left to right direction
+Agora vamos verificar o código-fonte.
 
-skinparam backgroundColor #FFFFFF
-skinparam class {
-  BackgroundColor #FDFDFD
-  BorderColor #333
-  RoundCorner 10
-}
-
-'========================
-' Camada de Serviços
-'========================
-class APIService <<service>> {
-  - baseUrl : string
-  + APIService(baseUrl: string)
-  + inserir(pessoa: PessoaDTO) : Promise<Response>
-  + alterar(cpf: string, dados: PessoaDTO) : Promise<Response>
-  + remover(cpf: string) : Promise<Response>
-  + listar() : Promise<Response>
-  + pesquisar(termo: string) : Promise<Response>
-  + readJsonSafe(res: Response) : Promise<any>
-}
-
-'========================
-' DTOs / Modelos
-'========================
-class PessoaDTO <<data>> {
-  + cpf : string
-  + nome : string
-  + endereco : string
-  + data_nascimento : string  ' YYYY-MM-DD
-  + foto : string             ' Base64 ou URL
-}
-
-'========================
-' Utilitários
-'========================
-class FormUtils <<util>> {
-  + validaCampos(ids: string[]) : boolean
-  + getFotoBase64(inputId: string) : Promise<string>
-  + coletaDados(ids: map) : PessoaDTO
-  + setBusy(flag: boolean) : void
-}
-
-'========================
-' Camada de UI
-'========================
-class PessoasController <<controller>> {
-  - api : APIService
-  - utils : FormUtils
-  - tabela : TableRenderer
-  + PessoasController(api: APIService, utils: FormUtils, tabela: TableRenderer)
-  + onInserir() : Promise<void>
-  + onAlterar() : Promise<void>
-  + onRemover() : Promise<void>
-  + onPesquisar() : Promise<void>
-  + onListar() : Promise<void>
-}
-
-class TableRenderer <<view>> {
-  - tbodySelector : string
-  + TableRenderer(tbodySelector: string)
-  + render(lista: PessoaDTO[]) : void
-  + bindRowClick(p: PessoaDTO) : void
-}
-
-class DOMIds <<config>> {
-  {static} + CPF : "cpf"
-  {static} + NOME : "nome"
-  {static} + ENDERECO : "endereco"
-  {static} + DATA_NASC : "data_nascimento"
-  {static} + FOTO : "foto"
-  {static} + PESQUISA : "pesquisa"
-  {static} + TBODY : "#tabela"
-  {static} + BTN_INSERIR : "btnInserir"
-  {static} + BTN_ALTERAR : "btnAlterar"
-  {static} + BTN_REMOVER : "btnRemover"
-  {static} + BTN_PESQUISAR : "btnPesquisar"
-}
-
-'========================
-' Relações
-'========================
-PessoasController --> APIService : usa
-PessoasController --> FormUtils : usa
-PessoasController --> TableRenderer : atualiza
-TableRenderer ..> PessoaDTO
-APIService ..> PessoaDTO
-FormUtils ..> PessoaDTO
-PessoasController ..> DOMIds : consulta ids
-
-note right of PessoasController
-Responsável por orquestrar as ações da UI:
-• onInserir / onAlterar / onRemover
-• onPesquisar / onListar
-• Interage com fetch via APIService
-• Lê/escreve o DOM via FormUtils e TableRenderer
-end note
-
-note bottom of APIService
-Encapsula chamadas fetch():
-• POST /pessoas
-• PUT  /pessoas/{cpf}
-• DELETE /pessoas/{cpf}
-• GET  /pessoas[?q=]
-Inclui readJsonSafe() para lidar com 204/sem corpo.
-end note
-
-note bottom of FormUtils
-Funções utilitárias da tela:
-• validaCampos(['cpf','nome','endereco','data_nascimento'])
-• getFotoBase64('foto')
-• coletaDados(...) → PessoaDTO
-• setBusy(true/false) desabilita botões
-end note
-
-note bottom of TableRenderer
-Renderiza tabela #tabela:
-• render(lista)
-• bindRowClick(p) → preenche formulário ao clicar na linha
-end note
-
-@enduml
-
-
-```
-
-Agora vamos verificar o código-fonte. Salve esse código em um arquivo chamado **cliente.html**, para poder abrilo no navegador, juntament com o cliente rodando:
+Salve esse código em um arquivo chamado **cliente.html**, para poder abrir-lo no navegador, juntamente com o servidor rodando:
 
 ``` html
 <!DOCTYPE html>
@@ -987,6 +748,8 @@ listar();
 </body>
 </html>
 ```
+
+### Resultado final:
 
 ```{r Executa_pagina_aula_05_, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 rmarkdown::render("05-2025-09-01_Aplicacao_CRUD-aula.Rmd", output_dir="docs", output_file ="temporario.html" , output_format = "html_document") ; utils::browseURL("docs/temporario.html")
