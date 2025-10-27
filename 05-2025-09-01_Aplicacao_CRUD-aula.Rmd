@@ -751,6 +751,36 @@ listar();
 
 ### Resultado final:
 
+#### Servidor de aplicação Python "Restful" rodando
+
+![](images/2025-09-01/10-servidor_rodando.jpg)
+
+#### Cliente HTML + Javascript ( página ESTÁTICA ) aberta no navegador
+
+##### Passo 1 - Preencher dados no formulário do cliente
+
+Vamos inserir dados de exemplo no "cliente WEB" abaixo
+
+![](images/2025-09-01/11-Cliente_Vazio.jpg)
+
+##### Passo 2 - Pressionar o Botão INSERIR
+
+![](images/2025-09-01/11-Cliente_Vazio-02.jpg)
+
+OBS: Na tela do servidor, é possível verificar as operações HTTP Equivalentes ao SQL que foram executadas entre o Servidor e o Cliente
+
+![](images/2025-09-01/10-servidor_rodando-01.jpg)
+
+##### Passo 3 - Verificar se o "DBGRID" do cliente "espelhando" a linha da tabela "pessoas" no esquema "pessoasdb" do SQBG MySQL
+
+![](images/2025-09-01/11-Cliente_03-Preenchido.jpg)
+
+##### Passo 4 - Verificar na tabela pessoas  a linha que o cliente preencheu através da API da aplicação cliente/servidor
+
+![](images/2025-09-01/12-Dados_no_SGBD.jpg)
+
+## Feito
+
 ```{r Executa_pagina_aula_05_, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 rmarkdown::render("05-2025-09-01_Aplicacao_CRUD-aula.Rmd", output_dir="docs", output_file ="temporario.html" , output_format = "html_document") ; utils::browseURL("docs/temporario.html")
 ```

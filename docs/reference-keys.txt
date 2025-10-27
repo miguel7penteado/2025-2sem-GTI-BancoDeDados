@@ -164,6 +164,14 @@ criação-da-tabela-pessoas
 uma-aplicação-cliente-servidor-no-formato-mvc-model-view-controller
 criação-do-servidor-de-aplicação-em-linguagem-python
 criação-do-cliente-de-aplicação-em-html-parte-gráfica-e-javascript-programação-executável
+resultado-final
+servidor-de-aplicação-python-restful-rodando
+cliente-html-javascript-página-estática-aberta-no-navegador
+passo-1---preencher-dados-no-formulário-do-cliente
+passo-2---pressionar-o-botão-inserir
+passo-3---verificar-se-o-dbgrid-do-cliente-espelhando-a-linha-da-tabela-pessoas-no-esquema-pessoasdb-do-sqbg-mysql
+passo-4---verificar-na-tabela-pessoas-a-linha-que-o-cliente-preencheu-através-da-api-da-aplicação-clienteservidor
+feito
 exercícios-2
 exemplo-02
 servidor-python
