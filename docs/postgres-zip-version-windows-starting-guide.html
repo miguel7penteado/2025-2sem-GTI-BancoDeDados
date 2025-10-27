@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>GTI - Banco de dados - 2025 - Anotações de aula</title>
+  <title>Slide 1 Postgres (Zip Version) Windows Starting Guide | GTI - Banco de dados - 2025 - Anotações de aula</title>
   <meta name="description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
   <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="GTI - Banco de dados - 2025 - Anotações de aula" />
+  <meta property="og:title" content="Slide 1 Postgres (Zip Version) Windows Starting Guide | GTI - Banco de dados - 2025 - Anotações de aula" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="your book url like https://bookdown.org/yihui/bookdown/images/cover.jpg" />
   <meta property="og:description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
   <meta name="github-repo" content="miguel7penteado/2025-2sem-GTI-BancoDeDados" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="GTI - Banco de dados - 2025 - Anotações de aula" />
+  <meta name="twitter:title" content="Slide 1 Postgres (Zip Version) Windows Starting Guide | GTI - Banco de dados - 2025 - Anotações de aula" />
   
   <meta name="twitter:description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
   <meta name="twitter:image" content="your book url like https://bookdown.org/yihui/bookdown/images/cover.jpg" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="postgres-zip-version-windows-starting-guide.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="aula-inaugural.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -318,373 +318,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">GTI - Banco de dados - 2025 - Anotações de aula</h1>
-<p class="author"><em>Professor Miguél Suares</em></p>
-<p class="date"><em>2025-10-26</em></p>
-</div>
-<div id="sobre-estas-anotações" class="section level1 unnumbered hasAnchor">
-<h1>Sobre estas anotações<a href="index.html#sobre-estas-anotações" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>—————————————————————————————————————————————</p>
-<p>Estas anotações são apenas lembretes das aulas expostas em sala, durante a disciplina de Banco de dados.</p>
-<div id="acesso-ao-gitbook-celular" class="section level2 hasAnchor" number="0.1">
-<h2><span class="header-section-number">0.1</span> ACESSO AO GITBOOK CELULAR<a href="index.html#acesso-ao-gitbook-celular" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>—————————————————————————————————————————————</p>
-<div id="httpsmiguel7penteado.github.io2025-2sem-gti-bancodedados" class="section level4 hasAnchor" number="0.1.0.1">
-<h4><span class="header-section-number">0.1.0.1</span> <a href="https://miguel7penteado.github.io/2025-2sem-GTI-BancoDeDados" class="uri">https://miguel7penteado.github.io/2025-2sem-GTI-BancoDeDados</a><a href="index.html#httpsmiguel7penteado.github.io2025-2sem-gti-bancodedados" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="images/qr-code-disciplina.jpg" /></p>
-</div>
-</div>
-<div id="leitores-de-formato-de-arquivo-epub-para-smartphone" class="section level2 hasAnchor" number="0.2">
-<h2><span class="header-section-number">0.2</span> Leitores de formato de arquivo EPUB para SmartPhone<a href="index.html#leitores-de-formato-de-arquivo-epub-para-smartphone" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>—————————————————————————————————————————————</p>
-<div id="android" class="section level3 hasAnchor" number="0.2.1">
-<h3><span class="header-section-number">0.2.1</span> ANDROID<a href="index.html#android" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="moon-reader" class="section level4 hasAnchor" number="0.2.1.1">
-<h4><span class="header-section-number">0.2.1.1</span> <strong>Moon+ Reader</strong><a href="index.html#moon-reader" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="images/qrcode/leitor_epub/MoonReaderPlus.jpg" width="340" /></p>
-</div>
-</div>
-</div>
-<div id="livros-texto-da-disciplina" class="section level2 hasAnchor" number="0.3">
-<h2><span class="header-section-number">0.3</span> Livros Texto da Disciplina<a href="index.html#livros-texto-da-disciplina" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>—————————————————————————————————————————————</p>
-<div id="introdução-a-sistemas-de-bancos-de-dados-do-autor-christopher-john-date" class="section level3 hasAnchor" number="0.3.1">
-<h3><span class="header-section-number">0.3.1</span> <a href="https://www.kufunda.net/publicdocs/Introdu%C3%A7%C3%A3o%20a%20Sistemas%20de%20Bancos%20de%20Dados%20(C.%20J.%20Date)%20(z-lib.org).pdf">“Introdução a sistemas de bancos de dados” do autor “<strong>Christopher John Date</strong>”</a><a href="index.html#introdução-a-sistemas-de-bancos-de-dados-do-autor-christopher-john-date" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="images/livros/livro1.jpg" /></p>
-<table>
-<colgroup>
-<col width="22%" />
-<col width="77%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><strong>Autor(es)</strong></td>
-<td><h3 id="christopher-john-date" class="hasAnchor"><a href="https://en.wikipedia.org/wiki/Christopher_J._Date"><strong>Christopher John Date</strong></a><a href="index.html#christopher-john-date" class="anchor-section" aria-label="Anchor link to header"></a></h3></td>
-</tr>
-<tr class="even">
-<td><strong>Editora</strong></td>
-<td>LTC</td>
-</tr>
-<tr class="odd">
-<td><strong>Idioma</strong></td>
-<td>Português</td>
-</tr>
-<tr class="even">
-<td><strong>ISBN</strong></td>
-<td>978-85-352-8445-4</td>
-</tr>
-<tr class="odd">
-<td><strong>Formato</strong></td>
-<td>Capa dura</td>
-</tr>
-<tr class="even">
-<td><strong>Páginas</strong></td>
-<td>1623</td>
-</tr>
-<tr class="odd">
-<td><strong>Código Biblioteca</strong></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="projeto-de-bancos-de-dados-do-autor-carlos-alberto-heuser" class="section level3 hasAnchor" number="0.3.2">
-<h3><span class="header-section-number">0.3.2</span> <a href="https://drive.google.com/file/d/0B452rmbcudPSVFdCZ09vVkJUUUd2dlpMNS1vaEczUQ/view?pli=1&amp;resourcekey=0-3MTcHlAYjPX6YSvBQGweUQ">“<strong>Projeto de bancos de dados</strong>” do autor “Carlos Alberto HEUSER”</a><a href="index.html#projeto-de-bancos-de-dados-do-autor-carlos-alberto-heuser" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="images/livros/livro2.jpg" /></p>
-<table>
-<colgroup>
-<col width="20%" />
-<col width="79%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><strong>Autor(es)</strong></td>
-<td><h3 id="carlos-alberto-heuser" class="hasAnchor"><a href="https://www.inf.ufrgs.br/site/docente/carlos-alberto-heuser/">Carlos Alberto HEUSER</a><a href="index.html#carlos-alberto-heuser" class="anchor-section" aria-label="Anchor link to header"></a></h3></td>
-</tr>
-<tr class="even">
-<td><strong>Editora</strong></td>
-<td>Bookman</td>
-</tr>
-<tr class="odd">
-<td><strong>Idioma</strong></td>
-<td>Português</td>
-</tr>
-<tr class="even">
-<td><strong>ISBN-10</strong></td>
-<td>8577803821</td>
-</tr>
-<tr class="odd">
-<td><strong>Formato</strong></td>
-<td>Impresso</td>
-</tr>
-<tr class="even">
-<td><strong>Páginas</strong></td>
-<td>282</td>
-</tr>
-<tr class="odd">
-<td><strong>Código Biblioteca</strong></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="calendário-das-aulas" class="section level2 hasAnchor" number="0.4">
-<h2><span class="header-section-number">0.4</span> Calendário das aulas<a href="index.html#calendário-das-aulas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>—————————————————————————————————————————————</p>
-<div id="agosto-de-2025" class="section level5 hasAnchor" number="0.4.0.0.1">
-<h5><span class="header-section-number">0.4.0.0.1</span> AGOSTO DE 2025<a href="index.html#agosto-de-2025" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<table>
-<thead>
-<tr class="header">
-<th>Data</th>
-<th>Dia da Semana</th>
-<th>Aulas</th>
-<th>Conteúdo</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>04/08/2025</td>
-<td>Segunda-Feira</td>
-<td>Aula Inaugural</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>11/08/2025</td>
-<td>Segunda-Feira</td>
-<td>Aula 2</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>18/08/2025</td>
-<td>Segunda-Feira</td>
-<td>Aula 3</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>25/08/2025</td>
-<td>Segunda-Feira</td>
-<td>Aula 4</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="setembro-de-2025" class="section level5 hasAnchor" number="0.4.0.0.2">
-<h5><span class="header-section-number">0.4.0.0.2</span> SETEMBRO DE 2025<a href="index.html#setembro-de-2025" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<table>
-<thead>
-<tr class="header">
-<th>Data</th>
-<th>Dia da Semana</th>
-<th>Aulas</th>
-<th>Conteúdo</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>01/09/2025</td>
-<td>Segunda-Feira</td>
-<td>Aula 5</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>08/09/2025</td>
-<td>Segunda-Feira</td>
-<td>Aula 6</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>15/09/2025</td>
-<td>Segunda-Feira</td>
-<td>NP1</td>
-<td>PROVA</td>
-</tr>
-<tr class="even">
-<td>22/09/2025</td>
-<td>Segunda-Feira</td>
-<td>Aula 7</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>29/09/2025</td>
-<td>Segunda-Feira</td>
-<td>Aula 8</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="outubro-de-2025" class="section level5 hasAnchor" number="0.4.0.0.3">
-<h5><span class="header-section-number">0.4.0.0.3</span> OUTUBRO DE 2025<a href="index.html#outubro-de-2025" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<table>
-<thead>
-<tr class="header">
-<th>Data</th>
-<th>Dia da Semana</th>
-<th>Aulas</th>
-<th>Conteúdo</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>06/10/2025</td>
-<td>Segunda-Feira</td>
-<td>Aula 9</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>13/10/2025</td>
-<td>Segunda-Feira</td>
-<td>Aula 10</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>20/10/2025</td>
-<td>Segunda-Feira</td>
-<td>Aula 11</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>27/10/2025</td>
-<td>Segunda-Feira</td>
-<td>Aula 12</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="novembro-de-2025" class="section level5 hasAnchor" number="0.4.0.0.4">
-<h5><span class="header-section-number">0.4.0.0.4</span> NOVEMBRO DE 2025<a href="index.html#novembro-de-2025" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<table>
-<thead>
-<tr class="header">
-<th>Data</th>
-<th>Dia da Semana</th>
-<th>Aulas</th>
-<th>Conteúdo</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>03/11/2025</td>
-<td>Segunda-Feira</td>
-<td>NP2</td>
-<td>PROVA</td>
-</tr>
-<tr class="even">
-<td>10/11/2025</td>
-<td>Segunda-Feira</td>
-<td></td>
-<td>N/A</td>
-</tr>
-<tr class="odd">
-<td>17/11/2025</td>
-<td>Segunda-Feira</td>
-<td>SUB</td>
-<td>PROVA</td>
-</tr>
-<tr class="even">
-<td>24/11/2025</td>
-<td>Segunda-Feira</td>
-<td></td>
-<td>N/A</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="dezembro-de-2025" class="section level5 hasAnchor" number="0.4.0.0.5">
-<h5><span class="header-section-number">0.4.0.0.5</span> DEZEMBRO DE 2025<a href="index.html#dezembro-de-2025" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<table>
-<thead>
-<tr class="header">
-<th>Data</th>
-<th>Dia da Semana</th>
-<th>Aulas</th>
-<th>Conteúdo</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>01/12/2025</td>
-<td>Segunda-Feira</td>
-<td></td>
-<td>N/A</td>
-</tr>
-<tr class="even">
-<td>08/12/2025</td>
-<td>Segunda-Feira</td>
-<td>EXAME</td>
-<td>PROVA</td>
-</tr>
-<tr class="odd">
-<td>15/12/2025</td>
-<td>Segunda-Feira</td>
-<td></td>
-<td>N/A</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="alunos-2025---2o-semestre" class="section level2 hasAnchor" number="0.5">
-<h2><span class="header-section-number">0.5</span> Alunos 2025 - 2o Semestre<a href="index.html#alunos-2025---2o-semestre" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>—————————————————————————————————————————————</p>
-<div id="campus-chácara-santo-antônio" class="section level3 hasAnchor" number="0.5.1">
-<h3><span class="header-section-number">0.5.1</span> Campus Chácara Santo Antônio<a href="index.html#campus-chácara-santo-antônio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="turma-ti2p40" class="section level4 hasAnchor" number="0.5.1.1">
-<h4><span class="header-section-number">0.5.1.1</span> Turma TI2P40<a href="index.html#turma-ti2p40" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<table>
-<thead>
-<tr class="header">
-<th align="center">Matrícula</th>
-<th align="center">Nome do aluno</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">F362BF0</td>
-<td align="center">BRUNO ANTONIO MARQUES</td>
-</tr>
-<tr class="even">
-<td align="center">R536FA6</td>
-<td align="center">CAIO CESAR BALBINO DA SILVA</td>
-</tr>
-<tr class="odd">
-<td align="center">H6094I1</td>
-<td align="center">DOUGLAS VINICIUS M DOS SANTOS</td>
-</tr>
-<tr class="even">
-<td align="center">R6607G5</td>
-<td align="center">GABRIEL ROQUE DOS SANTOS</td>
-</tr>
-<tr class="odd">
-<td align="center">R8133G7</td>
-<td align="center">ÍTALO KEVIN RODRIGUES DA SILVA</td>
-</tr>
-<tr class="even">
-<td align="center">R837AA0</td>
-<td align="center">LUCAS SOUZA RODRIGUES</td>
-</tr>
-<tr class="odd">
-<td align="center">H714419</td>
-<td align="center">MARCOS PAULO CORDEIRO GOES</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
+<div id="postgres-zip-version-windows-starting-guide" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Slide 1</span> Postgres (Zip Version) Windows Starting Guide<a href="postgres-zip-version-windows-starting-guide.html#postgres-zip-version-windows-starting-guide" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Download postgresql from <a href="https://www.enterprisedb.com/download-postgresql-binaries" class="uri">https://www.enterprisedb.com/download-postgresql-binaries</a>;</p>
+<p>Unzip it;</p>
+<p>Open a cmd;</p>
+<p>Enter into the ‘bin’ directory;</p>
+<p>Init the database:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb1-1"><a href="postgres-zip-version-windows-starting-guide.html#cb1-1" tabindex="-1"></a>initdb<span class="op">.</span><span class="fu">exe</span> <span class="op">-</span>D <span class="op">../</span><span class="kw">data</span> –username<span class="op">=</span>postgres –auth<span class="op">=</span>trust</span></code></pre></div>
+<p>Start the database:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb2-1"><a href="postgres-zip-version-windows-starting-guide.html#cb2-1" tabindex="-1"></a>pg_ctl<span class="op">.</span><span class="fu">exe</span> <span class="fu">start</span> <span class="op">-</span>D <span class="op">../</span><span class="kw">data</span></span></code></pre></div>
+<p>Open another cmd;</p>
+<p>Enter into the ‘bin’ directory;</p>
+<p>Log into the database:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb3-1"><a href="postgres-zip-version-windows-starting-guide.html#cb3-1" tabindex="-1"></a>psql<span class="op">.</span><span class="fu">exe</span> –username<span class="op">=</span>postgres</span></code></pre></div>
+<p>Create a password for your user:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="postgres-zip-version-windows-starting-guide.html#cb4-1" tabindex="-1"></a><span class="kw">ALTER</span> <span class="fu">USER</span> postgres <span class="kw">WITH</span> <span class="kw">PASSWORD</span> ‘VeryVerySecret’;</span></code></pre></div>
+<p>Install adminpack extension:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="postgres-zip-version-windows-starting-guide.html#cb5-1" tabindex="-1"></a><span class="kw">CREATE</span> EXTENSION adminpack;</span></code></pre></div>
+<p>Reference: <a href="https://feilerdev.wordpress.com/2017/12/05/installing-postgresql-on-windows-using-zip-archive-without-the-installer/" class="uri">https://feilerdev.wordpress.com/2017/12/05/installing-postgresql-on-windows-using-zip-archive-without-the-installer/</a></p>
+
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="postgres-zip-version-windows-starting-guide.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="aula-inaugural.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

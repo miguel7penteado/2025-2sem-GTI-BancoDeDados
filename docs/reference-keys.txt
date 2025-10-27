@@ -20,6 +20,7 @@ dezembro-de-2025
 alunos-2025---2o-semestre
 campus-chácara-santo-antônio
 turma-ti2p40
+postgres-zip-version-windows-starting-guide
 aula-inaugural
 disciplina-banco-de-dados
 sobre-o-professor

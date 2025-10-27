@@ -35,6 +35,7 @@ Por que administração e gerenciamento são fundamentais
 
 ## Papel do DBA (Database Administrator)
 
+
 O DBA é o profissional responsável por orquestrar tudo isso.Principais atribuições:
 
 - Projeto físico do banco (estrutura de tabelas, índices, partições).
