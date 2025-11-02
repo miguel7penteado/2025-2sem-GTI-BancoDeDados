@@ -60,7 +60,7 @@ Vamos criar um **microsas** (micro Software As A Service) , ou seja, um site par
 ![](images/2025-09-01/04-Aplicacao.jpg)
 
 | Informações de Projeto | Tecnologias utilizadas no projeto CRUD |
-|--------------------------|----------------------------------------------|
+|----|----|
 | Servidor de banco de dados SGBD | MySQL 8 |
 | Usuário de Banco de Dados | **pessoas_user** |
 | De onde pode ser acessado | Apenas Máquina Local (localhost) |
@@ -775,7 +775,7 @@ OBS: Na tela do servidor, é possível verificar as operações HTTP Equivalente
 
 ![](images/2025-09-01/11-Cliente_03-Preenchido.jpg)
 
-##### Passo 4 - Verificar na tabela pessoas  a linha que o cliente preencheu através da API da aplicação cliente/servidor
+##### Passo 4 - Verificar na tabela pessoas a linha que o cliente preencheu através da API da aplicação cliente/servidor
 
 ![](images/2025-09-01/12-Dados_no_SGBD.jpg)
 

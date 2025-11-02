@@ -4,38 +4,51 @@
 
 #### Professor Miguél Suares {.unnumbered}
 
-|  |
-|:-----------------------------------------------------------------------|
-| \## Exemplo 01 |
-| Neste exemplo, temos uma aplicação cliente feita html e javascript |
-| A interface do Cliente é feita em HTML5 |
-| A conexão com o servidor é feita pelo javascript incorporado no HTML: |
-| CRUD no cliente é feito peloa javascript utilizando metodologia Restful sobre protocolo HTTP 2.0 |
-| O servidor Restful é interno ao próprio SUPABASE (não precisa programar) |
-| OBS: NÃO TEMOS CONTROLE DE SESSÃO DE CLIENTE IMPLEMENTADO. |
-| crie o arquivo index.html e abra-o no navegador |
-| servidor estará rodando na porta 80 e EXPÕE A API de operações na URI <https://pbbtfwmydxmxdibmtbqq.supabase.co:80/> com a senha eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiYnRmd215ZHhteGRpYm10YnFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg2NTIwNjksImV4cCI6MjA3NDIyODA2OX0.-41ZWZmoYbnA9YUw1kutcWrk7IIMZ6mjTmzsBvtHPEo |
-| `css https://pbbtfwmydxmxdibmtbqq.supabase.co:80/` |
-| \`\`\` html |
-| \<!DOCTYPE html\> |
-|  |
-| <button type="button" onclick="inserir()">Inserir</button> <button type="button" onclick="alterar()">Alterar</button> <button type="button" onclick="remover()">Remover</button> |
-|  |
-| 31b8e172-b470-440e-83d8-e6b185028602:dAB5AHAAZQA6AE8AQQBCAGwAQQBHAFkAQQBOAFEAQgBoAEEARABjAEEATgB3AEEAeQBBAEMAMABBAFoAQQBCAGsAQQBEAFkAQQBNAHcAQQB0AEEARABRAEEATgBnAEEAeQBBAEQASQBBAEwAUQBBADQAQQBEAFEAQQBZAGcAQgBtAEEAQwAwAEEAWQBRAEIAbQBBAEQARQBBAE8AUQBBADUAQQBEAFUAQQBZAFEAQQB4AEEARwBJAEEATQBnAEIAaQBBAEQAawBBAAoAcABvAHMAaQB0AGkAbwBuADoATQBnAEEAegBBAEQAZwBBAE4AdwBBAD0ACgBwAHIAZQBmAGkAeAA6AAoAcwBvAHUAcgBjAGUAOgBQAEEAQgAwAEEARwBFAEEAWQBnAEIAcwBBAEcAVQBBAFAAZwBBAEsAQQBDAEEAQQBJAEEAQQA4AEEASABRAEEAYQBBAEIAbABBAEcARQBBAFoAQQBBACsAQQBBAG8AQQBJAEEAQQBnAEEAQwBBAEEASQBBAEEAOABBAEgAUQBBAGMAZwBBACsAQQBBAG8AQQBJAEEAQQBnAEEAQwBBAEEASQBBAEEAZwBBAEMAQQBBAFAAQQBCADAAQQBHAGcAQQBQAGcAQgBEAEEARgBBAEEAUgBnAEEAOABBAEMAOABBAGQAQQBCAG8AQQBEADQAQQBQAEEAQgAwAEEARwBnAEEAUABnAEIARwBBAEcAOABBAGQAQQBCAHYAQQBEAHcAQQBMAHcAQgAwAEEARwBnAEEAUABnAEEAOABBAEgAUQBBAGEAQQBBACsAQQBFADQAQQBiAHcAQgB0AEEARwBVAEEAUABBAEEAdgBBAEgAUQBBAGEAQQBBACsAQQBBAG8AQQBJAEEAQQBnAEEAQwBBAEEASQBBAEEAZwBBAEMAQQBBAFAAQQBCADAAQQBHAGcAQQBQAGcAQgBGAEEARwA0AEEAWgBBAEIAbABBAEgASQBBAFoAUQBEAG4AQQBHADgAQQBQAEEAQQB2AEEASABRAEEAYQBBAEEAKwBBAEQAdwBBAGQAQQBCAG8AQQBEADQAQQBUAGcAQgBoAEEASABNAEEAWQB3AEIAcABBAEcAMABBAFoAUQBCAHUAQQBIAFEAQQBiAHcAQQA4AEEAQwA4AEEAZABBAEIAbwBBAEQANABBAEMAZwBBAGcAQQBDAEEAQQBJAEEAQQBnAEEARAB3AEEATAB3AEIAMABBAEgASQBBAFAAZwBBAEsAQQBDAEEAQQBJAEEAQQA4AEEAQwA4AEEAZABBAEIAbwBBAEcAVQBBAFkAUQBCAGsAQQBEADQAQQBDAGcAQQBnAEEAQwBBAEEAUABBAEIAMABBAEcASQBBAGIAdwBCAGsAQQBIAGsAQQBJAEEAQgBwAEEARwBRAEEAUABRAEEAaQBBAEgAUQBBAFkAUQBCAGkAQQBHAFUAQQBiAEEAQgBoAEEAQwBJAEEAUABnAEEAOABBAEMAOABBAGQAQQBCAGkAQQBHADgAQQBaAEEAQgA1AEEARAA0AEEAQwBnAEEAOABBAEMAOABBAGQAQQBCAGgAQQBHAEkAQQBiAEEAQgBsAEEARAA0AEEACgBzAHUAZgBmAGkAeAA6AA==:31b8e172-b470-440e-83d8-e6b185028602 |
-|  |
-| /\* ---------- Funções utilitárias ---------- \*/ function validaCampos() { const campos = ['cpf','nome','endereco','data_nascimento']; for (const id of campos) { const valor = document.getElementById(id).value.trim(); if (!valor) { alert(`O campo "${id}" não pode ficar em branco.`); return false; } } return true; } function getFotoBase64() { const file = document.getElementById('foto').files[0]; if(!file) return Promise.resolve(''); return new Promise((resolve,reject)=\>{ const reader = new FileReader(); reader.onload = () =\> resolve(reader.result); reader.onerror = reject; reader.readAsDataURL(file); }); } function coletaDados(base64Foto){ return { cpf: document.getElementById('cpf').value.trim(), nome: document.getElementById('nome').value.trim(), endereco: document.getElementById('endereco').value.trim(), data_nascimento: document.getElementById('data_nascimento').value, foto: base64Foto \|\| '' }; } |
-| /\* ---------- CRUD Supabase ---------- \*/ async function inserir() { if (!validaCampos()) return; const base64 = await getFotoBase64(); const pessoa = coletaDados(base64); |
-| // Verifica se já existe const { <data:existe> } = await supabase .from('pessoas') .select('cpf') .eq('cpf', pessoa.cpf); if(existe && existe.length) { alert('Já existe um registro com este CPF.'); return; } |
-| const { error } = await supabase .from('pessoas') .insert([pessoa]); if(error) alert('Erro ao inserir: ' + error.message); else { alert('Inserido!'); listar(); } } |
-| async function alterar() { if (!validaCampos()) return; const cpf = document.getElementById('cpf').value.trim(); const base64 = await getFotoBase64(); const novosDados = coletaDados(); if(base64) novosDados.foto = base64; |
-| const { error } = await supabase .from('pessoas') .update(novosDados) .eq('cpf', cpf); if(error) alert('Erro ao alterar: ' + error.message); else { alert('Alterado!'); listar(); } } |
-| async function remover() { const cpf = document.getElementById('cpf').value.trim(); if(!cpf) return alert('Informe o CPF para remover.'); if(confirm('Confirma a exclusão?')){ const { error } = await supabase .from('pessoas') .delete() .eq('cpf', cpf); if(error) alert('Erro ao remover: ' + error.message); else { alert('Removido!'); listar(); } } } |
-| async function pesquisar() { const termo = document.getElementById('pesquisa').value.trim(); if(!termo){ listar(); return; } const { data, error } = await supabase .from('pessoas') .select('\*') .or(`cpf.ilike.%${termo}%,nome.ilike.%${termo}%`); if(error) alert('Erro: ' + error.message); else preencheTabela(data); } |
-| async function listar(){ const { data, error } = await supabase .from('pessoas') .select('\*'); if(error) alert('Erro: ' + error.message); else preencheTabela(data); } |
-| /\* ---------- UI ---------- \*/ function preencheTabela(lista){ const tbody = document.getElementById('tabela'); tbody.innerHTML = ''; lista.forEach(p=\>{ const tr = document.createElement('tr'); tr.innerHTML = `<td>${p.cpf}</td> <td>${p.foto ?`<img src="${p.foto}" alt="foto" class="thumb"/>`: ''}</td> <td>${p.nome}</td> <td>${p.endereco}</td> <td>${p.data_nascimento}</td>`; tr.onclick = () =\> { document.getElementById('cpf').value = p.cpf; document.getElementById('nome').value = p.nome; document.getElementById('endereco').value = p.endereco; document.getElementById('data_nascimento').value = p.data_nascimento; }; tbody.appendChild(tr); }); } |
-| listar(); // carrega ao abrir </script> |
+### Banco de Dados utilizado nos exemplos de aplicações abaixo
 
-## Exemplo 02
+Crie o banco de dados abaixo em um servidor mysql 8 ou superior na sua máquina antes de testar os exemplos abaixo:
+
+``` SQL
+-- 1) CRIAR BANCO (ajuste o nome se quiser)
+CREATE DATABASE IF NOT EXISTS pessoasdb
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_0900_ai_ci;
+
+USE pessoasdb;
+
+-- 2) (OPCIONAL) CRIAR USUÁRIO LOCAL E CONCEDER PERMISSÕES
+--    Troque 'MinhaSenhaForte' por uma senha segura
+CREATE USER IF NOT EXISTS 'pessoas_user'@'localhost' IDENTIFIED BY 'MinhaSenhaForte';
+GRANT ALL PRIVILEGES ON pessoasdb.* TO 'pessoas_user'@'localhost';
+FLUSH PRIVILEGES;
+
+-- 3) TABELA 'pessoas' COMPATÍVEL COM O MODELO SQLAlchemy
+--    - cpf: chave primária (String(14))
+--    - nome, endereco, foto: TEXT
+--    - data_nascimento: DATE
+CREATE TABLE IF NOT EXISTS pessoas (
+  cpf             VARCHAR(14)  NOT NULL,
+  nome            TEXT         NOT NULL,
+  endereco        TEXT         NOT NULL,
+  data_nascimento DATE         NOT NULL,
+  foto            TEXT         NULL,
+  PRIMARY KEY (cpf)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- 4) (OPCIONAL) ÍNDICES PARA BUSCA
+-- Seu endpoint usa LIKE/ILIKE em nome e cpf; cpf já é PK.
+-- Para acelerar buscas por nome com LIKE, crie um índice por prefixo.
+-- OBS: índices em TEXT precisam de comprimento; 128 costuma ser um bom compromisso.
+CREATE INDEX idx_pessoas_nome_prefix ON pessoas (nome(128));
+```
+
+## Exemplo 01
+
+servidor SUPABASE .... a fazer
+
+## Exemplo 02 - SERVIDOR DE APLICAÇÃO PYTHON
+
+![](images/clipboard-3666283714.png)
 
 Neste exemplo, temos uma aplicação cliente feita html e javascript
 
@@ -195,7 +208,6 @@ http://localhost:5000/pessoas
 ```
 
 ### Cliente HTML (conexão Restful)
-
 
 crie o arquivo index.html e abra-o no navegador
 
@@ -445,7 +457,9 @@ listar();
 
 ------------------------------------------------------------------------
 
-## Exemplo 03
+## Exemplo 03 - SERVIDOR DE APLICAÇÃO PERL
+
+![](images/clipboard-2372699820.png)
 
 Neste exemplo, temos uma aplicação cliente feita html e javascript
 
@@ -756,117 +770,15 @@ listar();
 </html>
 ```
 
-|  |
-|:-----------------------------------------------------------------------|
-| \## Exemplo 04 |
-| Neste exemplo, temos uma aplicação cliente feita html e javascript |
-| A interface do Cliente é feita em HTML5 |
-| A conexão com o servidor é feita pelo javascript incorporado no HTML: |
-| CRUD no cliente é feito peloa javascript utilizando metodologia Restful sobre protocolo HTTP 2.0 |
-| O servidor Restful é feito em linguagem JAVA |
-| A linguagem JAVA precisa ser compilada e empacotada. |
-| PORTANTO O CÓDIGO DO SERVIDOR PRECISARÁ SER COMPILADO E EMPACOTADO. |
-| OBS: NÃO TEMOS CONTROLE DE SESSÃO DE CLIENTE IMPLEMENTADO. |
-| \### preparar a arvore de diretórios do pacote servidor |
-| `css pessoas-rest-java/ ├─ src/main/java/com/example/pessoas/ │   ├─ PessoasApplication.java │   ├─ controller/ │   │    └─ PessoaController.java │   ├─ model/ │   │    └─ Pessoa.java │   └─ repository/ │        └─ PessoaRepository.java └─ src/main/resources/ └─ application.properties` \#### passo 1 - criar estrutura de arquivos no diretório: |
-| `cmd echo criando diretório raiz mkdir pessoas-rest-java cd pessoas-rest-java` |
-| Agora vamos criar os subdiretórios que vão representar a estrutura do pacote: |
-| criação do pacote *java.com.example.pessoas* |
-| Criar a seguinte *árvore de diretórios*: |
-| `cmd mkdir src\main\java\com\example\pessoas\` Criar o subdiretórios com instrução de montagem do pacote: "resources" |
-| `cmd echo criando pacote java.com.example.pessoas no windows mkdir src\main\resources\` |
-| Criar os subdiretórios padrão do novo pacote: "controller", "model", "repository" |
-| \`\`\`cmd echo criando diretorio CONTROLER do mkdir src\main\java\com\example\pessoas\controller |
-| echo criando diretorio MODEL do mkdir src\main\java\com\example\pessoas\model |
-| echo criando diretorio REPOSITORY do mkdir src\main\java\com\example\pessoas\repository |
-| \`\`\` |
-| \### Criando as classes java que vão conversar com o banco: |
-| \#### passo 2 - criar as classes JAVA nos arquivos .java |
-| \#### Diretório MODEL do pacote - Classe que mapeia a tabela (ou "entidade") |
-| \##### CLASSE QUE MAPEIA TABELA NA MEMÓRIA (equivalente a um CREATE TABLE no sql) |
-| crie o arquivo *Pessoa.java* dentro do diretório `src\main\java\com\example\pessoas\model` |
-| arquivo *Pessoa.java* |
-| \`\`\`java package com.example.pessoas.model; |
-| import jakarta.persistence.Entity; import jakarta.persistence.Id; import jakarta.persistence.Column; |
-| @Entity public class Pessoa { @Id private String cpf; |
-| private String nome; private String endereco; |
-| @Column(name = "data_nascimento") private String dataNascimento; // armazenando como string ISO (yyyy-MM-dd) |
-| @Column(columnDefinition = "TEXT") private String foto; // Base64 |
-| // getters e setters public String getCpf() { return cpf; } public void setCpf(String cpf) { this.cpf = cpf; } |
-| public String getNome() { return nome; } public void setNome(String nome) { this.nome = nome; } |
-| public String getEndereco() { return endereco; } public void setEndereco(String endereco) { this.endereco = endereco; } |
-| public String getDataNascimento() { return dataNascimento; } public void setDataNascimento(String dataNascimento) { this.dataNascimento = dataNascimento; } |
-| public String getFoto() { return foto; } public void setFoto(String foto) { this.foto = foto; } } |
-| \`\`\` |
-| \#### Diretório REPOSITORY do pacote - Classe que guarda o SQL para buscar dados existentes na tabela |
-| \##### CLASSE QUE EXTRAI DADOS DA TABELA NA MEMÓRIA (equivalente a um SELECT \* FROM no sql) |
-| crie o arquivo *PessoaRepository.java* dentro do diretório `src\main\java\com\example\pessoas\repository` |
-| arquivo *PessoaRepository.java* |
-| \`\`\`java package com.example.pessoas.repository; |
-| import java.util.List; |
-| import org.springframework.data.jpa.repository.JpaRepository; import org.springframework.data.jpa.repository.Query; |
-| import com.example.pessoas.model.Pessoa; |
-| public interface PessoaRepository extends JpaRepository\<Pessoa, String\> { @Query("SELECT p FROM Pessoa p WHERE LOWER(p.nome) LIKE LOWER(CONCAT('%', :termo, '%')) " + "OR LOWER(p.cpf) LIKE LOWER(CONCAT('%', :termo, '%'))") List<Pessoa> searchByNomeOrCpf(String termo); } |
-| \`\`\` |
-| \#### Diretório CONTROLLER do pacote - Classe que MAPEIA operações INSERIR, ALTERAR, REMOVER e PESQUISAR |
-| \##### CLASSE INSERE, ALTERA E APAGA DADOS NA TABELA NA MEMÓRIA (equivalente a um INSERT, UPDATE E DELETE no sql) |
-| crie o arquivo *PessoaController.java* dentro do diretório `src\main\java\com\example\pessoas\controller` |
-| arquivo *PessoaController.java* |
-| \`\`\`JAVA package com.example.pessoas.controller; |
-| import java.util.List; |
-| import org.springframework.web.bind.annotation.\*; import org.springframework.http.ResponseEntity; |
-| import com.example.pessoas.model.Pessoa; import com.example.pessoas.repository.PessoaRepository; |
-| @RestController @RequestMapping("/pessoas") @CrossOrigin(origins = "\*") // habilita CORS para o front-end HTML public class PessoaController { |
-| private final PessoaRepository repo; |
-| public PessoaController(PessoaRepository repo) { this.repo = repo; } |
-| // GET /pessoas?q=termo @GetMapping public List<Pessoa> listar(@RequestParam(required = false) String q) { if (q == null \|\| q.isEmpty()) { return repo.findAll(); } return repo.searchByNomeOrCpf(q); } |
-| // POST /pessoas @PostMapping public Pessoa criar(@RequestBody Pessoa p) { return repo.save(p); } |
-| // PUT /pessoas/{cpf} @PutMapping("/{cpf}") public ResponseEntity<Pessoa> atualizar(@PathVariable String cpf, @RequestBody Pessoa p) { return repo.findById(cpf) .map(existente -\> { existente.setNome(p.getNome()); existente.setEndereco(p.getEndereco()); existente.setDataNascimento(p.getDataNascimento()); if (p.getFoto() != null && !p.getFoto().isEmpty()) { existente.setFoto(p.getFoto()); } return ResponseEntity.ok(repo.save(existente)); }) .orElse(ResponseEntity.notFound().build()); } |
-| // DELETE /pessoas/{cpf} @DeleteMapping("/{cpf}") public ResponseEntity<Void> remover(@PathVariable String cpf) { if (!repo.existsById(cpf)) { return ResponseEntity.notFound().build(); } repo.deleteById(cpf); return ResponseEntity.noContent().build(); } } |
-| \`\`\` |
-| \### Criando ARQUIVOS AUXILIARES para o JAVA compilar e criar o pacote: |
-| \#### passo 3 - criar arquivos de parametros, compilação e criação de acote |
-| \##### Arquivo texto de parâmetros |
-| crie o arquivo *application.properties* dentro do diretório `src\main\resources\` |
-| arquivo *application.properties* |
-| \`\`\`css spring.datasource.url=jdbc:postgresql://db.pbbtfwmydxmxdibmtbqq.supabase.co:5432/postgres spring.datasource.username=postgres spring.datasource.password=MinhaSuperSenha |
-| spring.jpa.hibernate.ddl-auto=update \# cria/atualiza tabelas spring.jpa.show-sql=true spring.jpa.properties.hibernate.format_sql=true |
-| \`\`\` |
-| \##### Arquivo de compilação e criação de pacote (arquivo JAR) |
-| Arquivo XML para ferramenta MAVEN fazer compliação e empacotamento |
-| arquivo *pom.xml* |
-| \`\`\`xml <project xmlns="http://maven.apache.org/POM/4.0.0"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-http://maven.apache.org/xsd/maven-4.0.0.xsd"> <modelVersion>4.0.0</modelVersion> |
-| <groupId>com.example</groupId> <artifactId>pessoas-rest-java</artifactId> <version>0.0.1-SNAPSHOT</version> <name>pessoas-rest-java</name> <description>Servidor REST de Pessoas em Java</description> |
-| <parent> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-parent</artifactId> <version>3.3.4</version> </parent> |
-| <dependencies> <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-web</artifactId> </dependency> <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-data-jpa</artifactId> </dependency> <dependency> <groupId>org.postgresql</groupId> <artifactId>postgresql</artifactId> <scope>runtime</scope> </dependency> </dependencies> |
-| <build> <plugins> <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> </plugin> </plugins> </build> </project> |
-| \`\`\` |
-| finalmente, você deve compilar e criar o pacote JAVA servidor |
-| `mvn mvn spring-boot:run` |
-| servidor estará rodando na porta 8080 e EXPÕE A API de operações na URI <http://localhost:8080/pessoas> sem senha |
-| `css http://localhost:8080/pessoas` |
-| \### Cliente HTML (conexão Restful) |
-| crie o arquivo index.html e abra-o no navegador |
-| \`\`\`html \<!DOCTYPE html\> |
-|  |
-|  |
-| <button onclick="inserir()">Inserir</button> <button onclick="alterar()">Alterar</button> <button onclick="remover()">Remover</button> |
-|  |
-|  |
-| // Pré-visualização da imagem em Base64 document.getElementById('foto').addEventListener('change', function(e){ const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = ev =\> { document.getElementById('preview').src = ev.target.result; }; reader.readAsDataURL(file); }); |
-| async function inserir() { const cpf = document.getElementById('cpf').value.trim(); if (!cpf) { alert('CPF é obrigatório.'); return; } const dados = coletarDados(); const resp = await fetch(API, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(dados) }); if (resp.ok) { alert('Pessoa inserida!'); pesquisar(); } else alert('Erro ao inserir: ' + resp.statusText); } |
-| async function alterar() { const cpf = document.getElementById('cpf').value.trim(); if (!cpf) { alert('CPF é obrigatório.'); return; } const dados = coletarDados(); const resp = await fetch(`${API}/${encodeURIComponent(cpf)}`, { method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(dados) }); if (resp.ok) { alert('Alterado!'); pesquisar(); } else alert('Erro ao alterar: ' + resp.statusText); } |
-| async function remover() { const cpf = document.getElementById('cpf').value.trim(); if (!cpf) { alert('CPF é obrigatório.'); return; } if (!confirm('Tem certeza que deseja remover?')) return; const resp = await fetch(`${API}/${encodeURIComponent(cpf)}`, { method: 'DELETE' }); if (resp.ok) { alert('Removido!'); pesquisar(); } else alert('Erro ao remover: ' + resp.statusText); } |
-| async function pesquisar() { const termo = document.getElementById('pesquisa').value.trim(); const url = termo ? `${API}?q=${encodeURIComponent(termo)}` : API; const resp = await fetch(url); const lista = await resp.json(); mostrarResultados(lista); } |
-| function coletarDados() { return { cpf: document.getElementById('cpf').value.trim(), nome: document.getElementById('nome').value.trim(), endereco: document.getElementById('endereco').value.trim(), dataNascimento: document.getElementById('data_nascimento').value, foto: document.getElementById('preview').src \|\| '' }; } |
-| function mostrarResultados(pessoas) { const tbody = document.querySelector('#resultados tbody'); tbody.innerHTML = ''; pessoas.forEach(p =\> { const tr = document.createElement('tr'); tr.innerHTML = `<td>${p.cpf}</td> <td>${p.nome || ''}</td> <td>${p.endereco || ''}</td> <td>${p.dataNascimento || ''}</td> <td>${p.foto ?`<img src="${p.foto}" width="60"/>`: ''}</td>`; tbody.appendChild(tr); }); } </script> |
-|  |
-| \`\`\` |
+## Exemplo 04 - SERVIDOR DE APLICAÇÃO JAVA
 
-## Exemplo 05
+![](images/clipboard-3162947411.png)
+
+[ Vou refazer estes exemplo ]
+
+## Exemplo 05 - SERVIDOR DE APLICAÇÃO C++
+
+![](images/clipboard-2416235942.png)
 
 Neste exemplo, temos uma aplicação cliente feita html e javascript
 

@@ -1266,4 +1266,118 @@ GRANT SELECT ON `35-sao_paulo`.*         TO 'sul';
 
 ### Exemplo no MySQL
 
+Exemplo 01
+
+Considere o cenário: um administrador de banco de dados irá criar uma tabela chamada **clientes** com cpf, nome e data_nascimento. Essa tabela deverá ficar no esquema **compras** e será acessada com **todos os privilégios** pelo usuário **aluno**. Considere que nosso SGBD é o MySQL 9. faça passo-a-passo os códigos SQL para que o ambiente descrito seja gerado.
+
+#### Passo 1 - Criar o esquema de Banco de Dados "compras"
+
+``` sql
+CREATE DATABASE IF NOT EXISTS compras
+  DEFAULT CHARACTER SET utf8mb4
+  DEFAULT COLLATE utf8mb4_0900_ai_ci;
+```
+
+#### Passo 2 - Criar o usuário "aluno"
+
+``` sql
+-- Apenas local:
+CREATE USER IF NOT EXISTS 'aluno'@'localhost' IDENTIFIED BY 'TroqueEstaSenha!2025';
+
+-- (Opcional) Acesso pela rede/WAN:
+CREATE USER IF NOT EXISTS 'aluno'@'%' IDENTIFIED BY 'TroqueEstaSenha!2025';
+```
+
+#### Passo 2 - Conceder ao usuário "aluno" privilégios sobre todas os objetos (tabelas, views, gatilhos, índices) do esquema "compras"
+
+``` sql
+-- Para acesso local:
+GRANT ALL PRIVILEGES ON compras.* TO 'aluno'@'localhost';
+
+-- (Opcional) Para acesso via rede:
+GRANT ALL PRIVILEGES ON compras.* TO 'aluno'@'%';
+
+-- Tornar os privilégios efetivos (costume; no MySQL moderno aplica na hora):
+FLUSH PRIVILEGES;
+```
+
+#### Passo 3 - Criar a tabela "clientes" dentro do esquema "compras"
+
+``` sql
+USE compras;
+
+CREATE TABLE IF NOT EXISTS clientes (
+  cpf            CHAR(11)     NOT NULL,
+  nome           VARCHAR(120) NOT NULL,
+  data_nascimento DATE        NOT NULL,
+  CONSTRAINT pk_clientes PRIMARY KEY (cpf)
+) ENGINE=InnoDB;
+```
+
 ### Exemplo no PostGreSQL
+
+Exemplo 03
+
+Considere o cenário: um administrador de banco de dados irá criar uma tabela chamada **clientes** com cpf, nome e data_nascimento. Essa tabela deverá ficar no esquema **compras** e será acessada com **todos os privilégios** pelo usuário **aluno**. Considere que nosso SGBD é o Postgresql 15. faça passo-a-passo os códigos SQL para que o ambiente descrito seja gerado.
+
+#### Passo 0 - Crie um Banco de Dados "sistema_compras"
+
+``` sql
+CREATE DATABASE sistema_compras
+    WITH OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'pt_BR.UTF-8'
+    LC_CTYPE = 'pt_BR.UTF-8'
+    TEMPLATE = template0;
+```
+
+#### Passo 1 - Criar o esquema de Banco de Dados "compras"
+
+``` sql
+CREATE SCHEMA IF NOT EXISTS compras AUTHORIZATION postgres;
+```
+
+#### Passo 2 - Criar o usuário "aluno"
+
+``` sql
+CREATE ROLE aluno WITH
+    LOGIN
+    PASSWORD 'TroqueEstaSenha!2025'
+    NOSUPERUSER
+    NOCREATEDB
+    NOCREATEROLE
+    INHERIT;
+```
+
+#### Passo 3 - Conceder ao usuário "aluno" privilégios sobre todas os objetos (tabelas, views, gatilhos, índices) do esquema "compras"
+
+``` sql
+GRANT USAGE ON SCHEMA compras TO aluno;
+GRANT CREATE ON SCHEMA compras TO aluno;
+```
+
+#### Passo 4 - Criar a tabela "clientes" dentro do esquema "compras"
+
+``` sql
+CREATE TABLE compras.clientes (
+    cpf            CHAR(11)     PRIMARY KEY,
+    nome           VARCHAR(120) NOT NULL,
+    data_nascimento DATE        NOT NULL
+);
+```
+
+#### Passo 5 - Conceder privilégios da tabela "clientes" do esquema "compras" para o usuário "aluno"
+
+``` sql
+GRANT ALL PRIVILEGES ON TABLE compras.clientes TO aluno;
+```
+
+## Feito
+
+```{r Executa_pagina_aula_04_, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+
+rmarkdown::render("04-2025-08-25_Administracao_Gerenciamento-aula.Rmd", output_dir="docs", output_file ="temporario.html" , output_format = "html_document") ; 
+
+utils::browseURL("docs/temporario.html")
+
+```
