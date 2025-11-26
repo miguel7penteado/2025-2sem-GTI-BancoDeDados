@@ -1,8 +1,8 @@
+---
+layout: editorial
+---
+
 # Disciplina de Banco de Dados - 2025 - Professor Miguél Suares
-
-
-
-
 
 ## Pacotes JAVA para instalar
 
@@ -12,7 +12,7 @@ Precisa ter o java instalado na sua máquina [(JDK 24 é uma boa pedida)](https:
 
 ### Passo 2 - Instalar o pacote java PLANTUML em um local onde o JAVA possa carrega-lo.
 
-Baixe o [plantuml.jar](https://github.com/plantuml/plantuml/releases/download/v1.2025.4/plantuml-1.2025.4.jar) 
+Baixe o [plantuml.jar](https://github.com/plantuml/plantuml/releases/download/v1.2025.4/plantuml-1.2025.4.jar)
 
 #### sugestão de diretório no windows
 
@@ -25,7 +25,6 @@ mkdir
 
 ## Pacotes R para instalar
 
-
-```R
+```r
 devtools::install_github("rkrug/plantuml")
 ```
