@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Slide 20 Banco de Dados - Análise de Dados Parte 03 | GTI - Banco de dados - 2025 - Anotações de aula</title>
   <meta name="description" content="Este livreto reúne anotações, reflexões e conteúdos desenvolvidos ao longo das aulas da disciplina Banco de Dados, ministrada pelo Professor Miguél Suares. Elaborado com base em experiências práticas, referências acadêmicas e diretrizes atualizadas sobre o tema, o material busca fornecer uma visão crítica e aplicada sobre análise de dados nas organizações contemporâneas." />
-  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46.2 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Slide 20 Banco de Dados - Análise de Dados Parte 03 | GTI - Banco de dados - 2025 - Anotações de aula" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Professor Miguél Suares" />
 
 
-<meta name="date" content="2025-11-02" />
+<meta name="date" content="2026-02-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,8 +55,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -149,13 +150,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#livros-texto-da-disciplina"><i class="fa fa-check"></i><b>0.3</b> Livros Texto da Disciplina</a>
 <ul>
-<li class="chapter" data-level="0.3.1" data-path="index.html"><a href="index.html#introdução-a-sistemas-de-bancos-de-dados-do-autor-christopher-john-date"><i class="fa fa-check"></i><b>0.3.1</b> “Introdução a sistemas de bancos de dados” do autor “<strong>Christopher John Date</strong>”</a></li>
+<li class="chapter" data-level="0.3.1" data-path="index.html"><a href="index.html#introdu%C3%A7%C3%A3o-a-sistemas-de-bancos-de-dados-do-autor-christopher-john-date"><i class="fa fa-check"></i><b>0.3.1</b> “Introdução a sistemas de bancos de dados” do autor “<strong>Christopher John Date</strong>”</a></li>
 <li class="chapter" data-level="0.3.2" data-path="index.html"><a href="index.html#projeto-de-bancos-de-dados-do-autor-carlos-alberto-heuser"><i class="fa fa-check"></i><b>0.3.2</b> “<strong>Projeto de bancos de dados</strong>” do autor “Carlos Alberto HEUSER”</a></li>
 </ul></li>
-<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#calendário-das-aulas"><i class="fa fa-check"></i><b>0.4</b> Calendário das aulas</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#calend%C3%A1rio-das-aulas"><i class="fa fa-check"></i><b>0.4</b> Calendário das aulas</a></li>
 <li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#alunos-2025---2o-semestre"><i class="fa fa-check"></i><b>0.5</b> Alunos 2025 - 2o Semestre</a>
 <ul>
-<li class="chapter" data-level="0.5.1" data-path="index.html"><a href="index.html#campus-chácara-santo-antônio"><i class="fa fa-check"></i><b>0.5.1</b> Campus Chácara Santo Antônio</a></li>
+<li class="chapter" data-level="0.5.1" data-path="index.html"><a href="index.html#campus-ch%C3%A1cara-santo-ant%C3%B4nio"><i class="fa fa-check"></i><b>0.5.1</b> Campus Chácara Santo Antônio</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="postgres-zip-version-windows-starting-guide.html"><a href="postgres-zip-version-windows-starting-guide.html"><i class="fa fa-check"></i><b>1</b> Postgres (Zip Version) Windows Starting Guide</a></li>
@@ -164,9 +165,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="aula-inaugural.html"><a href="aula-inaugural.html#disciplina-banco-de-dados"><i class="fa fa-check"></i><b>2.1</b> Disciplina: <strong>Banco de Dados</strong></a></li>
 <li class="chapter" data-level="2.2" data-path="aula-inaugural.html"><a href="aula-inaugural.html#sobre-o-professor"><i class="fa fa-check"></i><b>2.2</b> 👨‍🏫 Sobre o Professor</a></li>
 <li class="chapter" data-level="2.3" data-path="aula-inaugural.html"><a href="aula-inaugural.html#objetivos-da-disciplina"><i class="fa fa-check"></i><b>2.3</b> 🎯 Objetivos da Disciplina</a></li>
-<li class="chapter" data-level="2.4" data-path="aula-inaugural.html"><a href="aula-inaugural.html#calendário-da-disciplina"><i class="fa fa-check"></i><b>2.4</b> 📅 Calendário da Disciplina</a></li>
+<li class="chapter" data-level="2.4" data-path="aula-inaugural.html"><a href="aula-inaugural.html#calend%C3%A1rio-da-disciplina"><i class="fa fa-check"></i><b>2.4</b> 📅 Calendário da Disciplina</a></li>
 <li class="chapter" data-level="2.5" data-path="aula-inaugural.html"><a href="aula-inaugural.html#ementa-resumida"><i class="fa fa-check"></i><b>2.5</b> 📚 Ementa Resumida</a></li>
-<li class="chapter" data-level="2.6" data-path="aula-inaugural.html"><a href="aula-inaugural.html#avaliação"><i class="fa fa-check"></i><b>2.6</b> 📝 Avaliação</a></li>
+<li class="chapter" data-level="2.6" data-path="aula-inaugural.html"><a href="aula-inaugural.html#avalia%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>2.6</b> 📝 Avaliação</a></li>
 <li class="chapter" data-level="2.7" data-path="aula-inaugural.html"><a href="aula-inaugural.html#ferramentas-da-disciplina"><i class="fa fa-check"></i><b>2.7</b> 🛠️ Ferramentas da Disciplina</a></li>
 <li class="chapter" data-level="2.8" data-path="aula-inaugural.html"><a href="aula-inaugural.html#expectativas-e-regras"><i class="fa fa-check"></i><b>2.8</b> 📌 Expectativas e Regras</a></li>
 <li class="chapter" data-level="2.9" data-path="aula-inaugural.html"><a href="aula-inaugural.html#dicas-para-mandar-bem"><i class="fa fa-check"></i><b>2.9</b> 💡 Dicas para Mandar Bem</a></li>
@@ -175,36 +176,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="fundamentos-de-sistemas-de-bancos-de-dados.html"><a href="fundamentos-de-sistemas-de-bancos-de-dados.html"><i class="fa fa-check"></i><b>3</b> Fundamentos de Sistemas de Bancos de Dados</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="fundamentos-de-sistemas-de-bancos-de-dados.html"><a href="fundamentos-de-sistemas-de-bancos-de-dados.html#o-início-edgar-frank-ted-codd-19081923-18042003"><i class="fa fa-check"></i><b>3.1</b> O início : Edgar Frank “Ted” Codd (19/08/1923 – 18/04/2003)</a></li>
+<li class="chapter" data-level="3.1" data-path="fundamentos-de-sistemas-de-bancos-de-dados.html"><a href="fundamentos-de-sistemas-de-bancos-de-dados.html#o-in%C3%ADcio-edgar-frank-ted-codd-19081923-18042003"><i class="fa fa-check"></i><b>3.1</b> O início : Edgar Frank “Ted” Codd (19/08/1923 – 18/04/2003)</a></li>
 <li class="chapter" data-level="3.2" data-path="fundamentos-de-sistemas-de-bancos-de-dados.html"><a href="fundamentos-de-sistemas-de-bancos-de-dados.html#anos-1970-ibm-entra-no-modelo-relacional-systemr-e-sequelsql"><i class="fa fa-check"></i><b>3.2</b> Anos 1970: IBM entra no Modelo relacional: SystemR e SEQUEL/SQL</a></li>
 <li class="chapter" data-level="3.3" data-path="fundamentos-de-sistemas-de-bancos-de-dados.html"><a href="fundamentos-de-sistemas-de-bancos-de-dados.html#anos-1970-prof-codd-inspira-prof-stonebraker-banco-ingres"><i class="fa fa-check"></i><b>3.3</b> Anos 1970: Prof Codd inspira Prof StoneBraker: BANCO INGRES</a></li>
 <li class="chapter" data-level="3.4" data-path="fundamentos-de-sistemas-de-bancos-de-dados.html"><a href="fundamentos-de-sistemas-de-bancos-de-dados.html#anos-1980-ingres-semi-livre-vs-ibm-system-r-pago-vs-oracle"><i class="fa fa-check"></i><b>3.4</b> Anos 1980: INGRES (SEMI-LIVRE) vs IBM System R ( pago ) vs ORACLE</a></li>
 <li class="chapter" data-level="3.5" data-path="fundamentos-de-sistemas-de-bancos-de-dados.html"><a href="fundamentos-de-sistemas-de-bancos-de-dados.html#anos-1990-mysql-e-postgres-que-vira-postgresql"><i class="fa fa-check"></i><b>3.5</b> Anos 1990: MySQL e POSTGRES que vira POSTGRESQL</a></li>
 <li class="chapter" data-level="3.6" data-path="fundamentos-de-sistemas-de-bancos-de-dados.html"><a href="fundamentos-de-sistemas-de-bancos-de-dados.html#anos-2000-sybase-eo-no-sql"><i class="fa fa-check"></i><b>3.6</b> Anos 2000: Sybase eo No-SQL</a></li>
-<li class="chapter" data-level="3.7" data-path="fundamentos-de-sistemas-de-bancos-de-dados.html"><a href="fundamentos-de-sistemas-de-bancos-de-dados.html#exercícios"><i class="fa fa-check"></i><b>3.7</b> Exercícios</a></li>
+<li class="chapter" data-level="3.7" data-path="fundamentos-de-sistemas-de-bancos-de-dados.html"><a href="fundamentos-de-sistemas-de-bancos-de-dados.html#exerc%C3%ADcios"><i class="fa fa-check"></i><b>3.7</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html"><i class="fa fa-check"></i><b>4</b> Modelagem de Bancos de Dados</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#introdução-visitando-a-teoria-de-bancos-de-dados"><i class="fa fa-check"></i><b>4.1</b> Introdução: Visitando a teoria de Bancos de Dados</a></li>
-<li class="chapter" data-level="4.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#modelo-matemático-de-um-banco-de-dados"><i class="fa fa-check"></i><b>4.2</b> Modelo Matemático de um Banco de Dados</a>
+<li class="chapter" data-level="4.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#introdu%C3%A7%C3%A3o-visitando-a-teoria-de-bancos-de-dados"><i class="fa fa-check"></i><b>4.1</b> Introdução: Visitando a teoria de Bancos de Dados</a></li>
+<li class="chapter" data-level="4.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#modelo-matem%C3%A1tico-de-um-banco-de-dados"><i class="fa fa-check"></i><b>4.2</b> Modelo Matemático de um Banco de Dados</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#podemos-representa-lo-matemáticamente-utilizando-a-teoria-dos-conjuntos"><i class="fa fa-check"></i><b>4.2.1</b> Podemos representa-lo matemáticamente utilizando a teoria dos conjuntos</a></li>
-<li class="chapter" data-level="4.2.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#então-para-podemos-relacionar-estes-dois-conjuntos-funcionários-e-departamentos-utilizando-a-teoria-das-funções"><i class="fa fa-check"></i><b>4.2.2</b> Então para podemos relacionar estes dois conjuntos (Funcionários e Departamentos) utilizando a Teoria das Funções</a></li>
+<li class="chapter" data-level="4.2.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#podemos-representa-lo-matem%C3%A1ticamente-utilizando-a-teoria-dos-conjuntos"><i class="fa fa-check"></i><b>4.2.1</b> Podemos representa-lo matemáticamente utilizando a teoria dos conjuntos</a></li>
+<li class="chapter" data-level="4.2.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#ent%C3%A3o-para-podemos-relacionar-estes-dois-conjuntos-funcion%C3%A1rios-e-departamentos-utilizando-a-teoria-das-fun%C3%A7%C3%B5es"><i class="fa fa-check"></i><b>4.2.2</b> Então para podemos relacionar estes dois conjuntos (Funcionários e Departamentos) utilizando a Teoria das Funções</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#modelo-lógico-de-banco-de-dados"><i class="fa fa-check"></i><b>4.3</b> Modelo Lógico de Banco de Dados</a>
+<li class="chapter" data-level="4.3" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#modelo-l%C3%B3gico-de-banco-de-dados"><i class="fa fa-check"></i><b>4.3</b> Modelo Lógico de Banco de Dados</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#modelo-conceitual-entidade-relacionamento-de-banco-de-dados"><i class="fa fa-check"></i><b>4.3.1</b> Modelo Conceitual “Entidade Relacionamento” de Banco de Dados</a></li>
-<li class="chapter" data-level="4.3.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#composição-e-significado-do-diagrama-entidade-relacionamento-der"><i class="fa fa-check"></i><b>4.3.2</b> Composição e Significado do Diagrama Entidade Relacionamento (DER)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#composi%C3%A7%C3%A3o-e-significado-do-diagrama-entidade-relacionamento-der"><i class="fa fa-check"></i><b>4.3.2</b> Composição e Significado do Diagrama Entidade Relacionamento (DER)</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#modelo-físico-de-banco-de-dados"><i class="fa fa-check"></i><b>4.4</b> Modelo Físico de Banco de Dados</a>
+<li class="chapter" data-level="4.4" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#modelo-f%C3%ADsico-de-banco-de-dados"><i class="fa fa-check"></i><b>4.4</b> Modelo Físico de Banco de Dados</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#geração-do-modelo-físico-para-aplica-lo-ao-sgbd-sistema-de-gerenciamento-de-banco-de-dados"><i class="fa fa-check"></i><b>4.4.1</b> Geração do modelo Físico para aplica-lo ao SGBD (Sistema de Gerenciamento de Banco de Dados):</a></li>
-<li class="chapter" data-level="4.4.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#interagindo-com-o-modelo-físico---a-linguagem-sql-structured-query-language"><i class="fa fa-check"></i><b>4.4.2</b> Interagindo com o Modelo Físico - A linguagem SQL (Structured Query Language)</a></li>
+<li class="chapter" data-level="4.4.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#gera%C3%A7%C3%A3o-do-modelo-f%C3%ADsico-para-aplica-lo-ao-sgbd-sistema-de-gerenciamento-de-banco-de-dados"><i class="fa fa-check"></i><b>4.4.1</b> Geração do modelo Físico para aplica-lo ao SGBD (Sistema de Gerenciamento de Banco de Dados):</a></li>
+<li class="chapter" data-level="4.4.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#interagindo-com-o-modelo-f%C3%ADsico---a-linguagem-sql-structured-query-language"><i class="fa fa-check"></i><b>4.4.2</b> Interagindo com o Modelo Físico - A linguagem SQL (Structured Query Language)</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exemplo-revenda-de-veículos-multi-marcas"><i class="fa fa-check"></i><b>4.5</b> EXEMPLO: REVENDA DE VEÍCULOS MULTI-MARCAS</a>
+<li class="chapter" data-level="4.5" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exemplo-revenda-de-ve%C3%ADculos-multi-marcas"><i class="fa fa-check"></i><b>4.5</b> EXEMPLO: REVENDA DE VEÍCULOS MULTI-MARCAS</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#passo-1---visualizando-matemáticamente-os-dados"><i class="fa fa-check"></i><b>4.5.1</b> Passo 1 - Visualizando matemáticamente os dados:</a></li>
-<li class="chapter" data-level="4.5.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#modelo-lógico-modelo-entidade-relacionamento"><i class="fa fa-check"></i><b>4.5.2</b> Modelo Lógico: Modelo Entidade Relacionamento</a></li>
+<li class="chapter" data-level="4.5.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#passo-1---visualizando-matem%C3%A1ticamente-os-dados"><i class="fa fa-check"></i><b>4.5.1</b> Passo 1 - Visualizando matemáticamente os dados:</a></li>
+<li class="chapter" data-level="4.5.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#modelo-l%C3%B3gico-modelo-entidade-relacionamento"><i class="fa fa-check"></i><b>4.5.2</b> Modelo Lógico: Modelo Entidade Relacionamento</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#verbos-relacionamentos-e-cardinalidade"><i class="fa fa-check"></i><b>4.6</b> VERBOS: Relacionamentos e Cardinalidade</a>
 <ul>
@@ -215,42 +216,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#entidade-dominante-e-entidade-subordinada"><i class="fa fa-check"></i><b>4.7</b> Entidade Dominante e Entidade Subordinada</a>
 <ul>
-<li class="chapter" data-level="4.7.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#definições"><i class="fa fa-check"></i><b>4.7.1</b> Definições:</a></li>
+<li class="chapter" data-level="4.7.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#defini%C3%A7%C3%B5es"><i class="fa fa-check"></i><b>4.7.1</b> Definições:</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#cardinalidade-do-modelo-lógico-e-a-criação-de-chaves-estrangeiras-no-modelo-físico-relacional"><i class="fa fa-check"></i><b>4.8</b> CARDINALIDADE DO MODELO LÓGICO E A CRIAÇÃO DE CHAVES ESTRANGEIRAS NO MODELO FÍSICO-RELACIONAL</a></li>
-<li class="chapter" data-level="4.9" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#normalização-em-bancos-de-dados-relaionais"><i class="fa fa-check"></i><b>4.9</b> Normalização em Bancos de Dados Relaionais</a>
+<li class="chapter" data-level="4.8" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#cardinalidade-do-modelo-l%C3%B3gico-e-a-cria%C3%A7%C3%A3o-de-chaves-estrangeiras-no-modelo-f%C3%ADsico-relacional"><i class="fa fa-check"></i><b>4.8</b> CARDINALIDADE DO MODELO LÓGICO E A CRIAÇÃO DE CHAVES ESTRANGEIRAS NO MODELO FÍSICO-RELACIONAL</a></li>
+<li class="chapter" data-level="4.9" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#normaliza%C3%A7%C3%A3o-em-bancos-de-dados-relaionais"><i class="fa fa-check"></i><b>4.9</b> Normalização em Bancos de Dados Relaionais</a>
 <ul>
 <li class="chapter" data-level="4.9.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#tabela-desnormalizada"><i class="fa fa-check"></i><b>4.9.1</b> Tabela Desnormalizada</a></li>
 <li class="chapter" data-level="4.9.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#tabela-normalizada"><i class="fa fa-check"></i><b>4.9.2</b> Tabela Normalizada</a></li>
 </ul></li>
-<li class="chapter" data-level="4.10" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#referências"><i class="fa fa-check"></i><b>4.10</b> Referências</a></li>
-<li class="chapter" data-level="4.11" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exercícios-resolvidos"><i class="fa fa-check"></i><b>4.11</b> Exercícios RESOLVIDOS</a>
+<li class="chapter" data-level="4.10" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#refer%C3%AAncias"><i class="fa fa-check"></i><b>4.10</b> Referências</a></li>
+<li class="chapter" data-level="4.11" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exerc%C3%ADcios-resolvidos"><i class="fa fa-check"></i><b>4.11</b> Exercícios RESOLVIDOS</a>
 <ul>
-<li class="chapter" data-level="4.11.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exercícios-1"><i class="fa fa-check"></i><b>4.11.1</b> Exercícios</a></li>
-<li class="chapter" data-level="4.11.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#lista-de-exercícios-modelo-entidade-relacionamento-mer"><i class="fa fa-check"></i><b>4.11.2</b> 📝 Lista de Exercícios – Modelo Entidade-Relacionamento (MER)</a></li>
-<li class="chapter" data-level="4.11.3" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#respostas-dos-exercícios"><i class="fa fa-check"></i><b>4.11.3</b> Respostas dos Exercícios:</a></li>
+<li class="chapter" data-level="4.11.1" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#exerc%C3%ADcios-1"><i class="fa fa-check"></i><b>4.11.1</b> Exercícios</a></li>
+<li class="chapter" data-level="4.11.2" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#lista-de-exerc%C3%ADcios-modelo-entidade-relacionamento-mer"><i class="fa fa-check"></i><b>4.11.2</b> 📝 Lista de Exercícios – Modelo Entidade-Relacionamento (MER)</a></li>
+<li class="chapter" data-level="4.11.3" data-path="modelagem-de-bancos-de-dados.html"><a href="modelagem-de-bancos-de-dados.html#respostas-dos-exerc%C3%ADcios"><i class="fa fa-check"></i><b>4.11.3</b> Respostas dos Exercícios:</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html"><i class="fa fa-check"></i><b>5</b> Administração e Gerenciamento de Bancos de Dados</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#administração-e-gerenciamento-de-banco-de-dados"><i class="fa fa-check"></i><b>5.1</b> Administração e Gerenciamento de Banco de Dados:</a></li>
+<li class="chapter" data-level="5.1" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#administra%C3%A7%C3%A3o-e-gerenciamento-de-banco-de-dados"><i class="fa fa-check"></i><b>5.1</b> Administração e Gerenciamento de Banco de Dados:</a></li>
 <li class="chapter" data-level="5.2" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#papel-do-dba-database-administrator"><i class="fa fa-check"></i><b>5.2</b> Papel do DBA (Database Administrator)</a></li>
-<li class="chapter" data-level="5.3" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#usuários-grupos-e-esquemas-de-bancos-de-dados"><i class="fa fa-check"></i><b>5.3</b> Usuários, Grupos e Esquemas de Bancos de Dados</a>
+<li class="chapter" data-level="5.3" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#usu%C3%A1rios-grupos-e-esquemas-de-bancos-de-dados"><i class="fa fa-check"></i><b>5.3</b> Usuários, Grupos e Esquemas de Bancos de Dados</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#usuários"><i class="fa fa-check"></i><b>5.3.1</b> Usuários</a></li>
+<li class="chapter" data-level="5.3.1" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#usu%C3%A1rios"><i class="fa fa-check"></i><b>5.3.1</b> Usuários</a></li>
 <li class="chapter" data-level="5.3.2" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#esquemas"><i class="fa fa-check"></i><b>5.3.2</b> Esquemas</a></li>
 <li class="chapter" data-level="5.3.3" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#grupos-ou-roles"><i class="fa fa-check"></i><b>5.3.3</b> Grupos ou Roles</a></li>
 <li class="chapter" data-level="5.3.4" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#sistema-de-gerenciamento-de-banco-de-dados-s.g.b.d."><i class="fa fa-check"></i><b>5.3.4</b> Sistema de Gerenciamento de Banco de Dados (S.G.B.D.)</a></li>
-<li class="chapter" data-level="5.3.5" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#criação-de-usuários-no-mysql"><i class="fa fa-check"></i><b>5.3.5</b> Criação de usuários no MySQL</a></li>
-<li class="chapter" data-level="5.3.6" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#criação-de-esquemas-de-banco-de-dados-no-mysql"><i class="fa fa-check"></i><b>5.3.6</b> Criação de Esquemas de Banco de Dados no MySQL</a></li>
-<li class="chapter" data-level="5.3.7" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#criando-de-grupos-de-permissões-no-mysql"><i class="fa fa-check"></i><b>5.3.7</b> Criando de Grupos de Permissões no MySQL:</a></li>
+<li class="chapter" data-level="5.3.5" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#cria%C3%A7%C3%A3o-de-usu%C3%A1rios-no-mysql"><i class="fa fa-check"></i><b>5.3.5</b> Criação de usuários no MySQL</a></li>
+<li class="chapter" data-level="5.3.6" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#cria%C3%A7%C3%A3o-de-esquemas-de-banco-de-dados-no-mysql"><i class="fa fa-check"></i><b>5.3.6</b> Criação de Esquemas de Banco de Dados no MySQL</a></li>
+<li class="chapter" data-level="5.3.7" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#criando-de-grupos-de-permiss%C3%B5es-no-mysql"><i class="fa fa-check"></i><b>5.3.7</b> Criando de Grupos de Permissões no MySQL:</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#fazendo-tudo-funcionar-colocando-usuários-em-grupos-e-concedendo-a-estes-acesso-a-esquemas-de-banco-de-dados"><i class="fa fa-check"></i><b>5.4</b> Fazendo tudo funcionar: Colocando usuários em grupos e concedendo a estes acesso a Esquemas de Banco de Dados:</a>
+<li class="chapter" data-level="5.4" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#fazendo-tudo-funcionar-colocando-usu%C3%A1rios-em-grupos-e-concedendo-a-estes-acesso-a-esquemas-de-banco-de-dados"><i class="fa fa-check"></i><b>5.4</b> Fazendo tudo funcionar: Colocando usuários em grupos e concedendo a estes acesso a Esquemas de Banco de Dados:</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#associando-os-esquemas-que-representam-cada-estado-a-cada-grupo-que-representa-cada-regição"><i class="fa fa-check"></i><b>5.4.1</b> Associando os esquemas que representam cada estado a cada grupo (que representa cada regição):</a></li>
-<li class="chapter" data-level="5.4.2" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#associando-associando-alunos-a-cada-grupo-região"><i class="fa fa-check"></i><b>5.4.2</b> Associando associando alunos a cada grupo (região):</a></li>
-<li class="chapter" data-level="5.4.3" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#associando-usuários-aos-grupos"><i class="fa fa-check"></i><b>5.4.3</b> Associando usuários aos grupos</a></li>
-<li class="chapter" data-level="5.4.4" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#concedendo-privilégios-aos-grupos"><i class="fa fa-check"></i><b>5.4.4</b> Concedendo privilégios aos grupos:</a></li>
+<li class="chapter" data-level="5.4.1" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#associando-os-esquemas-que-representam-cada-estado-a-cada-grupo-que-representa-cada-regi%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>5.4.1</b> Associando os esquemas que representam cada estado a cada grupo (que representa cada regição):</a></li>
+<li class="chapter" data-level="5.4.2" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#associando-associando-alunos-a-cada-grupo-regi%C3%A3o"><i class="fa fa-check"></i><b>5.4.2</b> Associando associando alunos a cada grupo (região):</a></li>
+<li class="chapter" data-level="5.4.3" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#associando-usu%C3%A1rios-aos-grupos"><i class="fa fa-check"></i><b>5.4.3</b> Associando usuários aos grupos</a></li>
+<li class="chapter" data-level="5.4.4" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#concedendo-privil%C3%A9gios-aos-grupos"><i class="fa fa-check"></i><b>5.4.4</b> Concedendo privilégios aos grupos:</a></li>
 <li class="chapter" data-level="5.4.5" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#exemplo-no-mysql"><i class="fa fa-check"></i><b>5.4.5</b> Exemplo no MySQL</a></li>
 <li class="chapter" data-level="5.4.6" data-path="administração-e-gerenciamento-de-bancos-de-dados.html"><a href="administração-e-gerenciamento-de-bancos-de-dados.html#exemplo-no-postgresql"><i class="fa fa-check"></i><b>5.4.6</b> Exemplo no PostGreSQL</a></li>
 </ul></li>
@@ -259,39 +260,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="administração-e-gerenciamento-de-bancos-de-dados-1.html"><a href="administração-e-gerenciamento-de-bancos-de-dados-1.html"><i class="fa fa-check"></i><b>6</b> Administração e Gerenciamento de Bancos de Dados</a></li>
 <li class="chapter" data-level="7" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html"><i class="fa fa-check"></i><b>7</b> Banco de Dados: Uma Aplicação CRUD</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#o-que-é-uma-aplicação-crud"><i class="fa fa-check"></i><b>7.1</b> O que é uma Aplicação CRUD?</a></li>
+<li class="chapter" data-level="7.1" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#o-que-%C3%A9-uma-aplica%C3%A7%C3%A3o-crud"><i class="fa fa-check"></i><b>7.1</b> O que é uma Aplicação CRUD?</a></li>
 <li class="chapter" data-level="7.2" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#conceito-de-crud"><i class="fa fa-check"></i><b>7.2</b> Conceito de CRUD</a></li>
-<li class="chapter" data-level="7.3" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#o-padrão-de-design-de-sistemas-mvc-model-view-controller"><i class="fa fa-check"></i><b>7.3</b> O padrão de Design de Sistemas MVC (Model View Controller)</a></li>
-<li class="chapter" data-level="7.4" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#construindo-uma-aplicação-crud-para-interfacear-com-a-tabela-pessoa"><i class="fa fa-check"></i><b>7.4</b> Construindo uma aplicação CRUD para interfacear com a tabela “Pessoa”</a>
+<li class="chapter" data-level="7.3" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#o-padr%C3%A3o-de-design-de-sistemas-mvc-model-view-controller"><i class="fa fa-check"></i><b>7.3</b> O padrão de Design de Sistemas MVC (Model View Controller)</a></li>
+<li class="chapter" data-level="7.4" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#construindo-uma-aplica%C3%A7%C3%A3o-crud-para-interfacear-com-a-tabela-pessoa"><i class="fa fa-check"></i><b>7.4</b> Construindo uma aplicação CRUD para interfacear com a tabela “Pessoa”</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#representação-gráfica-no-modelo-físico-relacional"><i class="fa fa-check"></i><b>7.4.1</b> Representação gráfica no modelo Físico-Relacional</a></li>
+<li class="chapter" data-level="7.4.1" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#representa%C3%A7%C3%A3o-gr%C3%A1fica-no-modelo-f%C3%ADsico-relacional"><i class="fa fa-check"></i><b>7.4.1</b> Representação gráfica no modelo Físico-Relacional</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#criação-de-uma-aplicação-crud"><i class="fa fa-check"></i><b>7.5</b> Criação de uma aplicação CRUD</a>
+<li class="chapter" data-level="7.5" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#cria%C3%A7%C3%A3o-de-uma-aplica%C3%A7%C3%A3o-crud"><i class="fa fa-check"></i><b>7.5</b> Criação de uma aplicação CRUD</a>
 <ul>
 <li class="chapter" data-level="7.5.1" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#resultado-final"><i class="fa fa-check"></i><b>7.5.1</b> Resultado final:</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#feito-1"><i class="fa fa-check"></i><b>7.6</b> Feito</a></li>
-<li class="chapter" data-level="7.7" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#exercícios-2"><i class="fa fa-check"></i><b>7.7</b> Exercícios</a>
+<li class="chapter" data-level="7.7" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#exerc%C3%ADcios-2"><i class="fa fa-check"></i><b>7.7</b> Exercícios</a>
 <ul>
-<li class="chapter" data-level="7.7.1" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#banco-de-dados-utilizado-nos-exemplos-de-aplicações-abaixo"><i class="fa fa-check"></i><b>7.7.1</b> Banco de Dados utilizado nos exemplos de aplicações abaixo</a></li>
+<li class="chapter" data-level="7.7.1" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#banco-de-dados-utilizado-nos-exemplos-de-aplica%C3%A7%C3%B5es-abaixo"><i class="fa fa-check"></i><b>7.7.1</b> Banco de Dados utilizado nos exemplos de aplicações abaixo</a></li>
 </ul></li>
 <li class="chapter" data-level="7.8" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#exemplo-01"><i class="fa fa-check"></i><b>7.8</b> Exemplo 01</a></li>
-<li class="chapter" data-level="7.9" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#exemplo-02---servidor-de-aplicação-python"><i class="fa fa-check"></i><b>7.9</b> Exemplo 02 - SERVIDOR DE APLICAÇÃO PYTHON</a>
+<li class="chapter" data-level="7.9" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#exemplo-02---servidor-de-aplica%C3%A7%C3%A3o-python"><i class="fa fa-check"></i><b>7.9</b> Exemplo 02 - SERVIDOR DE APLICAÇÃO PYTHON</a>
 <ul>
 <li class="chapter" data-level="7.9.1" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#servidor-python"><i class="fa fa-check"></i><b>7.9.1</b> Servidor python</a></li>
-<li class="chapter" data-level="7.9.2" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#cliente-html-conexão-restful"><i class="fa fa-check"></i><b>7.9.2</b> Cliente HTML (conexão Restful)</a></li>
+<li class="chapter" data-level="7.9.2" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#cliente-html-conex%C3%A3o-restful"><i class="fa fa-check"></i><b>7.9.2</b> Cliente HTML (conexão Restful)</a></li>
 </ul></li>
-<li class="chapter" data-level="7.10" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#exemplo-03---servidor-de-aplicação-perl"><i class="fa fa-check"></i><b>7.10</b> Exemplo 03 - SERVIDOR DE APLICAÇÃO PERL</a>
+<li class="chapter" data-level="7.10" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#exemplo-03---servidor-de-aplica%C3%A7%C3%A3o-perl"><i class="fa fa-check"></i><b>7.10</b> Exemplo 03 - SERVIDOR DE APLICAÇÃO PERL</a>
 <ul>
 <li class="chapter" data-level="7.10.1" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#servidor-perl"><i class="fa fa-check"></i><b>7.10.1</b> Servidor Perl</a></li>
-<li class="chapter" data-level="7.10.2" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#cliente-html-conexão-restful-1"><i class="fa fa-check"></i><b>7.10.2</b> Cliente HTML (conexão Restful)</a></li>
+<li class="chapter" data-level="7.10.2" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#cliente-html-conex%C3%A3o-restful-1"><i class="fa fa-check"></i><b>7.10.2</b> Cliente HTML (conexão Restful)</a></li>
 </ul></li>
-<li class="chapter" data-level="7.11" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#exemplo-04---servidor-de-aplicação-java"><i class="fa fa-check"></i><b>7.11</b> Exemplo 04 - SERVIDOR DE APLICAÇÃO JAVA</a></li>
-<li class="chapter" data-level="7.12" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#exemplo-05---servidor-de-aplicação-c"><i class="fa fa-check"></i><b>7.12</b> Exemplo 05 - SERVIDOR DE APLICAÇÃO C++</a>
+<li class="chapter" data-level="7.11" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#exemplo-04---servidor-de-aplica%C3%A7%C3%A3o-java"><i class="fa fa-check"></i><b>7.11</b> Exemplo 04 - SERVIDOR DE APLICAÇÃO JAVA</a></li>
+<li class="chapter" data-level="7.12" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#exemplo-05---servidor-de-aplica%C3%A7%C3%A3o-c"><i class="fa fa-check"></i><b>7.12</b> Exemplo 05 - SERVIDOR DE APLICAÇÃO C++</a>
 <ul>
 <li class="chapter" data-level="7.12.1" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#criando-o-arquivo-c-do-servidor"><i class="fa fa-check"></i><b>7.12.1</b> Criando o arquivo C++ do servidor</a></li>
-<li class="chapter" data-level="7.12.2" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#ferramenta-de-compilação-cmake"><i class="fa fa-check"></i><b>7.12.2</b> Ferramenta de compilação CMAKE</a></li>
-<li class="chapter" data-level="7.12.3" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#cliente-html-conexão-restful-2"><i class="fa fa-check"></i><b>7.12.3</b> Cliente HTML (conexão Restful)</a></li>
+<li class="chapter" data-level="7.12.2" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#ferramenta-de-compila%C3%A7%C3%A3o-cmake"><i class="fa fa-check"></i><b>7.12.2</b> Ferramenta de compilação CMAKE</a></li>
+<li class="chapter" data-level="7.12.3" data-path="banco-de-dados-uma-aplicação-crud.html"><a href="banco-de-dados-uma-aplicação-crud.html#cliente-html-conex%C3%A3o-restful-2"><i class="fa fa-check"></i><b>7.12.3</b> Cliente HTML (conexão Restful)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="banco-de-dados-mysql-mariadb.html"><a href="banco-de-dados-mysql-mariadb.html"><i class="fa fa-check"></i><b>8</b> Banco de Dados: MySQL (MariaDB)</a></li>
@@ -329,12 +330,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="banco-de-dados---análise-de-dados-parte-03" class="section level1 hasAnchor" number="20">
-<h1><span class="header-section-number">Slide 20</span> Banco de Dados - Análise de Dados Parte 03<a href="banco-de-dados---análise-de-dados-parte-03.html#banco-de-dados---análise-de-dados-parte-03" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<h1><span class="header-section-number">Slide 20</span> Banco de Dados - Análise de Dados Parte 03<a href="banco-de-dados---análise-de-dados-parte-03.html#banco-de-dados---an%C3%A1lise-de-dados-parte-03" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="section-19" class="section level4 unnumbered hasAnchor">
 <h4>27/10/2025<a href="banco-de-dados---análise-de-dados-parte-03.html#section-19" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 </div>
 <div id="professor-miguél-suares-19" class="section level4 unnumbered hasAnchor">
-<h4>Professor Miguél Suares<a href="banco-de-dados---análise-de-dados-parte-03.html#professor-miguél-suares-19" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4>Professor Miguél Suares<a href="banco-de-dados---análise-de-dados-parte-03.html#professor-migu%C3%A9l-suares-19" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 
 </div>
 </div>

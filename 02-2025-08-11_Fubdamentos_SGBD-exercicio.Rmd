@@ -1,5 +1,5 @@
 ## Exercícios
 
-```{r geracao_arquivos, eval=FALSE, include=FALSE}
-rmarkdown::render("03-2025-08-19_20_.Rmd", output_dir="docs", output_file ="temporario.html" , output_format = "html_document") ; utils::browseURL("docs/temporario.html")
+```{r imprimir-02-exercicios, eval=FALSE, include=FALSE}
+rmarkdown::render("02-2025-08-11_Fubdamentos_SGBD-exercicio.Rmd", output_dir="docs", output_file ="temporario.html" , output_format = "html_document") ; utils::browseURL("docs/temporario.html")
 ```
